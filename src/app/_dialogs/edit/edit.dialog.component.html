@@ -1,0 +1,62 @@
+<div class="container">
+    <h3 mat-dialog-title>User: {{data.userName}}</h3>
+  
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+  
+      <!--Contains mat-hint for characters count and has maxLengt set-->
+      <div class="form">
+        <mat-form-field color="accent">
+          <textarea matInput #input class="form-control" placeholder="FirstName" [(ngModel)]="data.firstName" name="firstName" required ></textarea>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <textarea matInput #input class="form-control" placeholder="LastName" [(ngModel)]="data.lastName" name="lastName" required ></textarea>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      
+      <div class="form">
+        <mat-form-field color="accent">
+          <input type="password" matInput #inputstate class="form-control" placeholder="Password" [(ngModel)]="data.password" name="password" maxlength="10" >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput style="display: none">
+          <mat-checkbox [(ngModel)]="data.isReadOnly" name="isReadOnly">Is ReadOnly</mat-checkbox>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput style="display: none">
+          <mat-checkbox [(ngModel)]="data.canComment" name="canComment">Can Comment</mat-checkbox>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput style="display: none">
+          <mat-checkbox [(ngModel)]="data.isContributer" name="isContributer">Is Contributer</mat-checkbox>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput style="display: none">
+          <mat-checkbox [(ngModel)]="data.isAdmin" name="isAdmin">Is Admin</mat-checkbox>
+        </mat-form-field>
+      </div>
+
+      <div mat-dialog-actions>
+        <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Save</button>
+        <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      </div>
+    </form>
+  </div>
+  

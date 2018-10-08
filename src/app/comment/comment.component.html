@@ -1,0 +1,18 @@
+<div class="comment-container" *ngIf = "heritage">
+  <mat-toolbar>
+    <span>User Comments: {{ heritage.name }} </span>
+    <span class="spacer"></span>
+    <button type="button" mat-button class="form-save" (click)="back()">Back</button>
+  </mat-toolbar> 
+  <mat-card>        
+      <img mat-card-image class="comment-image" src="..\..\assets\images\No_Image_Available.jpg" alt="Photo not available">
+        <mat-card-content>
+          <p>
+            {{ heritage.story }}
+          </p>
+      </mat-card-content>
+    </mat-card>
+  <comment-form [listId]="listId" [editId]="editId" [heritageId]="heritage.id"></comment-form>
+  <comment-list [listId]="listId" [editId]="editId" [heritageId]="heritage.id"></comment-list>
+  <mat-divider></mat-divider>
+</div>

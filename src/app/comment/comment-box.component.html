@@ -1,0 +1,24 @@
+<div class="panel panel-default" *ngIf="comment">
+    <mat-card>
+    <div class="panel-heading">{{comment.userId}}</div>
+    <div class="panel-body">
+        {{comment.commentText}}
+    </div>
+    <div class="panel-footer">        
+        <button mat-icon-button color="accent" (click)="editComment()">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" (click)="deleteComment()">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+        <button mat-icon-button color="accent">
+            <mat-icon aria-label="Good" (click)="thumbUp()">thumb_up</mat-icon>
+            {{ comment.upVoteCount }}
+        </button>
+        <button mat-icon-button color="accent">
+            <mat-icon aria-label="Bad" (click)="thumbDown()">thumb_down</mat-icon>
+            {{ comment.downVoteCount }}
+        </button>
+    </div>
+    </mat-card>
+</div>

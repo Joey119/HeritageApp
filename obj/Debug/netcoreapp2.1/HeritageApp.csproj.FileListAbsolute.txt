@@ -1,0 +1,14 @@
+c:\Development\HeritageApp\bin\Debug\netcoreapp2.1\HeritageApp.deps.json
+c:\Development\HeritageApp\bin\Debug\netcoreapp2.1\HeritageApp.runtimeconfig.json
+c:\Development\HeritageApp\bin\Debug\netcoreapp2.1\HeritageApp.runtimeconfig.dev.json
+c:\Development\HeritageApp\bin\Debug\netcoreapp2.1\HeritageApp.dll
+c:\Development\HeritageApp\bin\Debug\netcoreapp2.1\HeritageApp.pdb
+c:\Development\HeritageApp\obj\Debug\netcoreapp2.1\HeritageApp.csprojAssemblyReference.cache
+c:\Development\HeritageApp\obj\Debug\netcoreapp2.1\HeritageApp.csproj.CoreCompileInputs.cache
+c:\Development\HeritageApp\obj\Debug\netcoreapp2.1\HeritageApp.RazorAssemblyInfo.cache
+c:\Development\HeritageApp\obj\Debug\netcoreapp2.1\HeritageApp.RazorAssemblyInfo.cs
+c:\Development\HeritageApp\obj\Debug\netcoreapp2.1\HeritageApp.AssemblyInfoInputs.cache
+c:\Development\HeritageApp\obj\Debug\netcoreapp2.1\HeritageApp.AssemblyInfo.cs
+c:\Development\HeritageApp\obj\Debug\netcoreapp2.1\HeritageApp.RazorTargetAssemblyInfo.cache
+c:\Development\HeritageApp\obj\Debug\netcoreapp2.1\HeritageApp.dll
+c:\Development\HeritageApp\obj\Debug\netcoreapp2.1\HeritageApp.pdb

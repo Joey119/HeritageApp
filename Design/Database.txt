@@ -1,0 +1,17 @@
+Heritage
+HeritageId, Name, RegistrationDistrict, ReigstrationYear, Province, TypeofProject, BatchNo, Inheritors, ProjectOverview, History, CurrentStatus, PresentValue, EndangeredStatus, Masterpiece, PhotoVideoLocation, TourismStatus, TourismMarketCharacteristics, TourismProduct, TourismPrice, TourismDevelopmentModel, TourismBenefit, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn
+
+HeritageEvaluation
+EvaluationId, HeritageId, ProjectRef, OtherEvaluationParams, EvaluationResult, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn
+
+HeritageStakeholdersGameTheory
+StakeholdersGameTheoryId, HeritageId, ProjectRef, Params, Result, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn
+
+HeritageProjectActivation
+ProjectActivationId, HeritageId, ProjectRef, ActivationOptions, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn
+
+Users
+UserId, Email, Pwd
+
+
+

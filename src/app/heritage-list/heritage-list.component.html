@@ -1,0 +1,187 @@
+  
+  <!--
+  <div class="spinner" *ngIf="loadingState; else userlist">
+    <mat-spinner></mat-spinner>
+  </div>
+  -->
+
+  <div class="tblcontainer mat-elevation-z8">
+  
+    <div class="form">
+      <mat-form-field floatPlaceholder="never" color="accent">
+        <input matInput #filter placeholder="Filter heritages">
+      </mat-form-field>
+    </div>
+  
+    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+        <mat-cell *matCellDef="let row" >{{row.id}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="registrationDistrict">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Registration District</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.registrationDistrict}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="registrationYear">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Registration Year</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.registrationYear}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="province">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Province</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.province}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="typeofProject">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Type of Project</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.typeofProject}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="batchNo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Batch No</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.batchNo}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="inheritors">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Inheritors</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.inheritors}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="projectOverview">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Project Overview</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.projectOverview}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="history">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>History</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.history}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="currentStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Current Status</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.currentStatus}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="presentValue">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>PresentValue</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.presentValue}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="endangeredStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Endangered Status</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.endangeredStatus}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="masterpiece">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Masterpiece</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.masterpiece}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="tourismStatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Status</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.tourismStatus}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="tourismMarketCharacteristics">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Market Characteristics</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.tourismMarketCharacteristics}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="tourismProduct">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Product</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.tourismProduct}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="tourismPrice">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Price</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.tourismPrice}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="tourismDevelopmentModel">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Development Model</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.tourismDevelopmentModel}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="tourismBenefit">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Benefit</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.tourismBenefit}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="createdBy">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Created By</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.createdBy}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="createdOn">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Created On</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.createdOn}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="modifiedBy">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Modified By</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.modifiedBy}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="modifiedOn">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Modified On</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.modifiedOn}}</mat-cell>
+      </ng-container>
+  
+      <!-- actions -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button color="primary" [routerLink]="['/heritagedetail']">
+            <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+          </button>
+          <button mat-icon-button (click)="refresh()">
+            <mat-icon>refresh</mat-icon>
+          </button>
+        </mat-header-cell>
+  
+        <mat-cell *matCellDef="let row;">
+          <button mat-icon-button color="accent" [routerLink]="['/heritagedetail', row.id]">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+
+          <button mat-icon-button color="accent" [routerLink]="['/heritageevaluation', row.id]">
+            <mat-icon aria-label="Explore">explore</mat-icon>
+          </button>
+
+          <button mat-icon-button color="accent" [routerLink]="['/heritagedecomment', row.id]">
+            <mat-icon aria-label="Comment">comment</mat-icon>
+          </button>
+  
+          <button mat-icon-button color="accent" (click)="deleteHeritage(row.id)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+       
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+    <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+      No results
+    </div>
+  
+    <mat-paginator #paginator
+                   [length]="dataSource.filteredData.length"
+                   [pageIndex]="0"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+  </div>
+  

@@ -1,0 +1,39 @@
+<span style="background-color: #FFFF00">{{errorMessage}}</span>
+
+<p>Upload File</p>
+
+<p-fileUpload name="myfile[]" 
+              url="api/File/upload" 
+              (onUpload)="onUpload($event)"
+              (onBeforeSend)="onBeforeSend($event)">
+              
+</p-fileUpload>
+
+<p>Files In Directory</p>
+
+<p-table [columns] = "cols" [value]="fileList" [autoLayout]="true">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns" [ngStyle]="{'display': col.display}">
+                {{col.header}}
+            </th>
+            <th style="width:4em"></th>
+            <th style="width:4em"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns" [ngStyle]="{'display': col.display}">
+                {{rowData[col.field]}}
+            </td>
+            <td>
+                <button type="button" pButton icon="fa fa-download" (click)="downloadFile(rowData.id, rowData.fileName)"></button>
+            </td> 
+            <td>
+                <button type="button" pButton icon="fa fa-trash-o" (click)="deleteFile(rowData.id)"></button>
+            </td>   
+        </tr>
+    </ng-template>  
+</p-table>
+
+

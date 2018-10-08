@@ -1,0 +1,24 @@
+<form (ngSubmit)="submitComment()">
+    <div class="form-group">
+
+        <mat-card class="comment-form"> 
+            <mat-card-header>
+                <mat-icon>account_circle</mat-icon>
+            </mat-card-header>           
+            <mat-card-content>
+                <mat-form-field class="comment-field">
+                    <input matInput placeholder="User ID" [readonly]='true'> {{model.userId}}
+                </mat-form-field>
+                <br>
+                <mat-form-field class="comment-field">
+                    <textarea matInput placeholder="Leave a comment" [(ngModel)]="model.commentText" name="commentText"></textarea>
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button *ngIf="!editing" type="submit">Add</button>
+                <button mat-raised-button *ngIf="editing" type="submit">Update</button>
+            </mat-card-actions>
+        </mat-card>
+       
+    </div>
+</form>
