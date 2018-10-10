@@ -37,29 +37,29 @@ namespace HeritageApp.Models.Database
             var heritages = new Heritage[]
             {
                 new Heritage { Name = "HeritageA", RegistrationDistrict = "Huabei", RegistrationYear = "1983", Province = "Hebei", TypeofProject = "Private", BatchNo = "1234567890", Inheritors = "MR ZHOU", ProjectOverview = "This is overview of the project", History = "This is history section", CurrentStatus = "Current Status of the heritage project", PresentValue = 100.0, EndangeredStatus = "I am not endangered", Masterpiece = "Masterpiece recorded here", TourismStatus = "Tourism status reported", TourismMarketCharacteristics = "What is characteristics", TourismProduct = "any tourism product", TourismPrice = 50000.0, TourismDevelopmentModel = "model of tourism", TourismBenefit = 5000.0, Story = "story to be entered...",
-                CreatedBy = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
-                ModifiedBy = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
+                CreatedUserId = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
+                ModifiedUserId = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
                 new Heritage { Name = "HeritageB", RegistrationDistrict = "Dongbei", RegistrationYear = "1983", Province = "Jilin", TypeofProject = "Private", BatchNo = "1234567890", Inheritors = "MR ZHOU", ProjectOverview = "This is overview of the project", History = "This is history section", CurrentStatus = "Current Status of the heritage project", PresentValue = 100.0, EndangeredStatus = "I am not endangered", Masterpiece = "Masterpiece recorded here", TourismStatus = "Tourism status reported", TourismMarketCharacteristics = "What is characteristics", TourismProduct = "any tourism product", TourismPrice = 50000.0, TourismDevelopmentModel = "model of tourism", TourismBenefit = 5000.0, Story = "story to be entered...",
-                CreatedBy = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
-                ModifiedBy = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
+                CreatedUserId = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
+                ModifiedUserId = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
                 new Heritage { Name = "HeritageC", RegistrationDistrict = "Dongbei", RegistrationYear = "1983", Province = "Shenyang", TypeofProject = "Private", BatchNo = "1234567890", Inheritors = "MR ZHOU", ProjectOverview = "This is overview of the project", History = "This is history section", CurrentStatus = "Current Status of the heritage project", PresentValue = 100.0, EndangeredStatus = "I am not endangered", Masterpiece = "Masterpiece recorded here", TourismStatus = "Tourism status reported", TourismMarketCharacteristics = "What is characteristics", TourismProduct = "any tourism product", TourismPrice = 50000.0, TourismDevelopmentModel = "model of tourism", TourismBenefit = 5000.0, Story = "story to be entered...",
-                CreatedBy = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
-                ModifiedBy = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
+                CreatedUserId = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
+                ModifiedUserId = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
                 new Heritage { Name = "HeritageD", RegistrationDistrict = "Xibei", RegistrationYear = "1983", Province = "Shannxi", TypeofProject = "Private", BatchNo = "1234567890", Inheritors = "MR ZHOU", ProjectOverview = "This is overview of the project", History = "This is history section", CurrentStatus = "Current Status of the heritage project", PresentValue = 100.0, EndangeredStatus = "I am not endangered", Masterpiece = "Masterpiece recorded here", TourismStatus = "Tourism status reported", TourismMarketCharacteristics = "What is characteristics", TourismProduct = "any tourism product", TourismPrice = 50000.0, TourismDevelopmentModel = "model of tourism", TourismBenefit = 5000.0, Story = "story to be entered...",
-                CreatedBy = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
-                ModifiedBy = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
+                CreatedUserId = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
+                ModifiedUserId = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
                 new Heritage { Name = "HeritageE", RegistrationDistrict = "Xinan", RegistrationYear = "1983", Province = "Sichuan", TypeofProject = "Private", BatchNo = "1234567890", Inheritors = "MR ZHOU", ProjectOverview = "This is overview of the project", History = "This is history section", CurrentStatus = "Current Status of the heritage project", PresentValue = 100.0, EndangeredStatus = "I am not endangered", Masterpiece = "Masterpiece recorded here", TourismStatus = "Tourism status reported", TourismMarketCharacteristics = "What is characteristics", TourismProduct = "any tourism product", TourismPrice = 50000.0, TourismDevelopmentModel = "model of tourism", TourismBenefit = 5000.0, Story = "story to be entered...",
-                CreatedBy = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
-                ModifiedBy = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
+                CreatedUserId = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
+                ModifiedUserId = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
                 new Heritage { Name = "HeritageF", RegistrationDistrict = "Huabei", RegistrationYear = "1983", Province = "Beijing", TypeofProject = "Private", BatchNo = "1234567890", Inheritors = "MR ZHOU", ProjectOverview = "This is overview of the project", History = "This is history section", CurrentStatus = "Current Status of the heritage project", PresentValue = 100.0, EndangeredStatus = "I am not endangered", Masterpiece = "Masterpiece recorded here", TourismStatus = "Tourism status reported", TourismMarketCharacteristics = "What is characteristics", TourismProduct = "any tourism product", TourismPrice = 50000.0, TourismDevelopmentModel = "model of tourism", TourismBenefit = 5000.0, Story = "story to be entered...",
-                CreatedBy = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
-                ModifiedBy = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
+                CreatedUserId = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
+                ModifiedUserId = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
                 new Heritage { Name = "HeritageG", RegistrationDistrict = "Dongnan", RegistrationYear = "1983", Province = "Guangzhou", TypeofProject = "Private", BatchNo = "1234567890", Inheritors = "MR ZHOU", ProjectOverview = "This is overview of the project", History = "This is history section", CurrentStatus = "Current Status of the heritage project", PresentValue = 100.0, EndangeredStatus = "I am not endangered", Masterpiece = "Masterpiece recorded here", TourismStatus = "Tourism status reported", TourismMarketCharacteristics = "What is characteristics", TourismProduct = "any tourism product", TourismPrice = 50000.0, TourismDevelopmentModel = "model of tourism", TourismBenefit = 5000.0, Story = "story to be entered...",
-                CreatedBy = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
-                ModifiedBy = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
+                CreatedUserId = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
+                ModifiedUserId = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
                 new Heritage { Name = "HeritageH", RegistrationDistrict = "Dongnan", RegistrationYear = "1983", Province = "Hong Kong", TypeofProject = "Private", BatchNo = "1234567890", Inheritors = "MR ZHOU", ProjectOverview = "This is overview of the project", History = "This is history section", CurrentStatus = "Current Status of the heritage project", PresentValue = 100.0, EndangeredStatus = "I am not endangered", Masterpiece = "Masterpiece recorded here", TourismStatus = "Tourism status reported", TourismMarketCharacteristics = "What is characteristics", TourismProduct = "any tourism product", TourismPrice = 50000.0, TourismDevelopmentModel = "model of tourism", TourismBenefit = 5000.0, Story = "story to be entered...",
-                CreatedBy = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
-                ModifiedBy = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
+                CreatedUserId = users.Single( u => u.UserName == "Contributor").Id, CreatedOn = DateTime.Parse("2018-09-01"), 
+                ModifiedUserId = users.Single( u => u.UserName == "Contributor").Id, ModifiedOn = DateTime.Parse("2018-09-01") },
             };
             foreach (Heritage h in heritages)
             {
@@ -70,19 +70,19 @@ namespace HeritageApp.Models.Database
             var heirtageComments = new HeritageComment[]
             {
                 new HeritageComment { HeritageId = heritages.Single( h => h.Name == "HeritageA").Id, 
-                UserId = users.Single( u => u.UserName == "Contributor").Id, 
+                CommentUserId = users.Single( u => u.UserName == "Contributor").Id, 
                 CommentText = "First comment", CommentDate = DateTime.Parse("2018-09-01"), UpVoteCount = 0, DownVoteCount = 0 },
                 new HeritageComment { HeritageId = heritages.Single( h => h.Name == "HeritageA").Id, 
-                UserId = users.Single( u => u.UserName == "ReadOnlyCommentator").Id, 
+                CommentUserId = users.Single( u => u.UserName == "ReadOnlyCommentator").Id, 
                 CommentText = "First comment", CommentDate = DateTime.Parse("2018-09-01"), UpVoteCount = 0, DownVoteCount = 0 },
                 new HeritageComment { HeritageId = heritages.Single( h => h.Name == "HeritageA").Id, 
-                UserId = users.Single( u => u.UserName == "ReadOnlyCommentator").Id, 
+                CommentUserId = users.Single( u => u.UserName == "ReadOnlyCommentator").Id, 
                 CommentText = "First comment", CommentDate = DateTime.Parse("2018-09-01"), UpVoteCount = 0, DownVoteCount = 0 },
                 new HeritageComment { HeritageId = heritages.Single( h => h.Name == "HeritageA").Id, 
-                UserId = users.Single( u => u.UserName == "ReadOnlyCommentator").Id, 
+                CommentUserId = users.Single( u => u.UserName == "ReadOnlyCommentator").Id, 
                 CommentText = "First comment", CommentDate = DateTime.Parse("2018-09-01"), UpVoteCount = 0, DownVoteCount = 0 },
                 new HeritageComment { HeritageId = heritages.Single( h => h.Name == "HeritageA").Id, 
-                UserId = users.Single( u => u.UserName == "Contributor").Id, 
+                CommentUserId = users.Single( u => u.UserName == "Contributor").Id, 
                 CommentText = "First comment", CommentDate = DateTime.Parse("2018-09-01"), UpVoteCount = 0, DownVoteCount = 0 }
             };
             foreach(HeritageComment hc in heirtageComments)
@@ -93,12 +93,12 @@ namespace HeritageApp.Models.Database
 
             var fileUploads = new FileUpload[]
             {
-                new FileUpload { FileName = "photo1.jpg", FilePath = "c:\\photo\\heritage", UserId = users.Single( u => u.UserName == "Contributor").Id},
-                new FileUpload { FileName = "photo2.jpg", FilePath = "c:\\photo\\heritage", UserId = users.Single( u => u.UserName == "Contributor").Id},
-                new FileUpload { FileName = "photo3.jpg", FilePath = "c:\\photo\\heritage", UserId = users.Single( u => u.UserName == "Contributor").Id},
-                new FileUpload { FileName = "photo4.jpg", FilePath = "c:\\photo\\heritage", UserId = users.Single( u => u.UserName == "Contributor").Id},
-                new FileUpload { FileName = "photo5.jpg", FilePath = "c:\\photo\\heritage", UserId = users.Single( u => u.UserName == "Contributor").Id},
-                new FileUpload { FileName = "photo6.jpg", FilePath = "c:\\photo\\heritage", UserId = users.Single( u => u.UserName == "Contributor").Id}
+                new FileUpload { FileName = "photo1.jpg", FilePath = "c:\\photo\\heritage", UploadUserId = users.Single( u => u.UserName == "Contributor").Id},
+                new FileUpload { FileName = "photo2.jpg", FilePath = "c:\\photo\\heritage", UploadUserId = users.Single( u => u.UserName == "Contributor").Id},
+                new FileUpload { FileName = "photo3.jpg", FilePath = "c:\\photo\\heritage", UploadUserId = users.Single( u => u.UserName == "Contributor").Id},
+                new FileUpload { FileName = "photo4.jpg", FilePath = "c:\\photo\\heritage", UploadUserId = users.Single( u => u.UserName == "Contributor").Id},
+                new FileUpload { FileName = "photo5.jpg", FilePath = "c:\\photo\\heritage", UploadUserId = users.Single( u => u.UserName == "Contributor").Id},
+                new FileUpload { FileName = "photo6.jpg", FilePath = "c:\\photo\\heritage", UploadUserId = users.Single( u => u.UserName == "Contributor").Id}
             };
         }
         

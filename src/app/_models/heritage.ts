@@ -20,8 +20,10 @@ export interface IHeritage {
     tourismDevelopmentModel: string;
     tourismBenefit: number;
     story: string; 
-    createdBy: number;
+    createdUserId: number;
+    createdUserName: string;
     createdOn: Date;
-    modifiedBy: number;
+    modifiedUserId: number;
+    modifiedUserName: string;
     modifiedOn: Date;
 }

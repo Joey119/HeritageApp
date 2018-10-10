@@ -96,6 +96,18 @@ export class UserService {
         }
     }
 
+    public currentUserName(): string {
+        var user = JSON.parse(localStorage.getItem('currentUser'));
+        if (user != null && user != empty)
+        {
+            return user.userName;
+        }
+        else
+        {
+            return 'Unknown';
+        }
+    }
+
         // custom handler
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {

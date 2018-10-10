@@ -3,5 +3,6 @@ export interface ISystemFile {
     heritageId: number;
     fileName: string;
     filePath: string;
-    userId: number;
+    uploadUserId: number;
+    uploadUserName: string;
 }

@@ -81,9 +81,11 @@ export class HeritageDetailComponent implements OnInit {
           tourismDevelopmentModel: '',
           tourismBenefit: 0,
           story: '',
-          createdBy: 0,
+          createdUserId: 0,
+          createdUserName: '',
           createdOn: undefined,
-          modifiedBy: 0,
+          modifiedUserId: 0,
+          modifiedUserName: '',
           modifiedOn: undefined
         }
       }
@@ -98,14 +100,14 @@ export class HeritageDetailComponent implements OnInit {
     var userId = this.userService.currentUserId();
     if (this.heritage.id != 0)
     {      
-      this.heritage.createdBy = userId;
-      this.heritage.modifiedBy = userId;
+      this.heritage.createdUserId = userId;
+      this.heritage.modifiedUserId = userId;
       this.heritageService.updateHeritage(Global.BASE_HERITAGE_ENDPOINT + this.heritage.id, this.heritage);
       this.showSuccess();
     }
     else
     {
-      this.heritage.modifiedBy = userId;
+      this.heritage.modifiedUserId = userId;
       this.heritageService.addHeritage(Global.BASE_HERITAGE_ENDPOINT, this.heritage);
     }
     

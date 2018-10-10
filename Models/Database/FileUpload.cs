@@ -9,6 +9,7 @@ namespace HeritageApp.Models.Database
         [StringLength(50, ErrorMessage = "File Name cannot be longer than 50 characters.")]
         public string FileName { get; set; }
         public string FilePath { get; set; }
-        public int UserId { get; set; }
+        public int UploadUserId { get; set; }
+        public User UploadUser { get; set; }
     }
 }

@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace HeritageApp.Models.Database
 {
@@ -24,5 +26,14 @@ namespace HeritageApp.Models.Database
         public bool CanComment { get; set; }
         public bool IsContributer { get; set; }
         public bool IsAdmin { get; set; }
+        [InverseProperty("CreatedUser")]
+        public List<Heritage> CreatedHeritage { get; set; }
+        [InverseProperty("ModifiedUser")]
+        public List<Heritage> ModifiedHeritage { get; set; }
+        [InverseProperty("CommentUser")]
+        public List<HeritageComment> CreatedComment { get; set; }
+        [InverseProperty("UploadUser")]
+        public List<FileUpload> UploadFile { get; set; }
+
     }
 }

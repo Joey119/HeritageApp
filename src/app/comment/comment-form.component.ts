@@ -19,14 +19,15 @@ export class CommentFormComponent implements OnChanges {
 
     // Local properties    
     private editing: boolean = false;
-    private model: IComment = { id: 0, heritageId: 0, userId: 0, commentText: '', commentDate: undefined, upVoteCount: 0, downVoteCount: 0 };;
+    private model: IComment = { id: 0, heritageId: 0, commentUserId: 0, commentUserName: '', commentText: '', commentDate: undefined, upVoteCount: 0, downVoteCount: 0 };;
 
     // Constructor with injected service
     constructor(
         private commentService: CommentService,
         private userService: UserService
         ){
-            this.model.userId = this.userService.currentUserId();
+            this.model.commentUserId = this.userService.currentUserId();
+            this.model.commentUserName = this.userService.currentUserName();
         }
        
     // Input properties
@@ -54,7 +55,7 @@ export class CommentFormComponent implements OnChanges {
                 // Emit list event
                 EmitterService.get(this.listId).emit(comments);
                 // Empty model
-                this.model = { id: 0, heritageId: this.heritageId, userId: this.model.userId, commentText: '', commentDate: undefined, upVoteCount: 0, downVoteCount: 0 };
+                this.model = { id: 0, heritageId: this.heritageId, commentUserId: this.model.commentUserId, commentUserName: this.model.commentUserName, commentText: '', commentDate: undefined, upVoteCount: 0, downVoteCount: 0 };
                 // Switch editing status
                 if(this.editing) this.editing = !this.editing;
                 }, 

@@ -9,8 +9,10 @@ using Microsoft.Net.Http.Headers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using AutoMapper;
 using HeritageApp.Models.Action;
 using HeritageApp.Models.Database;
+using HeritageApp.Helpers;
 
 namespace HeritageApp.Controllers
 {
@@ -20,11 +22,15 @@ namespace HeritageApp.Controllers
     public class FileController: Controller
     {
         private readonly HeritageContext _context;
+        private IMapper _mapper;
         public List<SystemFile> colSystemFiles = new List<SystemFile>();
         private readonly IHostingEnvironment _hostEnvironment;
-        public FileController(IHostingEnvironment hostEnvironment, HeritageContext context)
+        public FileController(IHostingEnvironment hostEnvironment, 
+                                HeritageContext context,
+                                IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
             _hostEnvironment = hostEnvironment;
             // Set WebRootPath to wwwroot\Files directiry
             _hostEnvironment.WebRootPath =
@@ -35,7 +41,7 @@ namespace HeritageApp.Controllers
 
         // api/Upload
         [HttpPost("upload")]
-        public IActionResult UploadFile(ICollection<IFormFile> files, int heritageID)
+        public IActionResult UploadFile(ICollection<IFormFile> files, int heritageId, int uploadUserId)
         {
             
             if (!Request.HasFormContentType)
@@ -68,10 +74,10 @@ namespace HeritageApp.Controllers
                         file.CopyTo(fs);
                         fs.Flush();
                         _context.FileUploads.Add(new FileUpload{
-                            HeritageId = heritageID,
+                            HeritageId = heritageId,
                             FileName = fileNameShort,
                             FilePath = fileNameLong,
-                            UserId = 0
+                            UploadUserId = uploadUserId
                         });
                     }
 
@@ -101,12 +107,19 @@ namespace HeritageApp.Controllers
         // api/Files/GetHeritageFile
         [HttpGet]
         [Route("getHeritageFile/{id:int}")]
-        public async Task<IEnumerable<FileUpload>> GetHeritageFile(long id)
+        public async Task<IEnumerable<FileUploadDto>> GetHeritageFile(long id)
         {
             //fetch all user records
             try
             {
-                return  await _context.FileUploads.Where(file => file.HeritageId == id).ToListAsync();
+                var task = await _context.FileUploads
+                .Include(upload => upload.UploadUser)
+                .Where(file => file.HeritageId == id)
+                .ToListAsync();
+
+                return new List<FileUploadDto>(
+                    _mapper.Map<List<FileUploadDto>>(task)
+                );
             }
             catch
             {

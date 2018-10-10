@@ -1587,6 +1587,15 @@ var UserService = /** @class */ (function () {
             return 0;
         }
     };
+    UserService.prototype.currentUserName = function () {
+        var user = JSON.parse(localStorage.getItem('currentUser'));
+        if (user != null && user != rxjs__WEBPACK_IMPORTED_MODULE_2__["empty"]) {
+            return user.userName;
+        }
+        else {
+            return 'Unknown';
+        }
+    };
     // custom handler
     UserService.prototype.handleError = function (error) {
         if (error.error instanceof ErrorEvent) {
@@ -2129,7 +2138,7 @@ var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-default\" *ngIf=\"comment\">\r\n    <mat-card>\r\n    <div class=\"panel-heading\">{{comment.userId}}</div>\r\n    <div class=\"panel-body\">\r\n        {{comment.commentText}}\r\n    </div>\r\n    <div class=\"panel-footer\">        \r\n        <button mat-icon-button color=\"accent\" (click)=\"editComment()\">\r\n            <mat-icon aria-label=\"Edit\">edit</mat-icon>\r\n        </button>\r\n        <button mat-icon-button color=\"accent\" (click)=\"deleteComment()\">\r\n            <mat-icon aria-label=\"Delete\">delete</mat-icon>\r\n        </button>\r\n        <button mat-icon-button color=\"accent\">\r\n            <mat-icon aria-label=\"Good\" (click)=\"thumbUp()\">thumb_up</mat-icon>\r\n            {{ comment.upVoteCount }}\r\n        </button>\r\n        <button mat-icon-button color=\"accent\">\r\n            <mat-icon aria-label=\"Bad\" (click)=\"thumbDown()\">thumb_down</mat-icon>\r\n            {{ comment.downVoteCount }}\r\n        </button>\r\n    </div>\r\n    </mat-card>\r\n</div>"
+module.exports = "<div class=\"panel panel-default\" *ngIf=\"comment\">\r\n    <mat-card>\r\n    <div class=\"panel-heading\">{{comment.commentUserName}}</div>\r\n    <div class=\"panel-body\">\r\n        {{comment.commentText}}\r\n    </div>\r\n    <div class=\"panel-footer\">        \r\n        <button mat-icon-button color=\"accent\" (click)=\"editComment()\">\r\n            <mat-icon aria-label=\"Edit\">edit</mat-icon>\r\n        </button>\r\n        <button mat-icon-button color=\"accent\" (click)=\"deleteComment()\">\r\n            <mat-icon aria-label=\"Delete\">delete</mat-icon>\r\n        </button>\r\n        <button mat-icon-button color=\"accent\">\r\n            <mat-icon aria-label=\"Good\" (click)=\"thumbUp()\">thumb_up</mat-icon>\r\n            {{ comment.upVoteCount }}\r\n        </button>\r\n        <button mat-icon-button color=\"accent\">\r\n            <mat-icon aria-label=\"Bad\" (click)=\"thumbDown()\">thumb_down</mat-icon>\r\n            {{ comment.downVoteCount }}\r\n        </button>\r\n    </div>\r\n    </mat-card>\r\n</div>"
 
 /***/ }),
 
@@ -2224,7 +2233,7 @@ var CommentBoxComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form (ngSubmit)=\"submitComment()\">\r\n    <div class=\"form-group\">\r\n\r\n        <mat-card class=\"comment-form\"> \r\n            <mat-card-header>\r\n                <mat-icon>account_circle</mat-icon>\r\n            </mat-card-header>           \r\n            <mat-card-content>\r\n                <mat-form-field class=\"comment-field\">\r\n                    <input matInput placeholder=\"User ID\" [readonly]='true'> {{model.userId}}\r\n                </mat-form-field>\r\n                <br>\r\n                <mat-form-field class=\"comment-field\">\r\n                    <textarea matInput placeholder=\"Leave a comment\" [(ngModel)]=\"model.commentText\" name=\"commentText\"></textarea>\r\n                </mat-form-field>\r\n            </mat-card-content>\r\n            <mat-card-actions>\r\n                <button mat-raised-button *ngIf=\"!editing\" type=\"submit\">Add</button>\r\n                <button mat-raised-button *ngIf=\"editing\" type=\"submit\">Update</button>\r\n            </mat-card-actions>\r\n        </mat-card>\r\n       \r\n    </div>\r\n</form>"
+module.exports = "<form (ngSubmit)=\"submitComment()\">\r\n    <div class=\"form-group\">\r\n\r\n        <mat-card class=\"comment-form\"> \r\n            <mat-card-header>\r\n                <mat-icon>account_circle</mat-icon>\r\n            </mat-card-header>           \r\n            <mat-card-content>\r\n                <mat-form-field class=\"comment-field\">\r\n                    <input matInput placeholder=\"User Name\" [readonly]='true'> {{model.commentUserName}}\r\n                </mat-form-field>\r\n                <br>\r\n                <mat-form-field class=\"comment-field\">\r\n                    <textarea matInput placeholder=\"Leave a comment\" [(ngModel)]=\"model.commentText\" name=\"commentText\"></textarea>\r\n                </mat-form-field>\r\n            </mat-card-content>\r\n            <mat-card-actions>\r\n                <button mat-raised-button *ngIf=\"!editing\" type=\"submit\">Add</button>\r\n                <button mat-raised-button *ngIf=\"editing\" type=\"submit\">Update</button>\r\n            </mat-card-actions>\r\n        </mat-card>\r\n       \r\n    </div>\r\n</form>"
 
 /***/ }),
 
@@ -2274,8 +2283,9 @@ var CommentFormComponent = /** @class */ (function () {
         this.userService = userService;
         // Local properties    
         this.editing = false;
-        this.model = { id: 0, heritageId: 0, userId: 0, commentText: '', commentDate: undefined, upVoteCount: 0, downVoteCount: 0 };
-        this.model.userId = this.userService.currentUserId();
+        this.model = { id: 0, heritageId: 0, commentUserId: 0, commentUserName: '', commentText: '', commentDate: undefined, upVoteCount: 0, downVoteCount: 0 };
+        this.model.commentUserId = this.userService.currentUserId();
+        this.model.commentUserName = this.userService.currentUserName();
     }
     ;
     CommentFormComponent.prototype.submitComment = function () {
@@ -2296,7 +2306,7 @@ var CommentFormComponent = /** @class */ (function () {
             // Emit list event
             _services__WEBPACK_IMPORTED_MODULE_2__["EmitterService"].get(_this.listId).emit(comments);
             // Empty model
-            _this.model = { id: 0, heritageId: _this.heritageId, userId: _this.model.userId, commentText: '', commentDate: undefined, upVoteCount: 0, downVoteCount: 0 };
+            _this.model = { id: 0, heritageId: _this.heritageId, commentUserId: _this.model.commentUserId, commentUserName: _this.model.commentUserName, commentText: '', commentDate: undefined, upVoteCount: 0, downVoteCount: 0 };
             // Switch editing status
             if (_this.editing)
                 _this.editing = !_this.editing;
@@ -2600,8 +2610,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var FileManagerComponent = /** @class */ (function () {
-    function FileManagerComponent(_FilesService) {
+    function FileManagerComponent(_FilesService, _UserService) {
         this._FilesService = _FilesService;
+        this._UserService = _UserService;
         this.fileList = [];
     }
     Object.defineProperty(FileManagerComponent.prototype, "heritageID", {
@@ -2620,7 +2631,7 @@ var FileManagerComponent = /** @class */ (function () {
             { field: 'heritageId', header: 'Heritage ID', display: 'none' },
             { field: 'fileName', header: 'File Name', display: 'table-cell' },
             { field: 'filePath', header: 'File Path', display: 'table-cell' },
-            { field: 'userId', header: 'User ID', display: 'table-cell' }
+            { field: 'uploadUserName', header: 'User Name', display: 'table-cell' }
         ];
         this.getFiles();
     };
@@ -2643,7 +2654,8 @@ var FileManagerComponent = /** @class */ (function () {
         if (currentUser && currentUser.token) {
             event.xhr.setRequestHeader("Authorization", "Bearer " + currentUser.token);
         }
-        event.formData.append('heritageID', this.heritageID);
+        event.formData.append('heritageId', this.heritageID);
+        event.formData.append('uploadUserId', this._UserService.currentUserId());
     };
     FileManagerComponent.prototype.deleteFile = function (id) {
         var _this = this;
@@ -2670,7 +2682,8 @@ var FileManagerComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./file-manager.component.html */ "./src/app/file-manager/file-manager.component.html"),
             styles: [__webpack_require__(/*! ./file-manager.component.scss */ "./src/app/file-manager/file-manager.component.scss")]
         }),
-        __metadata("design:paramtypes", [_services__WEBPACK_IMPORTED_MODULE_2__["FilesService"]])
+        __metadata("design:paramtypes", [_services__WEBPACK_IMPORTED_MODULE_2__["FilesService"],
+            _services__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
     ], FileManagerComponent);
     return FileManagerComponent;
 }());
@@ -2786,9 +2799,11 @@ var HeritageDetailComponent = /** @class */ (function () {
                     tourismDevelopmentModel: '',
                     tourismBenefit: 0,
                     story: '',
-                    createdBy: 0,
+                    createdUserId: 0,
+                    createdUserName: '',
                     createdOn: undefined,
-                    modifiedBy: 0,
+                    modifiedUserId: 0,
+                    modifiedUserName: '',
                     modifiedOn: undefined
                 };
             }
@@ -2797,13 +2812,13 @@ var HeritageDetailComponent = /** @class */ (function () {
     HeritageDetailComponent.prototype.onSubmit = function () {
         var userId = this.userService.currentUserId();
         if (this.heritage.id != 0) {
-            this.heritage.createdBy = userId;
-            this.heritage.modifiedBy = userId;
+            this.heritage.createdUserId = userId;
+            this.heritage.modifiedUserId = userId;
             this.heritageService.updateHeritage(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_ENDPOINT + this.heritage.id, this.heritage);
             this.showSuccess();
         }
         else {
-            this.heritage.modifiedBy = userId;
+            this.heritage.modifiedUserId = userId;
             this.heritageService.addHeritage(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_ENDPOINT, this.heritage);
         }
     };
@@ -3867,7 +3882,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "    <!-- Main jumbotron for a primary marketing message or call to action -->\n    <div class=\"container\">\n        <mat-card class=\"welcome-picture-card\">           \n            <img mat-card-image src=\"../../assets/images/background.jpg\" alt=\"Heritage Photo\">\n        </mat-card>\n      </div>\n  \n      <div class=\"container\">\n        <!-- Example row of columns -->\n        <div class=\"row\">\n          <div class=\"col-md-4\">\n            <h2>Heritage</h2>\n            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritagedetail/1']\" role=\"button\">Create &raquo;</a></p>\n          </div>\n          <div class=\"col-md-4\">\n            <h2>Heritage List</h2>\n            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritagelist']\" role=\"button\">View List &raquo;</a></p>\n         </div>\n          <div class=\"col-md-4\">\n            <h2>User Management</h2>\n            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/users']\" role=\"button\">Manage Users &raquo;</a></p>\n          </div>\n        </div>\n       \n      </div> <!-- /container -->\n      \n"
+module.exports = "    <!-- Main jumbotron for a primary marketing message or call to action -->\n    <div class=\"container\">\n        <mat-card class=\"welcome-picture-card\">           \n            <img mat-card-image src=\"../../assets/images/background.jpg\" alt=\"Heritage Photo\">\n        </mat-card>\n      </div>\n  \n      <div class=\"container\">\n        <!-- Example row of columns -->\n        <div class=\"row\">\n          <div class=\"col-md-4\">\n            <h2>Heritage</h2>\n            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritagedetail']\" role=\"button\">Create &raquo;</a></p>\n          </div>\n          <div class=\"col-md-4\">\n            <h2>Heritage List</h2>\n            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritagelist']\" role=\"button\">View List &raquo;</a></p>\n         </div>\n          <div class=\"col-md-4\">\n            <h2>User Management</h2>\n            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/users']\" role=\"button\">Manage Users &raquo;</a></p>\n          </div>\n        </div>\n       \n      </div> <!-- /container -->\n      \n"
 
 /***/ }),
 

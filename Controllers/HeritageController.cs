@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using HeritageApp.Models.Database;
+using AutoMapper;
+using HeritageApp.Helpers;
 
 namespace HeritageApp.Controllers
 {
@@ -16,21 +18,31 @@ namespace HeritageApp.Controllers
     public class HeritageController: Controller
     {
         private readonly HeritageContext _context;
+        private IMapper _mapper;
 
         //initiate database context
-        public HeritageController(HeritageContext context)
+        public HeritageController(HeritageContext context,
+                                  IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
         [Route("getAllHeritage")]
-        public async Task<IEnumerable<Heritage>> GetAllHeritage()
+        public async Task<IEnumerable<HeritageDto>> GetAllHeritage()
         {
             //fetch all user records
             try
             {
-                return  await _context.Heritages.ToListAsync();
+                var task = await _context.Heritages
+                .Include(heritage => heritage.CreatedUser)
+                .Include(heritage => heritage.ModifiedUser)
+                .ToListAsync();
+
+                return new List<HeritageDto>(
+                    _mapper.Map<List<HeritageDto>>(task)
+                );
             }
             catch
             {
@@ -42,53 +54,37 @@ namespace HeritageApp.Controllers
         public IActionResult GetbyId(long id)
         {
             //filter contact records by contact id
-            var item = _context.Heritages.FirstOrDefault(t => t.Id == id);
+            var item = _context.Heritages        
+            .FirstOrDefault(t => t.Id == id);
             if (item == null)
             {
                 return NotFound();
             }
-            return new ObjectResult(item);
+
+            var itemDto = _mapper.Map<HeritageDto>(item);
+            return new ObjectResult(itemDto);
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Heritage item)
+        public IActionResult Create([FromBody] HeritageDto item)
         {
             //set bad reqeust if contact data is not provided in body
             if (item == null)
             {
                 return BadRequest();
             }
-            _context.Heritages.Add(new Heritage{
-                Name = item.Name,
-                RegistrationDistrict = item.RegistrationDistrict,
-                RegistrationYear = item.RegistrationYear,
-                Province = item.Province,
-                TypeofProject = item.TypeofProject,
-                BatchNo = item.BatchNo,
-                Inheritors = item.Inheritors,
-                ProjectOverview = item.ProjectOverview,
-                History = item.History,
-                CurrentStatus = item.CurrentStatus,
-                PresentValue = item.PresentValue,
-                EndangeredStatus = item.EndangeredStatus,
-                Masterpiece = item.Masterpiece,
-                TourismStatus = item.TourismStatus,
-                TourismMarketCharacteristics = item.TourismMarketCharacteristics,
-                TourismProduct = item.TourismProduct,
-                TourismPrice = item.TourismPrice,
-                TourismDevelopmentModel = item.TourismDevelopmentModel,
-                TourismBenefit = item.TourismBenefit,
-                CreatedBy = 1,
-                CreatedOn = DateTime.Now,
-                ModifiedBy = 1,
-                ModifiedOn = DateTime.Now
-            });
+
+            var heritage = _mapper.Map<Heritage>(item);
+            heritage.CreatedOn = DateTime.Now;
+            heritage.ModifiedOn = DateTime.Now;
+
+            _context.Heritages.Add(heritage);
             _context.SaveChanges();
             return Ok(item);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(long id, [FromBody] Heritage item)
+        public IActionResult Update(long id, [FromBody] HeritageDto item)
         {
             //set bad reqeust if  contact data is not provided in body
             if (item == null || id == 0)
@@ -96,31 +92,34 @@ namespace HeritageApp.Controllers
                 return BadRequest();
             }
 
+            var itemDto = _mapper.Map<Heritage>(item);
+
             var heritage = _context.Heritages.FirstOrDefault(t => t.Id == id);
             if (heritage == null)
             {
                 return NotFound();
             }
-            heritage.Name = item.Name;
-            heritage.RegistrationDistrict = item.RegistrationDistrict;
-            heritage.RegistrationYear = item.RegistrationYear;
-            heritage.Province = item.Province;
-            heritage.TypeofProject = item.TypeofProject;
-            heritage.BatchNo = item.BatchNo;
-            heritage.Inheritors = item.Inheritors;
-            heritage.ProjectOverview = item.ProjectOverview;
-            heritage.History = item.History;
-            heritage.CurrentStatus = item.CurrentStatus;
-            heritage.PresentValue = item.PresentValue;
-            heritage.EndangeredStatus = item.EndangeredStatus;
-            heritage.Masterpiece = item.Masterpiece;
-            heritage.TourismStatus = item.TourismStatus;
-            heritage.TourismMarketCharacteristics = item.TourismMarketCharacteristics;
-            heritage.TourismProduct = item.TourismProduct;
-            heritage.TourismPrice = item.TourismPrice;
-            heritage.TourismDevelopmentModel = item.TourismDevelopmentModel;
-            heritage.TourismBenefit = item.TourismBenefit;
-            heritage.ModifiedBy = 1;
+            
+            heritage.Name = itemDto.Name;
+            heritage.RegistrationDistrict = itemDto.RegistrationDistrict;
+            heritage.RegistrationYear = itemDto.RegistrationYear;
+            heritage.Province = itemDto.Province;
+            heritage.TypeofProject = itemDto.TypeofProject;
+            heritage.BatchNo = itemDto.BatchNo;
+            heritage.Inheritors = itemDto.Inheritors;
+            heritage.ProjectOverview = itemDto.ProjectOverview;
+            heritage.History = itemDto.History;
+            heritage.CurrentStatus = itemDto.CurrentStatus;
+            heritage.PresentValue = itemDto.PresentValue;
+            heritage.EndangeredStatus = itemDto.EndangeredStatus;
+            heritage.Masterpiece = itemDto.Masterpiece;
+            heritage.TourismStatus = itemDto.TourismStatus;
+            heritage.TourismMarketCharacteristics = itemDto.TourismMarketCharacteristics;
+            heritage.TourismProduct = itemDto.TourismProduct;
+            heritage.TourismPrice = itemDto.TourismPrice;
+            heritage.TourismDevelopmentModel = itemDto.TourismDevelopmentModel;
+            heritage.TourismBenefit = itemDto.TourismBenefit;
+            heritage.ModifiedUserId = itemDto.ModifiedUserId;
             heritage.ModifiedOn = DateTime.Now;    
                
             _context.SaveChanges();

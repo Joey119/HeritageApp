@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {saveAs as importedSaveAs} from "file-saver";
 import { ISystemFile } from '../_models';
-import { FilesService } from '../_services';
+import { FilesService, UserService } from '../_services';
 import { Global } from '../_shared';
 
 @Component({
@@ -25,7 +25,8 @@ export class FileManagerComponent implements OnInit {
     return this._heritageID;
   }
 
-  constructor(private _FilesService: FilesService) { }
+  constructor(private _FilesService: FilesService,
+              private _UserService: UserService) { }
 
   ngOnInit() {
     this.cols = [
@@ -33,7 +34,7 @@ export class FileManagerComponent implements OnInit {
       { field: 'heritageId', header: 'Heritage ID', display: 'none'},
       { field: 'fileName', header: 'File Name', display: 'table-cell'},
       { field: 'filePath', header: 'File Path', display: 'table-cell'},
-      { field: 'userId', header: 'User ID', display: 'table-cell'}
+      { field: 'uploadUserName', header: 'User Name', display: 'table-cell'}
     ];
     this.getFiles();
   }
@@ -59,7 +60,8 @@ export class FileManagerComponent implements OnInit {
     if (currentUser && currentUser.token) {
       event.xhr.setRequestHeader("Authorization", `Bearer ${currentUser.token}`);
     }
-    event.formData.append('heritageID', this.heritageID);
+    event.formData.append('heritageId', this.heritageID);
+    event.formData.append('uploadUserId', this._UserService.currentUserId());
  }
 
   public deleteFile(id: number) {
