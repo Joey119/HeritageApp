@@ -54,31 +54,64 @@ export class HeritageService {
         )
     }
 
-    addHeritage(url: string, heritage: IHeritage): void {
+    addHeritage(url: string, heritage: IHeritage): Observable<IHeritage> {
+        return this.http.post<IHeritage>(url, heritage)
+        .pipe(
+            map(heritage => {
+                this.heritage = heritage;
+                return this.heritage;
+            }),
+
+            catchError(this.handleError)
+        )
+        /*
         this.http.post<IHeritage>(url, heritage, httpOptions).subscribe(data => {
             this.heritage = data;
         },
         (err: HttpErrorResponse) => {
             console.log (err.name + ' ' + err.message);
         });
+        */
     }
 
-    updateHeritage(url: string, heritage: IHeritage): void {
+    updateHeritage(url: string, heritage: IHeritage): Observable<IHeritage> {
+        return this.http.put<IHeritage>(url, heritage) // ...using put request
+        .pipe(
+            map(heritage => {
+                this.heritage = heritage;
+                return this.heritage;
+            }),
+
+            catchError(this.handleError)
+        )
+        
+        /*
         this.http.put<IHeritage>(url, heritage, httpOptions).subscribe(data => {
             this.heritage = data;
         },
         (err: HttpErrorResponse) => {
             console.log (err.name + ' ' + err.message);
         });
+        */
     }
 
-    deleteHeritage(url: string, id: number): void {
+    deleteHeritage(url: string, id: number): Observable<any> {
+        return this.http.delete(url + id)
+        .pipe(
+            map(data => {
+                return data;
+            }),
+
+            catchError(this.handleError)
+        )
+        /*
         this.http.delete(url + id, httpOptions).subscribe(data => {
             console.log('Heritage was successfully deleted');
         },
         (err: HttpErrorResponse) => {
             console.log (err.name + ' ' + err.message);
         });
+        */
     }
 
         // custom handler

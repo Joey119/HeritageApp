@@ -16,7 +16,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AddDialogComponent, EditDialogComponent, DeleteDialogComponent } from './_dialogs';
+import { AddDialogComponent, EditDialogComponent, DeleteDialogComponent, HeritageDeleteDialogComponent } from './_dialogs';
 import { AppMaterialModule } from './app.material.module';
 import { AppPrimeNGModule } from './app.primeng.module';
 import { CommentModule } from './app.comment.module';
@@ -38,6 +38,7 @@ import { HeritageEvaluationComponent } from './heritage-evaluation/heritage-eval
     AddDialogComponent,
     EditDialogComponent,
     DeleteDialogComponent,
+    HeritageDeleteDialogComponent,
     UserListComponent,
     FileManagerComponent,
     AppHeaderComponent,
@@ -67,7 +68,8 @@ import { HeritageEvaluationComponent } from './heritage-evaluation/heritage-eval
   entryComponents: [
     AddDialogComponent,
     EditDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    HeritageDeleteDialogComponent
   ],
   providers: [
     AlertService,

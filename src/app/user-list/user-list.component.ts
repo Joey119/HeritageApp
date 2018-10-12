@@ -49,7 +49,7 @@ export class UserListComponent implements OnInit {
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
-        this.userService.dataChange.value.push(this._userService.getDialogData());
+        this.userService.dataChange.value.push(dialogRef.componentInstance.newUser);
         this.refreshTable();
       }
     });
@@ -68,7 +68,7 @@ export class UserListComponent implements OnInit {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.userService.dataChange.value.findIndex(x => x.id === this.id);
         // Then you update that record using data from dialogData (values you enetered)
-        this.userService.dataChange.value[foundIndex] = this._userService.getDialogData();
+        this.userService.dataChange.value[foundIndex] = dialogRef.componentInstance.user;
         // And lastly refresh table
         this.refreshTable();
       }

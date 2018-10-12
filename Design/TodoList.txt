@@ -1,0 +1,9 @@
+0. algorithm for evaluation
+1. ToastrService on screen confirmation for CRUD (V)
+2. CSS fix container size
+3. error handling, user login error
+4. user permission control
+6. copyright
+7. user guide
+8. translation
+9. file viewer

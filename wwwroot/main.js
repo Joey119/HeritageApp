@@ -59,7 +59,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../_services */ "./src/app/_services/index.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../_shared */ "./src/app/_shared/index.ts");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../_shared */ "./src/app/_shared/index.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -77,11 +78,13 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 var AddDialogComponent = /** @class */ (function () {
-    function AddDialogComponent(dialogRef, data, userService) {
+    function AddDialogComponent(dialogRef, data, userService, toastr) {
         this.dialogRef = dialogRef;
         this.data = data;
         this.userService = userService;
+        this.toastr = toastr;
         this.formControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required
             // Validators.email,
@@ -99,7 +102,14 @@ var AddDialogComponent = /** @class */ (function () {
         this.dialogRef.close();
     };
     AddDialogComponent.prototype.confirmAdd = function () {
-        this.userService.addUser(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_USER_ENDPOINT + 'add', this.data);
+        var _this = this;
+        this.userService.addUser(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_USER_ENDPOINT + 'add', this.data)
+            .subscribe(function (data) {
+            _this.newUser = data;
+            _this.toastr.success("User suceessfully added.", "Succeeded");
+        }, function (error) {
+            _this.toastr.error("Failed to add user", "Failed");
+        });
     };
     AddDialogComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -108,7 +118,8 @@ var AddDialogComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ../add/add.dialog.component.scss */ "./src/app/_dialogs/add/add.dialog.component.scss")]
         }),
         __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_0__["MAT_DIALOG_DATA"])),
-        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogRef"], Object, _services__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogRef"], Object, _services__WEBPACK_IMPORTED_MODULE_2__["UserService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"]])
     ], AddDialogComponent);
     return AddDialogComponent;
 }());
@@ -124,7 +135,7 @@ var AddDialogComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>Delete Confirmation</h3>\r\n    <div mat-dialog-content>\r\n      Id: {{data.id}}\r\n      <p></p>\r\n      UserName: {{data.userName}}\r\n      <p></p>\r\n    </div>\r\n  \r\n    <div mat-dialog-actions>\r\n      <button mat-button [mat-dialog-close]=\"1\" (click)=\"confirmDelete()\">Delete</button>\r\n      <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n    </div>\r\n  </div>\r\n  "
+module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>Delete Confirmation</h3>\r\n    <div mat-dialog-content>\r\n      <p></p>\r\n      Would you like to delete {{data.userName}}\r\n      <p></p>\r\n    </div>\r\n  \r\n    <div mat-dialog-actions>\r\n      <button mat-button [mat-dialog-close]=\"1\" (click)=\"confirmDelete()\">Delete</button>\r\n      <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n    </div>\r\n  </div>\r\n  "
 
 /***/ }),
 
@@ -151,8 +162,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeleteDialogComponent", function() { return DeleteDialogComponent; });
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../_services */ "./src/app/_services/index.ts");
-/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../_shared */ "./src/app/_shared/index.ts");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../_services */ "./src/app/_services/index.ts");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../_shared */ "./src/app/_shared/index.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -169,17 +181,25 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 var DeleteDialogComponent = /** @class */ (function () {
-    function DeleteDialogComponent(dialogRef, data, userService) {
+    function DeleteDialogComponent(dialogRef, data, userService, toastr) {
         this.dialogRef = dialogRef;
         this.data = data;
         this.userService = userService;
+        this.toastr = toastr;
     }
     DeleteDialogComponent.prototype.onNoClick = function () {
         this.dialogRef.close();
     };
     DeleteDialogComponent.prototype.confirmDelete = function () {
-        this.userService.deleteUser(_shared__WEBPACK_IMPORTED_MODULE_3__["Global"].BASE_USER_ENDPOINT, this.data.id);
+        var _this = this;
+        this.userService.deleteUser(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_USER_ENDPOINT, this.data.id)
+            .subscribe(function (data) {
+            _this.toastr.success("User was suceessfully deleted.", "Succeeded");
+        }, function (error) {
+            _this.toastr.error("Failed to delete user", "Failed");
+        });
     };
     DeleteDialogComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -188,7 +208,8 @@ var DeleteDialogComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ../delete/delete.dialog.component.scss */ "./src/app/_dialogs/delete/delete.dialog.component.scss")]
         }),
         __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_0__["MAT_DIALOG_DATA"])),
-        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogRef"], Object, _services__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogRef"], Object, _services__WEBPACK_IMPORTED_MODULE_3__["UserService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"]])
     ], DeleteDialogComponent);
     return DeleteDialogComponent;
 }());
@@ -232,6 +253,113 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../_services */ "./src/app/_services/index.ts");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../_shared */ "./src/app/_shared/index.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+
+var EditDialogComponent = /** @class */ (function () {
+    function EditDialogComponent(dialogRef, data, userService, toastr) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.userService = userService;
+        this.toastr = toastr;
+        this.formControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required
+            // Validators.email,
+        ]);
+    }
+    EditDialogComponent.prototype.getErrorMessage = function () {
+        return this.formControl.hasError('required') ? 'Required field' :
+            this.formControl.hasError('email') ? 'Not a valid email' :
+                '';
+    };
+    EditDialogComponent.prototype.submit = function () {
+        // emppty stuff
+    };
+    EditDialogComponent.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    EditDialogComponent.prototype.stopEdit = function () {
+        var _this = this;
+        if (this.data.id < 1)
+            return;
+        this.userService.updateUser(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_USER_ENDPOINT + this.data.id, this.data)
+            .subscribe(function (data) {
+            _this.user = data;
+            _this.toastr.success("User suceessfully updated.", "Succeeded");
+        }, function (error) {
+            _this.toastr.error("Failed to update user", "Failed");
+        });
+    };
+    EditDialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-baza.dialog',
+            template: __webpack_require__(/*! ../edit/edit.dialog.component.html */ "./src/app/_dialogs/edit/edit.dialog.component.html"),
+            styles: [__webpack_require__(/*! ../edit/edit.dialog.component.scss */ "./src/app/_dialogs/edit/edit.dialog.component.scss")]
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_0__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogRef"], Object, _services__WEBPACK_IMPORTED_MODULE_4__["UserService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"]])
+    ], EditDialogComponent);
+    return EditDialogComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_dialogs/heritage-delete/heritage-delete.dialog.component.html":
+/*!********************************************************************************!*\
+  !*** ./src/app/_dialogs/heritage-delete/heritage-delete.dialog.component.html ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>Delete Confirmation</h3>\r\n    <div mat-dialog-content>\r\n      <p></p>\r\n      Would you like to delete {{data.name}} ?\r\n      <p></p>\r\n    </div>\r\n  \r\n    <div mat-dialog-actions>\r\n      <button mat-button [mat-dialog-close]=\"1\" (click)=\"confirmDelete()\">Delete</button>\r\n      <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n    </div>\r\n  </div>\r\n  "
+
+/***/ }),
+
+/***/ "./src/app/_dialogs/heritage-delete/heritage-delete.dialog.component.scss":
+/*!********************************************************************************!*\
+  !*** ./src/app/_dialogs/heritage-delete/heritage-delete.dialog.component.scss ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".container {\n  display: flex;\n  flex-direction: column; }\n\n.container > * {\n  width: 100%; }\n"
+
+/***/ }),
+
+/***/ "./src/app/_dialogs/heritage-delete/heritage-delete.dialog.component.ts":
+/*!******************************************************************************!*\
+  !*** ./src/app/_dialogs/heritage-delete/heritage-delete.dialog.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: HeritageDeleteDialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeritageDeleteDialogComponent", function() { return HeritageDeleteDialogComponent; });
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
 /* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../_services */ "./src/app/_services/index.ts");
 /* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../_shared */ "./src/app/_shared/index.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
@@ -251,42 +379,34 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
-var EditDialogComponent = /** @class */ (function () {
-    function EditDialogComponent(dialogRef, data, userService) {
+var HeritageDeleteDialogComponent = /** @class */ (function () {
+    function HeritageDeleteDialogComponent(dialogRef, data, heritageService, toastr) {
         this.dialogRef = dialogRef;
         this.data = data;
-        this.userService = userService;
-        this.formControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
-            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required
-            // Validators.email,
-        ]);
+        this.heritageService = heritageService;
+        this.toastr = toastr;
     }
-    EditDialogComponent.prototype.getErrorMessage = function () {
-        return this.formControl.hasError('required') ? 'Required field' :
-            this.formControl.hasError('email') ? 'Not a valid email' :
-                '';
-    };
-    EditDialogComponent.prototype.submit = function () {
-        // emppty stuff
-    };
-    EditDialogComponent.prototype.onNoClick = function () {
+    HeritageDeleteDialogComponent.prototype.onNoClick = function () {
         this.dialogRef.close();
     };
-    EditDialogComponent.prototype.stopEdit = function () {
-        if (this.data.id < 1)
-            return;
-        this.userService.updateUser(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_USER_ENDPOINT + this.data.id, this.data);
+    HeritageDeleteDialogComponent.prototype.confirmDelete = function () {
+        var _this = this;
+        this.heritageService.deleteHeritage(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_ENDPOINT, this.data.id)
+            .subscribe(function (data) {
+            _this.toastr.success("Heritage was suceessfully deleted.", "Succeeded");
+        });
     };
-    EditDialogComponent = __decorate([
+    HeritageDeleteDialogComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-baza.dialog',
-            template: __webpack_require__(/*! ../edit/edit.dialog.component.html */ "./src/app/_dialogs/edit/edit.dialog.component.html"),
-            styles: [__webpack_require__(/*! ../edit/edit.dialog.component.scss */ "./src/app/_dialogs/edit/edit.dialog.component.scss")]
+            selector: 'heritage-delete.dialog',
+            template: __webpack_require__(/*! ../heritage-delete/heritage-delete.dialog.component.html */ "./src/app/_dialogs/heritage-delete/heritage-delete.dialog.component.html"),
+            styles: [__webpack_require__(/*! ../heritage-delete/heritage-delete.dialog.component.scss */ "./src/app/_dialogs/heritage-delete/heritage-delete.dialog.component.scss")]
         }),
         __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_0__["MAT_DIALOG_DATA"])),
-        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogRef"], Object, _services__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
-    ], EditDialogComponent);
-    return EditDialogComponent;
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogRef"], Object, _services__WEBPACK_IMPORTED_MODULE_3__["HeritageService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"]])
+    ], HeritageDeleteDialogComponent);
+    return HeritageDeleteDialogComponent;
 }());
 
 
@@ -297,7 +417,7 @@ var EditDialogComponent = /** @class */ (function () {
 /*!***********************************!*\
   !*** ./src/app/_dialogs/index.ts ***!
   \***********************************/
-/*! exports provided: AddDialogComponent, EditDialogComponent, DeleteDialogComponent */
+/*! exports provided: AddDialogComponent, EditDialogComponent, DeleteDialogComponent, HeritageDeleteDialogComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -310,6 +430,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _delete_delete_dialog_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./delete/delete.dialog.component */ "./src/app/_dialogs/delete/delete.dialog.component.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DeleteDialogComponent", function() { return _delete_delete_dialog_component__WEBPACK_IMPORTED_MODULE_2__["DeleteDialogComponent"]; });
+
+/* harmony import */ var _heritage_delete_heritage_delete_dialog_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./heritage-delete/heritage-delete.dialog.component */ "./src/app/_dialogs/heritage-delete/heritage-delete.dialog.component.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "HeritageDeleteDialogComponent", function() { return _heritage_delete_heritage_delete_dialog_component__WEBPACK_IMPORTED_MODULE_3__["HeritageDeleteDialogComponent"]; });
+
 
 
 
@@ -1396,26 +1520,49 @@ var HeritageService = /** @class */ (function () {
     };
     HeritageService.prototype.addHeritage = function (url, heritage) {
         var _this = this;
-        this.http.post(url, heritage, httpOptions).subscribe(function (data) {
-            _this.heritage = data;
-        }, function (err) {
-            console.log(err.name + ' ' + err.message);
+        return this.http.post(url, heritage)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (heritage) {
+            _this.heritage = heritage;
+            return _this.heritage;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+        /*
+        this.http.post<IHeritage>(url, heritage, httpOptions).subscribe(data => {
+            this.heritage = data;
+        },
+        (err: HttpErrorResponse) => {
+            console.log (err.name + ' ' + err.message);
         });
+        */
     };
     HeritageService.prototype.updateHeritage = function (url, heritage) {
         var _this = this;
-        this.http.put(url, heritage, httpOptions).subscribe(function (data) {
-            _this.heritage = data;
-        }, function (err) {
-            console.log(err.name + ' ' + err.message);
+        return this.http.put(url, heritage) // ...using put request
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (heritage) {
+            _this.heritage = heritage;
+            return _this.heritage;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+        /*
+        this.http.put<IHeritage>(url, heritage, httpOptions).subscribe(data => {
+            this.heritage = data;
+        },
+        (err: HttpErrorResponse) => {
+            console.log (err.name + ' ' + err.message);
         });
+        */
     };
     HeritageService.prototype.deleteHeritage = function (url, id) {
-        this.http.delete(url + id, httpOptions).subscribe(function (data) {
+        return this.http.delete(url + id)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) {
+            return data;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+        /*
+        this.http.delete(url + id, httpOptions).subscribe(data => {
             console.log('Heritage was successfully deleted');
-        }, function (err) {
-            console.log(err.name + ' ' + err.message);
+        },
+        (err: HttpErrorResponse) => {
+            console.log (err.name + ' ' + err.message);
         });
+        */
     };
     // custom handler
     HeritageService.prototype.handleError = function (error) {
@@ -1549,11 +1696,19 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.addUser = function (url, user) {
         var _this = this;
-        this.http.post(url, user, httpOptions).subscribe(function (data) {
-            _this.dialogData = data;
-        }, function (err) {
-            console.log(err.name + ' ' + err.message);
+        return this.http.post(url, user)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (user) {
+            _this.user = user;
+            return _this.user;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+        /*
+        this.http.post(url, user, httpOptions).subscribe(data => {
+            this.dialogData = data;
+        },
+        (err: HttpErrorResponse) => {
+            console.log (err.name + ' ' + err.message);
         });
+        */
     };
     UserService.prototype.register = function (url, user) {
         var _this = this;
@@ -1565,18 +1720,33 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.updateUser = function (url, user) {
         var _this = this;
-        this.http.put(url, user, httpOptions).subscribe(function (data) {
-            _this.dialogData = data;
-        }, function (err) {
-            console.log(err.name + ' ' + err.message);
+        return this.http.put(url, user)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (user) {
+            _this.user = user;
+            return _this.user;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+        /*
+        this.http.put(url, user, httpOptions).subscribe(data => {
+            this.dialogData = data;
+        },
+        (err: HttpErrorResponse) => {
+            console.log (err.name + ' ' + err.message);
         });
+        */
     };
     UserService.prototype.deleteUser = function (url, id) {
-        this.http.delete(url + id, httpOptions).subscribe(function (data) {
+        return this.http.delete(url + id)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) {
+            return data;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+        /*
+        this.http.delete(url + id, httpOptions).subscribe(data => {
             console.log('User was successfully deleted');
-        }, function (err) {
-            console.log(err.name + ' ' + err.message);
+        },
+        (err: HttpErrorResponse) => {
+            console.log (err.name + ' ' + err.message);
         });
+        */
     };
     UserService.prototype.currentUserId = function () {
         var user = JSON.parse(localStorage.getItem('currentUser'));
@@ -1985,6 +2155,7 @@ var AppModule = /** @class */ (function () {
                 _dialogs__WEBPACK_IMPORTED_MODULE_18__["AddDialogComponent"],
                 _dialogs__WEBPACK_IMPORTED_MODULE_18__["EditDialogComponent"],
                 _dialogs__WEBPACK_IMPORTED_MODULE_18__["DeleteDialogComponent"],
+                _dialogs__WEBPACK_IMPORTED_MODULE_18__["HeritageDeleteDialogComponent"],
                 _user_list_user_list_component__WEBPACK_IMPORTED_MODULE_22__["UserListComponent"],
                 _file_manager_file_manager_component__WEBPACK_IMPORTED_MODULE_23__["FileManagerComponent"],
                 _layout__WEBPACK_IMPORTED_MODULE_24__["AppHeaderComponent"],
@@ -2014,7 +2185,8 @@ var AppModule = /** @class */ (function () {
             entryComponents: [
                 _dialogs__WEBPACK_IMPORTED_MODULE_18__["AddDialogComponent"],
                 _dialogs__WEBPACK_IMPORTED_MODULE_18__["EditDialogComponent"],
-                _dialogs__WEBPACK_IMPORTED_MODULE_18__["DeleteDialogComponent"]
+                _dialogs__WEBPACK_IMPORTED_MODULE_18__["DeleteDialogComponent"],
+                _dialogs__WEBPACK_IMPORTED_MODULE_18__["HeritageDeleteDialogComponent"]
             ],
             providers: [
                 _services__WEBPACK_IMPORTED_MODULE_11__["AlertService"],
@@ -2810,23 +2982,35 @@ var HeritageDetailComponent = /** @class */ (function () {
         });
     };
     HeritageDetailComponent.prototype.onSubmit = function () {
+        var _this = this;
         var userId = this.userService.currentUserId();
         if (this.heritage.id != 0) {
-            this.heritage.createdUserId = userId;
             this.heritage.modifiedUserId = userId;
-            this.heritageService.updateHeritage(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_ENDPOINT + this.heritage.id, this.heritage);
-            this.showSuccess();
+            this.heritageService.updateHeritage(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_ENDPOINT + this.heritage.id, this.heritage)
+                .subscribe(function (data) {
+                _this.heritage = data;
+                _this.showSuccess();
+            }, function (error) {
+                _this.showError();
+            });
         }
         else {
+            this.heritage.createdUserId = userId;
             this.heritage.modifiedUserId = userId;
-            this.heritageService.addHeritage(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_ENDPOINT, this.heritage);
+            this.heritageService.addHeritage(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_ENDPOINT, this.heritage)
+                .subscribe(function (data) {
+                _this.heritage = data;
+                _this.showSuccess();
+            }, function (error) {
+                _this.showError();
+            });
         }
     };
     HeritageDetailComponent.prototype.showSuccess = function () {
-        this.toastr.success('Hello world!', 'Toastr fun!');
+        this.toastr.success('Heritage Saved Successfully', 'Succeeded');
     };
     HeritageDetailComponent.prototype.showError = function () {
-        this.toastr.error('Error!', 'Something is wrong!');
+        this.toastr.error('Failed to Save Heritage!', 'Failed');
     };
     HeritageDetailComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -3032,7 +3216,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  \n  <!--\n  <div class=\"spinner\" *ngIf=\"loadingState; else userlist\">\n    <mat-spinner></mat-spinner>\n  </div>\n  -->\n\n  <div class=\"tblcontainer mat-elevation-z8\">\n  \n    <div class=\"form\">\n      <mat-form-field floatPlaceholder=\"never\" color=\"accent\">\n        <input matInput #filter placeholder=\"Filter heritages\">\n      </mat-form-field>\n    </div>\n  \n    <mat-table #table [dataSource]=\"dataSource\" matSort class=\"mat-cell\">\n  \n      <!--- Note that these columns can be defined in any order.\n            The actual rendered columns are set as a property on the row definition\" -->\n  \n      <!-- ID Column -->\n      <ng-container matColumnDef=\"id\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" >{{row.id}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"name\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.name}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"registrationDistrict\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Registration District</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.registrationDistrict}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"registrationYear\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Registration Year</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.registrationYear}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"province\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Province</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.province}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"typeofProject\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Type of Project</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.typeofProject}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"batchNo\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Batch No</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.batchNo}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"inheritors\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Inheritors</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.inheritors}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"projectOverview\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Project Overview</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.projectOverview}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"history\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>History</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.history}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"currentStatus\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Current Status</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.currentStatus}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"presentValue\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>PresentValue</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.presentValue}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"endangeredStatus\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Endangered Status</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.endangeredStatus}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"masterpiece\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Masterpiece</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.masterpiece}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismStatus\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Status</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismStatus}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismMarketCharacteristics\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Market Characteristics</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismMarketCharacteristics}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismProduct\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Product</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismProduct}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismPrice\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Price</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismPrice}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismDevelopmentModel\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Development Model</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismDevelopmentModel}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismBenefit\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Benefit</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismBenefit}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"createdBy\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Created By</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.createdBy}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"createdOn\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Created On</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.createdOn}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"modifiedBy\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Modified By</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedBy}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"modifiedOn\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Modified On</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedOn}}</mat-cell>\n      </ng-container>\n  \n      <!-- actions -->\n      <ng-container matColumnDef=\"actions\">\n        <mat-header-cell *matHeaderCellDef>\n          <button mat-icon-button color=\"primary\" [routerLink]=\"['/heritagedetail']\">\n            <mat-icon aria-label=\"Example icon-button with a heart icon\">add</mat-icon>\n          </button>\n          <button mat-icon-button (click)=\"refresh()\">\n            <mat-icon>refresh</mat-icon>\n          </button>\n        </mat-header-cell>\n  \n        <mat-cell *matCellDef=\"let row;\">\n          <button mat-icon-button color=\"accent\" [routerLink]=\"['/heritagedetail', row.id]\">\n            <mat-icon aria-label=\"Edit\">edit</mat-icon>\n          </button>\n\n          <button mat-icon-button color=\"accent\" [routerLink]=\"['/heritageevaluation', row.id]\">\n            <mat-icon aria-label=\"Explore\">explore</mat-icon>\n          </button>\n\n          <button mat-icon-button color=\"accent\" [routerLink]=\"['/heritagedecomment', row.id]\">\n            <mat-icon aria-label=\"Comment\">comment</mat-icon>\n          </button>\n  \n          <button mat-icon-button color=\"accent\" (click)=\"deleteHeritage(row.id)\">\n            <mat-icon aria-label=\"Delete\">delete</mat-icon>\n          </button>\n        </mat-cell>\n      </ng-container>\n       \n      <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n      <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n    </mat-table>\n  \n    <div class=\"no-results\" [style.display]=\"dataSource.renderedData.length == 0 ? '' : 'none'\">\n      No results\n    </div>\n  \n    <mat-paginator #paginator\n                   [length]=\"dataSource.filteredData.length\"\n                   [pageIndex]=\"0\"\n                   [pageSize]=\"10\"\n                   [pageSizeOptions]=\"[5, 10, 25, 100]\">\n    </mat-paginator>\n  </div>\n  "
+module.exports = "  \n  <!--\n  <div class=\"spinner\" *ngIf=\"loadingState; else userlist\">\n    <mat-spinner></mat-spinner>\n  </div>\n  -->\n\n  <div class=\"tblcontainer mat-elevation-z8\">\n  \n    <div class=\"form\">\n      <mat-form-field floatPlaceholder=\"never\" color=\"accent\">\n        <input matInput #filter placeholder=\"Filter heritages\">\n      </mat-form-field>\n    </div>\n  \n    <mat-table #table [dataSource]=\"dataSource\" matSort class=\"mat-cell\">\n  \n      <!--- Note that these columns can be defined in any order.\n            The actual rendered columns are set as a property on the row definition\" -->\n  \n      <!-- ID Column -->\n      <ng-container matColumnDef=\"id\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" >{{row.id}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"name\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.name}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"registrationDistrict\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Registration District</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.registrationDistrict}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"registrationYear\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Registration Year</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.registrationYear}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"province\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Province</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.province}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"typeofProject\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Type of Project</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.typeofProject}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"batchNo\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Batch No</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.batchNo}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"inheritors\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Inheritors</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.inheritors}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"projectOverview\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Project Overview</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.projectOverview}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"history\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>History</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.history}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"currentStatus\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Current Status</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.currentStatus}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"presentValue\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>PresentValue</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.presentValue}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"endangeredStatus\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Endangered Status</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.endangeredStatus}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"masterpiece\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Masterpiece</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.masterpiece}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismStatus\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Status</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismStatus}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismMarketCharacteristics\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Market Characteristics</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismMarketCharacteristics}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismProduct\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Product</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismProduct}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismPrice\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Price</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismPrice}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismDevelopmentModel\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Development Model</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismDevelopmentModel}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismBenefit\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Benefit</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismBenefit}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"createdBy\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Created By</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.createdBy}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"createdOn\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Created On</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.createdOn}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"modifiedBy\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Modified By</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedBy}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"modifiedOn\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Modified On</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedOn}}</mat-cell>\n      </ng-container>\n  \n      <!-- actions -->\n      <ng-container matColumnDef=\"actions\">\n        <mat-header-cell *matHeaderCellDef>\n          <button mat-icon-button color=\"primary\" [routerLink]=\"['/heritagedetail']\">\n            <mat-icon aria-label=\"Example icon-button with a heart icon\">add</mat-icon>\n          </button>\n          <button mat-icon-button (click)=\"refresh()\">\n            <mat-icon>refresh</mat-icon>\n          </button>\n        </mat-header-cell>\n  \n        <mat-cell *matCellDef=\"let row;\">\n          <button mat-icon-button color=\"accent\" [routerLink]=\"['/heritagedetail', row.id]\">\n            <mat-icon aria-label=\"Edit\">edit</mat-icon>\n          </button>\n\n          <button mat-icon-button color=\"accent\" [routerLink]=\"['/heritageevaluation', row.id]\">\n            <mat-icon aria-label=\"Explore\">explore</mat-icon>\n          </button>\n\n          <button mat-icon-button color=\"accent\" [routerLink]=\"['/heritagedecomment', row.id]\">\n            <mat-icon aria-label=\"Comment\">comment</mat-icon>\n          </button>\n  \n          <button mat-icon-button color=\"accent\" (click)=\"deleteItem(row.id, row.name)\">\n            <mat-icon aria-label=\"Delete\">delete</mat-icon>\n          </button>\n        </mat-cell>\n      </ng-container>\n       \n      <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n      <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n    </mat-table>\n  \n    <div class=\"no-results\" [style.display]=\"dataSource.renderedData.length == 0 ? '' : 'none'\">\n      No results\n    </div>\n  \n    <mat-paginator #paginator\n                   [length]=\"dataSource.filteredData.length\"\n                   [pageIndex]=\"0\"\n                   [pageSize]=\"10\"\n                   [pageSizeOptions]=\"[5, 10, 25, 100]\">\n    </mat-paginator>\n  </div>\n  "
 
 /***/ }),
 
@@ -3070,7 +3254,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
 /* harmony import */ var rxjs_add_operator_debounceTime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs/add/operator/debounceTime */ "./node_modules/rxjs-compat/_esm5/add/operator/debounceTime.js");
 /* harmony import */ var rxjs_add_operator_distinctUntilChanged__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! rxjs/add/operator/distinctUntilChanged */ "./node_modules/rxjs-compat/_esm5/add/operator/distinctUntilChanged.js");
-/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../_shared */ "./src/app/_shared/index.ts");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../_shared */ "./src/app/_shared/index.ts");
+/* harmony import */ var _dialogs__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../_dialogs */ "./src/app/_dialogs/index.ts");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -3103,12 +3289,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var HeritageListComponent = /** @class */ (function () {
-    function HeritageListComponent(httpClient, 
-    //public dialog: MatDialog,
-    _heritageService) {
+    function HeritageListComponent(httpClient, _heritageService, toastr, dialog) {
         this.httpClient = httpClient;
         this._heritageService = _heritageService;
+        this.toastr = toastr;
+        this.dialog = dialog;
         this.displayedColumns = ['id', 'name', 'registrationDistrict', 'registrationYear', 'province', 'typeofProject', 'inheritors', 'currentStatus', 'createdOn', 'actions'];
     }
     HeritageListComponent.prototype.ngOnInit = function () {
@@ -3119,6 +3307,39 @@ var HeritageListComponent = /** @class */ (function () {
         this.loadingState = true;
         this.loadData();
     };
+    HeritageListComponent.prototype.deleteItem = function (id, name) {
+        var _this = this;
+        this.id = id;
+        var dialogRef = this.dialog.open(_dialogs__WEBPACK_IMPORTED_MODULE_14__["HeritageDeleteDialogComponent"], {
+            data: { id: id, name: name }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            if (result === 1) {
+                var foundIndex = _this._heritageService.dataChange.value.findIndex(function (x) { return x.id === _this.id; });
+                // for delete we use splice in order to remove single object from DataService
+                _this._heritageService.dataChange.value.splice(foundIndex, 1);
+                _this.refreshTable();
+            }
+        });
+    };
+    /*
+    deleteHeritage(id: number): void {
+      let r = confirm("Are you sure?");
+          if (r == true) {
+          this._heritageService.deleteHeritage(Global.BASE_HERITAGE_ENDPOINT, id)
+          .subscribe(
+            data => {
+              this.toastr.success("Heritage was suceessfully deleted.", "Succeeded");
+              this.refresh();
+            }
+          );
+       }
+       else
+       {
+         return;
+       }
+    }
+    */
     // If you don't need a filter or a pagination this can be simplified, you just use code from else block
     HeritageListComponent.prototype.refreshTable = function () {
         // if there's a paginator active we're using it for refresh
@@ -3140,8 +3361,8 @@ var HeritageListComponent = /** @class */ (function () {
     HeritageListComponent.prototype.loadData = function () {
         var _this = this;
         this.loadingState = false;
-        this.heritageDatabase = new _services__WEBPACK_IMPORTED_MODULE_1__["HeritageService"](this.httpClient);
-        this.dataSource = new HeritageDataSource(this.heritageDatabase, this.paginator, this.sort);
+        this._heritageService = new _services__WEBPACK_IMPORTED_MODULE_1__["HeritageService"](this.httpClient);
+        this.dataSource = new HeritageDataSource(this._heritageService, this.paginator, this.sort);
         rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"].fromEvent(this.filter.nativeElement, 'keyup')
             .debounceTime(150)
             .distinctUntilChanged()
@@ -3151,16 +3372,6 @@ var HeritageListComponent = /** @class */ (function () {
             }
             _this.dataSource.filter = _this.filter.nativeElement.value;
         });
-    };
-    HeritageListComponent.prototype.deleteHeritage = function (id) {
-        var r = confirm("Are you sure?");
-        if (r == true) {
-            this._heritageService.deleteHeritage(_shared__WEBPACK_IMPORTED_MODULE_12__["Global"].BASE_HERITAGE_ENDPOINT, id);
-        }
-        else {
-            return;
-        }
-        this.refreshTable();
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_3__["MatPaginator"]),
@@ -3181,7 +3392,9 @@ var HeritageListComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./heritage-list.component.scss */ "./src/app/heritage-list/heritage-list.component.scss")]
         }),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"],
-            _services__WEBPACK_IMPORTED_MODULE_1__["HeritageService"]])
+            _services__WEBPACK_IMPORTED_MODULE_1__["HeritageService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_12__["ToastrService"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"]])
     ], HeritageListComponent);
     return HeritageListComponent;
 }());
@@ -3220,7 +3433,7 @@ var HeritageDataSource = /** @class */ (function (_super) {
             this._filterChange,
             this._paginator.page
         ];
-        this._heritageService.getAllHeritage(_shared__WEBPACK_IMPORTED_MODULE_12__["Global"].BASE_HERITAGE_ENDPOINT + 'getAllHeritage');
+        this._heritageService.getAllHeritage(_shared__WEBPACK_IMPORTED_MODULE_13__["Global"].BASE_HERITAGE_ENDPOINT + 'getAllHeritage');
         return rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"].merge.apply(rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"], displayDataChanges).map(function () {
             // Filter data
             _this.filteredData = _this._heritageService.data.slice().filter(function (heirtage) {
@@ -3680,7 +3893,7 @@ var UserListComponent = /** @class */ (function () {
             if (result === 1) {
                 // After dialog is closed we're doing frontend updates
                 // For add we're just pushing a new row inside DataService
-                _this.userService.dataChange.value.push(_this._userService.getDialogData());
+                _this.userService.dataChange.value.push(dialogRef.componentInstance.newUser);
                 _this.refreshTable();
             }
         });
@@ -3698,7 +3911,7 @@ var UserListComponent = /** @class */ (function () {
                 // When using an edit things are little different, firstly we find record inside DataService by id
                 var foundIndex = _this.userService.dataChange.value.findIndex(function (x) { return x.id === _this.id; });
                 // Then you update that record using data from dialogData (values you enetered)
-                _this.userService.dataChange.value[foundIndex] = _this._userService.getDialogData();
+                _this.userService.dataChange.value[foundIndex] = dialogRef.componentInstance.user;
                 // And lastly refresh table
                 _this.refreshTable();
             }

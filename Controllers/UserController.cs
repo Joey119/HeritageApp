@@ -85,8 +85,9 @@ namespace HeritageApp.Controllers
             try 
             {
                 // save 
-                _userService.Create(user, userDto.Password);
-                return Ok();
+                var newUser = _userService.Create(user, userDto.Password);
+                var newUserDto = _mapper.Map<UserDto>(newUser);
+                return Ok(newUserDto);
             } 
             catch(AppException ex)
             {
@@ -105,8 +106,9 @@ namespace HeritageApp.Controllers
             try 
             {
                 // save 
-                _userService.Add(user, userDto.Password);
-                return Ok();
+                var newUser = _userService.Add(user, userDto.Password);
+                var newUserDto = _mapper.Map<UserDto>(newUser);
+                return Ok(newUserDto);
             } 
             catch(AppException ex)
             {
@@ -143,16 +145,7 @@ namespace HeritageApp.Controllers
             {
                 // save 
                 _userService.Update(user, userDto.Password);
-                return Ok(new {
-                    Id = user.Id,
-                    UserName = user.UserName,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    IsReadOnly = user.IsReadOnly,
-                    CanComment = user.CanComment,
-                    IsContributer = user.IsContributer,
-                    IsAdmin = user.IsAdmin
-                });
+                return Ok(userDto);
             } 
             catch(AppException ex)
             {

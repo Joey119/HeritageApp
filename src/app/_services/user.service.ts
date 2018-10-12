@@ -15,7 +15,7 @@ export class UserService {
 
     dataChange: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
     dialogData: any;
-    user: Object;
+    user: IUser;
 
     constructor(private http: HttpClient) { }
 
@@ -45,17 +45,28 @@ export class UserService {
         });        
     }
 
-    addUser(url: string, user: IUser): void {
+    addUser(url: string, user: IUser): Observable<IUser> {
+        return this.http.post<IUser>(url, user)
+        .pipe(
+            map(user => {
+                this.user = user;
+                return this.user;
+            }),
+
+            catchError(this.handleError)
+        )
+        /*
         this.http.post(url, user, httpOptions).subscribe(data => {
             this.dialogData = data;
         },
         (err: HttpErrorResponse) => {
             console.log (err.name + ' ' + err.message);
         });
+        */
     }
 
-    register(url: string, user: IUser): Observable<Object> {
-        return this.http.post(url, user, httpOptions)
+    register(url: string, user: IUser): Observable<IUser> {
+        return this.http.post<IUser>(url, user, httpOptions)
         .pipe(
             map(user => {
                 this.user = user;
@@ -66,22 +77,43 @@ export class UserService {
         )           
     }
 
-    updateUser(url: string, user: IUser): void {
+    updateUser(url: string, user: IUser): Observable<IUser> {
+        return this.http.put<IUser>(url, user)
+        .pipe(
+            map( user => {
+                this.user = user;
+                return this.user;
+            }),
+
+            catchError(this.handleError)
+        )
+        /*
         this.http.put(url, user, httpOptions).subscribe(data => {
             this.dialogData = data;
         },
         (err: HttpErrorResponse) => {
             console.log (err.name + ' ' + err.message);
         });
+        */
     }
 
-    deleteUser(url: string, id: number): void {
+    deleteUser(url: string, id: number): Observable<Object> {
+        return this.http.delete(url + id)
+        .pipe(
+            map( data => {
+                return data;
+            }),
+
+            catchError(this.handleError)
+        )
+        /*
         this.http.delete(url + id, httpOptions).subscribe(data => {
             console.log('User was successfully deleted');
         },
         (err: HttpErrorResponse) => {
             console.log (err.name + ' ' + err.message);
         });
+        */
     }
     
     public currentUserId(): number {

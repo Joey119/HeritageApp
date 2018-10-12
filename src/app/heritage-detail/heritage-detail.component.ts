@@ -99,27 +99,43 @@ export class HeritageDetailComponent implements OnInit {
 
     var userId = this.userService.currentUserId();
     if (this.heritage.id != 0)
-    {      
-      this.heritage.createdUserId = userId;
+    { 
       this.heritage.modifiedUserId = userId;
-      this.heritageService.updateHeritage(Global.BASE_HERITAGE_ENDPOINT + this.heritage.id, this.heritage);
-      this.showSuccess();
+      this.heritageService.updateHeritage(Global.BASE_HERITAGE_ENDPOINT + this.heritage.id, this.heritage)
+      .subscribe(
+        data => {
+          this.heritage = data;
+          this.showSuccess();
+        },
+        error => {
+          this.showError();
+        }
+      );      
     }
     else
     {
+      this.heritage.createdUserId = userId;
       this.heritage.modifiedUserId = userId;
-      this.heritageService.addHeritage(Global.BASE_HERITAGE_ENDPOINT, this.heritage);
+      this.heritageService.addHeritage(Global.BASE_HERITAGE_ENDPOINT, this.heritage)
+      .subscribe(
+        data => {
+          this.heritage = data;
+          this.showSuccess();
+        },
+        error => {
+          this.showError();
+        }
+      );
     }
     
   }
-
   	 
 	showSuccess() {
-    this.toastr.success('Hello world!', 'Toastr fun!');
+    this.toastr.success('Heritage Saved Successfully', 'Succeeded');
   }
   
   showError() {
-    this.toastr.error('Error!', 'Something is wrong!');
+    this.toastr.error('Failed to Save Heritage!', 'Failed');
   }
 
 }
