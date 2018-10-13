@@ -11,6 +11,9 @@ import { RegisterComponent } from './register';
 import { AuthGuard } from './_guards';
 import { UserListComponent } from './user-list/user-list.component';
 import { SiteLayoutComponent } from './_layout';
+import { heritageActivationRoutes } from './heritage-activation/heritage-activation.route';
+import { heritageAnalysisRoutes } from './heritage-analysis/heritage-analysis.route';
+import { heritageNavRoutes } from './heritage-nav/heritage-nav.route';
 
 
 const appRoutes: Routes = [
@@ -26,7 +29,10 @@ const appRoutes: Routes = [
             ...heritageDetailRoutes,
             ...heritageListRoutes,
             ...heritageCommentRoutes,
-            ...heritageEvaluationRoutes
+            ...heritageEvaluationRoutes,
+            ...heritageActivationRoutes,
+            ...heritageAnalysisRoutes,
+            ...heritageNavRoutes
         ]
       },
       

@@ -24,6 +24,9 @@ import { UserListComponent } from './user-list/user-list.component';
 import { FileManagerComponent } from './file-manager/file-manager.component';
 import { AppHeaderComponent, AppLayoutComponent, SiteHeaderComponent, SiteFooterComponent, SiteLayoutComponent } from './_layout';
 import { HeritageEvaluationComponent } from './heritage-evaluation/heritage-evaluation.component';
+import { HeritageNavComponent } from './heritage-nav/heritage-nav.component';
+import { HeritageActivationComponent } from './heritage-activation/heritage-activation.component';
+import { HeritageAnalysisComponent } from './heritage-analysis/heritage-analysis.component';
 
 
 @NgModule({
@@ -46,7 +49,10 @@ import { HeritageEvaluationComponent } from './heritage-evaluation/heritage-eval
     SiteHeaderComponent,
     SiteFooterComponent,
     SiteLayoutComponent,
-    HeritageEvaluationComponent
+    HeritageEvaluationComponent,
+    HeritageNavComponent,
+    HeritageActivationComponent,
+    HeritageAnalysisComponent
   ],
   imports: [
     BrowserModule,

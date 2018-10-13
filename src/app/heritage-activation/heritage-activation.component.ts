@@ -5,15 +5,15 @@ import { HeritageService } from '../_services';
 import { Global } from '../_shared';
 
 @Component({
-  selector: 'app-heritage-evaluation',
-  templateUrl: './heritage-evaluation.component.html',
-  styleUrls: ['./heritage-evaluation.component.scss']
+  selector: 'app-heritage-activation',
+  templateUrl: './heritage-activation.component.html',
+  styleUrls: ['./heritage-activation.component.scss']
 })
-export class HeritageEvaluationComponent implements OnInit {
+export class HeritageActivationComponent implements OnInit {
 
   heritage: IHeritage;
   param:any;
-
+  
   constructor(private route: ActivatedRoute,
     private heritageService: HeritageService) { }
 

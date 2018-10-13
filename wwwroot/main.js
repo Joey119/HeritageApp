@@ -2107,12 +2107,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _file_manager_file_manager_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./file-manager/file-manager.component */ "./src/app/file-manager/file-manager.component.ts");
 /* harmony import */ var _layout__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./_layout */ "./src/app/_layout/index.ts");
 /* harmony import */ var _heritage_evaluation_heritage_evaluation_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./heritage-evaluation/heritage-evaluation.component */ "./src/app/heritage-evaluation/heritage-evaluation.component.ts");
+/* harmony import */ var _heritage_nav_heritage_nav_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./heritage-nav/heritage-nav.component */ "./src/app/heritage-nav/heritage-nav.component.ts");
+/* harmony import */ var _heritage_activation_heritage_activation_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./heritage-activation/heritage-activation.component */ "./src/app/heritage-activation/heritage-activation.component.ts");
+/* harmony import */ var _heritage_analysis_heritage_analysis_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./heritage-analysis/heritage-analysis.component */ "./src/app/heritage-analysis/heritage-analysis.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -2163,7 +2169,10 @@ var AppModule = /** @class */ (function () {
                 _layout__WEBPACK_IMPORTED_MODULE_24__["SiteHeaderComponent"],
                 _layout__WEBPACK_IMPORTED_MODULE_24__["SiteFooterComponent"],
                 _layout__WEBPACK_IMPORTED_MODULE_24__["SiteLayoutComponent"],
-                _heritage_evaluation_heritage_evaluation_component__WEBPACK_IMPORTED_MODULE_25__["HeritageEvaluationComponent"]
+                _heritage_evaluation_heritage_evaluation_component__WEBPACK_IMPORTED_MODULE_25__["HeritageEvaluationComponent"],
+                _heritage_nav_heritage_nav_component__WEBPACK_IMPORTED_MODULE_26__["HeritageNavComponent"],
+                _heritage_activation_heritage_activation_component__WEBPACK_IMPORTED_MODULE_27__["HeritageActivationComponent"],
+                _heritage_analysis_heritage_analysis_component__WEBPACK_IMPORTED_MODULE_28__["HeritageAnalysisComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -2273,6 +2282,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _guards__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_guards */ "./src/app/_guards/index.ts");
 /* harmony import */ var _user_list_user_list_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./user-list/user-list.component */ "./src/app/user-list/user-list.component.ts");
 /* harmony import */ var _layout__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_layout */ "./src/app/_layout/index.ts");
+/* harmony import */ var _heritage_activation_heritage_activation_route__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./heritage-activation/heritage-activation.route */ "./src/app/heritage-activation/heritage-activation.route.ts");
+/* harmony import */ var _heritage_analysis_heritage_analysis_route__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./heritage-analysis/heritage-analysis.route */ "./src/app/heritage-analysis/heritage-analysis.route.ts");
+/* harmony import */ var _heritage_nav_heritage_nav_route__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./heritage-nav/heritage-nav.route */ "./src/app/heritage-nav/heritage-nav.route.ts");
+
+
+
 
 
 
@@ -2293,7 +2308,7 @@ var appRoutes = [
             { path: 'login', component: _login__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"] },
             { path: 'register', component: _register__WEBPACK_IMPORTED_MODULE_7__["RegisterComponent"] },
             { path: 'users', component: _user_list_user_list_component__WEBPACK_IMPORTED_MODULE_9__["UserListComponent"], canActivate: [_guards__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]] }
-        ].concat(_heritage_detail__WEBPACK_IMPORTED_MODULE_2__["heritageDetailRoutes"], _heritage_list__WEBPACK_IMPORTED_MODULE_3__["heritageListRoutes"], _comment_comment_component_route__WEBPACK_IMPORTED_MODULE_4__["heritageCommentRoutes"], _heritage_evaluation__WEBPACK_IMPORTED_MODULE_5__["heritageEvaluationRoutes"])
+        ].concat(_heritage_detail__WEBPACK_IMPORTED_MODULE_2__["heritageDetailRoutes"], _heritage_list__WEBPACK_IMPORTED_MODULE_3__["heritageListRoutes"], _comment_comment_component_route__WEBPACK_IMPORTED_MODULE_4__["heritageCommentRoutes"], _heritage_evaluation__WEBPACK_IMPORTED_MODULE_5__["heritageEvaluationRoutes"], _heritage_activation_heritage_activation_route__WEBPACK_IMPORTED_MODULE_11__["heritageActivationRoutes"], _heritage_analysis_heritage_analysis_route__WEBPACK_IMPORTED_MODULE_12__["heritageAnalysisRoutes"], _heritage_nav_heritage_nav_route__WEBPACK_IMPORTED_MODULE_13__["heritageNavRoutes"])
     },
     // otherwise redirect to home
     { path: '**', redirectTo: '' },
@@ -2864,6 +2879,214 @@ var FileManagerComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/heritage-activation/heritage-activation.component.html":
+/*!************************************************************************!*\
+  !*** ./src/app/heritage-activation/heritage-activation.component.html ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "  \n    <mat-toolbar>\n      <span>Heritage Evaluation: {{ heritage.name }} </span>\n      <span class=\"spacer\"></span>\n      <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n    </mat-toolbar>\n\n  \n\n  "
+
+/***/ }),
+
+/***/ "./src/app/heritage-activation/heritage-activation.component.scss":
+/*!************************************************************************!*\
+  !*** ./src/app/heritage-activation/heritage-activation.component.scss ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".spacer {\n  flex: 1 1 auto; }\n"
+
+/***/ }),
+
+/***/ "./src/app/heritage-activation/heritage-activation.component.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/heritage-activation/heritage-activation.component.ts ***!
+  \**********************************************************************/
+/*! exports provided: HeritageActivationComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeritageActivationComponent", function() { return HeritageActivationComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_services */ "./src/app/_services/index.ts");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_shared */ "./src/app/_shared/index.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var HeritageActivationComponent = /** @class */ (function () {
+    function HeritageActivationComponent(route, heritageService) {
+        this.route = route;
+        this.heritageService = heritageService;
+    }
+    HeritageActivationComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.param = params['id'];
+            // check if ID exists in route & call update or add methods accordingly
+            if (_this.param && _this.param != null && _this.param != undefined) {
+                _this.heritageService.getHeritage(_shared__WEBPACK_IMPORTED_MODULE_3__["Global"].BASE_HERITAGE_ENDPOINT + _this.param).subscribe(function (result) {
+                    _this.heritage = result;
+                });
+            }
+        });
+    };
+    HeritageActivationComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-heritage-activation',
+            template: __webpack_require__(/*! ./heritage-activation.component.html */ "./src/app/heritage-activation/heritage-activation.component.html"),
+            styles: [__webpack_require__(/*! ./heritage-activation.component.scss */ "./src/app/heritage-activation/heritage-activation.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _services__WEBPACK_IMPORTED_MODULE_2__["HeritageService"]])
+    ], HeritageActivationComponent);
+    return HeritageActivationComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/heritage-activation/heritage-activation.route.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/heritage-activation/heritage-activation.route.ts ***!
+  \******************************************************************/
+/*! exports provided: heritageActivationRoutes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "heritageActivationRoutes", function() { return heritageActivationRoutes; });
+/* harmony import */ var _heritage_activation_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./heritage-activation.component */ "./src/app/heritage-activation/heritage-activation.component.ts");
+/* harmony import */ var _guards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_guards */ "./src/app/_guards/index.ts");
+
+
+// Route Configuration
+var heritageActivationRoutes = [
+    { path: 'heritageeactivation/:id', component: _heritage_activation_component__WEBPACK_IMPORTED_MODULE_0__["HeritageActivationComponent"], canActivate: [_guards__WEBPACK_IMPORTED_MODULE_1__["AuthGuard"]] }
+];
+
+
+/***/ }),
+
+/***/ "./src/app/heritage-analysis/heritage-analysis.component.html":
+/*!********************************************************************!*\
+  !*** ./src/app/heritage-analysis/heritage-analysis.component.html ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "  \n    <mat-toolbar>\n      <span>Heritage Game Playing Analysis: {{ heritage.name }} </span>\n      <span class=\"spacer\"></span>\n      <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n    </mat-toolbar>\n  \n\n  "
+
+/***/ }),
+
+/***/ "./src/app/heritage-analysis/heritage-analysis.component.scss":
+/*!********************************************************************!*\
+  !*** ./src/app/heritage-analysis/heritage-analysis.component.scss ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".spacer {\n  flex: 1 1 auto; }\n"
+
+/***/ }),
+
+/***/ "./src/app/heritage-analysis/heritage-analysis.component.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/heritage-analysis/heritage-analysis.component.ts ***!
+  \******************************************************************/
+/*! exports provided: HeritageAnalysisComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeritageAnalysisComponent", function() { return HeritageAnalysisComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_services */ "./src/app/_services/index.ts");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_shared */ "./src/app/_shared/index.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var HeritageAnalysisComponent = /** @class */ (function () {
+    function HeritageAnalysisComponent(route, heritageService) {
+        this.route = route;
+        this.heritageService = heritageService;
+    }
+    HeritageAnalysisComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.param = params['id'];
+            // check if ID exists in route & call update or add methods accordingly
+            if (_this.param && _this.param != null && _this.param != undefined) {
+                _this.heritageService.getHeritage(_shared__WEBPACK_IMPORTED_MODULE_3__["Global"].BASE_HERITAGE_ENDPOINT + _this.param).subscribe(function (result) {
+                    _this.heritage = result;
+                });
+            }
+        });
+    };
+    HeritageAnalysisComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-heritage-analysis',
+            template: __webpack_require__(/*! ./heritage-analysis.component.html */ "./src/app/heritage-analysis/heritage-analysis.component.html"),
+            styles: [__webpack_require__(/*! ./heritage-analysis.component.scss */ "./src/app/heritage-analysis/heritage-analysis.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _services__WEBPACK_IMPORTED_MODULE_2__["HeritageService"]])
+    ], HeritageAnalysisComponent);
+    return HeritageAnalysisComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/heritage-analysis/heritage-analysis.route.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/heritage-analysis/heritage-analysis.route.ts ***!
+  \**************************************************************/
+/*! exports provided: heritageAnalysisRoutes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "heritageAnalysisRoutes", function() { return heritageAnalysisRoutes; });
+/* harmony import */ var _heritage_analysis_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./heritage-analysis.component */ "./src/app/heritage-analysis/heritage-analysis.component.ts");
+/* harmony import */ var _guards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_guards */ "./src/app/_guards/index.ts");
+
+
+// Route Configuration
+var heritageAnalysisRoutes = [
+    { path: 'heritageanalysis/:id', component: _heritage_analysis_component__WEBPACK_IMPORTED_MODULE_0__["HeritageAnalysisComponent"], canActivate: [_guards__WEBPACK_IMPORTED_MODULE_1__["AuthGuard"]] }
+];
+
+
+/***/ }),
+
 /***/ "./src/app/heritage-detail/heritage-detail.component.html":
 /*!****************************************************************!*\
   !*** ./src/app/heritage-detail/heritage-detail.component.html ***!
@@ -3081,7 +3304,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n  <form (ngSubmit)=\"onSubmit()\" #heritageForm=\"ngForm\" name=\"heritage\">\n  \n    <mat-toolbar>\n      <span>Heritage Evaluation: {{ heritage.name }} </span>\n      <span class=\"spacer\"></span>\n      <button type=\"button\" mat-button class=\"form-save\" routerLink=\"/heritagelist\">Back</button>\n    </mat-toolbar>\n  \n    <mat-accordion class=\"example-headers-align\">\n        <mat-expansion-panel [expanded]=\"step === 0\" (opened)=\"setStep(0)\" hideToggle>\n          <mat-expansion-panel-header>\n            <mat-panel-title>\n              Evaluation Model I\n            </mat-panel-title>\n            <mat-panel-description>\n              Evaluate with Model I\n              <mat-icon>account_balance</mat-icon>\n            </mat-panel-description>\n          </mat-expansion-panel-header>\n\n          <mat-card class=\"example-card\">\n            <mat-card-content>\n              <P>Cost</P>\n              <div class=\"short-input-field\">\n                <mat-form-field>\n                  <input matInput type=number placeholder=\"Independant Development\" />\n                </mat-form-field>\n              </div>\n              <div class=\"short-input-field\">\n                <mat-form-field>\n                  <input matInput type=number placeholder=\"Cooperative Development\" />\n                </mat-form-field>\n              </div>\n              <div class=\"short-input-field\">\n                  <mat-form-field>\n                      <input matInput type=number placeholder=\"Intellectual Cost\" />\n                  </mat-form-field>\n              </div>\n              <br>\n              <P>Economic Income</P>\n              <div class=\"short-input-field\">\n                <mat-form-field>\n                    <input matInput type=number placeholder=\"Independant Development\" />\n                </mat-form-field>\n              </div>\n              <div class=\"short-input-field\">\n                <mat-form-field>\n                    <input matInput type=number placeholder=\"Cooperative Development\" />\n                </mat-form-field>\n              </div>\n              <br>\n              <P>Acceptable Value of Tourists</P>\n              <div class=\"short-input-field\">\n                <mat-form-field>\n                  <input matInput type=number placeholder=\"Local Governmane Participate\" />\n                </mat-form-field>\n              </div>\n              <div class=\"short-input-field\">\n                <mat-form-field>\n                  <input matInput type=number placeholder=\"Local Government Does Not Participate\" />\n                </mat-form-field>\n              </div>\n              <br>\n              <P>Acceptable Value of Local Government</P>\n              <div class=\"short-input-field\">\n                <mat-form-field>\n                    <input matInput type=number placeholder=\"Specialists Participate\" />\n                </mat-form-field>\n              </div>\n              <div class=\"short-input-field\">\n                <mat-form-field>\n                    <input matInput type=number placeholder=\"Specialists Does Not Participate\" />\n                </mat-form-field>\n              </div>\n              <br>\n              <P>Acceptable Value of Specialists</P>\n              <div class=\"short-input-field\">\n                <mat-form-field>\n                    <input matInput type=number placeholder=\"Independant Development\" />\n                </mat-form-field>\n              </div>\n              <div class=\"short-input-field\">\n                <mat-form-field>\n                    <input matInput type=number placeholder=\"Cooperative Development\" />\n                </mat-form-field>\n              </div>\n              <br>\n              <div class=\"short-input-field\">\n                  <mat-form-field>\n                    <input matInput type=number placeholder=\"Acceptable Value of Inheritors\" />\n                  </mat-form-field>\n              </div>\n              <br>\n              <div class=\"short-input-field\">\n                  <mat-form-field>\n                    <input matInput type=number placeholder=\"The Percentage of Local Government Affording Cost\" />\n                  </mat-form-field>\n              </div>\n              <br>\n              <div class=\"short-input-field\">\n                  <mat-form-field>\n                    <input matInput type=number placeholder=\"The Percentage of Specialists Affording Cost\" />\n                  </mat-form-field>\n              </div>\n              <br>\n              <div class=\"short-input-field\">\n                  <mat-form-field>\n                    <input matInput type=number placeholder=\"The Percentage of Tourism Company Affording Cost\" />\n                  </mat-form-field>\n              </div>\n              <br>\n\n            </mat-card-content>\n            <mat-card-actions>\n              <button mat-button>Calculate</button>\n            </mat-card-actions>\n          </mat-card>\n\n          <mat-action-row>\n            <button mat-button color=\"primary\" (click)=\"nextStep()\">Next</button>\n          </mat-action-row>\n        </mat-expansion-panel>\n      \n        <mat-expansion-panel [expanded]=\"step === 1\" (opened)=\"setStep(1)\" hideToggle>\n          <mat-expansion-panel-header>\n            <mat-panel-title>\n              Evaluation Model II\n            </mat-panel-title>\n            <mat-panel-description>\n              Evaluate with Model II\n              <mat-icon>account_balance</mat-icon>\n            </mat-panel-description>\n          </mat-expansion-panel-header>\n      \n          <mat-card class=\"example-card\">\n              <mat-card-content>\n                <P>Parameters for Comment Analysis</P>\n                <div class=\"short-input-field\">\n                  <mat-form-field>\n                    <input matInput type=number placeholder=\"Support Value\" />\n                  </mat-form-field>\n                </div>\n                <div class=\"short-input-field\">\n                  <mat-form-field>\n                    <input matInput type=number placeholder=\"Trust Value\" />\n                  </mat-form-field>\n                </div>\n                <br>\n              </mat-card-content>\n              <mat-card-actions>\n                <button mat-button>Calculate</button>\n              </mat-card-actions>\n            </mat-card>\n          <mat-action-row>\n            <button mat-button color=\"warn\" (click)=\"prevStep()\">Previous</button>\n            <button mat-button color=\"primary\" (click)=\"nextStep()\">Next</button>\n          </mat-action-row>\n        </mat-expansion-panel>\n      \n        <mat-expansion-panel [expanded]=\"step === 2\" (opened)=\"setStep(2)\" hideToggle>\n          <mat-expansion-panel-header>\n            <mat-panel-title>\n              Evaluation Model III\n            </mat-panel-title>\n            <mat-panel-description>\n              Evaluate with Model III\n              <mat-icon>account_balance</mat-icon>\n            </mat-panel-description>\n          </mat-expansion-panel-header>\n  \n      \n          <mat-action-row>\n            <button mat-button color=\"warn\" (click)=\"prevStep()\">Previous</button>\n            <button mat-button color=\"primary\" (click)=\"nextStep()\">End</button>\n          </mat-action-row>\n        </mat-expansion-panel>  \n  \n      </mat-accordion>\n  \n  </form>\n\n  "
+module.exports = "  \n    <mat-toolbar>\n      <span>Tourism Evaluation: {{ heritage.name }} </span>\n      <span class=\"spacer\"></span>\n      <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n    </mat-toolbar>\n  \n  \n\n\n  "
 
 /***/ }),
 
@@ -3092,7 +3315,7 @@ module.exports = "\n  <form (ngSubmit)=\"onSubmit()\" #heritageForm=\"ngForm\" n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".spacer {\n  flex: 1 1 auto; }\n\n.short-input-field {\n  min-width: 200px;\n  max-width: 800px;\n  width: 100%;\n  display: inline-block; }\n\n.example-headers-align .mat-expansion-panel-header-title,\n.example-headers-align .mat-expansion-panel-header-description {\n  flex-basis: 0; }\n\n.example-headers-align .mat-expansion-panel-header-description {\n  justify-content: space-between;\n  align-items: center; }\n"
+module.exports = ".spacer {\n  flex: 1 1 auto; }\n"
 
 /***/ }),
 
@@ -3127,17 +3350,7 @@ var HeritageEvaluationComponent = /** @class */ (function () {
     function HeritageEvaluationComponent(route, heritageService) {
         this.route = route;
         this.heritageService = heritageService;
-        this.step = 0;
     }
-    HeritageEvaluationComponent.prototype.setStep = function (index) {
-        this.step = index;
-    };
-    HeritageEvaluationComponent.prototype.nextStep = function () {
-        this.step++;
-    };
-    HeritageEvaluationComponent.prototype.prevStep = function () {
-        this.step--;
-    };
     HeritageEvaluationComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.subscribe(function (params) {
@@ -3216,7 +3429,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  \n  <!--\n  <div class=\"spinner\" *ngIf=\"loadingState; else userlist\">\n    <mat-spinner></mat-spinner>\n  </div>\n  -->\n\n  <div class=\"tblcontainer mat-elevation-z8\">\n  \n    <div class=\"form\">\n      <mat-form-field floatPlaceholder=\"never\" color=\"accent\">\n        <input matInput #filter placeholder=\"Filter heritages\">\n      </mat-form-field>\n    </div>\n  \n    <mat-table #table [dataSource]=\"dataSource\" matSort class=\"mat-cell\">\n  \n      <!--- Note that these columns can be defined in any order.\n            The actual rendered columns are set as a property on the row definition\" -->\n  \n      <!-- ID Column -->\n      <ng-container matColumnDef=\"id\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" >{{row.id}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"name\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.name}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"registrationDistrict\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Registration District</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.registrationDistrict}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"registrationYear\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Registration Year</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.registrationYear}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"province\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Province</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.province}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"typeofProject\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Type of Project</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.typeofProject}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"batchNo\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Batch No</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.batchNo}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"inheritors\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Inheritors</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.inheritors}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"projectOverview\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Project Overview</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.projectOverview}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"history\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>History</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.history}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"currentStatus\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Current Status</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.currentStatus}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"presentValue\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>PresentValue</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.presentValue}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"endangeredStatus\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Endangered Status</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.endangeredStatus}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"masterpiece\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Masterpiece</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.masterpiece}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismStatus\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Status</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismStatus}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismMarketCharacteristics\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Market Characteristics</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismMarketCharacteristics}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismProduct\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Product</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismProduct}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismPrice\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Price</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismPrice}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismDevelopmentModel\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Development Model</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismDevelopmentModel}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismBenefit\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Benefit</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismBenefit}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"createdBy\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Created By</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.createdBy}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"createdOn\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Created On</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.createdOn}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"modifiedBy\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Modified By</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedBy}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"modifiedOn\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Modified On</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedOn}}</mat-cell>\n      </ng-container>\n  \n      <!-- actions -->\n      <ng-container matColumnDef=\"actions\">\n        <mat-header-cell *matHeaderCellDef>\n          <button mat-icon-button color=\"primary\" [routerLink]=\"['/heritagedetail']\">\n            <mat-icon aria-label=\"Example icon-button with a heart icon\">add</mat-icon>\n          </button>\n          <button mat-icon-button (click)=\"refresh()\">\n            <mat-icon>refresh</mat-icon>\n          </button>\n        </mat-header-cell>\n  \n        <mat-cell *matCellDef=\"let row;\">\n          <button mat-icon-button color=\"accent\" [routerLink]=\"['/heritagedetail', row.id]\">\n            <mat-icon aria-label=\"Edit\">edit</mat-icon>\n          </button>\n\n          <button mat-icon-button color=\"accent\" [routerLink]=\"['/heritageevaluation', row.id]\">\n            <mat-icon aria-label=\"Explore\">explore</mat-icon>\n          </button>\n\n          <button mat-icon-button color=\"accent\" [routerLink]=\"['/heritagedecomment', row.id]\">\n            <mat-icon aria-label=\"Comment\">comment</mat-icon>\n          </button>\n  \n          <button mat-icon-button color=\"accent\" (click)=\"deleteItem(row.id, row.name)\">\n            <mat-icon aria-label=\"Delete\">delete</mat-icon>\n          </button>\n        </mat-cell>\n      </ng-container>\n       \n      <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n      <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n    </mat-table>\n  \n    <div class=\"no-results\" [style.display]=\"dataSource.renderedData.length == 0 ? '' : 'none'\">\n      No results\n    </div>\n  \n    <mat-paginator #paginator\n                   [length]=\"dataSource.filteredData.length\"\n                   [pageIndex]=\"0\"\n                   [pageSize]=\"10\"\n                   [pageSizeOptions]=\"[5, 10, 25, 100]\">\n    </mat-paginator>\n  </div>\n  "
+module.exports = "  \n  <!--\n  <div class=\"spinner\" *ngIf=\"loadingState; else userlist\">\n    <mat-spinner></mat-spinner>\n  </div>\n  -->\n\n  <div class=\"tblcontainer mat-elevation-z8\">\n  \n    <div class=\"form\">\n      <mat-form-field floatPlaceholder=\"never\" color=\"accent\">\n        <input matInput #filter placeholder=\"Filter heritages\">\n      </mat-form-field>\n    </div>\n  \n    <mat-table #table [dataSource]=\"dataSource\" matSort class=\"mat-cell\">\n  \n      <!--- Note that these columns can be defined in any order.\n            The actual rendered columns are set as a property on the row definition\" -->\n  \n      <!-- ID Column -->\n      <ng-container matColumnDef=\"id\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\" >{{row.id}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"name\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.name}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"registrationDistrict\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Registration District</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.registrationDistrict}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"registrationYear\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Registration Year</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.registrationYear}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"province\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Province</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.province}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"typeofProject\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Type of Project</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.typeofProject}}</mat-cell>\n      </ng-container>\n  \n      <ng-container matColumnDef=\"batchNo\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Batch No</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.batchNo}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"inheritors\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Inheritors</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.inheritors}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"projectOverview\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Project Overview</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.projectOverview}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"history\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>History</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.history}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"currentStatus\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Current Status</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.currentStatus}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"presentValue\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>PresentValue</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.presentValue}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"endangeredStatus\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Endangered Status</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.endangeredStatus}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"masterpiece\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Masterpiece</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.masterpiece}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismStatus\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Status</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismStatus}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismMarketCharacteristics\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Market Characteristics</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismMarketCharacteristics}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismProduct\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Product</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismProduct}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismPrice\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Price</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismPrice}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismDevelopmentModel\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Development Model</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismDevelopmentModel}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"tourismBenefit\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Tourism Benefit</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.tourismBenefit}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"createdBy\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Created By</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.createdBy}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"createdOn\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Created On</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.createdOn}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"modifiedBy\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Modified By</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedBy}}</mat-cell>\n      </ng-container>\n\n      <ng-container matColumnDef=\"modifiedOn\">\n        <mat-header-cell *matHeaderCellDef mat-sort-header>Modified On</mat-header-cell>\n        <mat-cell *matCellDef=\"let row\"> {{row.modifiedOn}}</mat-cell>\n      </ng-container>\n  \n      <!-- actions -->\n      <ng-container matColumnDef=\"actions\">\n        <mat-header-cell *matHeaderCellDef>\n          <button mat-icon-button color=\"primary\" [routerLink]=\"['/heritagedetail']\">\n            <mat-icon aria-label=\"Example icon-button with a heart icon\">add</mat-icon>\n          </button>\n          <button mat-icon-button (click)=\"refresh()\">\n            <mat-icon>refresh</mat-icon>\n          </button>\n        </mat-header-cell>\n  \n        <mat-cell *matCellDef=\"let row;\">\n          <button mat-icon-button color=\"accent\" [routerLink]=\"['/heritagedetail', row.id]\">\n            <mat-icon aria-label=\"Edit\">edit</mat-icon>\n          </button>\n\n          <button mat-icon-button color=\"accent\" [routerLink]=\"['/heritagenav', row.id]\">\n            <mat-icon aria-label=\"Explore\">explore</mat-icon>\n          </button>\n\n          <button mat-icon-button color=\"accent\" [routerLink]=\"['/heritagedecomment', row.id]\">\n            <mat-icon aria-label=\"Comment\">comment</mat-icon>\n          </button>\n  \n          <button mat-icon-button color=\"accent\" (click)=\"deleteItem(row.id, row.name)\">\n            <mat-icon aria-label=\"Delete\">delete</mat-icon>\n          </button>\n        </mat-cell>\n      </ng-container>\n       \n      <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n      <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n    </mat-table>\n  \n    <div class=\"no-results\" [style.display]=\"dataSource.renderedData.length == 0 ? '' : 'none'\">\n      No results\n    </div>\n  \n    <mat-paginator #paginator\n                   [length]=\"dataSource.filteredData.length\"\n                   [pageIndex]=\"0\"\n                   [pageSize]=\"10\"\n                   [pageSizeOptions]=\"[5, 10, 25, 100]\">\n    </mat-paginator>\n  </div>\n  "
 
 /***/ }),
 
@@ -3533,6 +3746,110 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+/***/ }),
+
+/***/ "./src/app/heritage-nav/heritage-nav.component.html":
+/*!**********************************************************!*\
+  !*** ./src/app/heritage-nav/heritage-nav.component.html ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<mat-toolbar>\n  <span>Heritage Tourism Research Home: {{ heritage.name }} </span>\n  <span class=\"spacer\"></span>\n  <button type=\"button\" mat-button class=\"form-save\" routerLink=\"/heritagelist\">Back</button>\n</mat-toolbar>\n\n<div class=\"container\">\n  <!-- Example row of columns -->\n  <div class=\"row\">\n    <div class=\"col-md-4\">\n      <h2>Heritage Tourism Evaluation</h2>\n      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n      <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritageevaluation', heritage.id]\" role=\"button\">Tourism Evaluation &raquo;</a></p>\n    </div>\n    <div class=\"col-md-4\">\n      <h2>Heritage Game Playing Analyse</h2>\n      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n      <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritageanalysis', heritage.id]\" role=\"button\">Game Playing Analyse &raquo;</a></p>\n   </div>\n    <div class=\"col-md-4\">\n      <h2>Heritage Tourism Activation Mode</h2>\n      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>\n      <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritageeactivation', heritage.id]\" role=\"button\">Tourism Activation Mode &raquo;</a></p>\n    </div>\n  </div>\n \n</div> <!-- /container -->\n"
+
+/***/ }),
+
+/***/ "./src/app/heritage-nav/heritage-nav.component.scss":
+/*!**********************************************************!*\
+  !*** ./src/app/heritage-nav/heritage-nav.component.scss ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".spacer {\n  flex: 1 1 auto; }\n\n.example-headers-align .mat-expansion-panel-header-title,\n.example-headers-align .mat-expansion-panel-header-description {\n  flex-basis: 0; }\n\n.example-headers-align .mat-expansion-panel-header-description {\n  justify-content: space-between;\n  align-items: center; }\n"
+
+/***/ }),
+
+/***/ "./src/app/heritage-nav/heritage-nav.component.ts":
+/*!********************************************************!*\
+  !*** ./src/app/heritage-nav/heritage-nav.component.ts ***!
+  \********************************************************/
+/*! exports provided: HeritageNavComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeritageNavComponent", function() { return HeritageNavComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_services */ "./src/app/_services/index.ts");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_shared */ "./src/app/_shared/index.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var HeritageNavComponent = /** @class */ (function () {
+    function HeritageNavComponent(route, heritageService) {
+        this.route = route;
+        this.heritageService = heritageService;
+    }
+    HeritageNavComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.param = params['id'];
+            // check if ID exists in route & call update or add methods accordingly
+            if (_this.param && _this.param != null && _this.param != undefined) {
+                _this.heritageService.getHeritage(_shared__WEBPACK_IMPORTED_MODULE_3__["Global"].BASE_HERITAGE_ENDPOINT + _this.param).subscribe(function (result) {
+                    _this.heritage = result;
+                });
+            }
+        });
+    };
+    HeritageNavComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-heritage-nav',
+            template: __webpack_require__(/*! ./heritage-nav.component.html */ "./src/app/heritage-nav/heritage-nav.component.html"),
+            styles: [__webpack_require__(/*! ./heritage-nav.component.scss */ "./src/app/heritage-nav/heritage-nav.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _services__WEBPACK_IMPORTED_MODULE_2__["HeritageService"]])
+    ], HeritageNavComponent);
+    return HeritageNavComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/heritage-nav/heritage-nav.route.ts":
+/*!****************************************************!*\
+  !*** ./src/app/heritage-nav/heritage-nav.route.ts ***!
+  \****************************************************/
+/*! exports provided: heritageNavRoutes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "heritageNavRoutes", function() { return heritageNavRoutes; });
+/* harmony import */ var _heritage_nav_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./heritage-nav.component */ "./src/app/heritage-nav/heritage-nav.component.ts");
+/* harmony import */ var _guards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_guards */ "./src/app/_guards/index.ts");
+
+
+// Route Configuration
+var heritageNavRoutes = [
+    { path: 'heritagenav/:id', component: _heritage_nav_component__WEBPACK_IMPORTED_MODULE_0__["HeritageNavComponent"], canActivate: [_guards__WEBPACK_IMPORTED_MODULE_1__["AuthGuard"]] }
+];
 
 
 /***/ }),

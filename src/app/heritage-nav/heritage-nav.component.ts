@@ -5,11 +5,11 @@ import { HeritageService } from '../_services';
 import { Global } from '../_shared';
 
 @Component({
-  selector: 'app-heritage-evaluation',
-  templateUrl: './heritage-evaluation.component.html',
-  styleUrls: ['./heritage-evaluation.component.scss']
+  selector: 'app-heritage-nav',
+  templateUrl: './heritage-nav.component.html',
+  styleUrls: ['./heritage-nav.component.scss']
 })
-export class HeritageEvaluationComponent implements OnInit {
+export class HeritageNavComponent implements OnInit {
 
   heritage: IHeritage;
   param:any;
