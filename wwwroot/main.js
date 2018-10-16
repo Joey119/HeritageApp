@@ -2110,12 +2110,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _heritage_nav_heritage_nav_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./heritage-nav/heritage-nav.component */ "./src/app/heritage-nav/heritage-nav.component.ts");
 /* harmony import */ var _heritage_activation_heritage_activation_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./heritage-activation/heritage-activation.component */ "./src/app/heritage-activation/heritage-activation.component.ts");
 /* harmony import */ var _heritage_analysis_heritage_analysis_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./heritage-analysis/heritage-analysis.component */ "./src/app/heritage-analysis/heritage-analysis.component.ts");
+/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! primeng/primeng */ "./node_modules/primeng/primeng.js");
+/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_29___default = /*#__PURE__*/__webpack_require__.n(primeng_primeng__WEBPACK_IMPORTED_MODULE_29__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -2185,6 +2188,7 @@ var AppModule = /** @class */ (function () {
                 _app_primeng_module__WEBPACK_IMPORTED_MODULE_20__["AppPrimeNGModule"],
                 _app_comment_module__WEBPACK_IMPORTED_MODULE_21__["CommentModule"],
                 _app_routing__WEBPACK_IMPORTED_MODULE_7__["routing"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_29__["TreeModule"],
                 ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrModule"].forRoot({
                     timeOut: 3000,
                     positionClass: 'toast-bottom-right',
@@ -2990,7 +2994,7 @@ var heritageActivationRoutes = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  \n    <mat-toolbar>\n      <span>Heritage Game Playing Analysis: {{ heritage.name }} </span>\n      <span class=\"spacer\"></span>\n      <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n    </mat-toolbar>\n  \n\n  "
+module.exports = "  \n    <div class=\"basic-container\" *ngIf = \"heritage\">\n    \n      <mat-toolbar>\n        <span>Heritage Game Playing Analysis: {{ heritage.name }} </span>\n        <span class=\"spacer\"></span>\n        <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n      </mat-toolbar>\n\n      <form class=\"analysis-form\">\n        <mat-grid-list cols=\"10\" rowHeight=\"50px\">\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n            参数\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            参数值\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            路径i的取值\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n            对参数值的分析\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n              Ci\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"CiA\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i <= 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            与传承人单一开发相比，传承人选择合作开发时，由于可能实现规模化生产而降低产品开发成本。即一般应有：ciA>ciB\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"CiB\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i > 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n            Ii\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Ii\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=9,10,…16\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n            当传承人对非遗产品的评估价值较高时，与企业合作开发时可能会要求企业支付知识产权使用费。\n          </mat-grid-tile>      \n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            Pi\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"PiA\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i <= 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            与传承人单一开发相比，传承人选择合作开发时，由于有其他利益相关者的参与和支持，营销力度更大，宣传范围更广，因而更有可能采取高价策略，以高价售出非遗产品。即一般应有：piA < piB\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"PiB\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i > 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            Vi5\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Vi5A\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=1,2,5,6,9,10,13,14,17,18,21,22\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            当非遗产品开发获政府支持时，消费者出于对政府及其价值判断的信赖，对该非遗产品的价值认可度通常会更高。即一般应有：vi5A > vi5B\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Vi5B\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=3,4,7,8,11,12,15,16,19,20,23,24\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            Vi4\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Vi4A\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=1,2,3,4,9,10,11,12,17,18,19,20\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            当非遗产品开发能吸引专家参与时，政府出于对专家的专业水平的信任，对该非遗产品的价值认可度通常会更高。即一般应有：vi4A > vi4B\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Vi4B\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=5,6,7,8,13,14,15,16,21,22,23,24\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            Vi3\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Vi3A\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i <= 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            与传承人单一开发相比，当传承人选择合作开发模式时，专家更倾向于认为该非遗产品更有开发价值。即一般应有：vi3A < vi3B\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Vi3B\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i>8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n            Vi1\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Vi1\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=1,2,…,24\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n            所有利益相关者中，传承人对非遗产品的情况最为了解，掌握的信息最为完全，因而其对非遗产品的价值判断一般也保持稳定\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            ai4\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"ai4\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=1,2,5,6,9,10,13,14,17,18,21,22\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            政府选择支持非遗产品开发时，政府分担开发成本的比例为ai4；不支持时，该比例为0\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"0\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=3,4,7,8,11,12,15,16,19,20,23,24\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            ai3\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"ai3\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=1,2,3,4,9,10,11,12,17,18,19,20\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            专家选择参与非遗产品开发时，专家分担开发成本的比例为ai3；不参与时，该比例为0\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"0\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=5,6,7,8,13,14,15,16,21,22,23,24\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            ai2\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"ai2\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=9,10,…,16\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            企业选择对非遗产品开发进行投资时，企业分担开发成本的比例为ai2；不投资时，该比例为0\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"0\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=1,2,…,8,17,18,…24\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n            ai1\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"1-(ai2+ai3+ai4)\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=1,2,…,24\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n            其他利益相关者分担成本后的产品开发成本均由传承人来承担\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            bij (j!=1)\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"0\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i <= 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            在传承人单一开发模式下，其他利益相关者不能获得对产品销售收入的分成，即bij=0；在合作开发模式下，其他利益相关者对销售收入的分成比例与其成本分担比例基本一致，即bij=aij\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"aij\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i > 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            bi1\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"1\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i <= 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            在传承人单一开发模式下，传承人可获得非遗产品的全部销售收入，即bi1=1；在合作开发模式下，传承人对销售收入的分成比例与其成本分担比例基本一致，即bi1=ai1\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"ai1\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i > 8\n          </mat-grid-tile>         \n      </mat-grid-list>\n      </form>\n      <mat-card class=\"analysis-tree\">\n        <mat-card-header>          \n          <mat-card-title>Game Playing Analysis Tree </mat-card-title>\n          <mat-card-subtitle>Game Playing Analysis is performed here...</mat-card-subtitle>\n        </mat-card-header>\n        <mat-card-actions>\n          <button mat-button>Analysis</button>\n        </mat-card-actions>        \n        <mat-card-content>\n          <h3>Game Playing Analysis</h3>\n          <p-tree [value]=\"decisionTree\" layout=\"horizontal\" selectionMode=\"single\"></p-tree>\n        </mat-card-content>\n      </mat-card>\n    </div>\n\n  "
 
 /***/ }),
 
@@ -3001,7 +3005,7 @@ module.exports = "  \n    <mat-toolbar>\n      <span>Heritage Game Playing Analy
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".spacer {\n  flex: 1 1 auto; }\n"
+module.exports = ".spacer {\n  flex: 1 1 auto; }\n\n.parameter-field {\n  min-width: 40px;\n  max-width: 80px; }\n\nmat-grid-tile {\n  border: solid 1px; }\n\n.basic-container {\n  padding-left: 15%;\n  padding-right: 15%;\n  padding-top: 1%;\n  padding-bottom: 2%; }\n"
 
 /***/ }),
 
@@ -3017,8 +3021,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeritageAnalysisComponent", function() { return HeritageAnalysisComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_services */ "./src/app/_services/index.ts");
-/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_shared */ "./src/app/_shared/index.ts");
+/* harmony import */ var primeng_tree__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primeng/tree */ "./node_modules/primeng/tree.js");
+/* harmony import */ var primeng_tree__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(primeng_tree__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_services */ "./src/app/_services/index.ts");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../_shared */ "./src/app/_shared/index.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3028,6 +3034,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -3043,12 +3050,176 @@ var HeritageAnalysisComponent = /** @class */ (function () {
             _this.param = params['id'];
             // check if ID exists in route & call update or add methods accordingly
             if (_this.param && _this.param != null && _this.param != undefined) {
-                _this.heritageService.getHeritage(_shared__WEBPACK_IMPORTED_MODULE_3__["Global"].BASE_HERITAGE_ENDPOINT + _this.param).subscribe(function (result) {
+                _this.heritageService.getHeritage(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_ENDPOINT + _this.param).subscribe(function (result) {
                     _this.heritage = result;
                 });
             }
         });
+        this.decisionTree = [
+            {
+                "label": "传承人",
+                "children": [
+                    {
+                        "label": "专家",
+                        "children": [{
+                                "label": "政府",
+                                "children": [{
+                                        "label": "消费者",
+                                        "children": [{
+                                                "label": "R1"
+                                            },
+                                            {
+                                                "label": "R2"
+                                            }]
+                                    },
+                                    {
+                                        "label": "消费者",
+                                        "children": [{
+                                                "label": "R3"
+                                            },
+                                            {
+                                                "label": "R4"
+                                            }]
+                                    }]
+                            },
+                            {
+                                "label": "政府",
+                                "children": [{
+                                        "label": "消费者",
+                                        "children": [{
+                                                "label": "R5"
+                                            },
+                                            {
+                                                "label": "R6"
+                                            }]
+                                    },
+                                    {
+                                        "label": "消费者",
+                                        "children": [{
+                                                "label": "R7"
+                                            },
+                                            {
+                                                "label": "R8"
+                                            }]
+                                    }]
+                            }]
+                    },
+                    {
+                        "label": "企业",
+                        "children": [{
+                                "label": "专家",
+                                "children": [{
+                                        "label": "政府",
+                                        "children": [{
+                                                "label": "消费者",
+                                                "children": [{
+                                                        "label": "R9"
+                                                    },
+                                                    {
+                                                        "label": "R10"
+                                                    }]
+                                            },
+                                            {
+                                                "label": "消费者",
+                                                "children": [{
+                                                        "label": "R11"
+                                                    },
+                                                    {
+                                                        "label": "R12"
+                                                    }]
+                                            }]
+                                    },
+                                    {
+                                        "label": "政府",
+                                        "data": "Home Folder",
+                                        "children": [{
+                                                "label": "消费者",
+                                                "children": [{
+                                                        "label": "R13"
+                                                    },
+                                                    {
+                                                        "label": "R14"
+                                                    }]
+                                            },
+                                            {
+                                                "label": "消费者",
+                                                "children": [{
+                                                        "label": "R15"
+                                                    },
+                                                    {
+                                                        "label": "R16"
+                                                    }]
+                                            }]
+                                    }]
+                            },
+                            {
+                                "label": "专家",
+                                "data": "De Niro Movies",
+                                "children": [{
+                                        "label": "政府",
+                                        "children": [{
+                                                "label": "消费者",
+                                                "children": [{
+                                                        "label": "R17"
+                                                    },
+                                                    {
+                                                        "label": "R18"
+                                                    }]
+                                            },
+                                            {
+                                                "label": "消费者",
+                                                "children": [{
+                                                        "label": "R19"
+                                                    },
+                                                    {
+                                                        "label": "R20"
+                                                    }]
+                                            }]
+                                    },
+                                    {
+                                        "label": "政府",
+                                        "data": "Home Folder",
+                                        "children": [{
+                                                "label": "消费者",
+                                                "children": [{
+                                                        "label": "R21"
+                                                    },
+                                                    {
+                                                        "label": "R22"
+                                                    }]
+                                            },
+                                            {
+                                                "label": "消费者",
+                                                "children": [{
+                                                        "label": "R23"
+                                                    },
+                                                    {
+                                                        "label": "R24"
+                                                    }]
+                                            }]
+                                    }]
+                            }]
+                    }
+                ]
+            }
+        ];
+        this.decisionTree.forEach(function (node) {
+            _this.expandRecursive(node, true);
+        });
     };
+    HeritageAnalysisComponent.prototype.expandRecursive = function (node, isExpand) {
+        var _this = this;
+        node.expanded = isExpand;
+        if (node.children) {
+            node.children.forEach(function (childNode) {
+                _this.expandRecursive(childNode, isExpand);
+            });
+        }
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('expandingTree'),
+        __metadata("design:type", primeng_tree__WEBPACK_IMPORTED_MODULE_2__["Tree"])
+    ], HeritageAnalysisComponent.prototype, "expandingTree", void 0);
     HeritageAnalysisComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-heritage-analysis',
@@ -3056,7 +3227,7 @@ var HeritageAnalysisComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./heritage-analysis.component.scss */ "./src/app/heritage-analysis/heritage-analysis.component.scss")]
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
-            _services__WEBPACK_IMPORTED_MODULE_2__["HeritageService"]])
+            _services__WEBPACK_IMPORTED_MODULE_3__["HeritageService"]])
     ], HeritageAnalysisComponent);
     return HeritageAnalysisComponent;
 }());

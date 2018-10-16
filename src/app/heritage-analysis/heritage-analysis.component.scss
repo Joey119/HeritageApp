@@ -3,3 +3,21 @@
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
 }
+
+.parameter-field {
+    min-width: 40px;
+    max-width: 80px;
+}
+
+mat-grid-tile {
+    border: solid 1px;
+}
+
+.basic-container {
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 1%;
+    padding-bottom: 2%;  
+  }
+  
+

@@ -27,6 +27,7 @@ import { HeritageEvaluationComponent } from './heritage-evaluation/heritage-eval
 import { HeritageNavComponent } from './heritage-nav/heritage-nav.component';
 import { HeritageActivationComponent } from './heritage-activation/heritage-activation.component';
 import { HeritageAnalysisComponent } from './heritage-analysis/heritage-analysis.component';
+import { TreeModule } from 'primeng/primeng';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { HeritageAnalysisComponent } from './heritage-analysis/heritage-analysis
     AppPrimeNGModule,
     CommentModule,
     routing,
+    TreeModule,
     ToastrModule.forRoot({ 
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
