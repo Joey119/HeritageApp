@@ -27,7 +27,9 @@ import { HeritageEvaluationComponent } from './heritage-evaluation/heritage-eval
 import { HeritageNavComponent } from './heritage-nav/heritage-nav.component';
 import { HeritageActivationComponent } from './heritage-activation/heritage-activation.component';
 import { HeritageAnalysisComponent } from './heritage-analysis/heritage-analysis.component';
-import { TreeModule } from 'primeng/primeng';
+import { TreeModule, DialogModule, RadioButtonModule, FieldsetModule } from 'primeng/primeng';
+import {DropdownModule} from 'primeng/dropdown';
+import { ActivationModeListComponent } from './activation-mode-list/activation-mode-list.component';
 
 
 @NgModule({
@@ -53,7 +55,8 @@ import { TreeModule } from 'primeng/primeng';
     HeritageEvaluationComponent,
     HeritageNavComponent,
     HeritageActivationComponent,
-    HeritageAnalysisComponent
+    HeritageAnalysisComponent,
+    ActivationModeListComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +70,10 @@ import { TreeModule } from 'primeng/primeng';
     CommentModule,
     routing,
     TreeModule,
+    DropdownModule,
+    DialogModule,
+    RadioButtonModule,
+    FieldsetModule,
     ToastrModule.forRoot({ 
       timeOut: 3000,
       positionClass: 'toast-bottom-right',

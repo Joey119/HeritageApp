@@ -3,3 +3,18 @@
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
 }
+
+.basic-container {
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 1%;
+  padding-bottom: 2%;  
+}
+
+
+table td,
+table th {
+    min-width: 200px;
+    min-height: 10em;
+    border: 1px solid #000;
+}

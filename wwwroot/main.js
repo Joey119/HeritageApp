@@ -931,7 +931,7 @@ var SiteFooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container>\r\n  <mat-sidenav  #sidenav mode=\"side\"\r\n        [fixedInViewport]=\"options.value.fixed\" [fixedTopGap]=\"options.value.top\"\r\n        [fixedBottomGap]=\"options.value.bottom\">\r\n    <mat-nav-list>\r\n      <a mat-list-item\r\n         *ngIf=\"!auth.isAuthenticated()\"\r\n         routerLink=\"/login\">\r\n        <mat-icon class=\"icon\">input</mat-icon>\r\n        <span class=\"label\">Login</span>\r\n      </a>\r\n      <a mat-list-item         \r\n         routerLink=\"/\">\r\n        <mat-icon class=\"icon\">home</mat-icon>\r\n        <span class=\"label\">Home</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"auth.isAuthenticated()\"\r\n         routerLink=\"/heritagelist\">\r\n        <mat-icon class=\"icon\">view_list</mat-icon>\r\n        <span class=\"label\">Heritage List</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"auth.isAuthenticated()\"\r\n         routerLink=\"/users\">\r\n        <mat-icon class=\"icon\">account_box</mat-icon>\r\n        <span class=\"label\">User Management</span>\r\n      </a>\r\n      <a  mat-list-item\r\n          *ngIf=\"auth.isAuthenticated()\"\r\n          (click)=\"auth.logout()\" type=\"button\">\r\n        <mat-icon class=\"icon\">input</mat-icon>\r\n        <span class=\"label\">LogOut</span>\r\n      </a>\r\n    </mat-nav-list>\r\n  </mat-sidenav>\r\n  <mat-sidenav-content [formGroup]=\"options\">\r\n    <mat-toolbar color=\"primary\">\r\n      <div fxHide.gt-xs=\"false\">\r\n        <button mat-icon-button (click)=\"sidenav.toggle()\">\r\n          <mat-icon>menu</mat-icon>\r\n        </button>\r\n      </div>\r\n      <div>\r\n        <a routerLink=\"/\">\r\n          Heritage App Version 1.0\r\n        </a>\r\n      </div>\r\n      <div fxFlex fxLayout fxLayoutAlign=\"flex-end\"  fxHide.xs>\r\n        <ul fxLayout fxLayoutGap=\"20px\" class=\"navigation-items\">\r\n          <li>\r\n            <a\r\n              *ngIf=\"!auth.isAuthenticated()\"\r\n              routerLink=\"/login\">\r\n              <mat-icon class=\"icon\">input</mat-icon>\r\n              <span  class=\"label\">Login</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a              \r\n              routerLink=\"/\">\r\n              <mat-icon class=\"icon\">home</mat-icon>\r\n              <span class=\"label\">Home</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"auth.isAuthenticated()\"\r\n              routerLink=\"/heritagelist\">\r\n              <mat-icon class=\"icon\">view_list</mat-icon>\r\n              <span class=\"label\">Heritage List</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"auth.isAuthenticated()\"\r\n              routerLink=\"/users\">\r\n              <mat-icon class=\"icon\">account_box</mat-icon>\r\n              <span class=\"label\">User Management</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"auth.isAuthenticated()\"\r\n              (click)=\"auth.logout()\">\r\n              <mat-icon class=\"icon\">input</mat-icon>\r\n              <span class=\"label\">LogOut</span>\r\n            </a>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </mat-toolbar>\r\n\r\n  </mat-sidenav-content>\r\n</mat-sidenav-container>\r\n"
+module.exports = "<mat-sidenav-container>\r\n  <mat-sidenav  #sidenav mode=\"side\"\r\n        [fixedInViewport]=\"options.value.fixed\" [fixedTopGap]=\"options.value.top\"\r\n        [fixedBottomGap]=\"options.value.bottom\">\r\n    <mat-nav-list>\r\n      <a mat-list-item\r\n         *ngIf=\"!auth.isAuthenticated()\"\r\n         routerLink=\"/login\">\r\n        <mat-icon class=\"icon\">input</mat-icon>\r\n        <span class=\"label\">Login</span>\r\n      </a>\r\n      <a mat-list-item         \r\n         routerLink=\"/\">\r\n        <mat-icon class=\"icon\">home</mat-icon>\r\n        <span class=\"label\">Home</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"auth.isAuthenticated()\"\r\n         routerLink=\"/heritagelist\">\r\n        <mat-icon class=\"icon\">view_list</mat-icon>\r\n        <span class=\"label\">Heritage List</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"auth.isAuthenticated()\"\r\n         routerLink=\"/activationmodelist\">\r\n        <mat-icon class=\"icon\">view_list</mat-icon>\r\n        <span class=\"label\">Activation Mode List</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"auth.isAuthenticated()\"\r\n         routerLink=\"/users\">\r\n        <mat-icon class=\"icon\">account_box</mat-icon>\r\n        <span class=\"label\">User Management</span>\r\n      </a>\r\n      <a  mat-list-item\r\n          *ngIf=\"auth.isAuthenticated()\"\r\n          (click)=\"auth.logout()\" type=\"button\">\r\n        <mat-icon class=\"icon\">input</mat-icon>\r\n        <span class=\"label\">LogOut</span>\r\n      </a>\r\n    </mat-nav-list>\r\n  </mat-sidenav>\r\n  <mat-sidenav-content [formGroup]=\"options\">\r\n    <mat-toolbar color=\"primary\">\r\n      <div fxHide.gt-xs=\"false\">\r\n        <button mat-icon-button (click)=\"sidenav.toggle()\">\r\n          <mat-icon>menu</mat-icon>\r\n        </button>\r\n      </div>\r\n      <div>\r\n        <a routerLink=\"/\">\r\n          Heritage App Version 1.0\r\n        </a>\r\n      </div>\r\n      <div fxFlex fxLayout fxLayoutAlign=\"flex-end\"  fxHide.xs>\r\n        <ul fxLayout fxLayoutGap=\"20px\" class=\"navigation-items\">\r\n          <li>\r\n            <a\r\n              *ngIf=\"!auth.isAuthenticated()\"\r\n              routerLink=\"/login\">\r\n              <mat-icon class=\"icon\">input</mat-icon>\r\n              <span  class=\"label\">Login</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a              \r\n              routerLink=\"/\">\r\n              <mat-icon class=\"icon\">home</mat-icon>\r\n              <span class=\"label\">Home</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"auth.isAuthenticated()\"\r\n              routerLink=\"/heritagelist\">\r\n              <mat-icon class=\"icon\">view_list</mat-icon>\r\n              <span class=\"label\">Heritage List</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n              <a\r\n                *ngIf=\"auth.isAuthenticated()\"\r\n                routerLink=\"/activationmodelist\">\r\n                <mat-icon class=\"icon\">view_list</mat-icon>\r\n                <span class=\"label\">Activation Mode List</span>\r\n              </a>\r\n            </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"auth.isAuthenticated()\"\r\n              routerLink=\"/users\">\r\n              <mat-icon class=\"icon\">account_box</mat-icon>\r\n              <span class=\"label\">User Management</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"auth.isAuthenticated()\"\r\n              (click)=\"auth.logout()\">\r\n              <mat-icon class=\"icon\">input</mat-icon>\r\n              <span class=\"label\">LogOut</span>\r\n            </a>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </mat-toolbar>\r\n\r\n  </mat-sidenav-content>\r\n</mat-sidenav-container>\r\n"
 
 /***/ }),
 
@@ -1833,6 +1833,69 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/app/activation-mode-list/activation-mode-list.component.html":
+/*!**************************************************************************!*\
+  !*** ./src/app/activation-mode-list/activation-mode-list.component.html ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  activation-mode-list works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/activation-mode-list/activation-mode-list.component.scss":
+/*!**************************************************************************!*\
+  !*** ./src/app/activation-mode-list/activation-mode-list.component.scss ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/activation-mode-list/activation-mode-list.component.ts":
+/*!************************************************************************!*\
+  !*** ./src/app/activation-mode-list/activation-mode-list.component.ts ***!
+  \************************************************************************/
+/*! exports provided: ActivationModeListComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActivationModeListComponent", function() { return ActivationModeListComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var ActivationModeListComponent = /** @class */ (function () {
+    function ActivationModeListComponent() {
+    }
+    ActivationModeListComponent.prototype.ngOnInit = function () {
+    };
+    ActivationModeListComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-activation-mode-list',
+            template: __webpack_require__(/*! ./activation-mode-list.component.html */ "./src/app/activation-mode-list/activation-mode-list.component.html"),
+            styles: [__webpack_require__(/*! ./activation-mode-list.component.scss */ "./src/app/activation-mode-list/activation-mode-list.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], ActivationModeListComponent);
+    return ActivationModeListComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/app.comment.module.ts":
 /*!***************************************!*\
   !*** ./src/app/app.comment.module.ts ***!
@@ -2112,12 +2175,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _heritage_analysis_heritage_analysis_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./heritage-analysis/heritage-analysis.component */ "./src/app/heritage-analysis/heritage-analysis.component.ts");
 /* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! primeng/primeng */ "./node_modules/primeng/primeng.js");
 /* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_29___default = /*#__PURE__*/__webpack_require__.n(primeng_primeng__WEBPACK_IMPORTED_MODULE_29__);
+/* harmony import */ var primeng_dropdown__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! primeng/dropdown */ "./node_modules/primeng/dropdown.js");
+/* harmony import */ var primeng_dropdown__WEBPACK_IMPORTED_MODULE_30___default = /*#__PURE__*/__webpack_require__.n(primeng_dropdown__WEBPACK_IMPORTED_MODULE_30__);
+/* harmony import */ var _activation_mode_list_activation_mode_list_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./activation-mode-list/activation-mode-list.component */ "./src/app/activation-mode-list/activation-mode-list.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -2175,7 +2243,8 @@ var AppModule = /** @class */ (function () {
                 _heritage_evaluation_heritage_evaluation_component__WEBPACK_IMPORTED_MODULE_25__["HeritageEvaluationComponent"],
                 _heritage_nav_heritage_nav_component__WEBPACK_IMPORTED_MODULE_26__["HeritageNavComponent"],
                 _heritage_activation_heritage_activation_component__WEBPACK_IMPORTED_MODULE_27__["HeritageActivationComponent"],
-                _heritage_analysis_heritage_analysis_component__WEBPACK_IMPORTED_MODULE_28__["HeritageAnalysisComponent"]
+                _heritage_analysis_heritage_analysis_component__WEBPACK_IMPORTED_MODULE_28__["HeritageAnalysisComponent"],
+                _activation_mode_list_activation_mode_list_component__WEBPACK_IMPORTED_MODULE_31__["ActivationModeListComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -2189,6 +2258,10 @@ var AppModule = /** @class */ (function () {
                 _app_comment_module__WEBPACK_IMPORTED_MODULE_21__["CommentModule"],
                 _app_routing__WEBPACK_IMPORTED_MODULE_7__["routing"],
                 primeng_primeng__WEBPACK_IMPORTED_MODULE_29__["TreeModule"],
+                primeng_dropdown__WEBPACK_IMPORTED_MODULE_30__["DropdownModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_29__["DialogModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_29__["RadioButtonModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_29__["FieldsetModule"],
                 ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrModule"].forRoot({
                     timeOut: 3000,
                     positionClass: 'toast-bottom-right',
@@ -2645,7 +2718,7 @@ var CommentListComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"comment-container\" *ngIf = \"heritage\">\n  <mat-toolbar>\n    <span>User Comments: {{ heritage.name }} </span>\n    <span class=\"spacer\"></span>\n    <button type=\"button\" mat-button class=\"form-save\" (click)=\"back()\">Back</button>\n  </mat-toolbar> \n  <mat-card>        \n      <img mat-card-image class=\"comment-image\" src=\"..\\..\\assets\\images\\No_Image_Available.jpg\" alt=\"Photo not available\">\n        <mat-card-content>\n          <p>\n            {{ heritage.story }}\n          </p>\n      </mat-card-content>\n    </mat-card>\n  <comment-form [listId]=\"listId\" [editId]=\"editId\" [heritageId]=\"heritage.id\"></comment-form>\n  <comment-list [listId]=\"listId\" [editId]=\"editId\" [heritageId]=\"heritage.id\"></comment-list>\n  <mat-divider></mat-divider>\n</div>"
+module.exports = "<div class=\"comment-container\" *ngIf=\"heritage\">\n  <mat-toolbar>\n    <span>User Comments: {{ heritage.name }} </span>\n    <span class=\"spacer\"></span>\n    <button type=\"button\" mat-button class=\"form-save\" (click)=\"back()\">Back</button>\n  </mat-toolbar>\n  <mat-card>\n    <img mat-card-image class=\"comment-image\" src=\"..\\..\\assets\\images\\No_Image_Available.jpg\" alt=\"Photo not available\">\n    <mat-card-content>\n      <p>\n        {{ heritage.story }}\n      </p>\n    </mat-card-content>\n  </mat-card>\n  <comment-form [listId]=\"listId\" [editId]=\"editId\" [heritageId]=\"heritage.id\"></comment-form>\n  <comment-list [listId]=\"listId\" [editId]=\"editId\" [heritageId]=\"heritage.id\"></comment-list>\n  <mat-divider></mat-divider>\n</div>"
 
 /***/ }),
 
@@ -2890,7 +2963,7 @@ var FileManagerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  \n    <mat-toolbar>\n      <span>Heritage Evaluation: {{ heritage.name }} </span>\n      <span class=\"spacer\"></span>\n      <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n    </mat-toolbar>\n\n  \n\n  "
+module.exports = "<div class=\"basic-container\" *ngIf = \"heritage\">\n\n<mat-toolbar>\n  <span>Heritage Evaluation: {{ heritage.name }} </span>\n  <span class=\"spacer\"></span>\n  <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n</mat-toolbar>\n\n<mat-card>\n  <mat-card-header>\n    <div mat-card-avatar class=\"activation-card\"></div>\n    <mat-card-title>节庆活动模式</mat-card-title>\n  </mat-card-header>\n  <mat-card-content>\n    <p>\n        节庆是指具有特定主题的节日庆典和公众集会，其形式包括各种传统节庆及现代创新节庆。随着人们文化需求的增长与旅游业的发展，节庆旅游成为被关注的焦点。\n        在节庆活动中，非物质文化遗产中的民间传统戏剧、曲艺、舞蹈、传统体育、游艺及手工技艺可以进行表演、展示、参与，游客在观看参与的过程中既能体会传统文化的魅力，又能对传统文化有切身体会。\n        以传统技艺为核心的非物质文化遗产，如年画、剪纸、编织、泥塑、陶艺、刺绣等与人们的日常生活密切相关，借助节庆活动，举办非遗的宣传体验活动，广泛介绍非物质文化遗产相关知识，将手工艺类非遗的物质载体展示出来，让游客亲身参与体验，如，国家级非物质文化遗产土族盘绣，传承人可以在节庆活动的现场进行技艺的演示，同时通过展出、影音资料等多种形式介绍盘绣的相关发展历史，刺绣技巧以及盘绣在新时代的创新与发展等。\n        旅游节庆作为一种新的运作模式，实现了非遗与旅游业相结合，通过发展旅游业为非遗的开发与保护提供相应的资金支持和保障。节庆就是一个地区的标志性事件，即依托目的地社区的经济、历史文化、民族风情等方面的独特资源，加以整合包装，能够产生具有目的地标志性的独特形象和吸引力，在相对固定的时间地点重复举办的事件旅游活动。\n        例如由国务院批准，文化部、四川省政府主办的中国成都国际非物质文化遗产节（简称“非遗节”），通过节庆的举办吸引大批喜爱传统文化的国内外游客前来旅游，包括传统技艺在内的多项非遗通过向游客展示，不仅提高了知名度，加深了社会对他们的认识，同时也开发了潜在的商机。        \n    </p>\n  </mat-card-content>\n</mat-card>\n\n</div>"
 
 /***/ }),
 
@@ -2901,7 +2974,7 @@ module.exports = "  \n    <mat-toolbar>\n      <span>Heritage Evaluation: {{ her
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".spacer {\n  flex: 1 1 auto; }\n"
+module.exports = ".spacer {\n  flex: 1 1 auto; }\n\n.basic-container {\n  padding-left: 15%;\n  padding-right: 15%;\n  padding-top: 1%;\n  padding-bottom: 2%; }\n"
 
 /***/ }),
 
@@ -3475,7 +3548,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  \n    <mat-toolbar>\n      <span>Tourism Evaluation: {{ heritage.name }} </span>\n      <span class=\"spacer\"></span>\n      <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n    </mat-toolbar>\n  \n  \n\n\n  "
+module.exports = "<div class=\"basic-container\" *ngIf=\"heritage\">\n\n  <mat-toolbar>\n    <span>Tourism Evaluation: {{ heritage.name }} </span>\n    <span class=\"spacer\"></span>\n    <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n  </mat-toolbar>\n\n  <p-table [value]=\"evaluations\" [scrollable]=\"true\" selectionMode=\"single\" [(selection)]=\"selectedEvaluation\"\n    (onRowSelect)=\"onRowSelect($event)\" [paginator]=\"true\" [rows]=\"20\">\n    <ng-template pTemplate=\"caption\">\n      Heritage Evaluations\n    </ng-template>\n    <ng-template pTemplate=\"colgroup\" let-columns>\n      <colgroup>\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n      </colgroup>\n    </ng-template>\n    <ng-template pTemplate=\"header\">\n\n      <tr>\n        <th rowspan=\"2\">利益相关者身份</th>\n        <th rowspan=\"2\">非遗旅游价值</th>\n        <th rowspan=\"2\">认同感系数</th>\n        <th rowspan=\"2\">认知情况系数</th>\n        <th rowspan=\"2\">项目自身价值系数</th>\n        <th rowspan=\"2\">项目自身基本情况系数</th>\n        <th rowspan=\"2\">项目资源开发条件与现状系数</th>\n        <th colspan=\"3\">认同感</th>\n        <th colspan=\"4\">认知情况</th>\n        <th colspan=\"8\">项目自身价值</th>\n        <th colspan=\"6\">项目自身基本情况</th>\n        <th colspan=\"5\">项目资源开发条件与现状</th>\n      </tr>\n      <tr>\n        <th rowspan=\"1\">重要性</th>\n        <th rowspan=\"1\">民族自豪感</th>\n        <th rowspan=\"1\">政府保护的必要性</th>\n        <th rowspan=\"1\">资源特征</th>\n        <th rowspan=\"1\">技艺涉及范围</th>\n        <th rowspan=\"1\">技艺传承方式</th>\n        <th rowspan=\"1\">技艺传承难度</th>\n        <th rowspan=\"1\">艺术价值</th>\n        <th rowspan=\"1\">文化价值</th>\n        <th rowspan=\"1\">经济价值</th>\n        <th rowspan=\"1\">历史价值</th>\n        <th rowspan=\"1\">教育价值</th>\n        <th rowspan=\"1\">社会价值</th>\n        <th rowspan=\"1\">科学价值</th>\n        <th rowspan=\"1\">文化生态环境价值</th>\n        <th rowspan=\"1\">品质情况</th>\n        <th rowspan=\"1\">珍稀性</th>\n        <th rowspan=\"1\">原生态程度</th>\n        <th rowspan=\"1\">知名度</th>\n        <th rowspan=\"1\">个性</th>\n        <th rowspan=\"1\">时间跨度</th>\n        <th rowspan=\"1\">区域经济水平</th>\n        <th rowspan=\"1\">旅游市场情况</th>\n        <th rowspan=\"1\">资源开发基础</th>\n        <th rowspan=\"1\">资源开发现状</th>\n        <th rowspan=\"1\">企业介入可能性</th>\n      </tr>\n    </ng-template>\n\n    <ng-template pTemplate=\"body\" let-rowData>\n      <tr>\n        <td>{{rowData.a}}</td>\n        <td>{{rowData.b}}</td>\n        <td>{{rowData.c}}</td>\n        <td>{{rowData.d}}</td>\n        <td>{{rowData.e}}</td>\n        <td>{{rowData.f}}</td>\n        <td>{{rowData.g}}</td>\n        <td>{{rowData.h}}</td>\n        <td>{{rowData.i}}</td>\n        <td>{{rowData.j}}</td>\n        <td>{{rowData.k}}</td>\n        <td>{{rowData.l}}</td>\n        <td>{{rowData.m}}</td>\n        <td>{{rowData.n}}</td>\n        <td>{{rowData.o}}</td>\n        <td>{{rowData.p}}</td>\n        <td>{{rowData.q}}</td>\n        <td>{{rowData.r}}</td>\n        <td>{{rowData.s}}</td>\n        <td>{{rowData.t}}</td>\n        <td>{{rowData.u}}</td>\n        <td>{{rowData.v}}</td>\n        <td>{{rowData.w}}</td>\n        <td>{{rowData.x}}</td>\n        <td>{{rowData.y}}</td>\n        <td>{{rowData.z}}</td>\n        <td>{{rowData.a}}</td>\n        <td>{{rowData.b}}</td>\n        <td>{{rowData.c}}</td>\n        <td>{{rowData.d}}</td>\n        <td>{{rowData.e}}</td>\n        <td>{{rowData.f}}</td>\n        <td>{{rowData.g}}</td>\n      </tr>\n    </ng-template>\n\n    <ng-template pTemplate=\"summary\" let-rowData>\n      <div style=\"text-align:left\">\n        <button type=\"button\" pButton icon=\"fa fa-plus\" (click)=\"showDialogToAdd()\" label=\"Add\"></button>\n      </div>\n    </ng-template>\n\n    <!--\n      <ng-template pTemplate=\"footer\">\n          <tr>\n              <td colspan=\"3\">Totals</td>\n              <td>$506,202</td>\n              <td>$531,020</td>\n          </tr>\n      </ng-template>\n      -->\n  </p-table>\n\n  <p-dialog header=\"Heritage Evaluation\" appendTo=\"body\" [(visible)]=\"displayDialog\" [responsive]=\"true\" showEffect=\"fade\"\n    [modal]=\"true\" [width]=\"600\">\n    <div class=\"ui-g ui-fluid\" *ngIf=\"evaluation\">\n\n      <p-fieldset legend=\"旅游评估\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">利益相关者身份</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">认同感系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"vin\"  />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">认知情况系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"vin\"  />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">项目自身价值系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"vin\" />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">项目自身基本情况系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"vin\" />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">项目资源开发条件与现状系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"vin\" />\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"认同感\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">重要性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">民族自豪感</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">政府保护的必要性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"认知情况\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">资源特征</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">技艺涉及范围</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">技艺传承方式</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">技艺传承难度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"项目自身价值\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">艺术价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">文化价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">经济价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">历史价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">教育价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">社会价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">科学价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">文化生态环境价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"项目自身基本情况\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">品质情况</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">珍稀性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">原生态程度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">知名度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">个性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">时间跨度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"项目资源开发条件与现状\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">区域经济水平</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">旅游市场情况</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">资源开发基础</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">资源开发现状</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">企业介入可能性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n    </div>\n    <p-footer>\n      <div class=\"ui-dialog-buttonpane ui-helper-clearfix\">\n        <button type=\"button\" pButton icon=\"fa fa-close\" (click)=\"delete()\" label=\"Delete\"></button>\n        <button type=\"button\" pButton icon=\"fa fa-check\" (click)=\"save()\" label=\"Save\"></button>\n      </div>\n    </p-footer>\n  </p-dialog>\n\n\n</div>"
 
 /***/ }),
 
@@ -3486,7 +3559,7 @@ module.exports = "  \n    <mat-toolbar>\n      <span>Tourism Evaluation: {{ heri
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".spacer {\n  flex: 1 1 auto; }\n"
+module.exports = ".spacer {\n  flex: 1 1 auto; }\n\n.basic-container {\n  padding-left: 15%;\n  padding-right: 15%;\n  padding-top: 1%;\n  padding-bottom: 2%; }\n\ntable td,\ntable th {\n  min-width: 200px;\n  min-height: 10em;\n  border: 1px solid #000; }\n"
 
 /***/ }),
 
@@ -3521,6 +3594,7 @@ var HeritageEvaluationComponent = /** @class */ (function () {
     function HeritageEvaluationComponent(route, heritageService) {
         this.route = route;
         this.heritageService = heritageService;
+        this.evaluation = { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' };
     }
     HeritageEvaluationComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -3533,6 +3607,44 @@ var HeritageEvaluationComponent = /** @class */ (function () {
                 });
             }
         });
+        this.availableoptions = [
+            { label: '不同意', value: { id: "1", name: "不同意" } },
+            { label: '不太同意', value: { id: "2", name: "不太同意" } },
+            { label: '介于中间', value: { id: "3", name: "介于中间" } },
+            { label: '比较同意', value: { id: "4", name: "比较同意" } },
+            { label: '非常同意', value: { id: "5", name: "非常同意" } }
+        ];
+        this.evaluations = [
+            { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' },
+            { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' },
+            { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' },
+            { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' },
+            { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' },
+            { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' }
+        ];
+    };
+    HeritageEvaluationComponent.prototype.showDialogToAdd = function () {
+        this.newEvaluation = true;
+        this.evaluation = { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' };
+        this.displayDialog = true;
+    };
+    HeritageEvaluationComponent.prototype.delete = function () {
+        var index = this.evaluations.indexOf(this.selectedEvaluation);
+        this.evaluations = this.evaluations.filter(function (val, i) { return i != index; });
+        this.evaluation = null;
+        this.displayDialog = false;
+    };
+    HeritageEvaluationComponent.prototype.onRowSelect = function (event) {
+        this.newEvaluation = false;
+        this.evaluation = this.cloneCar(event.data);
+        this.displayDialog = true;
+    };
+    HeritageEvaluationComponent.prototype.cloneCar = function (c) {
+        var evaluation = { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' };
+        for (var prop in c) {
+            evaluation[prop] = c[prop];
+        }
+        return evaluation;
     };
     HeritageEvaluationComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({

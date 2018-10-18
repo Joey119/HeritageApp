@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Tree } from 'primeng/tree';
-import { TreeNode, MenuItem } from 'primeng/api';
+import { TreeNode } from 'primeng/api';
 import { IHeritage } from '../_models';
 import { HeritageService } from '../_services';
 import { Global } from '../_shared';

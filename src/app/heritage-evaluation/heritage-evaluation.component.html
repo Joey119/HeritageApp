@@ -1,11 +1,381 @@
-  
-    <mat-toolbar>
-      <span>Tourism Evaluation: {{ heritage.name }} </span>
-      <span class="spacer"></span>
-      <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">Back</button>
-    </mat-toolbar>
-  
-  
+<div class="basic-container" *ngIf="heritage">
+
+  <mat-toolbar>
+    <span>Tourism Evaluation: {{ heritage.name }} </span>
+    <span class="spacer"></span>
+    <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">Back</button>
+  </mat-toolbar>
+
+  <p-table [value]="evaluations" [scrollable]="true" selectionMode="single" [(selection)]="selectedEvaluation"
+    (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="20">
+    <ng-template pTemplate="caption">
+      Heritage Evaluations
+    </ng-template>
+    <ng-template pTemplate="colgroup" let-columns>
+      <colgroup>
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+        <col style="width:85px">
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header">
+
+      <tr>
+        <th rowspan="2">利益相关者身份</th>
+        <th rowspan="2">非遗旅游价值</th>
+        <th rowspan="2">认同感系数</th>
+        <th rowspan="2">认知情况系数</th>
+        <th rowspan="2">项目自身价值系数</th>
+        <th rowspan="2">项目自身基本情况系数</th>
+        <th rowspan="2">项目资源开发条件与现状系数</th>
+        <th colspan="3">认同感</th>
+        <th colspan="4">认知情况</th>
+        <th colspan="8">项目自身价值</th>
+        <th colspan="6">项目自身基本情况</th>
+        <th colspan="5">项目资源开发条件与现状</th>
+      </tr>
+      <tr>
+        <th rowspan="1">重要性</th>
+        <th rowspan="1">民族自豪感</th>
+        <th rowspan="1">政府保护的必要性</th>
+        <th rowspan="1">资源特征</th>
+        <th rowspan="1">技艺涉及范围</th>
+        <th rowspan="1">技艺传承方式</th>
+        <th rowspan="1">技艺传承难度</th>
+        <th rowspan="1">艺术价值</th>
+        <th rowspan="1">文化价值</th>
+        <th rowspan="1">经济价值</th>
+        <th rowspan="1">历史价值</th>
+        <th rowspan="1">教育价值</th>
+        <th rowspan="1">社会价值</th>
+        <th rowspan="1">科学价值</th>
+        <th rowspan="1">文化生态环境价值</th>
+        <th rowspan="1">品质情况</th>
+        <th rowspan="1">珍稀性</th>
+        <th rowspan="1">原生态程度</th>
+        <th rowspan="1">知名度</th>
+        <th rowspan="1">个性</th>
+        <th rowspan="1">时间跨度</th>
+        <th rowspan="1">区域经济水平</th>
+        <th rowspan="1">旅游市场情况</th>
+        <th rowspan="1">资源开发基础</th>
+        <th rowspan="1">资源开发现状</th>
+        <th rowspan="1">企业介入可能性</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData>
+      <tr>
+        <td>{{rowData.a}}</td>
+        <td>{{rowData.b}}</td>
+        <td>{{rowData.c}}</td>
+        <td>{{rowData.d}}</td>
+        <td>{{rowData.e}}</td>
+        <td>{{rowData.f}}</td>
+        <td>{{rowData.g}}</td>
+        <td>{{rowData.h}}</td>
+        <td>{{rowData.i}}</td>
+        <td>{{rowData.j}}</td>
+        <td>{{rowData.k}}</td>
+        <td>{{rowData.l}}</td>
+        <td>{{rowData.m}}</td>
+        <td>{{rowData.n}}</td>
+        <td>{{rowData.o}}</td>
+        <td>{{rowData.p}}</td>
+        <td>{{rowData.q}}</td>
+        <td>{{rowData.r}}</td>
+        <td>{{rowData.s}}</td>
+        <td>{{rowData.t}}</td>
+        <td>{{rowData.u}}</td>
+        <td>{{rowData.v}}</td>
+        <td>{{rowData.w}}</td>
+        <td>{{rowData.x}}</td>
+        <td>{{rowData.y}}</td>
+        <td>{{rowData.z}}</td>
+        <td>{{rowData.a}}</td>
+        <td>{{rowData.b}}</td>
+        <td>{{rowData.c}}</td>
+        <td>{{rowData.d}}</td>
+        <td>{{rowData.e}}</td>
+        <td>{{rowData.f}}</td>
+        <td>{{rowData.g}}</td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="summary" let-rowData>
+      <div style="text-align:left">
+        <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
+      </div>
+    </ng-template>
+
+    <!--
+      <ng-template pTemplate="footer">
+          <tr>
+              <td colspan="3">Totals</td>
+              <td>$506,202</td>
+              <td>$531,020</td>
+          </tr>
+      </ng-template>
+      -->
+  </p-table>
+
+  <p-dialog header="Heritage Evaluation" appendTo="body" [(visible)]="displayDialog" [responsive]="true" showEffect="fade"
+    [modal]="true" [width]="600">
+    <div class="ui-g ui-fluid" *ngIf="evaluation">
+
+      <p-fieldset legend="旅游评估">
+        <div class="ui-g-7">
+          <label for="importance">利益相关者身份</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+
+        <div class="ui-g-7">
+          <label for="vin">认同感系数</label>
+        </div>
+        <div class="ui-g-3">
+          <input pInputText id="vin"  />
+        </div>
+
+        <div class="ui-g-7">
+          <label for="vin">认知情况系数</label>
+        </div>
+        <div class="ui-g-3">
+          <input pInputText id="vin"  />
+        </div>
+
+        <div class="ui-g-7">
+          <label for="vin">项目自身价值系数</label>
+        </div>
+        <div class="ui-g-3">
+          <input pInputText id="vin" />
+        </div>
+
+        <div class="ui-g-7">
+          <label for="vin">项目自身基本情况系数</label>
+        </div>
+        <div class="ui-g-3">
+          <input pInputText id="vin" />
+        </div>
+
+        <div class="ui-g-7">
+          <label for="vin">项目资源开发条件与现状系数</label>
+        </div>
+        <div class="ui-g-3">
+          <input pInputText id="vin" />
+        </div>
+      </p-fieldset>
+
+      <p-fieldset legend="认同感">
+        <div class="ui-g-7">
+          <label for="importance">重要性</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="b">民族自豪感</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="c">政府保护的必要性</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+      </p-fieldset>
+
+      <p-fieldset legend="认知情况">
+        <div class="ui-g-7">
+          <label for="importance">资源特征</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="b">技艺涉及范围</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="c">技艺传承方式</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="c">技艺传承难度</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+      </p-fieldset>
+
+      <p-fieldset legend="项目自身价值">
+        <div class="ui-g-7">
+          <label for="importance">艺术价值</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="b">文化价值</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="c">经济价值</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="c">历史价值</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="importance">教育价值</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="b">社会价值</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="c">科学价值</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="c">文化生态环境价值</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+      </p-fieldset>
+
+      <p-fieldset legend="项目自身基本情况">
+        <div class="ui-g-7">
+          <label for="importance">品质情况</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="b">珍稀性</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="c">原生态程度</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="c">知名度</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="c">个性</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="c">时间跨度</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+      </p-fieldset>
+
+      <p-fieldset legend="项目资源开发条件与现状">
+        <div class="ui-g-7">
+          <label for="importance">区域经济水平</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="b">旅游市场情况</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="c">资源开发基础</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="c">资源开发现状</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+        <div class="ui-g-7">
+          <label for="c">企业介入可能性</label>
+        </div>
+        <div class="ui-g-3">
+          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+        </div>
+      </p-fieldset>
+
+    </div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+        <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
+        <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
+      </div>
+    </p-footer>
+  </p-dialog>
 
 
-  
+</div>
