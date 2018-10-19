@@ -5,21 +5,21 @@
    
       <div class="form">
         <mat-form-field color="accent">
-          <textarea matInput #input class="form-control" placeholder="UserName" [(ngModel)]="data.userName" name="userName" required ></textarea>
+          <input matInput #input class="form-control" placeholder="UserName" [(ngModel)]="data.userName" name="userName" required />
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
 
       <div class="form">
         <mat-form-field color="accent">
-          <textarea matInput #input class="form-control" placeholder="FirstName" [(ngModel)]="data.firstName" name="firstName" required ></textarea>
+          <input matInput #input class="form-control" placeholder="FirstName" [(ngModel)]="data.firstName" name="firstName" required />
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
 
       <div class="form">
         <mat-form-field color="accent">
-          <textarea matInput #input class="form-control" placeholder="LastName" [(ngModel)]="data.lastName" name="lastName" required ></textarea>
+          <input matInput #input class="form-control" placeholder="LastName" [(ngModel)]="data.lastName" name="lastName" required />
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
@@ -27,7 +27,7 @@
       <!--Contains mat-hint for characters count and has maxLengt set-->
       <div class="form">
         <mat-form-field color="accent">
-          <input type="password" matInput #inputstate class="form-control" placeholder="Password" [(ngModel)]="data.password" name="password" maxlength="10" >
+          <input type="password" matInput #inputstate class="form-control" placeholder="Password" [(ngModel)]="data.password" name="password" maxlength="10" />
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>

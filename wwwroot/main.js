@@ -23,6 +23,308 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./src/app/_dialogs/activation-mode-add/activation-mode.add.dialog.component.html":
+/*!****************************************************************************************!*\
+  !*** ./src/app/_dialogs/activation-mode-add/activation-mode.add.dialog.component.html ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>Add New Activation Mode</h3>\r\n  \r\n    <form class=\"mat-dialog-content\" (ngSubmit)=\"submit\" #formControl=\"ngForm\">\r\n   \r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Activation Mode Name\" [(ngModel)]=\"data.activationModeName\" name=\"actModeName\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Upper Bound\" [(ngModel)]=\"data.upperBound\" name=\"upperBound\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Lower Bound\" [(ngModel)]=\"data.lowerBound\" name=\"lowerBound\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <textarea matInput #input class=\"form-control\" placeholder=\"Activation Mode Description\" [(ngModel)]=\"data.activationModeDescription\" name=\"actModeDescription\" required ></textarea>\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n  \r\n      <div mat-dialog-actions>\r\n        <button mat-button [type]=\"submit\" [disabled]=\"!formControl.valid\" [mat-dialog-close]=\"1\" (click)=\"confirmAdd()\">Save</button>\r\n        <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  "
+
+/***/ }),
+
+/***/ "./src/app/_dialogs/activation-mode-add/activation-mode.add.dialog.component.scss":
+/*!****************************************************************************************!*\
+  !*** ./src/app/_dialogs/activation-mode-add/activation-mode.add.dialog.component.scss ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".container {\n  display: flex;\n  flex-direction: column;\n  min-width: 450px; }\n\n.container > * {\n  width: 100%; }\n\n.form {\n  display: flex;\n  padding-top: 6px; }\n\n.mat-form-field {\n  font-size: 16px;\n  flex-grow: 1; }\n"
+
+/***/ }),
+
+/***/ "./src/app/_dialogs/activation-mode-add/activation-mode.add.dialog.component.ts":
+/*!**************************************************************************************!*\
+  !*** ./src/app/_dialogs/activation-mode-add/activation-mode.add.dialog.component.ts ***!
+  \**************************************************************************************/
+/*! exports provided: ActivationModeAddDialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActivationModeAddDialogComponent", function() { return ActivationModeAddDialogComponent; });
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../_services */ "./src/app/_services/index.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../_shared */ "./src/app/_shared/index.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+
+var ActivationModeAddDialogComponent = /** @class */ (function () {
+    function ActivationModeAddDialogComponent(dialogRef, data, actModeService, toastr) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.actModeService = actModeService;
+        this.toastr = toastr;
+        this.formControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required
+            // Validators.email,
+        ]);
+    }
+    ActivationModeAddDialogComponent.prototype.getErrorMessage = function () {
+        return this.formControl.hasError('required') ? 'Required field' :
+            this.formControl.hasError('email') ? 'Not a valid email' :
+                '';
+    };
+    ActivationModeAddDialogComponent.prototype.submit = function () {
+        // emppty stuff
+    };
+    ActivationModeAddDialogComponent.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    ActivationModeAddDialogComponent.prototype.confirmAdd = function () {
+        var _this = this;
+        this.actModeService.addActMode(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_ACTIVATION_MODE_ENDPOINT + 'add', this.data)
+            .subscribe(function (data) {
+            _this.newActMode = data;
+            _this.toastr.success("Activation mode suceessfully added.", "Succeeded");
+        }, function (error) {
+            _this.toastr.error("Failed to add activation mode", "Failed");
+        });
+    };
+    ActivationModeAddDialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'activation-mode-add.dialog',
+            template: __webpack_require__(/*! ../activation-mode-add/activation-mode.add.dialog.component.html */ "./src/app/_dialogs/activation-mode-add/activation-mode.add.dialog.component.html"),
+            styles: [__webpack_require__(/*! ../activation-mode-add/activation-mode.add.dialog.component.scss */ "./src/app/_dialogs/activation-mode-add/activation-mode.add.dialog.component.scss")]
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_0__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogRef"], Object, _services__WEBPACK_IMPORTED_MODULE_2__["ActivationModeService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"]])
+    ], ActivationModeAddDialogComponent);
+    return ActivationModeAddDialogComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_dialogs/activation-mode-delete/activation-mode.delete.dialog.component.html":
+/*!**********************************************************************************************!*\
+  !*** ./src/app/_dialogs/activation-mode-delete/activation-mode.delete.dialog.component.html ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>Delete Confirmation</h3>\r\n    <div mat-dialog-content>\r\n      <p></p>\r\n      Would you like to delete {{data.actvationModeName}}\r\n      <p></p>\r\n    </div>\r\n  \r\n    <div mat-dialog-actions>\r\n      <button mat-button [mat-dialog-close]=\"1\" (click)=\"confirmDelete()\">Delete</button>\r\n      <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n    </div>\r\n  </div>\r\n  "
+
+/***/ }),
+
+/***/ "./src/app/_dialogs/activation-mode-delete/activation-mode.delete.dialog.component.scss":
+/*!**********************************************************************************************!*\
+  !*** ./src/app/_dialogs/activation-mode-delete/activation-mode.delete.dialog.component.scss ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".container {\n  display: flex;\n  flex-direction: column; }\n\n.container > * {\n  width: 100%; }\n"
+
+/***/ }),
+
+/***/ "./src/app/_dialogs/activation-mode-delete/activation-mode.delete.dialog.component.ts":
+/*!********************************************************************************************!*\
+  !*** ./src/app/_dialogs/activation-mode-delete/activation-mode.delete.dialog.component.ts ***!
+  \********************************************************************************************/
+/*! exports provided: ActivationModeDeleteDialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActivationModeDeleteDialogComponent", function() { return ActivationModeDeleteDialogComponent; });
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../_services */ "./src/app/_services/index.ts");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../_shared */ "./src/app/_shared/index.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+var ActivationModeDeleteDialogComponent = /** @class */ (function () {
+    function ActivationModeDeleteDialogComponent(dialogRef, data, actModeService, toastr) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.actModeService = actModeService;
+        this.toastr = toastr;
+    }
+    ActivationModeDeleteDialogComponent.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    ActivationModeDeleteDialogComponent.prototype.confirmDelete = function () {
+        var _this = this;
+        this.actModeService.deleteActMode(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_ACTIVATION_MODE_ENDPOINT, this.data.id)
+            .subscribe(function (data) {
+            _this.toastr.success("Activation mode was suceessfully deleted.", "Succeeded");
+        }, function (error) {
+            _this.toastr.error("Failed to delete activation mode", "Failed");
+        });
+    };
+    ActivationModeDeleteDialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'activation-mode-delete.dialog',
+            template: __webpack_require__(/*! ../activation-mode-delete/activation-mode.delete.dialog.component.html */ "./src/app/_dialogs/activation-mode-delete/activation-mode.delete.dialog.component.html"),
+            styles: [__webpack_require__(/*! ../activation-mode-delete/activation-mode.delete.dialog.component.scss */ "./src/app/_dialogs/activation-mode-delete/activation-mode.delete.dialog.component.scss")]
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_0__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogRef"], Object, _services__WEBPACK_IMPORTED_MODULE_3__["ActivationModeService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"]])
+    ], ActivationModeDeleteDialogComponent);
+    return ActivationModeDeleteDialogComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_dialogs/activation-mode-edit/activation-mode.edit.dialog.component.html":
+/*!******************************************************************************************!*\
+  !*** ./src/app/_dialogs/activation-mode-edit/activation-mode.edit.dialog.component.html ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>Activation Mode: {{data.activationModeName}}</h3>\r\n  \r\n    <form class=\"mat-dialog-content\" (ngSubmit)=\"submit\" #formControl=\"ngForm\">\r\n  \r\n      <!--Contains mat-hint for characters count and has maxLengt set-->\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Activation Mode Name\" [(ngModel)]=\"data.activationModeName\" name=\"actModeName\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Upper Bound\" [(ngModel)]=\"data.upperBound\" name=\"upperBound\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Lower Bound\" [(ngModel)]=\"data.lowerBound\" name=\"lowerBound\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <textarea matInput #input class=\"form-control\" placeholder=\"Activation Mode Description\" [(ngModel)]=\"data.activationModeDescription\" name=\"actModeDescription\" required ></textarea>\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div mat-dialog-actions>\r\n        <button mat-button [type]=\"submit\" [disabled]=\"!formControl.valid\" [mat-dialog-close]=\"1\" (click)=\"stopEdit()\">Save</button>\r\n        <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  "
+
+/***/ }),
+
+/***/ "./src/app/_dialogs/activation-mode-edit/activation-mode.edit.dialog.component.scss":
+/*!******************************************************************************************!*\
+  !*** ./src/app/_dialogs/activation-mode-edit/activation-mode.edit.dialog.component.scss ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".container {\n  display: flex;\n  flex-direction: column;\n  min-width: 450px; }\n\n.container > * {\n  width: 100%; }\n\n.form {\n  display: flex;\n  padding-top: 6px; }\n\n.mat-form-field {\n  font-size: 16px;\n  flex-grow: 1; }\n"
+
+/***/ }),
+
+/***/ "./src/app/_dialogs/activation-mode-edit/activation-mode.edit.dialog.component.ts":
+/*!****************************************************************************************!*\
+  !*** ./src/app/_dialogs/activation-mode-edit/activation-mode.edit.dialog.component.ts ***!
+  \****************************************************************************************/
+/*! exports provided: ActivationModeEditDialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActivationModeEditDialogComponent", function() { return ActivationModeEditDialogComponent; });
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../_services */ "./src/app/_services/index.ts");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../_shared */ "./src/app/_shared/index.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+
+var ActivationModeEditDialogComponent = /** @class */ (function () {
+    function ActivationModeEditDialogComponent(dialogRef, data, actModeService, toastr) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.actModeService = actModeService;
+        this.toastr = toastr;
+        this.formControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required
+            // Validators.email,
+        ]);
+    }
+    ActivationModeEditDialogComponent.prototype.getErrorMessage = function () {
+        return this.formControl.hasError('required') ? 'Required field' :
+            this.formControl.hasError('email') ? 'Not a valid email' :
+                '';
+    };
+    ActivationModeEditDialogComponent.prototype.submit = function () {
+        // emppty stuff
+    };
+    ActivationModeEditDialogComponent.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    ActivationModeEditDialogComponent.prototype.stopEdit = function () {
+        var _this = this;
+        if (this.data.id < 1)
+            return;
+        this.actModeService.updateActMode(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_ACTIVATION_MODE_ENDPOINT + this.data.id, this.data)
+            .subscribe(function (data) {
+            _this.actMode = data;
+            _this.toastr.success("Activation mode suceessfully updated.", "Succeeded");
+        }, function (error) {
+            _this.toastr.error("Failed to update activation mode", "Failed");
+        });
+    };
+    ActivationModeEditDialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-baza.dialog',
+            template: __webpack_require__(/*! ../activation-mode-edit/activation-mode.edit.dialog.component.html */ "./src/app/_dialogs/activation-mode-edit/activation-mode.edit.dialog.component.html"),
+            styles: [__webpack_require__(/*! ../activation-mode-edit/activation-mode.edit.dialog.component.scss */ "./src/app/_dialogs/activation-mode-edit/activation-mode.edit.dialog.component.scss")]
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_0__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogRef"], Object, _services__WEBPACK_IMPORTED_MODULE_4__["ActivationModeService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"]])
+    ], ActivationModeEditDialogComponent);
+    return ActivationModeEditDialogComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/_dialogs/add/add.dialog.component.html":
 /*!********************************************************!*\
   !*** ./src/app/_dialogs/add/add.dialog.component.html ***!
@@ -30,7 +332,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>Add New User</h3>\r\n  \r\n    <form class=\"mat-dialog-content\" (ngSubmit)=\"submit\" #formControl=\"ngForm\">\r\n   \r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <textarea matInput #input class=\"form-control\" placeholder=\"UserName\" [(ngModel)]=\"data.userName\" name=\"userName\" required ></textarea>\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <textarea matInput #input class=\"form-control\" placeholder=\"FirstName\" [(ngModel)]=\"data.firstName\" name=\"firstName\" required ></textarea>\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <textarea matInput #input class=\"form-control\" placeholder=\"LastName\" [(ngModel)]=\"data.lastName\" name=\"lastName\" required ></textarea>\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n  \r\n      <!--Contains mat-hint for characters count and has maxLengt set-->\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input type=\"password\" matInput #inputstate class=\"form-control\" placeholder=\"Password\" [(ngModel)]=\"data.password\" name=\"password\" maxlength=\"10\" >\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n  \r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.isReadOnly\" name=\"isReadOnly\">Is ReadOnly</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.canComment\" name=\"canComment\">Can Comment</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.isContributer\" name=\"isContributer\">Is Contributer</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.isAdmin\" name=\"isAdmin\">Is Admin</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n  \r\n      <div mat-dialog-actions>\r\n        <button mat-button [type]=\"submit\" [disabled]=\"!formControl.valid\" [mat-dialog-close]=\"1\" (click)=\"confirmAdd()\">Save</button>\r\n        <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  "
+module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>Add New User</h3>\r\n  \r\n    <form class=\"mat-dialog-content\" (ngSubmit)=\"submit\" #formControl=\"ngForm\">\r\n   \r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"UserName\" [(ngModel)]=\"data.userName\" name=\"userName\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"FirstName\" [(ngModel)]=\"data.firstName\" name=\"firstName\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"LastName\" [(ngModel)]=\"data.lastName\" name=\"lastName\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n  \r\n      <!--Contains mat-hint for characters count and has maxLengt set-->\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input type=\"password\" matInput #inputstate class=\"form-control\" placeholder=\"Password\" [(ngModel)]=\"data.password\" name=\"password\" maxlength=\"10\" />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n  \r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.isReadOnly\" name=\"isReadOnly\">Is ReadOnly</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.canComment\" name=\"canComment\">Can Comment</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.isContributer\" name=\"isContributer\">Is Contributer</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.isAdmin\" name=\"isAdmin\">Is Admin</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n  \r\n      <div mat-dialog-actions>\r\n        <button mat-button [type]=\"submit\" [disabled]=\"!formControl.valid\" [mat-dialog-close]=\"1\" (click)=\"confirmAdd()\">Save</button>\r\n        <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  "
 
 /***/ }),
 
@@ -225,7 +527,7 @@ var DeleteDialogComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>User: {{data.userName}}</h3>\r\n  \r\n    <form class=\"mat-dialog-content\" (ngSubmit)=\"submit\" #formControl=\"ngForm\">\r\n  \r\n      <!--Contains mat-hint for characters count and has maxLengt set-->\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <textarea matInput #input class=\"form-control\" placeholder=\"FirstName\" [(ngModel)]=\"data.firstName\" name=\"firstName\" required ></textarea>\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <textarea matInput #input class=\"form-control\" placeholder=\"LastName\" [(ngModel)]=\"data.lastName\" name=\"lastName\" required ></textarea>\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n      \r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input type=\"password\" matInput #inputstate class=\"form-control\" placeholder=\"Password\" [(ngModel)]=\"data.password\" name=\"password\" maxlength=\"10\" >\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n  \r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.isReadOnly\" name=\"isReadOnly\">Is ReadOnly</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.canComment\" name=\"canComment\">Can Comment</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.isContributer\" name=\"isContributer\">Is Contributer</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.isAdmin\" name=\"isAdmin\">Is Admin</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div mat-dialog-actions>\r\n        <button mat-button [type]=\"submit\" [disabled]=\"!formControl.valid\" [mat-dialog-close]=\"1\" (click)=\"stopEdit()\">Save</button>\r\n        <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  "
+module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>User: {{data.userName}}</h3>\r\n  \r\n    <form class=\"mat-dialog-content\" (ngSubmit)=\"submit\" #formControl=\"ngForm\">\r\n  \r\n      <!--Contains mat-hint for characters count and has maxLengt set-->\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"FirstName\" [(ngModel)]=\"data.firstName\" name=\"firstName\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"LastName\" [(ngModel)]=\"data.lastName\" name=\"lastName\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n      \r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input type=\"password\" matInput #inputstate class=\"form-control\" placeholder=\"Password\" [(ngModel)]=\"data.password\" name=\"password\" maxlength=\"10\" >\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n  \r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.isReadOnly\" name=\"isReadOnly\">Is ReadOnly</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.canComment\" name=\"canComment\">Can Comment</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.isContributer\" name=\"isContributer\">Is Contributer</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput style=\"display: none\">\r\n          <mat-checkbox [(ngModel)]=\"data.isAdmin\" name=\"isAdmin\">Is Admin</mat-checkbox>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div mat-dialog-actions>\r\n        <button mat-button [type]=\"submit\" [disabled]=\"!formControl.valid\" [mat-dialog-close]=\"1\" (click)=\"stopEdit()\">Save</button>\r\n        <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  "
 
 /***/ }),
 
@@ -417,7 +719,7 @@ var HeritageDeleteDialogComponent = /** @class */ (function () {
 /*!***********************************!*\
   !*** ./src/app/_dialogs/index.ts ***!
   \***********************************/
-/*! exports provided: AddDialogComponent, EditDialogComponent, DeleteDialogComponent, HeritageDeleteDialogComponent */
+/*! exports provided: AddDialogComponent, EditDialogComponent, DeleteDialogComponent, HeritageDeleteDialogComponent, ActivationModeAddDialogComponent, ActivationModeEditDialogComponent, ActivationModeDeleteDialogComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -433,6 +735,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _heritage_delete_heritage_delete_dialog_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./heritage-delete/heritage-delete.dialog.component */ "./src/app/_dialogs/heritage-delete/heritage-delete.dialog.component.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "HeritageDeleteDialogComponent", function() { return _heritage_delete_heritage_delete_dialog_component__WEBPACK_IMPORTED_MODULE_3__["HeritageDeleteDialogComponent"]; });
+
+/* harmony import */ var _activation_mode_add_activation_mode_add_dialog_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./activation-mode-add/activation-mode.add.dialog.component */ "./src/app/_dialogs/activation-mode-add/activation-mode.add.dialog.component.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ActivationModeAddDialogComponent", function() { return _activation_mode_add_activation_mode_add_dialog_component__WEBPACK_IMPORTED_MODULE_4__["ActivationModeAddDialogComponent"]; });
+
+/* harmony import */ var _activation_mode_edit_activation_mode_edit_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./activation-mode-edit/activation-mode.edit.dialog.component */ "./src/app/_dialogs/activation-mode-edit/activation-mode.edit.dialog.component.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ActivationModeEditDialogComponent", function() { return _activation_mode_edit_activation_mode_edit_dialog_component__WEBPACK_IMPORTED_MODULE_5__["ActivationModeEditDialogComponent"]; });
+
+/* harmony import */ var _activation_mode_delete_activation_mode_delete_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./activation-mode-delete/activation-mode.delete.dialog.component */ "./src/app/_dialogs/activation-mode-delete/activation-mode.delete.dialog.component.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ActivationModeDeleteDialogComponent", function() { return _activation_mode_delete_activation_mode_delete_dialog_component__WEBPACK_IMPORTED_MODULE_6__["ActivationModeDeleteDialogComponent"]; });
+
+
+
 
 
 
@@ -1063,6 +1377,117 @@ var SiteLayoutComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/_services/activationmode.service.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/_services/activationmode.service.ts ***!
+  \*****************************************************/
+/*! exports provided: ActivationModeService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActivationModeService", function() { return ActivationModeService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var httpOptions = {
+    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
+        'Content-Type': 'application/json'
+    })
+};
+var ActivationModeService = /** @class */ (function () {
+    function ActivationModeService(http) {
+        this.http = http;
+        this.dataChange = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]([]);
+    }
+    Object.defineProperty(ActivationModeService.prototype, "data", {
+        get: function () {
+            return this.dataChange.value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ActivationModeService.prototype.getDialogData = function () {
+        return this.dialogData;
+    };
+    ActivationModeService.prototype.getAllActModes = function (url) {
+        var _this = this;
+        this.http.get(url, httpOptions).subscribe(function (data) {
+            _this.dataChange.next(data);
+        }, function (err) {
+            console.log(err.name + ' ' + err.message);
+        });
+    };
+    ActivationModeService.prototype.getActModeById = function (url, id) {
+        var _this = this;
+        this.http.get(url, httpOptions).subscribe(function (data) {
+            _this.dialogData = data;
+        }, function (err) {
+            console.log(err.name + ' ' + err.message);
+        });
+    };
+    ActivationModeService.prototype.addActMode = function (url, actMode) {
+        var _this = this;
+        return this.http.post(url, actMode)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (actMode) {
+            _this.activationMode = actMode;
+            return _this.activationMode;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    ActivationModeService.prototype.updateActMode = function (url, actMode) {
+        var _this = this;
+        return this.http.put(url, actMode)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (actMode) {
+            _this.activationMode = actMode;
+            return _this.activationMode;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    ActivationModeService.prototype.deleteActMode = function (url, id) {
+        return this.http.delete(url + id)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) {
+            return data;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    // custom handler
+    ActivationModeService.prototype.handleError = function (error) {
+        if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+        }
+        else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error("Backend returned code " + error.status + ", " +
+                ("body was: " + error.error));
+        }
+        // return an observable with a user-facing error message
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])('Something bad happened; please try again later.');
+    };
+    ActivationModeService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], ActivationModeService);
+    return ActivationModeService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/_services/alert.service.ts":
 /*!********************************************!*\
   !*** ./src/app/_services/alert.service.ts ***!
@@ -1594,7 +2019,7 @@ var HeritageService = /** @class */ (function () {
 /*!************************************!*\
   !*** ./src/app/_services/index.ts ***!
   \************************************/
-/*! exports provided: AlertService, AuthenticationService, UserService, HeritageService, FilesService, EmitterService, CommentService */
+/*! exports provided: AlertService, AuthenticationService, UserService, HeritageService, FilesService, EmitterService, CommentService, ActivationModeService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1619,6 +2044,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _comment_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./comment.service */ "./src/app/_services/comment.service.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CommentService", function() { return _comment_service__WEBPACK_IMPORTED_MODULE_6__["CommentService"]; });
+
+/* harmony import */ var _activationmode_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./activationmode.service */ "./src/app/_services/activationmode.service.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ActivationModeService", function() { return _activationmode_service__WEBPACK_IMPORTED_MODULE_7__["ActivationModeService"]; });
+
 
 
 
@@ -1809,6 +2238,7 @@ var Global = /** @class */ (function () {
     Global.BASE_HERITAGE_ENDPOINT = 'api/Heritage/';
     Global.BASE_FILE_ENDPOINT = 'api/File/';
     Global.BASE_HERITAGE_COMMENT_ENDPOINT = 'api/HeritageComment/';
+    Global.BASE_ACTIVATION_MODE_ENDPOINT = '';
     return Global;
 }());
 
@@ -1840,7 +2270,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  activation-mode-list works!\n</p>\n"
+module.exports = "<div class=\"tblcontainer mat-elevation-z8\">\n\n  <div class=\"form\">\n    <mat-form-field floatPlaceholder=\"never\" color=\"accent\">\n      <input matInput #filter placeholder=\"Filter users\">\n    </mat-form-field>\n  </div>\n\n  <mat-table #table [dataSource]=\"dataSource\" matSort class=\"mat-cell\">\n\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- ID Column -->\n    <ng-container matColumnDef=\"id\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\" >{{row.id}}</mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"activationModeName\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Activation Mode Name</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.activationModeName}}</mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"upperBound\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Upper Bound</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.upperBound}}</mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"lowerBound\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Lower Bound</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.lowerBound}}</mat-cell>\n    </ng-container>\n    \n    <!-- actions -->\n    <ng-container matColumnDef=\"actions\">\n      <mat-header-cell *matHeaderCellDef>\n        <button mat-icon-button color=\"primary\" (click)=\"addNew()\">\n          <mat-icon aria-label=\"Example icon-button with a heart icon\">add</mat-icon>\n        </button>\n        <button mat-icon-button (click)=\"refresh()\">\n          <mat-icon>refresh</mat-icon>\n        </button>\n      </mat-header-cell>\n\n      <mat-cell *matCellDef=\"let row;\">\n        <button mat-icon-button color=\"accent\" (click)=\"startEdit(row.id, row.userName, row.firstName, row.lastName, row.isReadOnly, row.canComment, row.isContributer, row.isAdmin)\">\n          <mat-icon aria-label=\"Edit\">edit</mat-icon>\n        </button>\n\n        <button mat-icon-button color=\"accent\" (click)=\"deleteItem(row.id, row.userName, row.firstName, row.lastName, row.isReadOnly, row.canComment, row.isContributer, row.isAdmin)\">\n          <mat-icon aria-label=\"Delete\">delete</mat-icon>\n        </button>\n      </mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n  </mat-table>\n\n\n  <div class=\"no-results\" [style.display]=\"dataSource.renderedData.length == 0 ? '' : 'none'\">\n    No results\n  </div>\n\n  <mat-paginator #paginator\n                 [length]=\"dataSource.filteredData.length\"\n                 [pageIndex]=\"0\"\n                 [pageSize]=\"10\"\n                 [pageSizeOptions]=\"[5, 10, 25, 100]\">\n  </mat-paginator>\n</div>\n"
 
 /***/ }),
 
@@ -1851,7 +2281,7 @@ module.exports = "<p>\n  activation-mode-list works!\n</p>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".spinner {\n  top: 45%;\n  left: 47%;\n  position: fixed; }\n\n.contactlist-container, #paginator {\n  display: flex;\n  flex-direction: column;\n  min-width: 300px;\n  max-width: 1200px;\n  max-height: 700px;\n  overflow: auto;\n  margin: 0 auto; }\n\n/* Toolbar */\n\n.spacer {\n  flex: 1 1 auto; }\n"
 
 /***/ }),
 
@@ -1859,13 +2289,31 @@ module.exports = ""
 /*!************************************************************************!*\
   !*** ./src/app/activation-mode-list/activation-mode-list.component.ts ***!
   \************************************************************************/
-/*! exports provided: ActivationModeListComponent */
+/*! exports provided: ActivationModeListComponent, ActModeDataSource */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActivationModeListComponent", function() { return ActivationModeListComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActModeDataSource", function() { return ActModeDataSource; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/cdk/collections */ "./node_modules/@angular/cdk/esm5/collections.es5.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _dialogs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../_dialogs */ "./src/app/_dialogs/index.ts");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../_services */ "./src/app/_services/index.ts");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../_shared */ "./src/app/_shared/index.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1876,22 +2324,233 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
+
+
+
 var ActivationModeListComponent = /** @class */ (function () {
-    function ActivationModeListComponent() {
+    function ActivationModeListComponent(httpClient, dialog, _actModeService) {
+        this.httpClient = httpClient;
+        this.dialog = dialog;
+        this._actModeService = _actModeService;
+        this.displayedColumns = ['id', 'activationModeName', 'upperBound', 'lowerBound', 'actions'];
     }
     ActivationModeListComponent.prototype.ngOnInit = function () {
+        this.loadingState = true;
+        this.loadData();
     };
+    ActivationModeListComponent.prototype.refresh = function () {
+        this.loadingState = true;
+        this.loadData();
+    };
+    ActivationModeListComponent.prototype.addNew = function (activationMode) {
+        var _this = this;
+        var dialogRef = this.dialog.open(_dialogs__WEBPACK_IMPORTED_MODULE_5__["ActivationModeAddDialogComponent"], {
+            data: { actMode: activationMode }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            if (result === 1) {
+                // After dialog is closed we're doing frontend updates
+                // For add we're just pushing a new row inside DataService
+                _this.actModeService.dataChange.value.push(dialogRef.componentInstance.newActMode);
+                _this.refreshTable();
+            }
+        });
+    };
+    ActivationModeListComponent.prototype.startEdit = function (id, actModeName, upperBound, lowerBound) {
+        var _this = this;
+        this.id = id;
+        // index row is used just for debugging proposes and can be removed
+        console.log(this.id);
+        var dialogRef = this.dialog.open(_dialogs__WEBPACK_IMPORTED_MODULE_5__["ActivationModeEditDialogComponent"], {
+            data: { id: id, actModeName: actModeName, upperBound: upperBound, lowerBound: lowerBound }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            if (result === 1) {
+                // When using an edit things are little different, firstly we find record inside DataService by id
+                var foundIndex = _this.actModeService.dataChange.value.findIndex(function (x) { return x.id === _this.id; });
+                // Then you update that record using data from dialogData (values you enetered)
+                //this.actModeService.dataChange.value[foundIndex] = dialogRef.componentInstance.user;
+                // And lastly refresh table
+                _this.refreshTable();
+            }
+        });
+    };
+    ActivationModeListComponent.prototype.deleteItem = function (id, actModeName, upperBound, lowerBound) {
+        var _this = this;
+        this.id = id;
+        var dialogRef = this.dialog.open(_dialogs__WEBPACK_IMPORTED_MODULE_5__["ActivationModeDeleteDialogComponent"], {
+            data: { id: id, actModeName: actModeName, upperBound: upperBound, lowerBound: lowerBound }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            if (result === 1) {
+                var foundIndex = _this.actModeService.dataChange.value.findIndex(function (x) { return x.id === _this.id; });
+                // for delete we use splice in order to remove single object from DataService
+                _this.actModeService.dataChange.value.splice(foundIndex, 1);
+                _this.refreshTable();
+            }
+        });
+    };
+    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
+    ActivationModeListComponent.prototype.refreshTable = function () {
+        // if there's a paginator active we're using it for refresh
+        if (this.dataSource._paginator.hasNextPage()) {
+            this.dataSource._paginator.nextPage();
+            this.dataSource._paginator.previousPage();
+            // in case we're on last page this if will tick
+        }
+        else if (this.dataSource._paginator.hasPreviousPage()) {
+            this.dataSource._paginator.previousPage();
+            this.dataSource._paginator.nextPage();
+            // in all other cases including active filter we do it like this
+        }
+        else {
+            this.dataSource.filter = '';
+            this.dataSource.filter = this.filter.nativeElement.value;
+        }
+    };
+    ActivationModeListComponent.prototype.loadData = function () {
+        var _this = this;
+        this.loadingState = false;
+        this.actModeService = new _services__WEBPACK_IMPORTED_MODULE_6__["ActivationModeService"](this.httpClient);
+        this.dataSource = new ActModeDataSource(this.actModeService, this.paginator, this.sort);
+        rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"].fromEvent(this.filter.nativeElement, 'keyup')
+            .debounceTime(150)
+            .distinctUntilChanged()
+            .subscribe(function () {
+            if (!_this.dataSource) {
+                return;
+            }
+            _this.dataSource.filter = _this.filter.nativeElement.value;
+        });
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatPaginator"]),
+        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatPaginator"])
+    ], ActivationModeListComponent.prototype, "paginator", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSort"]),
+        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSort"])
+    ], ActivationModeListComponent.prototype, "sort", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('filter'),
+        __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
+    ], ActivationModeListComponent.prototype, "filter", void 0);
     ActivationModeListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-activation-mode-list',
             template: __webpack_require__(/*! ./activation-mode-list.component.html */ "./src/app/activation-mode-list/activation-mode-list.component.html"),
             styles: [__webpack_require__(/*! ./activation-mode-list.component.scss */ "./src/app/activation-mode-list/activation-mode-list.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"],
+            _services__WEBPACK_IMPORTED_MODULE_6__["ActivationModeService"]])
     ], ActivationModeListComponent);
     return ActivationModeListComponent;
 }());
 
+var ActModeDataSource = /** @class */ (function (_super) {
+    __extends(ActModeDataSource, _super);
+    function ActModeDataSource(_actModeDataService, _paginator, _sort) {
+        var _this = _super.call(this) || this;
+        _this._actModeDataService = _actModeDataService;
+        _this._paginator = _paginator;
+        _this._sort = _sort;
+        _this._filterChange = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"]('');
+        _this.filteredData = [];
+        _this.renderedData = [];
+        // Reset to the first page when the user changes the filter.
+        _this._filterChange.subscribe(function () { return _this._paginator.pageIndex = 0; });
+        return _this;
+    }
+    Object.defineProperty(ActModeDataSource.prototype, "filter", {
+        get: function () {
+            return this._filterChange.value;
+        },
+        set: function (filter) {
+            this._filterChange.next(filter);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /** Connect function called by the table to retrieve one stream containing the data to render. */
+    ActModeDataSource.prototype.connect = function () {
+        var _this = this;
+        // Listen for any changes in the base data, sorting, filtering, or pagination
+        var displayDataChanges = [
+            this._actModeDataService.dataChange,
+            this._sort.sortChange,
+            this._filterChange,
+            this._paginator.page
+        ];
+        this._actModeDataService.getAllActModes(_shared__WEBPACK_IMPORTED_MODULE_7__["Global"].BASE_ACTIVATION_MODE_ENDPOINT + 'getAllActMode');
+        return rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"].merge.apply(rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"], displayDataChanges).map(function () {
+            // Filter data
+            _this.filteredData = _this._actModeDataService.data.slice().filter(function (actMode) {
+                var searchStr = (actMode.id.toString() + actMode.activationModeName).toLowerCase();
+                return searchStr.indexOf(_this.filter.toLowerCase()) !== -1;
+            });
+            // Sort filtered data
+            var sortedData = _this.sortData(_this.filteredData.slice());
+            // Grab the page's slice of the filtered sorted data.
+            var startIndex = _this._paginator.pageIndex * _this._paginator.pageSize;
+            _this.renderedData = sortedData.splice(startIndex, _this._paginator.pageSize);
+            return _this.renderedData;
+        });
+    };
+    ActModeDataSource.prototype.disconnect = function () {
+    };
+    /** Returns a sorted copy of the database data. */
+    ActModeDataSource.prototype.sortData = function (data) {
+        var _this = this;
+        if (!this._sort.active || this._sort.direction === '') {
+            return data;
+        }
+        return data.sort(function (a, b) {
+            var _a, _b;
+            var propertyA = '';
+            var propertyB = '';
+            switch (_this._sort.active) {
+                case 'id':
+                    _a = [a.id, b.id], propertyA = _a[0], propertyB = _a[1];
+                    break;
+                case 'userName':
+                    _b = [a.activationModeName, b.activationModeName], propertyA = _b[0], propertyB = _b[1];
+                    break;
+            }
+            var valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+            var valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+            return (valueA < valueB ? -1 : 1) * (_this._sort.direction === 'asc' ? 1 : -1);
+        });
+    };
+    return ActModeDataSource;
+}(_angular_cdk_collections__WEBPACK_IMPORTED_MODULE_3__["DataSource"]));
+
+
+
+/***/ }),
+
+/***/ "./src/app/activation-mode-list/activation-mode-list.route.ts":
+/*!********************************************************************!*\
+  !*** ./src/app/activation-mode-list/activation-mode-list.route.ts ***!
+  \********************************************************************/
+/*! exports provided: activationModeListRoutes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "activationModeListRoutes", function() { return activationModeListRoutes; });
+/* harmony import */ var _activation_mode_list_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./activation-mode-list.component */ "./src/app/activation-mode-list/activation-mode-list.component.ts");
+/* harmony import */ var _guards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_guards */ "./src/app/_guards/index.ts");
+
+
+// Route Configuration
+var activationModeListRoutes = [
+    { path: 'activationmodelist', component: _activation_mode_list_component__WEBPACK_IMPORTED_MODULE_0__["ActivationModeListComponent"], canActivate: [_guards__WEBPACK_IMPORTED_MODULE_1__["AuthGuard"]] }
+];
 
 
 /***/ }),
@@ -2233,6 +2892,9 @@ var AppModule = /** @class */ (function () {
                 _dialogs__WEBPACK_IMPORTED_MODULE_18__["EditDialogComponent"],
                 _dialogs__WEBPACK_IMPORTED_MODULE_18__["DeleteDialogComponent"],
                 _dialogs__WEBPACK_IMPORTED_MODULE_18__["HeritageDeleteDialogComponent"],
+                _dialogs__WEBPACK_IMPORTED_MODULE_18__["ActivationModeAddDialogComponent"],
+                _dialogs__WEBPACK_IMPORTED_MODULE_18__["ActivationModeEditDialogComponent"],
+                _dialogs__WEBPACK_IMPORTED_MODULE_18__["ActivationModeDeleteDialogComponent"],
                 _user_list_user_list_component__WEBPACK_IMPORTED_MODULE_22__["UserListComponent"],
                 _file_manager_file_manager_component__WEBPACK_IMPORTED_MODULE_23__["FileManagerComponent"],
                 _layout__WEBPACK_IMPORTED_MODULE_24__["AppHeaderComponent"],
@@ -2272,7 +2934,10 @@ var AppModule = /** @class */ (function () {
                 _dialogs__WEBPACK_IMPORTED_MODULE_18__["AddDialogComponent"],
                 _dialogs__WEBPACK_IMPORTED_MODULE_18__["EditDialogComponent"],
                 _dialogs__WEBPACK_IMPORTED_MODULE_18__["DeleteDialogComponent"],
-                _dialogs__WEBPACK_IMPORTED_MODULE_18__["HeritageDeleteDialogComponent"]
+                _dialogs__WEBPACK_IMPORTED_MODULE_18__["HeritageDeleteDialogComponent"],
+                _dialogs__WEBPACK_IMPORTED_MODULE_18__["ActivationModeAddDialogComponent"],
+                _dialogs__WEBPACK_IMPORTED_MODULE_18__["ActivationModeEditDialogComponent"],
+                _dialogs__WEBPACK_IMPORTED_MODULE_18__["ActivationModeDeleteDialogComponent"]
             ],
             providers: [
                 _services__WEBPACK_IMPORTED_MODULE_11__["AlertService"],
@@ -2281,6 +2946,7 @@ var AppModule = /** @class */ (function () {
                 _guards__WEBPACK_IMPORTED_MODULE_12__["AuthGuard"],
                 _services__WEBPACK_IMPORTED_MODULE_11__["FilesService"],
                 _services__WEBPACK_IMPORTED_MODULE_11__["HeritageService"],
+                _services__WEBPACK_IMPORTED_MODULE_11__["ActivationModeService"],
                 { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_14__["HTTP_INTERCEPTORS"], useClass: _helpers__WEBPACK_IMPORTED_MODULE_13__["JwtInterceptor"], multi: true },
                 { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_14__["HTTP_INTERCEPTORS"], useClass: _helpers__WEBPACK_IMPORTED_MODULE_13__["ErrorInterceptor"], multi: true },
             ],
@@ -2362,6 +3028,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _heritage_activation_heritage_activation_route__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./heritage-activation/heritage-activation.route */ "./src/app/heritage-activation/heritage-activation.route.ts");
 /* harmony import */ var _heritage_analysis_heritage_analysis_route__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./heritage-analysis/heritage-analysis.route */ "./src/app/heritage-analysis/heritage-analysis.route.ts");
 /* harmony import */ var _heritage_nav_heritage_nav_route__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./heritage-nav/heritage-nav.route */ "./src/app/heritage-nav/heritage-nav.route.ts");
+/* harmony import */ var _activation_mode_list_activation_mode_list_route__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./activation-mode-list/activation-mode-list.route */ "./src/app/activation-mode-list/activation-mode-list.route.ts");
+
 
 
 
@@ -2385,7 +3053,7 @@ var appRoutes = [
             { path: 'login', component: _login__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"] },
             { path: 'register', component: _register__WEBPACK_IMPORTED_MODULE_7__["RegisterComponent"] },
             { path: 'users', component: _user_list_user_list_component__WEBPACK_IMPORTED_MODULE_9__["UserListComponent"], canActivate: [_guards__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]] }
-        ].concat(_heritage_detail__WEBPACK_IMPORTED_MODULE_2__["heritageDetailRoutes"], _heritage_list__WEBPACK_IMPORTED_MODULE_3__["heritageListRoutes"], _comment_comment_component_route__WEBPACK_IMPORTED_MODULE_4__["heritageCommentRoutes"], _heritage_evaluation__WEBPACK_IMPORTED_MODULE_5__["heritageEvaluationRoutes"], _heritage_activation_heritage_activation_route__WEBPACK_IMPORTED_MODULE_11__["heritageActivationRoutes"], _heritage_analysis_heritage_analysis_route__WEBPACK_IMPORTED_MODULE_12__["heritageAnalysisRoutes"], _heritage_nav_heritage_nav_route__WEBPACK_IMPORTED_MODULE_13__["heritageNavRoutes"])
+        ].concat(_heritage_detail__WEBPACK_IMPORTED_MODULE_2__["heritageDetailRoutes"], _heritage_list__WEBPACK_IMPORTED_MODULE_3__["heritageListRoutes"], _comment_comment_component_route__WEBPACK_IMPORTED_MODULE_4__["heritageCommentRoutes"], _heritage_evaluation__WEBPACK_IMPORTED_MODULE_5__["heritageEvaluationRoutes"], _heritage_activation_heritage_activation_route__WEBPACK_IMPORTED_MODULE_11__["heritageActivationRoutes"], _heritage_analysis_heritage_analysis_route__WEBPACK_IMPORTED_MODULE_12__["heritageAnalysisRoutes"], _heritage_nav_heritage_nav_route__WEBPACK_IMPORTED_MODULE_13__["heritageNavRoutes"], _activation_mode_list_activation_mode_list_route__WEBPACK_IMPORTED_MODULE_14__["activationModeListRoutes"])
     },
     // otherwise redirect to home
     { path: '**', redirectTo: '' },
@@ -4695,7 +5363,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "    <!-- Main jumbotron for a primary marketing message or call to action -->\n    <div class=\"container\">\n        <mat-card class=\"welcome-picture-card\">           \n            <img mat-card-image src=\"../../assets/images/background.jpg\" alt=\"Heritage Photo\">\n        </mat-card>\n      </div>\n  \n      <div class=\"container\">\n        <!-- Example row of columns -->\n        <div class=\"row\">\n          <div class=\"col-md-4\">\n            <h2>Heritage</h2>\n            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritagedetail']\" role=\"button\">Create &raquo;</a></p>\n          </div>\n          <div class=\"col-md-4\">\n            <h2>Heritage List</h2>\n            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritagelist']\" role=\"button\">View List &raquo;</a></p>\n         </div>\n          <div class=\"col-md-4\">\n            <h2>User Management</h2>\n            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/users']\" role=\"button\">Manage Users &raquo;</a></p>\n          </div>\n        </div>\n       \n      </div> <!-- /container -->\n      \n"
+module.exports = "    <!-- Main jumbotron for a primary marketing message or call to action -->\n    <div class=\"container\">\n        <mat-card class=\"welcome-picture-card\">           \n            <img mat-card-image src=\"../../assets/images/background.jpg\" alt=\"Heritage Photo\">\n        </mat-card>\n      </div>\n  \n      <div class=\"container\">\n        <!-- Example row of columns -->\n        <div class=\"row\">\n          <div class=\"col-md-4\">\n            <h2>Heritage</h2>\n            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritagedetail']\" role=\"button\">Create &raquo;</a></p>\n          </div>\n          <div class=\"col-md-4\">\n            <h2>Heritage List</h2>\n            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritagelist']\" role=\"button\">View List &raquo;</a></p>\n         </div>\n          <div class=\"col-md-4\">\n            <h2>Activation Mode List</h2>\n            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/activationmodelist']\" role=\"button\">View List &raquo;</a></p>\n          </div>\n        </div>\n       \n      </div> <!-- /container -->\n      \n"
 
 /***/ }),
 

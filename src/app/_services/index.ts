@@ -5,3 +5,4 @@ export * from './heritage.service';
 export * from './file.service';
 export * from './emitter.service';
 export * from './comment.service';
+export * from './activationmode.service';

@@ -14,6 +14,7 @@ import { SiteLayoutComponent } from './_layout';
 import { heritageActivationRoutes } from './heritage-activation/heritage-activation.route';
 import { heritageAnalysisRoutes } from './heritage-analysis/heritage-analysis.route';
 import { heritageNavRoutes } from './heritage-nav/heritage-nav.route';
+import { activationModeListRoutes } from './activation-mode-list/activation-mode-list.route';
 
 
 const appRoutes: Routes = [
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
             ...heritageEvaluationRoutes,
             ...heritageActivationRoutes,
             ...heritageAnalysisRoutes,
-            ...heritageNavRoutes
+            ...heritageNavRoutes,
+            ...activationModeListRoutes
         ]
       },
       
