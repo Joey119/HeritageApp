@@ -14,6 +14,11 @@ namespace HeritageApp.Models.Database
          public DbSet <Heritage> Heritages { get; set; }
          public DbSet <HeritageComment> HeritageComments { get; set; }
          public DbSet <FileUpload> FileUploads { get; set; }
+         public DbSet <EvaluationOption> EvaluationOptions { get; set; }
+         public DbSet <EvaluatorType> EvaluatorTypes { get; set; }
+         public DbSet <ActivationMode> ActivationModes { get; set; }
+         public DbSet <HeritageEvaluation> HeritageEvaluations { get; set; }
+         public DbSet <HeritageGameAnalysis> HeritageGameAnalyses { get; set; }
          
     }
 }

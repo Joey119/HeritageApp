@@ -100,6 +100,39 @@ namespace HeritageApp.Models.Database
                 new FileUpload { FileName = "photo5.jpg", FilePath = "c:\\photo\\heritage", UploadUserId = users.Single( u => u.UserName == "Contributor").Id},
                 new FileUpload { FileName = "photo6.jpg", FilePath = "c:\\photo\\heritage", UploadUserId = users.Single( u => u.UserName == "Contributor").Id}
             };
+            foreach(FileUpload fu in fileUploads)
+            {
+                context.FileUploads.Add(fu);
+            }
+            context.SaveChanges();
+
+            var evaluationOptions = new EvaluationOption[]
+            {
+                new EvaluationOption { Option = "不同意"},
+                new EvaluationOption { Option = "不太同意"},
+                new EvaluationOption { Option = "介于中间"},
+                new EvaluationOption { Option = "比较同意"},
+                new EvaluationOption { Option = "非常同意"}
+            };
+            foreach(EvaluationOption eo in evaluationOptions)
+            {
+                context.EvaluationOptions.Add(eo);
+            }
+            context.SaveChanges();
+
+            var evaluatorTypes = new EvaluatorType[]
+            {
+                new EvaluatorType { Type = "传承人"},
+                new EvaluatorType { Type = "企业"},
+                new EvaluatorType { Type = "专家"},
+                new EvaluatorType { Type = "政府"},
+                new EvaluatorType { Type = "消费者"}
+            };
+            foreach(EvaluatorType et in evaluatorTypes)
+            {
+                context.EvaluatorTypes.Add(et);
+            }
+            context.SaveChanges();
         }
         
     }

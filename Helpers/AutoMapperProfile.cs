@@ -19,7 +19,10 @@ namespace HeritageApp.Helpers
             .ForMember(dest => dest.CreatedUser, opt => opt.Ignore())
             .ForMember(dest => dest.ModifiedUser, opt => opt.Ignore())
             .ForMember(dest => dest.HeirtageComments, opt => opt.Ignore())
-            .ForMember(dest => dest.FileUploads, opt => opt.Ignore());
+            .ForMember(dest => dest.FileUploads, opt => opt.Ignore())
+            .ForMember(dest => dest.ActMode, opt => opt.Ignore())
+            .ForMember(dest => dest.HeritageEvaluations, opt => opt.Ignore())
+            .ForMember(dest => dest.GameAnalysis, opt => opt.Ignore());
 
             CreateMap<HeritageComment, HeritageCommentDto>()
             .ForMember(dest => dest.CommentUserName, opt => opt.MapFrom(src => src.CommentUser.UserName));
@@ -32,6 +35,30 @@ namespace HeritageApp.Helpers
 
             CreateMap<FileUploadDto, FileUpload>()
             .ForMember(dest => dest.UploadUser, opt => opt.Ignore());
+
+            CreateMap<ActivationMode, ActivationModeDto>()
+            .ForMember(dest => dest.CreatedUserName, opt => opt.MapFrom(src => src.CreatedUser.UserName))
+            .ForMember(dest => dest.ModifiedUserName, opt => opt.MapFrom(src => src.ModifiedUser.UserName));
+
+            CreateMap<ActivationModeDto, ActivationMode>()
+            .ForMember(dest => dest.CreatedUser, opt => opt.Ignore())
+            .ForMember(dest => dest.ModifiedUser, opt => opt.Ignore());
+
+            CreateMap<HeritageEvaluation, HeritageEvaluationDto>()
+            .ForMember(dest => dest.CreatedUserName, opt => opt.MapFrom(src => src.CreatedUser.UserName))
+            .ForMember(dest => dest.ModifiedUserName, opt => opt.MapFrom(src => src.ModifiedUser.UserName));
+
+            CreateMap<HeritageEvaluationDto, HeritageEvaluation>()
+            .ForMember(dest => dest.CreatedUser, opt => opt.Ignore())
+            .ForMember(dest => dest.ModifiedUser, opt => opt.Ignore());
+
+            CreateMap<HeritageGameAnalysis, HeritageGameAnalysisDto>()
+            .ForMember(dest => dest.CreatedUserName, opt => opt.MapFrom(src => src.CreatedUser.UserName))
+            .ForMember(dest => dest.ModifiedUserName, opt => opt.MapFrom(src => src.ModifiedUser.UserName));
+
+            CreateMap<HeritageGameAnalysisDto, HeritageGameAnalysis>()
+            .ForMember(dest => dest.CreatedUser, opt => opt.Ignore())
+            .ForMember(dest => dest.ModifiedUser, opt => opt.Ignore());
 
         }
     }

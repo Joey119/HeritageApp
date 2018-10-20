@@ -24,6 +24,9 @@ namespace HeritageApp.Helpers
         public string TourismDevelopmentModel { get; set; }
         public double TourismBenefit { get; set; }
         public string Story { get; set; }
+        public double EvaluationValue { get; set; }
+        public int ActivatoinModeId { get; set; }
+        public int HeritageGameAnalysisId { get; set; }
         public int CreatedUserId { get; set; }
         public string CreatedUserName { get; set; }
         public DateTime CreatedOn { get; set; }

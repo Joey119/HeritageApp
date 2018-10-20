@@ -32,6 +32,9 @@ namespace HeritageApp.Models.Database
         public string TourismDevelopmentModel { get; set; }
         public double TourismBenefit { get; set; }
         public string Story { get; set; }
+        public double EvaluationValue { get; set; }
+        public int ActivatoinModeId { get; set; }
+        public int HeritageGameAnalysisId { get; set; }
         public int CreatedUserId { get; set; }
         public User CreatedUser { get; set; }
         [DataType(DataType.Date)]
@@ -44,6 +47,9 @@ namespace HeritageApp.Models.Database
         public DateTime ModifiedOn { get; set; }
         public List<HeritageComment> HeirtageComments { get; set; }
         public List<FileUpload> FileUploads { get; set; }
+        public List<HeritageEvaluation> HeritageEvaluations { get; set; }
+        public ActivationMode ActMode { get; set; }
+        public HeritageGameAnalysis GameAnalysis { get; set; }
 
     }
 }
