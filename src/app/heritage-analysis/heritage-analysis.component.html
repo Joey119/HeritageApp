@@ -1,303 +1,292 @@
-  
-    <div class="basic-container" *ngIf = "heritage">
-    
-      <mat-toolbar>
-        <span>Heritage Game Playing Analysis: {{ heritage.name }} </span>
-        <span class="spacer"></span>
-        <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">Back</button>
-      </mat-toolbar>
+<div class="basic-container" *ngIf="heritage">
 
-      <form class="analysis-form">
-        <mat-grid-list cols="10" rowHeight="50px">
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
-            参数
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            参数值
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            路径i的取值
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="4" [rowspan]="1">
-            对参数值的分析
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="2">
-              Ci
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="CiA" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-              i <= 8
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="4" [rowspan]="2">
+  <mat-toolbar>
+    <span>Heritage Game Playing Analysis: {{ heritage.name }} </span>
+    <span class="spacer"></span>
+    <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">Back</button>
+  </mat-toolbar>
+
+  <div *ngIf="heritageGameAnalysis">
+
+    <form class="analysis-form" (ngSubmit)="onSubmit()" #heritageGameAnalysisForm="ngForm" name="heritageGameAnalysis">
+      <mat-grid-list cols="10" rowHeight="50px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          参数
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          参数值
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          路径i的取值
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1">
+          对参数值的分析
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="2">
+          Ci
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="CiA" [(ngModel)]="heritageGameAnalysis.ciA" name="ciA">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]="4" [rowspan]="2">
             与传承人单一开发相比，传承人选择合作开发时，由于可能实现规模化生产而降低产品开发成本。即一般应有：ciA>ciB
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="CiB" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-              i > 8
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
-            Ii
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="Ii" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            i=9,10,…16
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="4" [rowspan]="1">
-            当传承人对非遗产品的评估价值较高时，与企业合作开发时可能会要求企业支付知识产权使用费。
-          </mat-grid-tile>      
-          <mat-grid-tile [colspan]="1" [rowspan]="2">
-            Pi
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="PiA" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-              i <= 8
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="4" [rowspan]="2">
-            与传承人单一开发相比，传承人选择合作开发时，由于有其他利益相关者的参与和支持，营销力度更大，宣传范围更广，因而更有可能采取高价策略，以高价售出非遗产品。即一般应有：piA < piB
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="PiB" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-              i > 8
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="2">
-            Vi5
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="Vi5A" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            i=1,2,5,6,9,10,13,14,17,18,21,22
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="4" [rowspan]="2">
-            当非遗产品开发获政府支持时，消费者出于对政府及其价值判断的信赖，对该非遗产品的价值认可度通常会更高。即一般应有：vi5A > vi5B
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="Vi5B" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            i=3,4,7,8,11,12,15,16,19,20,23,24
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="2">
-            Vi4
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="Vi4A" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            i=1,2,3,4,9,10,11,12,17,18,19,20
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="4" [rowspan]="2">
-            当非遗产品开发能吸引专家参与时，政府出于对专家的专业水平的信任，对该非遗产品的价值认可度通常会更高。即一般应有：vi4A > vi4B
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="Vi4B" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            i=5,6,7,8,13,14,15,16,21,22,23,24
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="2">
-            Vi3
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="Vi3A" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-              i <= 8
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="4" [rowspan]="2">
-            与传承人单一开发相比，当传承人选择合作开发模式时，专家更倾向于认为该非遗产品更有开发价值。即一般应有：vi3A < vi3B
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="Vi3B" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-              i>8
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
-            Vi1
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="Vi1" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            i=1,2,…,24
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="4" [rowspan]="1">
-            所有利益相关者中，传承人对非遗产品的情况最为了解，掌握的信息最为完全，因而其对非遗产品的价值判断一般也保持稳定
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="2">
-            ai4
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="ai4" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            i=1,2,5,6,9,10,13,14,17,18,21,22
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="4" [rowspan]="2">
-            政府选择支持非遗产品开发时，政府分担开发成本的比例为ai4；不支持时，该比例为0
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="0" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            i=3,4,7,8,11,12,15,16,19,20,23,24
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="2">
-            ai3
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="ai3" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            i=1,2,3,4,9,10,11,12,17,18,19,20
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="4" [rowspan]="2">
-            专家选择参与非遗产品开发时，专家分担开发成本的比例为ai3；不参与时，该比例为0
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="0" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            i=5,6,7,8,13,14,15,16,21,22,23,24
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="2">
-            ai2
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="ai2" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            i=9,10,…,16
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="4" [rowspan]="2">
-            企业选择对非遗产品开发进行投资时，企业分担开发成本的比例为ai2；不投资时，该比例为0
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="0" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            i=1,2,…,8,17,18,…24
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
-            ai1
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="1-(ai2+ai3+ai4)" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-            i=1,2,…,24
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="4" [rowspan]="1">
-            其他利益相关者分担成本后的产品开发成本均由传承人来承担
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="2">
-            bij (j!=1)
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="0" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-              i <= 8
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="4" [rowspan]="2">
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="CiB" [(ngModel)]="heritageGameAnalysis.ciB" name="ciB">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i > 8
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          Ii
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="Ii" [(ngModel)]="heritageGameAnalysis.ii" name="ii">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i=9,10,…16
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1">
+          当传承人对非遗产品的评估价值较高时，与企业合作开发时可能会要求企业支付知识产权使用费。
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="2">
+          Pi
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="PiA" [(ngModel)]="heritageGameAnalysis.piA" name="piA">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]="4" [rowspan]="2">
+            与传承人单一开发相比，传承人选择合作开发时，由于有其他利益相关者的参与和支持，营销力度更大，宣传范围更广，因而更有可能采取高价策略，以高价售出非遗产品。即一般应有：piA < piB </mat-grid-tile>
+              <mat-grid-tile [colspan]="2" [rowspan]="1">
+              <mat-form-field>
+                <input class="parameter-field" matInput placeholder="PiB" [(ngModel)]="heritageGameAnalysis.piB" name="piB">
+              </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i > 8
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="2">
+          Vi5
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="Vi5A" [(ngModel)]="heritageGameAnalysis.vi5A" name="vi5A">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i=1,2,5,6,9,10,13,14,17,18,21,22
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="2">
+          当非遗产品开发获政府支持时，消费者出于对政府及其价值判断的信赖，对该非遗产品的价值认可度通常会更高。即一般应有：vi5A > vi5B
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="Vi5B" [(ngModel)]="heritageGameAnalysis.vi5B" name="vi5B">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i=3,4,7,8,11,12,15,16,19,20,23,24
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="2">
+          Vi4
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="Vi4A" [(ngModel)]="heritageGameAnalysis.vi4A" name="vi4A">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i=1,2,3,4,9,10,11,12,17,18,19,20
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="2">
+          当非遗产品开发能吸引专家参与时，政府出于对专家的专业水平的信任，对该非遗产品的价值认可度通常会更高。即一般应有：vi4A > vi4B
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="Vi4B" [(ngModel)]="heritageGameAnalysis.vi4B" name="vi4B">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i=5,6,7,8,13,14,15,16,21,22,23,24
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="2">
+          Vi3
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="Vi3A" [(ngModel)]="heritageGameAnalysis.vi3A" name="vi3A">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]="4" [rowspan]="2">
+            与传承人单一开发相比，当传承人选择合作开发模式时，专家更倾向于认为该非遗产品更有开发价值。即一般应有：vi3A < vi3B </mat-grid-tile> <mat-grid-tile [colspan]="2"
+              [rowspan]="1">
+              <mat-form-field>
+                <input class="parameter-field" matInput placeholder="Vi3B" [(ngModel)]="heritageGameAnalysis.vi3B" name="vi3B">
+              </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i>8
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          Vi1
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="Vi1" [(ngModel)]="heritageGameAnalysis.vi1" name="vi1">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i=1,2,…,24
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1">
+          所有利益相关者中，传承人对非遗产品的情况最为了解，掌握的信息最为完全，因而其对非遗产品的价值判断一般也保持稳定
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="2">
+          ai4
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="ai4" [(ngModel)]="heritageGameAnalysis.ai4" name="ai4">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i=1,2,5,6,9,10,13,14,17,18,21,22
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="2">
+          政府选择支持非遗产品开发时，政府分担开发成本的比例为ai4；不支持时，该比例为0
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="0">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i=3,4,7,8,11,12,15,16,19,20,23,24
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="2">
+          ai3
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="ai3" [(ngModel)]="heritageGameAnalysis.ai3" name="ai3">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i=1,2,3,4,9,10,11,12,17,18,19,20
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="2">
+          专家选择参与非遗产品开发时，专家分担开发成本的比例为ai3；不参与时，该比例为0
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="0">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i=5,6,7,8,13,14,15,16,21,22,23,24
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="2">
+          ai2
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="ai2" [(ngModel)]="heritageGameAnalysis.ai2" name="ai2">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i=9,10,…,16
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="2">
+          企业选择对非遗产品开发进行投资时，企业分担开发成本的比例为ai2；不投资时，该比例为0
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="0">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i=1,2,…,8,17,18,…24
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          ai1
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="1-(ai2+ai3+ai4)">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i=1,2,…,24
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1">
+          其他利益相关者分担成本后的产品开发成本均由传承人来承担
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="2">
+          bij (j!=1)
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="0">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]="4" [rowspan]="2">
             在传承人单一开发模式下，其他利益相关者不能获得对产品销售收入的分成，即bij=0；在合作开发模式下，其他利益相关者对销售收入的分成比例与其成本分担比例基本一致，即bij=aij
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="aij" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-              i > 8
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="2">
-            bi1
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="1" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-              i <= 8
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="4" [rowspan]="2">
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="aij" [(ngModel)]="heritageGameAnalysis.aij" name="aij">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i > 8
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="2">
+          bi1
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="1">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]="4" [rowspan]="2">
             在传承人单一开发模式下，传承人可获得非遗产品的全部销售收入，即bi1=1；在合作开发模式下，传承人对销售收入的分成比例与其成本分担比例基本一致，即bi1=ai1
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2" [rowspan]="1">
-            <mat-form-field>
-              <input class="parameter-field" matInput placeholder="ai1" >
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="3" [rowspan]="1">
-              i > 8
-          </mat-grid-tile>         
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field>
+            <input class="parameter-field" matInput placeholder="ai1" [(ngModel)]="heritageGameAnalysis.ai1" name="ai1">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3" [rowspan]="1">
+          i > 8
+        </mat-grid-tile>
       </mat-grid-list>
-      </form>
-      <mat-card class="analysis-tree">
-        <mat-card-header>          
-          <mat-card-title>Game Playing Analysis Tree </mat-card-title>
-          <mat-card-subtitle>Game Playing Analysis is performed here...</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-actions>
-          <button mat-button>Analysis</button>
-        </mat-card-actions>        
-        <mat-card-content>
-          <h3>Game Playing Analysis</h3>
-          <p-tree [value]="decisionTree" layout="horizontal" selectionMode="single"></p-tree>
-        </mat-card-content>
-      </mat-card>
-    </div>
+    </form>
+    <mat-card class="analysis-tree">
+      <mat-card-header>
+        <mat-card-title>Game Playing Analysis Tree </mat-card-title>
+        <mat-card-subtitle>Game Playing Analysis is performed here...</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-button>Analysis</button>
+      </mat-card-actions>
+      <mat-card-content>
+        <h3>Game Playing Analysis</h3>
+        <p-tree [value]="decisionTree" layout="horizontal" selectionMode="single"></p-tree>
+      </mat-card-content>
+    </mat-card>
 
-  
+  </div>
+</div>

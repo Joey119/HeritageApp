@@ -67,7 +67,7 @@ namespace HeritageApp.Models.Database
             }
             context.SaveChanges();
 
-            var heirtageComments = new HeritageComment[]
+            var heritageComments = new HeritageComment[]
             {
                 new HeritageComment { HeritageId = heritages.Single( h => h.Name == "HeritageA").Id, 
                 CommentUserId = users.Single( u => u.UserName == "Contributor").Id, 
@@ -85,7 +85,7 @@ namespace HeritageApp.Models.Database
                 CommentUserId = users.Single( u => u.UserName == "Contributor").Id, 
                 CommentText = "First comment", CommentDate = DateTime.Parse("2018-09-01"), UpVoteCount = 0, DownVoteCount = 0 }
             };
-            foreach(HeritageComment hc in heirtageComments)
+            foreach(HeritageComment hc in heritageComments)
             {
                 context.HeritageComments.Add(hc);
             }

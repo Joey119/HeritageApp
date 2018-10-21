@@ -10,6 +10,12 @@ namespace HeritageApp.Helpers
             CreateMap<User, UserDto>();
             
             CreateMap<UserDto, User>();
+
+            CreateMap<EvaluationOption, EvaluationOptionDto>();
+            CreateMap<EvaluationOptionDto, EvaluationOption>();
+
+            CreateMap<EvaluatorType, EvaluatorTypeDto>();
+            CreateMap<EvaluatorTypeDto, EvaluatorType>();
             
             CreateMap<Heritage, HeritageDto>()
             .ForMember(dest => dest.CreatedUserName, opt => opt.MapFrom(src => src.CreatedUser.UserName))
@@ -18,7 +24,7 @@ namespace HeritageApp.Helpers
             CreateMap<HeritageDto, Heritage>()
             .ForMember(dest => dest.CreatedUser, opt => opt.Ignore())
             .ForMember(dest => dest.ModifiedUser, opt => opt.Ignore())
-            .ForMember(dest => dest.HeirtageComments, opt => opt.Ignore())
+            .ForMember(dest => dest.HeritageComments, opt => opt.Ignore())
             .ForMember(dest => dest.FileUploads, opt => opt.Ignore())
             .ForMember(dest => dest.ActMode, opt => opt.Ignore())
             .ForMember(dest => dest.HeritageEvaluations, opt => opt.Ignore())

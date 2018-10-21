@@ -2,7 +2,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Component, Inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ActivationModeService } from '../../_services';
+import { ActivationModeService, UserService } from '../../_services';
 import { IActivationMode } from '../../_models'
 import { Global } from '../../_shared';
 
@@ -17,9 +17,10 @@ export class ActivationModeEditDialogComponent {
   actMode: IActivationMode;
 
   constructor(public dialogRef: MatDialogRef<ActivationModeEditDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, 
+              @Inject(MAT_DIALOG_DATA) public data: IActivationMode, 
               public actModeService: ActivationModeService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private userService: UserService) { }
 
   formControl = new FormControl('', [
     Validators.required
@@ -41,7 +42,8 @@ export class ActivationModeEditDialogComponent {
   }
 
   stopEdit(): void {
-
+    var userId = this.userService.currentUserId();
+    this.data.modifiedUserId = userId;
     if (this.data.id < 1)
       return;
     this.actModeService.updateActMode(Global.BASE_ACTIVATION_MODE_ENDPOINT + this.data.id, this.data)

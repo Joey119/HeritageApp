@@ -81,6 +81,7 @@ namespace HeritageApp.Controllers
             actMode.ModifiedOn = DateTime.Now;
             _context.ActivationModes.Add(actMode);
             _context.SaveChanges();
+            item = _mapper.Map<ActivationModeDto>(actMode);
             return Ok(item);
         }
 
@@ -104,9 +105,9 @@ namespace HeritageApp.Controllers
             activationMode.UpperBound = actMode.UpperBound;
             activationMode.LowerBound = actMode.LowerBound;
             activationMode.ModifiedOn = DateTime.Now;
-            activationMode.ModifiedUserId = actMode.ModifiedUserId;
-               
+            activationMode.ModifiedUserId = actMode.ModifiedUserId;               
             _context.SaveChanges();
+            item = _mapper.Map<ActivationModeDto>(actMode);
             return Ok(item);
         }
 

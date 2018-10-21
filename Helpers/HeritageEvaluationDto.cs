@@ -3,7 +3,7 @@ using System;
 namespace HeritageApp.Helpers {
     public class HeritageEvaluationDto {
         public int Id { get; set; }
-        public int HeirtageId { get; set; }
+        public int HeritageId { get; set; }
         public int EvaluatorTypeId { get; set; }
         public double EvaluationValue { get; set; }
         public double AgreementFactor { get; set; }

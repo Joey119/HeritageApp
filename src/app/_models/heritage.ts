@@ -20,6 +20,9 @@ export interface IHeritage {
     tourismDevelopmentModel: string;
     tourismBenefit: number;
     story: string; 
+    evaluationValue: number;
+    activatoinModeId: number;
+    heritageGameAnalysisId: number;
     createdUserId: number;
     createdUserName: string;
     createdOn: Date;

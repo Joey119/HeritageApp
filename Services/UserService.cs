@@ -13,7 +13,7 @@ namespace HeritageApp.Services
         User GetById(int id);
         User Create(User user, string password);
         User Add(User user, string password);
-        void Update(User user, string password = null);
+        User Update(User user, string password = null);
         void Delete(int id);
     }
 
@@ -103,7 +103,7 @@ namespace HeritageApp.Services
             return user;
         }
 
-        public void Update(User userParam, string password = null)
+        public User Update(User userParam, string password = null)
         {
             var user = _context.Users.Find(userParam.Id);
 
@@ -138,6 +138,8 @@ namespace HeritageApp.Services
 
             _context.Users.Update(user);
             _context.SaveChanges();
+
+            return user;
         }
 
         public void Delete(int id)

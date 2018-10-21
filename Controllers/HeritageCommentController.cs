@@ -101,6 +101,7 @@ namespace HeritageApp.Controllers
             comment.CommentDate = DateTime.Now;
             _context.HeritageComments.Add(comment);
             _context.SaveChanges();
+            item = _mapper.Map<HeritageCommentDto>(comment);
             return Ok(item);
         }
 
@@ -127,6 +128,7 @@ namespace HeritageApp.Controllers
             heritageComment.DownVoteCount = comment.DownVoteCount;
                
             _context.SaveChanges();
+            item = _mapper.Map<HeritageCommentDto>(comment);
             return Ok(item);
         }
 
@@ -150,6 +152,7 @@ namespace HeritageApp.Controllers
             heritageComment.DownVoteCount = comment.DownVoteCount;
                
             _context.SaveChanges();
+            item = _mapper.Map<HeritageCommentDto>(comment);
             return Ok(item);
         }
 

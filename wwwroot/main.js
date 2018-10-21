@@ -80,11 +80,12 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 var ActivationModeAddDialogComponent = /** @class */ (function () {
-    function ActivationModeAddDialogComponent(dialogRef, data, actModeService, toastr) {
+    function ActivationModeAddDialogComponent(dialogRef, data, actModeService, toastr, userService) {
         this.dialogRef = dialogRef;
         this.data = data;
         this.actModeService = actModeService;
         this.toastr = toastr;
+        this.userService = userService;
         this.formControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required
             // Validators.email,
@@ -103,7 +104,10 @@ var ActivationModeAddDialogComponent = /** @class */ (function () {
     };
     ActivationModeAddDialogComponent.prototype.confirmAdd = function () {
         var _this = this;
-        this.actModeService.addActMode(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_ACTIVATION_MODE_ENDPOINT + 'add', this.data)
+        var userId = this.userService.currentUserId();
+        this.data.createdUserId = userId;
+        this.data.modifiedUserId = userId;
+        this.actModeService.addActMode(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_ACTIVATION_MODE_ENDPOINT, this.data)
             .subscribe(function (data) {
             _this.newActMode = data;
             _this.toastr.success("Activation mode suceessfully added.", "Succeeded");
@@ -119,7 +123,8 @@ var ActivationModeAddDialogComponent = /** @class */ (function () {
         }),
         __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_0__["MAT_DIALOG_DATA"])),
         __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogRef"], Object, _services__WEBPACK_IMPORTED_MODULE_2__["ActivationModeService"],
-            ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"]])
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"],
+            _services__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
     ], ActivationModeAddDialogComponent);
     return ActivationModeAddDialogComponent;
 }());
@@ -135,7 +140,7 @@ var ActivationModeAddDialogComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>Delete Confirmation</h3>\r\n    <div mat-dialog-content>\r\n      <p></p>\r\n      Would you like to delete {{data.actvationModeName}}\r\n      <p></p>\r\n    </div>\r\n  \r\n    <div mat-dialog-actions>\r\n      <button mat-button [mat-dialog-close]=\"1\" (click)=\"confirmDelete()\">Delete</button>\r\n      <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n    </div>\r\n  </div>\r\n  "
+module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>Delete Confirmation</h3>\r\n    <div mat-dialog-content>\r\n      <p></p>\r\n      Would you like to delete {{data.activationModeName}}\r\n      <p></p>\r\n    </div>\r\n  \r\n    <div mat-dialog-actions>\r\n      <button mat-button [mat-dialog-close]=\"1\" (click)=\"confirmDelete()\">Delete</button>\r\n      <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n    </div>\r\n  </div>\r\n  "
 
 /***/ }),
 
@@ -275,11 +280,12 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 var ActivationModeEditDialogComponent = /** @class */ (function () {
-    function ActivationModeEditDialogComponent(dialogRef, data, actModeService, toastr) {
+    function ActivationModeEditDialogComponent(dialogRef, data, actModeService, toastr, userService) {
         this.dialogRef = dialogRef;
         this.data = data;
         this.actModeService = actModeService;
         this.toastr = toastr;
+        this.userService = userService;
         this.formControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required
             // Validators.email,
@@ -298,6 +304,8 @@ var ActivationModeEditDialogComponent = /** @class */ (function () {
     };
     ActivationModeEditDialogComponent.prototype.stopEdit = function () {
         var _this = this;
+        var userId = this.userService.currentUserId();
+        this.data.modifiedUserId = userId;
         if (this.data.id < 1)
             return;
         this.actModeService.updateActMode(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_ACTIVATION_MODE_ENDPOINT + this.data.id, this.data)
@@ -316,7 +324,8 @@ var ActivationModeEditDialogComponent = /** @class */ (function () {
         }),
         __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_0__["MAT_DIALOG_DATA"])),
         __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogRef"], Object, _services__WEBPACK_IMPORTED_MODULE_4__["ActivationModeService"],
-            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"]])
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"],
+            _services__WEBPACK_IMPORTED_MODULE_4__["UserService"]])
     ], ActivationModeEditDialogComponent);
     return ActivationModeEditDialogComponent;
 }());
@@ -1788,6 +1797,154 @@ var EmitterService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/_services/evaluationoption.service.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/_services/evaluationoption.service.ts ***!
+  \*******************************************************/
+/*! exports provided: EvaluationOptionService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EvaluationOptionService", function() { return EvaluationOptionService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
+/* harmony import */ var rxjs_add_operator_catch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/add/operator/catch */ "./node_modules/rxjs-compat/_esm5/add/operator/catch.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/* * * ./app/comments/components/comment.service.ts * * */
+// Imports
+
+
+
+
+// Import RxJs required methods
+
+
+var EvaluationOptionService = /** @class */ (function () {
+    // Resolve HTTP using the constructor
+    function EvaluationOptionService(http) {
+        this.http = http;
+    }
+    EvaluationOptionService.prototype.getEvaluationOptions = function (url) {
+        var _this = this;
+        // ...using get request
+        return this.http.get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (evaluationOption) {
+            _this.evaluationOption = evaluationOption;
+            return _this.evaluationOption;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(this.handleError));
+    };
+    // custom handler
+    EvaluationOptionService.prototype.handleError = function (error) {
+        if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+        }
+        else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error("Backend returned code " + error.status + ", " +
+                ("body was: " + error.error));
+        }
+        // return an observable with a user-facing error message
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["throwError"])('Something bad happened; please try again later.' || 'Server error');
+    };
+    EvaluationOptionService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], EvaluationOptionService);
+    return EvaluationOptionService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_services/evaluatortype.service.ts":
+/*!****************************************************!*\
+  !*** ./src/app/_services/evaluatortype.service.ts ***!
+  \****************************************************/
+/*! exports provided: EvaluatorTypeService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EvaluatorTypeService", function() { return EvaluatorTypeService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
+/* harmony import */ var rxjs_add_operator_catch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/add/operator/catch */ "./node_modules/rxjs-compat/_esm5/add/operator/catch.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/* * * ./app/comments/components/comment.service.ts * * */
+// Imports
+
+
+
+
+// Import RxJs required methods
+
+
+var EvaluatorTypeService = /** @class */ (function () {
+    // Resolve HTTP using the constructor
+    function EvaluatorTypeService(http) {
+        this.http = http;
+    }
+    EvaluatorTypeService.prototype.getEvaluatorTypes = function (url) {
+        var _this = this;
+        // ...using get request
+        return this.http.get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (evaluatorType) {
+            _this.evaluatorType = evaluatorType;
+            return _this.evaluatorType;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(this.handleError));
+    };
+    // custom handler
+    EvaluatorTypeService.prototype.handleError = function (error) {
+        if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+        }
+        else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error("Backend returned code " + error.status + ", " +
+                ("body was: " + error.error));
+        }
+        // return an observable with a user-facing error message
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["throwError"])('Something bad happened; please try again later.' || 'Server error');
+    };
+    EvaluatorTypeService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], EvaluatorTypeService);
+    return EvaluatorTypeService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/_services/file.service.ts":
 /*!*******************************************!*\
   !*** ./src/app/_services/file.service.ts ***!
@@ -2015,11 +2172,203 @@ var HeritageService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/_services/heritageevaluation.service.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/_services/heritageevaluation.service.ts ***!
+  \*********************************************************/
+/*! exports provided: HeritageEvaluationService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeritageEvaluationService", function() { return HeritageEvaluationService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var httpOptions = {
+    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
+        'Content-Type': 'application/json'
+    })
+};
+var HeritageEvaluationService = /** @class */ (function () {
+    function HeritageEvaluationService(http) {
+        this.http = http;
+    }
+    HeritageEvaluationService.prototype.getAllHeritageEvaluations = function (url) {
+        var _this = this;
+        return this.http.get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (evaluations) {
+            _this.heritageEvaluations = evaluations;
+            return _this.heritageEvaluations;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    HeritageEvaluationService.prototype.getHeritageEvaluation = function (url) {
+        var _this = this;
+        return this.http.get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (evaluation) {
+            _this.heritageEvaluation = evaluation;
+            return _this.heritageEvaluation;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    HeritageEvaluationService.prototype.addHeritageEvaluation = function (url, evaluation) {
+        var _this = this;
+        return this.http.post(url, evaluation)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (resultEvaluation) {
+            _this.heritageEvaluation = resultEvaluation;
+            return _this.heritageEvaluation;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    HeritageEvaluationService.prototype.updateHeritageEvaluation = function (url, evaluation) {
+        var _this = this;
+        return this.http.put(url, evaluation) // ...using put request
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (resultEvaluation) {
+            _this.heritageEvaluation = resultEvaluation;
+            return _this.heritageEvaluation;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    HeritageEvaluationService.prototype.deleteHeritageEvaluation = function (url, id) {
+        return this.http.delete(url + id)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) {
+            return data;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    // custom handler
+    HeritageEvaluationService.prototype.handleError = function (error) {
+        if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+        }
+        else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error("Backend returned code " + error.status + ", " +
+                ("body was: " + error.error));
+        }
+        // return an observable with a user-facing error message
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])('Something bad happened; please try again later.');
+    };
+    HeritageEvaluationService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], HeritageEvaluationService);
+    return HeritageEvaluationService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_services/heritagegameanalysis.service.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/_services/heritagegameanalysis.service.ts ***!
+  \***********************************************************/
+/*! exports provided: HeritageGameAnalysisService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeritageGameAnalysisService", function() { return HeritageGameAnalysisService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var httpOptions = {
+    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
+        'Content-Type': 'application/json'
+    })
+};
+var HeritageGameAnalysisService = /** @class */ (function () {
+    function HeritageGameAnalysisService(http) {
+        this.http = http;
+    }
+    HeritageGameAnalysisService.prototype.getHeritageGameAnalysis = function (url) {
+        var _this = this;
+        return this.http.get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (gameAnalysis) {
+            _this.heritageGameAnalysis = gameAnalysis;
+            return _this.heritageGameAnalysis;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    HeritageGameAnalysisService.prototype.addHeritageGameAnalysis = function (url, gameAnalysis) {
+        var _this = this;
+        return this.http.post(url, gameAnalysis)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (resultGameAnalysis) {
+            _this.heritageGameAnalysis = resultGameAnalysis;
+            return _this.heritageGameAnalysis;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    HeritageGameAnalysisService.prototype.updateHeritageGameAnalysis = function (url, gameAnalysis) {
+        var _this = this;
+        return this.http.put(url, gameAnalysis) // ...using put request
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (resultGameAnalysis) {
+            _this.heritageGameAnalysis = resultGameAnalysis;
+            return _this.heritageGameAnalysis;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    HeritageGameAnalysisService.prototype.deleteHeritageGameAnalysis = function (url, id) {
+        return this.http.delete(url + id)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) {
+            return data;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
+    // custom handler
+    HeritageGameAnalysisService.prototype.handleError = function (error) {
+        if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+        }
+        else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error("Backend returned code " + error.status + ", " +
+                ("body was: " + error.error));
+        }
+        // return an observable with a user-facing error message
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["throwError"])('Something bad happened; please try again later.');
+    };
+    HeritageGameAnalysisService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], HeritageGameAnalysisService);
+    return HeritageGameAnalysisService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/_services/index.ts":
 /*!************************************!*\
   !*** ./src/app/_services/index.ts ***!
   \************************************/
-/*! exports provided: AlertService, AuthenticationService, UserService, HeritageService, FilesService, EmitterService, CommentService, ActivationModeService */
+/*! exports provided: AlertService, AuthenticationService, UserService, HeritageService, FilesService, EmitterService, CommentService, ActivationModeService, EvaluationOptionService, EvaluatorTypeService, HeritageEvaluationService, HeritageGameAnalysisService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2047,6 +2396,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _activationmode_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./activationmode.service */ "./src/app/_services/activationmode.service.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ActivationModeService", function() { return _activationmode_service__WEBPACK_IMPORTED_MODULE_7__["ActivationModeService"]; });
+
+/* harmony import */ var _evaluationoption_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./evaluationoption.service */ "./src/app/_services/evaluationoption.service.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EvaluationOptionService", function() { return _evaluationoption_service__WEBPACK_IMPORTED_MODULE_8__["EvaluationOptionService"]; });
+
+/* harmony import */ var _evaluatortype_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./evaluatortype.service */ "./src/app/_services/evaluatortype.service.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EvaluatorTypeService", function() { return _evaluatortype_service__WEBPACK_IMPORTED_MODULE_9__["EvaluatorTypeService"]; });
+
+/* harmony import */ var _heritageevaluation_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./heritageevaluation.service */ "./src/app/_services/heritageevaluation.service.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "HeritageEvaluationService", function() { return _heritageevaluation_service__WEBPACK_IMPORTED_MODULE_10__["HeritageEvaluationService"]; });
+
+/* harmony import */ var _heritagegameanalysis_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./heritagegameanalysis.service */ "./src/app/_services/heritagegameanalysis.service.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "HeritageGameAnalysisService", function() { return _heritagegameanalysis_service__WEBPACK_IMPORTED_MODULE_11__["HeritageGameAnalysisService"]; });
+
+
+
+
 
 
 
@@ -2238,7 +2603,11 @@ var Global = /** @class */ (function () {
     Global.BASE_HERITAGE_ENDPOINT = 'api/Heritage/';
     Global.BASE_FILE_ENDPOINT = 'api/File/';
     Global.BASE_HERITAGE_COMMENT_ENDPOINT = 'api/HeritageComment/';
-    Global.BASE_ACTIVATION_MODE_ENDPOINT = '';
+    Global.BASE_ACTIVATION_MODE_ENDPOINT = 'api/ActivationMode/';
+    Global.BASE_HERITAGE_GAME_ANALYSIS_ENDPOINT = 'api/HeritageGameAnalysis/';
+    Global.BASE_HERITAGE_EVALUATION_ENDPOINT = 'api/HeritageEvaluation/';
+    Global.BASE_EVALUATION_OPTION_ENDPOINT = 'api/EvaluationOption/';
+    Global.BASE_EVALUATOR_TYPE_ENDPOINT = 'api/EvaluatorType/';
     return Global;
 }());
 
@@ -2270,7 +2639,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"tblcontainer mat-elevation-z8\">\n\n  <div class=\"form\">\n    <mat-form-field floatPlaceholder=\"never\" color=\"accent\">\n      <input matInput #filter placeholder=\"Filter users\">\n    </mat-form-field>\n  </div>\n\n  <mat-table #table [dataSource]=\"dataSource\" matSort class=\"mat-cell\">\n\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- ID Column -->\n    <ng-container matColumnDef=\"id\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\" >{{row.id}}</mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"activationModeName\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Activation Mode Name</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.activationModeName}}</mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"upperBound\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Upper Bound</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.upperBound}}</mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"lowerBound\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Lower Bound</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.lowerBound}}</mat-cell>\n    </ng-container>\n    \n    <!-- actions -->\n    <ng-container matColumnDef=\"actions\">\n      <mat-header-cell *matHeaderCellDef>\n        <button mat-icon-button color=\"primary\" (click)=\"addNew()\">\n          <mat-icon aria-label=\"Example icon-button with a heart icon\">add</mat-icon>\n        </button>\n        <button mat-icon-button (click)=\"refresh()\">\n          <mat-icon>refresh</mat-icon>\n        </button>\n      </mat-header-cell>\n\n      <mat-cell *matCellDef=\"let row;\">\n        <button mat-icon-button color=\"accent\" (click)=\"startEdit(row.id, row.userName, row.firstName, row.lastName, row.isReadOnly, row.canComment, row.isContributer, row.isAdmin)\">\n          <mat-icon aria-label=\"Edit\">edit</mat-icon>\n        </button>\n\n        <button mat-icon-button color=\"accent\" (click)=\"deleteItem(row.id, row.userName, row.firstName, row.lastName, row.isReadOnly, row.canComment, row.isContributer, row.isAdmin)\">\n          <mat-icon aria-label=\"Delete\">delete</mat-icon>\n        </button>\n      </mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n  </mat-table>\n\n\n  <div class=\"no-results\" [style.display]=\"dataSource.renderedData.length == 0 ? '' : 'none'\">\n    No results\n  </div>\n\n  <mat-paginator #paginator\n                 [length]=\"dataSource.filteredData.length\"\n                 [pageIndex]=\"0\"\n                 [pageSize]=\"10\"\n                 [pageSizeOptions]=\"[5, 10, 25, 100]\">\n  </mat-paginator>\n</div>\n"
+module.exports = "<div class=\"tblcontainer mat-elevation-z8\">\n\n  <div class=\"form\">\n    <mat-form-field floatPlaceholder=\"never\" color=\"accent\">\n      <input matInput #filter placeholder=\"Filter activation mode\">\n    </mat-form-field>\n  </div>\n\n  <mat-table #table [dataSource]=\"dataSource\" matSort class=\"mat-cell\">\n\n    <!--- Note that these columns can be defined in any order.\n          The actual rendered columns are set as a property on the row definition\" -->\n\n    <!-- ID Column -->\n    <ng-container matColumnDef=\"id\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\" >{{row.id}}</mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"activationModeName\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Activation Mode Name</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.activationModeName}}</mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"upperBound\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Upper Bound</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.upperBound}}</mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"lowerBound\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Lower Bound</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.lowerBound}}</mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"activationModeDescription\">\n      <mat-header-cell *matHeaderCellDef mat-sort-header>Activation Mode Description</mat-header-cell>\n      <mat-cell *matCellDef=\"let row\"> {{row.activationModeDescription}}</mat-cell>\n    </ng-container>\n    \n    <!-- actions -->\n    <ng-container matColumnDef=\"actions\">\n      <mat-header-cell *matHeaderCellDef>\n        <button mat-icon-button color=\"primary\" (click)=\"addNew()\">\n          <mat-icon aria-label=\"Example icon-button with a heart icon\">add</mat-icon>\n        </button>\n        <button mat-icon-button (click)=\"refresh()\">\n          <mat-icon>refresh</mat-icon>\n        </button>\n      </mat-header-cell>\n\n      <mat-cell *matCellDef=\"let row;\">\n        <button mat-icon-button color=\"accent\" (click)=\"startEdit(row.id, row.activationModeName, row.upperBound, row.lowerBound, row.activationModeDescription)\">\n          <mat-icon aria-label=\"Edit\">edit</mat-icon>\n        </button>\n\n        <button mat-icon-button color=\"accent\" (click)=\"deleteItem(row.id, row.activationModeName, row.upperBound, row.lowerBound, row.activationModeDescription)\">\n          <mat-icon aria-label=\"Delete\">delete</mat-icon>\n        </button>\n      </mat-cell>\n    </ng-container>\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n  </mat-table>\n\n\n  <div class=\"no-results\" [style.display]=\"dataSource.renderedData.length == 0 ? '' : 'none'\">\n    No results\n  </div>\n\n  <mat-paginator #paginator\n                 [length]=\"dataSource.filteredData.length\"\n                 [pageIndex]=\"0\"\n                 [pageSize]=\"10\"\n                 [pageSizeOptions]=\"[5, 10, 25, 100]\">\n  </mat-paginator>\n</div>\n"
 
 /***/ }),
 
@@ -2360,30 +2729,30 @@ var ActivationModeListComponent = /** @class */ (function () {
             }
         });
     };
-    ActivationModeListComponent.prototype.startEdit = function (id, actModeName, upperBound, lowerBound) {
+    ActivationModeListComponent.prototype.startEdit = function (id, activationModeName, upperBound, lowerBound, activationModeDescription) {
         var _this = this;
         this.id = id;
         // index row is used just for debugging proposes and can be removed
         console.log(this.id);
         var dialogRef = this.dialog.open(_dialogs__WEBPACK_IMPORTED_MODULE_5__["ActivationModeEditDialogComponent"], {
-            data: { id: id, actModeName: actModeName, upperBound: upperBound, lowerBound: lowerBound }
+            data: { id: id, activationModeName: activationModeName, upperBound: upperBound, lowerBound: lowerBound, activationModeDescription: activationModeDescription }
         });
         dialogRef.afterClosed().subscribe(function (result) {
             if (result === 1) {
                 // When using an edit things are little different, firstly we find record inside DataService by id
                 var foundIndex = _this.actModeService.dataChange.value.findIndex(function (x) { return x.id === _this.id; });
                 // Then you update that record using data from dialogData (values you enetered)
-                //this.actModeService.dataChange.value[foundIndex] = dialogRef.componentInstance.user;
+                _this.actModeService.dataChange.value[foundIndex] = dialogRef.componentInstance.actMode;
                 // And lastly refresh table
                 _this.refreshTable();
             }
         });
     };
-    ActivationModeListComponent.prototype.deleteItem = function (id, actModeName, upperBound, lowerBound) {
+    ActivationModeListComponent.prototype.deleteItem = function (id, actModeName, upperBound, lowerBound, activationModeDescription) {
         var _this = this;
         this.id = id;
         var dialogRef = this.dialog.open(_dialogs__WEBPACK_IMPORTED_MODULE_5__["ActivationModeDeleteDialogComponent"], {
-            data: { id: id, actModeName: actModeName, upperBound: upperBound, lowerBound: lowerBound }
+            data: { id: id, activationModeName: actModeName, upperBound: upperBound, lowerBound: lowerBound, activationModeDescription: activationModeDescription }
         });
         dialogRef.afterClosed().subscribe(function (result) {
             if (result === 1) {
@@ -2490,7 +2859,7 @@ var ActModeDataSource = /** @class */ (function (_super) {
         return rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"].merge.apply(rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"], displayDataChanges).map(function () {
             // Filter data
             _this.filteredData = _this._actModeDataService.data.slice().filter(function (actMode) {
-                var searchStr = (actMode.id.toString() + actMode.activationModeName).toLowerCase();
+                var searchStr = (actMode.id + actMode.activationModeName).toLowerCase();
                 return searchStr.indexOf(_this.filter.toLowerCase()) !== -1;
             });
             // Sort filtered data
@@ -2947,6 +3316,10 @@ var AppModule = /** @class */ (function () {
                 _services__WEBPACK_IMPORTED_MODULE_11__["FilesService"],
                 _services__WEBPACK_IMPORTED_MODULE_11__["HeritageService"],
                 _services__WEBPACK_IMPORTED_MODULE_11__["ActivationModeService"],
+                _services__WEBPACK_IMPORTED_MODULE_11__["EvaluationOptionService"],
+                _services__WEBPACK_IMPORTED_MODULE_11__["EvaluatorTypeService"],
+                _services__WEBPACK_IMPORTED_MODULE_11__["HeritageEvaluationService"],
+                _services__WEBPACK_IMPORTED_MODULE_11__["HeritageGameAnalysisService"],
                 { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_14__["HTTP_INTERCEPTORS"], useClass: _helpers__WEBPACK_IMPORTED_MODULE_13__["JwtInterceptor"], multi: true },
                 { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_14__["HTTP_INTERCEPTORS"], useClass: _helpers__WEBPACK_IMPORTED_MODULE_13__["ErrorInterceptor"], multi: true },
             ],
@@ -3735,7 +4108,7 @@ var heritageActivationRoutes = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "  \n    <div class=\"basic-container\" *ngIf = \"heritage\">\n    \n      <mat-toolbar>\n        <span>Heritage Game Playing Analysis: {{ heritage.name }} </span>\n        <span class=\"spacer\"></span>\n        <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n      </mat-toolbar>\n\n      <form class=\"analysis-form\">\n        <mat-grid-list cols=\"10\" rowHeight=\"50px\">\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n            参数\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            参数值\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            路径i的取值\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n            对参数值的分析\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n              Ci\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"CiA\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i <= 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            与传承人单一开发相比，传承人选择合作开发时，由于可能实现规模化生产而降低产品开发成本。即一般应有：ciA>ciB\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"CiB\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i > 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n            Ii\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Ii\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=9,10,…16\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n            当传承人对非遗产品的评估价值较高时，与企业合作开发时可能会要求企业支付知识产权使用费。\n          </mat-grid-tile>      \n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            Pi\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"PiA\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i <= 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            与传承人单一开发相比，传承人选择合作开发时，由于有其他利益相关者的参与和支持，营销力度更大，宣传范围更广，因而更有可能采取高价策略，以高价售出非遗产品。即一般应有：piA < piB\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"PiB\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i > 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            Vi5\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Vi5A\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=1,2,5,6,9,10,13,14,17,18,21,22\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            当非遗产品开发获政府支持时，消费者出于对政府及其价值判断的信赖，对该非遗产品的价值认可度通常会更高。即一般应有：vi5A > vi5B\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Vi5B\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=3,4,7,8,11,12,15,16,19,20,23,24\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            Vi4\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Vi4A\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=1,2,3,4,9,10,11,12,17,18,19,20\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            当非遗产品开发能吸引专家参与时，政府出于对专家的专业水平的信任，对该非遗产品的价值认可度通常会更高。即一般应有：vi4A > vi4B\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Vi4B\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=5,6,7,8,13,14,15,16,21,22,23,24\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            Vi3\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Vi3A\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i <= 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            与传承人单一开发相比，当传承人选择合作开发模式时，专家更倾向于认为该非遗产品更有开发价值。即一般应有：vi3A < vi3B\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Vi3B\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i>8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n            Vi1\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"Vi1\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=1,2,…,24\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n            所有利益相关者中，传承人对非遗产品的情况最为了解，掌握的信息最为完全，因而其对非遗产品的价值判断一般也保持稳定\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            ai4\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"ai4\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=1,2,5,6,9,10,13,14,17,18,21,22\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            政府选择支持非遗产品开发时，政府分担开发成本的比例为ai4；不支持时，该比例为0\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"0\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=3,4,7,8,11,12,15,16,19,20,23,24\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            ai3\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"ai3\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=1,2,3,4,9,10,11,12,17,18,19,20\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            专家选择参与非遗产品开发时，专家分担开发成本的比例为ai3；不参与时，该比例为0\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"0\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=5,6,7,8,13,14,15,16,21,22,23,24\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            ai2\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"ai2\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=9,10,…,16\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            企业选择对非遗产品开发进行投资时，企业分担开发成本的比例为ai2；不投资时，该比例为0\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"0\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=1,2,…,8,17,18,…24\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n            ai1\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"1-(ai2+ai3+ai4)\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n            i=1,2,…,24\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n            其他利益相关者分担成本后的产品开发成本均由传承人来承担\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            bij (j!=1)\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"0\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i <= 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            在传承人单一开发模式下，其他利益相关者不能获得对产品销售收入的分成，即bij=0；在合作开发模式下，其他利益相关者对销售收入的分成比例与其成本分担比例基本一致，即bij=aij\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"aij\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i > 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n            bi1\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"1\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i <= 8\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            在传承人单一开发模式下，传承人可获得非遗产品的全部销售收入，即bi1=1；在合作开发模式下，传承人对销售收入的分成比例与其成本分担比例基本一致，即bi1=ai1\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n            <mat-form-field>\n              <input class=\"parameter-field\" matInput placeholder=\"ai1\" >\n            </mat-form-field>\n          </mat-grid-tile>\n          <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n              i > 8\n          </mat-grid-tile>         \n      </mat-grid-list>\n      </form>\n      <mat-card class=\"analysis-tree\">\n        <mat-card-header>          \n          <mat-card-title>Game Playing Analysis Tree </mat-card-title>\n          <mat-card-subtitle>Game Playing Analysis is performed here...</mat-card-subtitle>\n        </mat-card-header>\n        <mat-card-actions>\n          <button mat-button>Analysis</button>\n        </mat-card-actions>        \n        <mat-card-content>\n          <h3>Game Playing Analysis</h3>\n          <p-tree [value]=\"decisionTree\" layout=\"horizontal\" selectionMode=\"single\"></p-tree>\n        </mat-card-content>\n      </mat-card>\n    </div>\n\n  "
+module.exports = "<div class=\"basic-container\" *ngIf=\"heritage\">\n\n  <mat-toolbar>\n    <span>Heritage Game Playing Analysis: {{ heritage.name }} </span>\n    <span class=\"spacer\"></span>\n    <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n  </mat-toolbar>\n\n  <div *ngIf=\"heritageGameAnalysis\">\n\n    <form class=\"analysis-form\" (ngSubmit)=\"onSubmit()\" #heritageGameAnalysisForm=\"ngForm\" name=\"heritageGameAnalysis\">\n      <mat-grid-list cols=\"10\" rowHeight=\"50px\">\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n          参数\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          参数值\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          路径i的取值\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n          对参数值的分析\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          Ci\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"CiA\" [(ngModel)]=\"heritageGameAnalysis.ciA\" name=\"ciA\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            与传承人单一开发相比，传承人选择合作开发时，由于可能实现规模化生产而降低产品开发成本。即一般应有：ciA>ciB\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"CiB\" [(ngModel)]=\"heritageGameAnalysis.ciB\" name=\"ciB\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i > 8\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n          Ii\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Ii\" [(ngModel)]=\"heritageGameAnalysis.ii\" name=\"ii\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=9,10,…16\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n          当传承人对非遗产品的评估价值较高时，与企业合作开发时可能会要求企业支付知识产权使用费。\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          Pi\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"PiA\" [(ngModel)]=\"heritageGameAnalysis.piA\" name=\"piA\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            与传承人单一开发相比，传承人选择合作开发时，由于有其他利益相关者的参与和支持，营销力度更大，宣传范围更广，因而更有可能采取高价策略，以高价售出非遗产品。即一般应有：piA < piB </mat-grid-tile>\n              <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n              <mat-form-field>\n                <input class=\"parameter-field\" matInput placeholder=\"PiB\" [(ngModel)]=\"heritageGameAnalysis.piB\" name=\"piB\">\n              </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i > 8\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          Vi5\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi5A\" [(ngModel)]=\"heritageGameAnalysis.vi5A\" name=\"vi5A\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,5,6,9,10,13,14,17,18,21,22\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n          当非遗产品开发获政府支持时，消费者出于对政府及其价值判断的信赖，对该非遗产品的价值认可度通常会更高。即一般应有：vi5A > vi5B\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi5B\" [(ngModel)]=\"heritageGameAnalysis.vi5B\" name=\"vi5B\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=3,4,7,8,11,12,15,16,19,20,23,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          Vi4\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi4A\" [(ngModel)]=\"heritageGameAnalysis.vi4A\" name=\"vi4A\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,3,4,9,10,11,12,17,18,19,20\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n          当非遗产品开发能吸引专家参与时，政府出于对专家的专业水平的信任，对该非遗产品的价值认可度通常会更高。即一般应有：vi4A > vi4B\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi4B\" [(ngModel)]=\"heritageGameAnalysis.vi4B\" name=\"vi4B\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=5,6,7,8,13,14,15,16,21,22,23,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          Vi3\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi3A\" [(ngModel)]=\"heritageGameAnalysis.vi3A\" name=\"vi3A\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            与传承人单一开发相比，当传承人选择合作开发模式时，专家更倾向于认为该非遗产品更有开发价值。即一般应有：vi3A < vi3B </mat-grid-tile> <mat-grid-tile [colspan]=\"2\"\n              [rowspan]=\"1\">\n              <mat-form-field>\n                <input class=\"parameter-field\" matInput placeholder=\"Vi3B\" [(ngModel)]=\"heritageGameAnalysis.vi3B\" name=\"vi3B\">\n              </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i>8\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n          Vi1\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi1\" [(ngModel)]=\"heritageGameAnalysis.vi1\" name=\"vi1\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,…,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n          所有利益相关者中，传承人对非遗产品的情况最为了解，掌握的信息最为完全，因而其对非遗产品的价值判断一般也保持稳定\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          ai4\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"ai4\" [(ngModel)]=\"heritageGameAnalysis.ai4\" name=\"ai4\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,5,6,9,10,13,14,17,18,21,22\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n          政府选择支持非遗产品开发时，政府分担开发成本的比例为ai4；不支持时，该比例为0\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"0\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=3,4,7,8,11,12,15,16,19,20,23,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          ai3\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"ai3\" [(ngModel)]=\"heritageGameAnalysis.ai3\" name=\"ai3\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,3,4,9,10,11,12,17,18,19,20\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n          专家选择参与非遗产品开发时，专家分担开发成本的比例为ai3；不参与时，该比例为0\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"0\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=5,6,7,8,13,14,15,16,21,22,23,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          ai2\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"ai2\" [(ngModel)]=\"heritageGameAnalysis.ai2\" name=\"ai2\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=9,10,…,16\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n          企业选择对非遗产品开发进行投资时，企业分担开发成本的比例为ai2；不投资时，该比例为0\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"0\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,…,8,17,18,…24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n          ai1\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"1-(ai2+ai3+ai4)\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,…,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n          其他利益相关者分担成本后的产品开发成本均由传承人来承担\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          bij (j!=1)\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"0\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            在传承人单一开发模式下，其他利益相关者不能获得对产品销售收入的分成，即bij=0；在合作开发模式下，其他利益相关者对销售收入的分成比例与其成本分担比例基本一致，即bij=aij\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"aij\" [(ngModel)]=\"heritageGameAnalysis.aij\" name=\"aij\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i > 8\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          bi1\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"1\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            在传承人单一开发模式下，传承人可获得非遗产品的全部销售收入，即bi1=1；在合作开发模式下，传承人对销售收入的分成比例与其成本分担比例基本一致，即bi1=ai1\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"ai1\" [(ngModel)]=\"heritageGameAnalysis.ai1\" name=\"ai1\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i > 8\n        </mat-grid-tile>\n      </mat-grid-list>\n    </form>\n    <mat-card class=\"analysis-tree\">\n      <mat-card-header>\n        <mat-card-title>Game Playing Analysis Tree </mat-card-title>\n        <mat-card-subtitle>Game Playing Analysis is performed here...</mat-card-subtitle>\n      </mat-card-header>\n      <mat-card-actions>\n        <button mat-button>Analysis</button>\n      </mat-card-actions>\n      <mat-card-content>\n        <h3>Game Playing Analysis</h3>\n        <p-tree [value]=\"decisionTree\" layout=\"horizontal\" selectionMode=\"single\"></p-tree>\n      </mat-card-content>\n    </mat-card>\n\n  </div>\n</div>"
 
 /***/ }),
 
@@ -3764,8 +4137,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var primeng_tree__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primeng/tree */ "./node_modules/primeng/tree.js");
 /* harmony import */ var primeng_tree__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(primeng_tree__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_services */ "./src/app/_services/index.ts");
-/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../_shared */ "./src/app/_shared/index.ts");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../_services */ "./src/app/_services/index.ts");
+/* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../_shared */ "./src/app/_shared/index.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3780,10 +4154,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var HeritageAnalysisComponent = /** @class */ (function () {
-    function HeritageAnalysisComponent(route, heritageService) {
+    function HeritageAnalysisComponent(route, heritageService, heritageGameAnalysisService, userService, toastr) {
         this.route = route;
         this.heritageService = heritageService;
+        this.heritageGameAnalysisService = heritageGameAnalysisService;
+        this.userService = userService;
+        this.toastr = toastr;
     }
     HeritageAnalysisComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -3791,11 +4169,109 @@ var HeritageAnalysisComponent = /** @class */ (function () {
             _this.param = params['id'];
             // check if ID exists in route & call update or add methods accordingly
             if (_this.param && _this.param != null && _this.param != undefined) {
-                _this.heritageService.getHeritage(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_ENDPOINT + _this.param).subscribe(function (result) {
+                _this.heritageService.getHeritage(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_HERITAGE_ENDPOINT + _this.param).subscribe(function (result) {
                     _this.heritage = result;
+                    if (_this.heritage.heritageGameAnalysisId && _this.heritage.heritageGameAnalysisId != null && _this.heritage.heritageGameAnalysisId != undefined) {
+                        _this.heritageGameAnalysisService.getHeritageGameAnalysis(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_HERITAGE_GAME_ANALYSIS_ENDPOINT).subscribe(function (data) {
+                            _this.heritageGameAnalysis = data;
+                        });
+                    }
+                    else {
+                        _this.heritageGameAnalysis = {
+                            id: 0,
+                            heritageId: _this.heritage.id,
+                            ciA: 0.0,
+                            ciB: 0.0,
+                            ii: 0.0,
+                            piA: 0.0,
+                            piB: 0.0,
+                            vi5A: 0.0,
+                            vi5B: 0.0,
+                            vi4A: 0.0,
+                            vi4B: 0.0,
+                            vi3A: 0.0,
+                            vi3B: 0.0,
+                            vi1: 0.0,
+                            ai4: 0.0,
+                            ai3: 0.0,
+                            ai2: 0.0,
+                            aij: 0.0,
+                            ai1: 0.0,
+                            route1: '',
+                            route2: '',
+                            route3: '',
+                            route4: '',
+                            route5: '',
+                            route6: '',
+                            route7: '',
+                            route8: '',
+                            route9: '',
+                            route10: '',
+                            route11: '',
+                            route12: '',
+                            route13: '',
+                            route14: '',
+                            route15: '',
+                            route16: '',
+                            route17: '',
+                            route18: '',
+                            route19: '',
+                            route20: '',
+                            route21: '',
+                            route22: '',
+                            route23: '',
+                            route24: '',
+                            createdUserId: 0,
+                            createdUserName: '',
+                            createdOn: undefined,
+                            modifiedUserId: 0,
+                            modifiedUserName: '',
+                            modifiedOn: undefined
+                        };
+                    }
                 });
             }
         });
+        this.loadTree();
+    };
+    HeritageAnalysisComponent.prototype.onSubmit = function () {
+        var _this = this;
+        var userId = this.userService.currentUserId();
+        if (this.heritageGameAnalysis.id != 0) {
+            this.heritageGameAnalysis.modifiedUserId = userId;
+            this.heritageGameAnalysisService.updateHeritageGameAnalysis(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_HERITAGE_ENDPOINT + this.heritageGameAnalysis.id, this.heritageGameAnalysis)
+                .subscribe(function (data) {
+                _this.heritageGameAnalysis = data;
+                _this.showSuccess();
+            }, function (error) {
+                _this.showError();
+            });
+        }
+        else {
+            this.heritageGameAnalysis.createdUserId = userId;
+            this.heritageGameAnalysis.modifiedUserId = userId;
+            this.heritageGameAnalysisService.addHeritageGameAnalysis(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_HERITAGE_ENDPOINT, this.heritageGameAnalysis)
+                .subscribe(function (data) {
+                _this.heritageGameAnalysis = data;
+                _this.heritage.heritageGameAnalysisId = _this.heritageGameAnalysis.id;
+                _this.heritageService.updateHeritage(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_HERITAGE_ENDPOINT + _this.heritage.id, _this.heritage)
+                    .subscribe(function (result) {
+                    _this.heritage = result;
+                    _this.showSuccess();
+                });
+            }, function (error) {
+                _this.showError();
+            });
+        }
+    };
+    HeritageAnalysisComponent.prototype.showSuccess = function () {
+        this.toastr.success('Heritage Game Analysis Saved Successfully', 'Succeeded');
+    };
+    HeritageAnalysisComponent.prototype.showError = function () {
+        this.toastr.error('Failed to Save Heritage Game Analysis!', 'Failed');
+    };
+    HeritageAnalysisComponent.prototype.loadTree = function () {
+        var _this = this;
         this.decisionTree = [
             {
                 "label": "传承人",
@@ -3968,7 +4444,10 @@ var HeritageAnalysisComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./heritage-analysis.component.scss */ "./src/app/heritage-analysis/heritage-analysis.component.scss")]
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
-            _services__WEBPACK_IMPORTED_MODULE_3__["HeritageService"]])
+            _services__WEBPACK_IMPORTED_MODULE_4__["HeritageService"],
+            _services__WEBPACK_IMPORTED_MODULE_4__["HeritageGameAnalysisService"],
+            _services__WEBPACK_IMPORTED_MODULE_4__["UserService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"]])
     ], HeritageAnalysisComponent);
     return HeritageAnalysisComponent;
 }());
@@ -4106,6 +4585,9 @@ var HeritageDetailComponent = /** @class */ (function () {
                     tourismDevelopmentModel: '',
                     tourismBenefit: 0,
                     story: '',
+                    evaluationValue: 0,
+                    activatoinModeId: 0,
+                    heritageGameAnalysisId: 0,
                     createdUserId: 0,
                     createdUserName: '',
                     createdOn: undefined,
@@ -4216,7 +4698,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"basic-container\" *ngIf=\"heritage\">\n\n  <mat-toolbar>\n    <span>Tourism Evaluation: {{ heritage.name }} </span>\n    <span class=\"spacer\"></span>\n    <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n  </mat-toolbar>\n\n  <p-table [value]=\"evaluations\" [scrollable]=\"true\" selectionMode=\"single\" [(selection)]=\"selectedEvaluation\"\n    (onRowSelect)=\"onRowSelect($event)\" [paginator]=\"true\" [rows]=\"20\">\n    <ng-template pTemplate=\"caption\">\n      Heritage Evaluations\n    </ng-template>\n    <ng-template pTemplate=\"colgroup\" let-columns>\n      <colgroup>\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n      </colgroup>\n    </ng-template>\n    <ng-template pTemplate=\"header\">\n\n      <tr>\n        <th rowspan=\"2\">利益相关者身份</th>\n        <th rowspan=\"2\">非遗旅游价值</th>\n        <th rowspan=\"2\">认同感系数</th>\n        <th rowspan=\"2\">认知情况系数</th>\n        <th rowspan=\"2\">项目自身价值系数</th>\n        <th rowspan=\"2\">项目自身基本情况系数</th>\n        <th rowspan=\"2\">项目资源开发条件与现状系数</th>\n        <th colspan=\"3\">认同感</th>\n        <th colspan=\"4\">认知情况</th>\n        <th colspan=\"8\">项目自身价值</th>\n        <th colspan=\"6\">项目自身基本情况</th>\n        <th colspan=\"5\">项目资源开发条件与现状</th>\n      </tr>\n      <tr>\n        <th rowspan=\"1\">重要性</th>\n        <th rowspan=\"1\">民族自豪感</th>\n        <th rowspan=\"1\">政府保护的必要性</th>\n        <th rowspan=\"1\">资源特征</th>\n        <th rowspan=\"1\">技艺涉及范围</th>\n        <th rowspan=\"1\">技艺传承方式</th>\n        <th rowspan=\"1\">技艺传承难度</th>\n        <th rowspan=\"1\">艺术价值</th>\n        <th rowspan=\"1\">文化价值</th>\n        <th rowspan=\"1\">经济价值</th>\n        <th rowspan=\"1\">历史价值</th>\n        <th rowspan=\"1\">教育价值</th>\n        <th rowspan=\"1\">社会价值</th>\n        <th rowspan=\"1\">科学价值</th>\n        <th rowspan=\"1\">文化生态环境价值</th>\n        <th rowspan=\"1\">品质情况</th>\n        <th rowspan=\"1\">珍稀性</th>\n        <th rowspan=\"1\">原生态程度</th>\n        <th rowspan=\"1\">知名度</th>\n        <th rowspan=\"1\">个性</th>\n        <th rowspan=\"1\">时间跨度</th>\n        <th rowspan=\"1\">区域经济水平</th>\n        <th rowspan=\"1\">旅游市场情况</th>\n        <th rowspan=\"1\">资源开发基础</th>\n        <th rowspan=\"1\">资源开发现状</th>\n        <th rowspan=\"1\">企业介入可能性</th>\n      </tr>\n    </ng-template>\n\n    <ng-template pTemplate=\"body\" let-rowData>\n      <tr>\n        <td>{{rowData.a}}</td>\n        <td>{{rowData.b}}</td>\n        <td>{{rowData.c}}</td>\n        <td>{{rowData.d}}</td>\n        <td>{{rowData.e}}</td>\n        <td>{{rowData.f}}</td>\n        <td>{{rowData.g}}</td>\n        <td>{{rowData.h}}</td>\n        <td>{{rowData.i}}</td>\n        <td>{{rowData.j}}</td>\n        <td>{{rowData.k}}</td>\n        <td>{{rowData.l}}</td>\n        <td>{{rowData.m}}</td>\n        <td>{{rowData.n}}</td>\n        <td>{{rowData.o}}</td>\n        <td>{{rowData.p}}</td>\n        <td>{{rowData.q}}</td>\n        <td>{{rowData.r}}</td>\n        <td>{{rowData.s}}</td>\n        <td>{{rowData.t}}</td>\n        <td>{{rowData.u}}</td>\n        <td>{{rowData.v}}</td>\n        <td>{{rowData.w}}</td>\n        <td>{{rowData.x}}</td>\n        <td>{{rowData.y}}</td>\n        <td>{{rowData.z}}</td>\n        <td>{{rowData.a}}</td>\n        <td>{{rowData.b}}</td>\n        <td>{{rowData.c}}</td>\n        <td>{{rowData.d}}</td>\n        <td>{{rowData.e}}</td>\n        <td>{{rowData.f}}</td>\n        <td>{{rowData.g}}</td>\n      </tr>\n    </ng-template>\n\n    <ng-template pTemplate=\"summary\" let-rowData>\n      <div style=\"text-align:left\">\n        <button type=\"button\" pButton icon=\"fa fa-plus\" (click)=\"showDialogToAdd()\" label=\"Add\"></button>\n      </div>\n    </ng-template>\n\n    <!--\n      <ng-template pTemplate=\"footer\">\n          <tr>\n              <td colspan=\"3\">Totals</td>\n              <td>$506,202</td>\n              <td>$531,020</td>\n          </tr>\n      </ng-template>\n      -->\n  </p-table>\n\n  <p-dialog header=\"Heritage Evaluation\" appendTo=\"body\" [(visible)]=\"displayDialog\" [responsive]=\"true\" showEffect=\"fade\"\n    [modal]=\"true\" [width]=\"600\">\n    <div class=\"ui-g ui-fluid\" *ngIf=\"evaluation\">\n\n      <p-fieldset legend=\"旅游评估\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">利益相关者身份</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">认同感系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"vin\"  />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">认知情况系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"vin\"  />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">项目自身价值系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"vin\" />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">项目自身基本情况系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"vin\" />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">项目资源开发条件与现状系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"vin\" />\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"认同感\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">重要性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">民族自豪感</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">政府保护的必要性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"认知情况\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">资源特征</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">技艺涉及范围</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">技艺传承方式</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">技艺传承难度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"项目自身价值\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">艺术价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">文化价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">经济价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">历史价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">教育价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">社会价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">科学价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">文化生态环境价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"项目自身基本情况\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">品质情况</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">珍稀性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">原生态程度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">知名度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">个性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">时间跨度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"项目资源开发条件与现状\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">区域经济水平</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">旅游市场情况</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">资源开发基础</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">资源开发现状</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">企业介入可能性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n    </div>\n    <p-footer>\n      <div class=\"ui-dialog-buttonpane ui-helper-clearfix\">\n        <button type=\"button\" pButton icon=\"fa fa-close\" (click)=\"delete()\" label=\"Delete\"></button>\n        <button type=\"button\" pButton icon=\"fa fa-check\" (click)=\"save()\" label=\"Save\"></button>\n      </div>\n    </p-footer>\n  </p-dialog>\n\n\n</div>"
+module.exports = "<div class=\"basic-container\" *ngIf=\"heritage\">\n\n  <mat-toolbar>\n    <span>Tourism Evaluation: {{ heritage.name }} </span>\n    <span class=\"spacer\"></span>\n    <button mat-button class=\"form-save\">Calculate and Save</button>\n    <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n  </mat-toolbar>\n\n  <p-table [value]=\"evaluations\" [scrollable]=\"true\" selectionMode=\"single\" [(selection)]=\"selectedEvaluation\"\n    (onRowSelect)=\"onRowSelect($event)\" [paginator]=\"true\" [rows]=\"20\">\n    <ng-template pTemplate=\"caption\">\n      Heritage Evaluations\n    </ng-template>\n    <ng-template pTemplate=\"colgroup\" let-columns>\n      <colgroup>\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n      </colgroup>\n    </ng-template>\n    <ng-template pTemplate=\"header\">\n\n      <tr>\n        <th rowspan=\"2\">利益相关者身份</th>\n        <th rowspan=\"2\">非遗旅游价值</th>\n        <th rowspan=\"2\">认同感系数</th>\n        <th rowspan=\"2\">认知情况系数</th>\n        <th rowspan=\"2\">项目自身价值系数</th>\n        <th rowspan=\"2\">项目自身基本情况系数</th>\n        <th rowspan=\"2\">项目资源开发条件与现状系数</th>\n        <th colspan=\"3\">认同感</th>\n        <th colspan=\"4\">认知情况</th>\n        <th colspan=\"8\">项目自身价值</th>\n        <th colspan=\"6\">项目自身基本情况</th>\n        <th colspan=\"5\">项目资源开发条件与现状</th>\n      </tr>\n      <tr>\n        <th rowspan=\"1\">重要性</th>\n        <th rowspan=\"1\">民族自豪感</th>\n        <th rowspan=\"1\">政府保护的必要性</th>\n        <th rowspan=\"1\">资源特征</th>\n        <th rowspan=\"1\">技艺涉及范围</th>\n        <th rowspan=\"1\">技艺传承方式</th>\n        <th rowspan=\"1\">技艺传承难度</th>\n        <th rowspan=\"1\">艺术价值</th>\n        <th rowspan=\"1\">文化价值</th>\n        <th rowspan=\"1\">经济价值</th>\n        <th rowspan=\"1\">历史价值</th>\n        <th rowspan=\"1\">教育价值</th>\n        <th rowspan=\"1\">社会价值</th>\n        <th rowspan=\"1\">科学价值</th>\n        <th rowspan=\"1\">文化生态环境价值</th>\n        <th rowspan=\"1\">品质情况</th>\n        <th rowspan=\"1\">珍稀性</th>\n        <th rowspan=\"1\">原生态程度</th>\n        <th rowspan=\"1\">知名度</th>\n        <th rowspan=\"1\">个性</th>\n        <th rowspan=\"1\">时间跨度</th>\n        <th rowspan=\"1\">区域经济水平</th>\n        <th rowspan=\"1\">旅游市场情况</th>\n        <th rowspan=\"1\">资源开发基础</th>\n        <th rowspan=\"1\">资源开发现状</th>\n        <th rowspan=\"1\">企业介入可能性</th>\n      </tr>\n    </ng-template>\n\n    <ng-template pTemplate=\"body\" let-rowData>\n      <tr>\n        <td>{{rowData.a}}</td>\n        <td>{{rowData.b}}</td>\n        <td>{{rowData.c}}</td>\n        <td>{{rowData.d}}</td>\n        <td>{{rowData.e}}</td>\n        <td>{{rowData.f}}</td>\n        <td>{{rowData.g}}</td>\n        <td>{{rowData.h}}</td>\n        <td>{{rowData.i}}</td>\n        <td>{{rowData.j}}</td>\n        <td>{{rowData.k}}</td>\n        <td>{{rowData.l}}</td>\n        <td>{{rowData.m}}</td>\n        <td>{{rowData.n}}</td>\n        <td>{{rowData.o}}</td>\n        <td>{{rowData.p}}</td>\n        <td>{{rowData.q}}</td>\n        <td>{{rowData.r}}</td>\n        <td>{{rowData.s}}</td>\n        <td>{{rowData.t}}</td>\n        <td>{{rowData.u}}</td>\n        <td>{{rowData.v}}</td>\n        <td>{{rowData.w}}</td>\n        <td>{{rowData.x}}</td>\n        <td>{{rowData.y}}</td>\n        <td>{{rowData.z}}</td>\n        <td>{{rowData.a}}</td>\n        <td>{{rowData.b}}</td>\n        <td>{{rowData.c}}</td>\n        <td>{{rowData.d}}</td>\n        <td>{{rowData.e}}</td>\n        <td>{{rowData.f}}</td>\n        <td>{{rowData.g}}</td>\n      </tr>\n    </ng-template>\n\n    <ng-template pTemplate=\"summary\" let-rowData>\n      <div style=\"text-align:left\">\n        <button type=\"button\" pButton icon=\"fa fa-plus\" (click)=\"showDialogToAdd()\" label=\"Add\"></button>\n      </div>\n    </ng-template>\n\n    <!--\n      <ng-template pTemplate=\"footer\">\n          <tr>\n              <td colspan=\"3\">Totals</td>\n              <td>$506,202</td>\n              <td>$531,020</td>\n          </tr>\n      </ng-template>\n      -->\n  </p-table>\n\n  <p-dialog header=\"Heritage Evaluation\" appendTo=\"body\" [(visible)]=\"displayDialog\" [responsive]=\"true\" showEffect=\"fade\"\n    [modal]=\"true\" [width]=\"600\">\n    <div class=\"ui-g ui-fluid\" *ngIf=\"evaluation\">\n\n      <p-fieldset legend=\"旅游评估\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">利益相关者身份</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">认同感系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"vin\"  />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">认知情况系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"vin\"  />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">项目自身价值系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"vin\" />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">项目自身基本情况系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"vin\" />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">项目资源开发条件与现状系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"vin\" />\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"认同感\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">重要性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">民族自豪感</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">政府保护的必要性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"认知情况\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">资源特征</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">技艺涉及范围</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">技艺传承方式</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">技艺传承难度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"项目自身价值\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">艺术价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">文化价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">经济价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">历史价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">教育价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">社会价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">科学价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">文化生态环境价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"项目自身基本情况\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">品质情况</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">珍稀性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">原生态程度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">知名度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">个性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">时间跨度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"项目资源开发条件与现状\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">区域经济水平</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">旅游市场情况</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">资源开发基础</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">资源开发现状</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">企业介入可能性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableoptions\" [(ngModel)]=\"selectedOption\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n    </div>\n    <p-footer>\n      <div class=\"ui-dialog-buttonpane ui-helper-clearfix\">\n        <button type=\"button\" pButton icon=\"fa fa-close\" (click)=\"delete()\" label=\"Delete\"></button>\n        <button type=\"button\" pButton icon=\"fa fa-check\" (click)=\"save()\" label=\"Save\"></button>\n      </div>\n    </p-footer>\n  </p-dialog>\n\n\n</div>"
 
 /***/ }),
 
@@ -4259,37 +4741,32 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var HeritageEvaluationComponent = /** @class */ (function () {
-    function HeritageEvaluationComponent(route, heritageService) {
+    function HeritageEvaluationComponent(route, heritageService, userService, heritageEvaluationService, evaluationOptionService, evaluatorTypeSerice) {
         this.route = route;
         this.heritageService = heritageService;
-        this.evaluation = { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' };
+        this.userService = userService;
+        this.heritageEvaluationService = heritageEvaluationService;
+        this.evaluationOptionService = evaluationOptionService;
+        this.evaluatorTypeSerice = evaluatorTypeSerice;
+        this.evaluation = { a: '1', b: '', c: '', d: '', e: '', f: '', g: '', h: '1', i: '1', j: '1', k: '1', l: '1', m: '1', n: '1', o: '1', p: '1', q: '1', r: '1', s: '1', t: '1', u: '1', v: '1', w: '1', x: '1', y: '1', z: '1', aa: '1', bb: '1', cc: '1', dd: '1', ee: '1', ff: '1', gg: '1' };
     }
     HeritageEvaluationComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.populateEvaluationOptions();
+        this.populateEvaluatorTypes();
         this.route.params.subscribe(function (params) {
             _this.param = params['id'];
             // check if ID exists in route & call update or add methods accordingly
             if (_this.param && _this.param != null && _this.param != undefined) {
                 _this.heritageService.getHeritage(_shared__WEBPACK_IMPORTED_MODULE_3__["Global"].BASE_HERITAGE_ENDPOINT + _this.param).subscribe(function (result) {
                     _this.heritage = result;
+                    _this.heritageEvaluationService.getAllHeritageEvaluations(_shared__WEBPACK_IMPORTED_MODULE_3__["Global"].BASE_HERITAGE_EVALUATION_ENDPOINT)
+                        .subscribe(function (evals) {
+                        _this.evaluations = evals;
+                    });
                 });
             }
         });
-        this.availableoptions = [
-            { label: '不同意', value: { id: "1", name: "不同意" } },
-            { label: '不太同意', value: { id: "2", name: "不太同意" } },
-            { label: '介于中间', value: { id: "3", name: "介于中间" } },
-            { label: '比较同意', value: { id: "4", name: "比较同意" } },
-            { label: '非常同意', value: { id: "5", name: "非常同意" } }
-        ];
-        this.evaluations = [
-            { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' },
-            { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' },
-            { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' },
-            { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' },
-            { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' },
-            { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' }
-        ];
     };
     HeritageEvaluationComponent.prototype.showDialogToAdd = function () {
         this.newEvaluation = true;
@@ -4304,15 +4781,37 @@ var HeritageEvaluationComponent = /** @class */ (function () {
     };
     HeritageEvaluationComponent.prototype.onRowSelect = function (event) {
         this.newEvaluation = false;
-        this.evaluation = this.cloneCar(event.data);
+        this.evaluation = this.cloneEvaluation(event.data);
         this.displayDialog = true;
     };
-    HeritageEvaluationComponent.prototype.cloneCar = function (c) {
+    HeritageEvaluationComponent.prototype.cloneEvaluation = function (c) {
         var evaluation = { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' };
         for (var prop in c) {
             evaluation[prop] = c[prop];
         }
         return evaluation;
+    };
+    HeritageEvaluationComponent.prototype.populateEvaluationOptions = function () {
+        var _this = this;
+        this.availableEvalOptions = [];
+        this.evaluationOptionService.getEvaluationOptions(_shared__WEBPACK_IMPORTED_MODULE_3__["Global"].BASE_EVALUATION_OPTION_ENDPOINT)
+            .subscribe(function (data) {
+            var options = data;
+            for (var i = 0; i < options.length; i++) {
+                _this.availableEvalOptions.push({ label: options[i].option, value: options[i] });
+            }
+        });
+    };
+    HeritageEvaluationComponent.prototype.populateEvaluatorTypes = function () {
+        var _this = this;
+        this.availableEvalTypes = [];
+        this.evaluatorTypeSerice.getEvaluatorTypes(_shared__WEBPACK_IMPORTED_MODULE_3__["Global"].BASE_EVALUATOR_TYPE_ENDPOINT)
+            .subscribe(function (result) {
+            var types = result;
+            for (var j = 0; j < types.length; j++) {
+                _this.availableEvalTypes.push({ label: types[j].type, value: types[j] });
+            }
+        });
     };
     HeritageEvaluationComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -4321,7 +4820,11 @@ var HeritageEvaluationComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./heritage-evaluation.component.scss */ "./src/app/heritage-evaluation/heritage-evaluation.component.scss")]
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
-            _services__WEBPACK_IMPORTED_MODULE_2__["HeritageService"]])
+            _services__WEBPACK_IMPORTED_MODULE_2__["HeritageService"],
+            _services__WEBPACK_IMPORTED_MODULE_2__["UserService"],
+            _services__WEBPACK_IMPORTED_MODULE_2__["HeritageEvaluationService"],
+            _services__WEBPACK_IMPORTED_MODULE_2__["EvaluationOptionService"],
+            _services__WEBPACK_IMPORTED_MODULE_2__["EvaluatorTypeService"]])
     ], HeritageEvaluationComponent);
     return HeritageEvaluationComponent;
 }());
@@ -4600,8 +5103,8 @@ var HeritageDataSource = /** @class */ (function (_super) {
         this._heritageService.getAllHeritage(_shared__WEBPACK_IMPORTED_MODULE_13__["Global"].BASE_HERITAGE_ENDPOINT + 'getAllHeritage');
         return rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"].merge.apply(rxjs_Observable__WEBPACK_IMPORTED_MODULE_4__["Observable"], displayDataChanges).map(function () {
             // Filter data
-            _this.filteredData = _this._heritageService.data.slice().filter(function (heirtage) {
-                var searchStr = (heirtage.id + heirtage.name + heirtage.registrationDistrict + heirtage.registrationYear).toLowerCase();
+            _this.filteredData = _this._heritageService.data.slice().filter(function (heritage) {
+                var searchStr = (heritage.id + heritage.name + heritage.registrationDistrict + heritage.registrationYear).toLowerCase();
                 return searchStr.indexOf(_this.filter.toLowerCase()) !== -1;
             });
             // Sort filtered data
@@ -4708,7 +5211,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>\n  <span>Heritage Tourism Research Home: {{ heritage.name }} </span>\n  <span class=\"spacer\"></span>\n  <button type=\"button\" mat-button class=\"form-save\" routerLink=\"/heritagelist\">Back</button>\n</mat-toolbar>\n\n<div class=\"container\">\n  <!-- Example row of columns -->\n  <div class=\"row\">\n    <div class=\"col-md-4\">\n      <h2>Heritage Tourism Evaluation</h2>\n      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n      <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritageevaluation', heritage.id]\" role=\"button\">Tourism Evaluation &raquo;</a></p>\n    </div>\n    <div class=\"col-md-4\">\n      <h2>Heritage Game Playing Analyse</h2>\n      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n      <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritageanalysis', heritage.id]\" role=\"button\">Game Playing Analyse &raquo;</a></p>\n   </div>\n    <div class=\"col-md-4\">\n      <h2>Heritage Tourism Activation Mode</h2>\n      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>\n      <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritageeactivation', heritage.id]\" role=\"button\">Tourism Activation Mode &raquo;</a></p>\n    </div>\n  </div>\n \n</div> <!-- /container -->\n"
+module.exports = "<div class=\"basic-container\" *ngIf=\"heritage\">\n\n  <mat-toolbar>\n    <span>Heritage Tourism Research Home: {{ heritage.name }} </span>\n    <span class=\"spacer\"></span>\n    <button type=\"button\" mat-button class=\"form-save\" routerLink=\"/heritagelist\">Back</button>\n  </mat-toolbar>\n\n  <div class=\"container\">\n    <!-- Example row of columns -->\n    <div class=\"row\">\n      <div class=\"col-md-4\">\n        <h2>Heritage Tourism Evaluation</h2>\n        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris\n          condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.\n          Donec sed odio dui. </p>\n        <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritageevaluation', heritage.id]\" role=\"button\">Tourism\n            Evaluation &raquo;</a></p>\n      </div>\n      <div class=\"col-md-4\">\n        <h2>Heritage Game Playing Analyse</h2>\n        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris\n          condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.\n          Donec sed odio dui. </p>\n        <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritageanalysis', heritage.id]\" role=\"button\">Game Playing\n            Analyse &raquo;</a></p>\n      </div>\n      <div class=\"col-md-4\">\n        <h2>Heritage Tourism Activation Mode</h2>\n        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta\n          felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum\n          massa justo sit amet risus.</p>\n        <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritageeactivation', heritage.id]\" role=\"button\">Tourism\n            Activation Mode &raquo;</a></p>\n      </div>\n    </div>\n\n  </div> <!-- /container -->\n\n</div>"
 
 /***/ }),
 
@@ -4719,7 +5222,7 @@ module.exports = "<mat-toolbar>\n  <span>Heritage Tourism Research Home: {{ heri
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".spacer {\n  flex: 1 1 auto; }\n\n.example-headers-align .mat-expansion-panel-header-title,\n.example-headers-align .mat-expansion-panel-header-description {\n  flex-basis: 0; }\n\n.example-headers-align .mat-expansion-panel-header-description {\n  justify-content: space-between;\n  align-items: center; }\n"
+module.exports = ".spacer {\n  flex: 1 1 auto; }\n\n.example-headers-align .mat-expansion-panel-header-title,\n.example-headers-align .mat-expansion-panel-header-description {\n  flex-basis: 0; }\n\n.example-headers-align .mat-expansion-panel-header-description {\n  justify-content: space-between;\n  align-items: center; }\n\n.basic-container {\n  padding-left: 15%;\n  padding-right: 15%;\n  padding-top: 1%;\n  padding-bottom: 2%; }\n"
 
 /***/ }),
 

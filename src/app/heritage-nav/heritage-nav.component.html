@@ -1,27 +1,40 @@
-<mat-toolbar>
-  <span>Heritage Tourism Research Home: {{ heritage.name }} </span>
-  <span class="spacer"></span>
-  <button type="button" mat-button class="form-save" routerLink="/heritagelist">Back</button>
-</mat-toolbar>
+<div class="basic-container" *ngIf="heritage">
 
-<div class="container">
-  <!-- Example row of columns -->
-  <div class="row">
-    <div class="col-md-4">
-      <h2>Heritage Tourism Evaluation</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-secondary" [routerLink]="['/heritageevaluation', heritage.id]" role="button">Tourism Evaluation &raquo;</a></p>
+  <mat-toolbar>
+    <span>Heritage Tourism Research Home: {{ heritage.name }} </span>
+    <span class="spacer"></span>
+    <button type="button" mat-button class="form-save" routerLink="/heritagelist">Back</button>
+  </mat-toolbar>
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Heritage Tourism Evaluation</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+          condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
+          Donec sed odio dui. </p>
+        <p><a class="btn btn-secondary" [routerLink]="['/heritageevaluation', heritage.id]" role="button">Tourism
+            Evaluation &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>Heritage Game Playing Analyse</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+          condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
+          Donec sed odio dui. </p>
+        <p><a class="btn btn-secondary" [routerLink]="['/heritageanalysis', heritage.id]" role="button">Game Playing
+            Analyse &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>Heritage Tourism Activation Mode</h2>
+        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta
+          felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+          massa justo sit amet risus.</p>
+        <p><a class="btn btn-secondary" [routerLink]="['/heritageeactivation', heritage.id]" role="button">Tourism
+            Activation Mode &raquo;</a></p>
+      </div>
     </div>
-    <div class="col-md-4">
-      <h2>Heritage Game Playing Analyse</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-secondary" [routerLink]="['/heritageanalysis', heritage.id]" role="button">Game Playing Analyse &raquo;</a></p>
-   </div>
-    <div class="col-md-4">
-      <h2>Heritage Tourism Activation Mode</h2>
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-      <p><a class="btn btn-secondary" [routerLink]="['/heritageeactivation', heritage.id]" role="button">Tourism Activation Mode &raquo;</a></p>
-    </div>
-  </div>
- 
-</div> <!-- /container -->
+
+  </div> <!-- /container -->
+
+</div>

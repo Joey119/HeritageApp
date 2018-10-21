@@ -1,6 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Component, Inject } from '@angular/core';
-import { ActivationModeService } from '../../_services';
+import { ActivationModeService, UserService } from '../../_services';
 import { FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { IActivationMode } from '../../_models';
@@ -19,7 +19,8 @@ export class ActivationModeAddDialogComponent {
   constructor(public dialogRef: MatDialogRef<ActivationModeAddDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: IActivationMode,
               public actModeService: ActivationModeService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private userService: UserService) { }
 
   formControl = new FormControl('', [
     Validators.required
@@ -41,7 +42,10 @@ export class ActivationModeAddDialogComponent {
   }
 
   public confirmAdd(): void {
-    this.actModeService.addActMode(Global.BASE_ACTIVATION_MODE_ENDPOINT + 'add', this.data)
+    var userId = this.userService.currentUserId();
+    this.data.createdUserId = userId;
+    this.data.modifiedUserId = userId;
+    this.actModeService.addActMode(Global.BASE_ACTIVATION_MODE_ENDPOINT, this.data)
     .subscribe(
       data => {
           this.newActMode = data;

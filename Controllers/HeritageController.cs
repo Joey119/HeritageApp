@@ -80,6 +80,7 @@ namespace HeritageApp.Controllers
 
             _context.Heritages.Add(heritage);
             _context.SaveChanges();
+            item = _mapper.Map<HeritageDto>(heritage);
             return Ok(item);
         }
 
@@ -123,6 +124,7 @@ namespace HeritageApp.Controllers
             heritage.ModifiedOn = DateTime.Now;    
                
             _context.SaveChanges();
+            item = _mapper.Map<HeritageDto>(heritage);
             return Ok(item);
         }
 

@@ -144,8 +144,9 @@ namespace HeritageApp.Controllers
             try 
             {
                 // save 
-                _userService.Update(user, userDto.Password);
-                return Ok(userDto);
+                var newUser = _userService.Update(user, userDto.Password);
+                var newUserDto = _mapper.Map<UserDto>(newUser);
+                return Ok(newUserDto);
             } 
             catch(AppException ex)
             {

@@ -83,6 +83,7 @@ namespace HeritageApp.Controllers
             heritageGameAnalysis.ModifiedOn = DateTime.Now;
             _context.HeritageGameAnalyses.Add(heritageGameAnalysis);
             _context.SaveChanges();
+            item = _mapper.Map<HeritageGameAnalysisDto>(heritageGameAnalysis);
             return Ok(item);
         }
 
@@ -153,6 +154,7 @@ namespace HeritageApp.Controllers
             heritageGameAnalysis.ModifiedOn = DateTime.Now;
                
             _context.SaveChanges();
+            item = _mapper.Map<HeritageGameAnalysisDto>(heritageGameAnalysis);
             return Ok(item);
         }
 

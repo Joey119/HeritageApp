@@ -45,7 +45,7 @@ namespace HeritageApp.Models.Database
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime ModifiedOn { get; set; }
-        public List<HeritageComment> HeirtageComments { get; set; }
+        public List<HeritageComment> HeritageComments { get; set; }
         public List<FileUpload> FileUploads { get; set; }
         public List<HeritageEvaluation> HeritageEvaluations { get; set; }
         public ActivationMode ActMode { get; set; }

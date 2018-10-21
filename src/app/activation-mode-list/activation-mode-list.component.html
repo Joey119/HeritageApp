@@ -2,7 +2,7 @@
 
   <div class="form">
     <mat-form-field floatPlaceholder="never" color="accent">
-      <input matInput #filter placeholder="Filter users">
+      <input matInput #filter placeholder="Filter activation mode">
     </mat-form-field>
   </div>
 
@@ -31,6 +31,11 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Lower Bound</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.lowerBound}}</mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="activationModeDescription">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Activation Mode Description</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.activationModeDescription}}</mat-cell>
+    </ng-container>
     
     <!-- actions -->
     <ng-container matColumnDef="actions">
@@ -44,11 +49,11 @@
       </mat-header-cell>
 
       <mat-cell *matCellDef="let row;">
-        <button mat-icon-button color="accent" (click)="startEdit(row.id, row.userName, row.firstName, row.lastName, row.isReadOnly, row.canComment, row.isContributer, row.isAdmin)">
+        <button mat-icon-button color="accent" (click)="startEdit(row.id, row.activationModeName, row.upperBound, row.lowerBound, row.activationModeDescription)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
-        <button mat-icon-button color="accent" (click)="deleteItem(row.id, row.userName, row.firstName, row.lastName, row.isReadOnly, row.canComment, row.isContributer, row.isAdmin)">
+        <button mat-icon-button color="accent" (click)="deleteItem(row.id, row.activationModeName, row.upperBound, row.lowerBound, row.activationModeDescription)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>

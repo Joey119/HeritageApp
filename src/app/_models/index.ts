@@ -4,3 +4,7 @@ export * from './heritage';
 export * from './systemFile';
 export * from './comment';
 export * from './activationMode';
+export * from './evaluationOption';
+export * from './evaluatorType';
+export * from './heritageEvaluation';
+export * from './heritageGameAnalysis';

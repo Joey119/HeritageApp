@@ -55,12 +55,12 @@ export class ActivationModeListComponent implements OnInit {
     });
   }
 
-  startEdit(id: number, actModeName: string, upperBound: number, lowerBound: number) {
+  startEdit(id: number, activationModeName: string, upperBound: number, lowerBound: number, activationModeDescription: string) {
     this.id = id;
     // index row is used just for debugging proposes and can be removed
     console.log(this.id);
     const dialogRef = this.dialog.open(ActivationModeEditDialogComponent, {
-      data: { id: id, actModeName: actModeName, upperBound: upperBound, lowerBound: lowerBound }
+      data: { id: id, activationModeName: activationModeName, upperBound: upperBound, lowerBound: lowerBound, activationModeDescription: activationModeDescription }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -68,17 +68,17 @@ export class ActivationModeListComponent implements OnInit {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.actModeService.dataChange.value.findIndex(x => x.id === this.id);
         // Then you update that record using data from dialogData (values you enetered)
-        //this.actModeService.dataChange.value[foundIndex] = dialogRef.componentInstance.user;
+        this.actModeService.dataChange.value[foundIndex] = dialogRef.componentInstance.actMode;
         // And lastly refresh table
         this.refreshTable();
       }
     });
   }
 
-  deleteItem(id: number, actModeName: string, upperBound: number, lowerBound: number) {
+  deleteItem(id: number, actModeName: string, upperBound: number, lowerBound: number, activationModeDescription: string) {
     this.id = id;
     const dialogRef = this.dialog.open(ActivationModeDeleteDialogComponent, {
-      data: { id: id, actModeName: actModeName, upperBound: upperBound, lowerBound: lowerBound }
+      data: { id: id, activationModeName: actModeName, upperBound: upperBound, lowerBound: lowerBound, activationModeDescription: activationModeDescription }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -164,7 +164,7 @@ export class ActModeDataSource extends DataSource<IActivationMode> {
     return Observable.merge(...displayDataChanges).map(() => {
       // Filter data
       this.filteredData = this._actModeDataService.data.slice().filter((actMode: IActivationMode) => {
-        const searchStr = (actMode.id.toString() + actMode.activationModeName).toLowerCase();
+        const searchStr = (actMode.id + actMode.activationModeName).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 

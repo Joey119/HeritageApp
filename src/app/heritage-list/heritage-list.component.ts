@@ -159,8 +159,8 @@ export class HeritageDataSource extends DataSource<IHeritage> {
 
     return Observable.merge(...displayDataChanges).map(() => {
       // Filter data
-      this.filteredData = this._heritageService.data.slice().filter((heirtage: IHeritage) => {
-        const searchStr = (heirtage.id + heirtage.name + heirtage.registrationDistrict + heirtage.registrationYear).toLowerCase();
+      this.filteredData = this._heritageService.data.slice().filter((heritage: IHeritage) => {
+        const searchStr = (heritage.id + heritage.name + heritage.registrationDistrict + heritage.registrationYear).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 

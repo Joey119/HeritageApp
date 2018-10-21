@@ -106,6 +106,7 @@ namespace HeritageApp.Controllers
             heritageEvaluation.ModifiedOn = DateTime.Now;
             _context.HeritageEvaluations.Add(heritageEvaluation);
             _context.SaveChanges();
+            item = _mapper.Map<HeritageEvaluationDto>(heritageEvaluation);
             return Ok(item);
         }
 
@@ -167,6 +168,7 @@ namespace HeritageApp.Controllers
             heritageEvaluation.ModifiedOn = DateTime.Now;
                
             _context.SaveChanges();
+            item = _mapper.Map<HeritageEvaluationDto>(heritageEvaluation);
             return Ok(item);
         }
 

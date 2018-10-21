@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { IHeritage } from '../_models';
 import { HeritageService, UserService } from '../_services';
@@ -14,7 +14,7 @@ import { Global } from '../_shared';
 export class HeritageDetailComponent implements OnInit {
 
   heritage: IHeritage;
-  param:any;
+  param: any;
 
   step = 0;
 
@@ -37,7 +37,7 @@ export class HeritageDetailComponent implements OnInit {
     private heritageService: HeritageService,
     private userService: UserService,
     private toastr: ToastrService
-    ) {}
+  ) { }
 
   ngOnInit() {
     /*
@@ -47,7 +47,7 @@ export class HeritageDetailComponent implements OnInit {
     */
 
     // Check for route params
- 		this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.param = params['id'];
       // check if ID exists in route & call update or add methods accordingly
       if (this.param && this.param != null && this.param != undefined) {
@@ -57,8 +57,7 @@ export class HeritageDetailComponent implements OnInit {
           }
         )
       }
-      else
-      {
+      else {
         this.heritage = {
           id: 0,
           name: '',
@@ -81,6 +80,9 @@ export class HeritageDetailComponent implements OnInit {
           tourismDevelopmentModel: '',
           tourismBenefit: 0,
           story: '',
+          evaluationValue: 0,
+          activatoinModeId: 0,
+          heritageGameAnalysisId: 0,
           createdUserId: 0,
           createdUserName: '',
           createdOn: undefined,
@@ -91,49 +93,47 @@ export class HeritageDetailComponent implements OnInit {
       }
     });
 
-    
+
 
   }
 
   onSubmit() {
 
     var userId = this.userService.currentUserId();
-    if (this.heritage.id != 0)
-    { 
+    if (this.heritage.id != 0) {
       this.heritage.modifiedUserId = userId;
       this.heritageService.updateHeritage(Global.BASE_HERITAGE_ENDPOINT + this.heritage.id, this.heritage)
-      .subscribe(
-        data => {
-          this.heritage = data;
-          this.showSuccess();
-        },
-        error => {
-          this.showError();
-        }
-      );      
+        .subscribe(
+          data => {
+            this.heritage = data;
+            this.showSuccess();
+          },
+          error => {
+            this.showError();
+          }
+        );
     }
-    else
-    {
+    else {
       this.heritage.createdUserId = userId;
       this.heritage.modifiedUserId = userId;
       this.heritageService.addHeritage(Global.BASE_HERITAGE_ENDPOINT, this.heritage)
-      .subscribe(
-        data => {
-          this.heritage = data;
-          this.showSuccess();
-        },
-        error => {
-          this.showError();
-        }
-      );
+        .subscribe(
+          data => {
+            this.heritage = data;
+            this.showSuccess();
+          },
+          error => {
+            this.showError();
+          }
+        );
     }
-    
+
   }
-  	 
-	showSuccess() {
+
+  showSuccess() {
     this.toastr.success('Heritage Saved Successfully', 'Succeeded');
   }
-  
+
   showError() {
     this.toastr.error('Failed to Save Heritage!', 'Failed');
   }

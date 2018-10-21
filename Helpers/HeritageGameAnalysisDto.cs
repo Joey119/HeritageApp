@@ -3,7 +3,7 @@ using System;
 namespace HeritageApp.Helpers {
     public class HeritageGameAnalysisDto {
         public int Id { get; set; }
-        public int HeirtageId { get; set; }
+        public int HeritageId { get; set; }
 
         public double CiA { get; set; }
         public double CiB { get; set; }
