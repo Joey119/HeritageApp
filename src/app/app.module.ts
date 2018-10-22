@@ -27,9 +27,11 @@ import { HeritageEvaluationComponent } from './heritage-evaluation/heritage-eval
 import { HeritageNavComponent } from './heritage-nav/heritage-nav.component';
 import { HeritageActivationComponent } from './heritage-activation/heritage-activation.component';
 import { HeritageAnalysisComponent } from './heritage-analysis/heritage-analysis.component';
-import { TreeModule, DialogModule, RadioButtonModule, FieldsetModule } from 'primeng/primeng';
+import { TreeModule, DialogModule, RadioButtonModule, FieldsetModule, ConfirmDialogModule } from 'primeng/primeng';
 import {DropdownModule} from 'primeng/dropdown';
+import { ConfirmationService } from 'primeng/api'
 import { ActivationModeListComponent } from './activation-mode-list/activation-mode-list.component';
+import { EvaluationOptionPipe, EvaluatorTypePipe } from './_pipes';
 
 
 @NgModule({
@@ -59,7 +61,9 @@ import { ActivationModeListComponent } from './activation-mode-list/activation-m
     HeritageNavComponent,
     HeritageActivationComponent,
     HeritageAnalysisComponent,
-    ActivationModeListComponent
+    ActivationModeListComponent,
+    EvaluationOptionPipe,
+    EvaluatorTypePipe
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,7 @@ import { ActivationModeListComponent } from './activation-mode-list/activation-m
     DropdownModule,
     DialogModule,
     RadioButtonModule,
+    ConfirmDialogModule,
     FieldsetModule,
     ToastrModule.forRoot({ 
       timeOut: 3000,
@@ -104,6 +109,7 @@ import { ActivationModeListComponent } from './activation-mode-list/activation-m
     EvaluatorTypeService,
     HeritageEvaluationService,
     HeritageGameAnalysisService,
+    ConfirmationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

@@ -7,7 +7,8 @@
     <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">Back</button>
   </mat-toolbar>
 
-  <p-table [value]="evaluations" [scrollable]="true" selectionMode="single" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="20">
+  <p-table [value]="evaluations" [scrollable]="true" selectionMode="single" (onRowSelect)="onRowSelect($event)"
+    [paginator]="true" [rows]="20">
     <ng-template pTemplate="caption">
       Heritage Evaluations
     </ng-template>
@@ -95,43 +96,40 @@
     </ng-template>
 
     <ng-template pTemplate="body" let-rowData>
-      <tr>
-        <!--<td>{{rowData.evaluatorTypeId}}</td>-->
-        <td>
-            <p-dropdown appendTo="body" [options]="availableEvalTypes" [(ngModel)]="rowData.evaluatorTypeId" [disabled] = "true" [style]="{'color':'black'}"></p-dropdown>
-        </td>
+      <tr [pSelectableRow]="rowData">
+        <td>{{rowData.evaluatorTypeId | evaluatortype}}</td>
         <td>{{rowData.evaluationValue}}</td>
         <td>{{rowData.agreementFactor}}</td>
         <td>{{rowData.cognitionFactor}}</td>
         <td>{{rowData.projectValueFactor}}</td>
         <td>{{rowData.projectBasicInfoFactor}}</td>
         <td>{{rowData.projectConditionStatusFactor}}</td>
-        <td>{{rowData.importanceValue}}</td>
-        <td>{{rowData.nationalPrideValue}}</td>
-        <td>{{rowData.govProtectionValue}}</td>
-        <td>{{rowData.resourceCharacteristicsValue}}</td>
-        <td>{{rowData.skillScopeValue}}</td>
-        <td>{{rowData.skillInheritanceMethodValue}}</td>
-        <td>{{rowData.skillInheritanceDifficultyValue}}</td>
-        <td>{{rowData.artValue}}</td>
-        <td>{{rowData.cultureValue}}</td>
-        <td>{{rowData.economyValue}}</td>
-        <td>{{rowData.historyValue}}</td>
-        <td>{{rowData.educationValue}}</td>
-        <td>{{rowData.societyValue}}</td>
-        <td>{{rowData.scienceValue}}</td>
-        <td>{{rowData.ecologicalEnvironmentValue}}</td>
-        <td>{{rowData.qualityValue}}</td>
-        <td>{{rowData.rarenessValue}}</td>
-        <td>{{rowData.ecologyValue}}</td>
-        <td>{{rowData.popularValue}}</td>
-        <td>{{rowData.personalityValue}}</td>
-        <td>{{rowData.timeSpanValue}}</td>
-        <td>{{rowData.nationalEcomonicValue}}</td>
-        <td>{{rowData.marketStatusValue}}</td>
-        <td>{{rowData.basicResourceDevelopmentValue}}</td>
-        <td>{{rowData.basicResourceValue}}</td>
-        <td>{{rowData.introductionProbabilityValue}}</td>
+        <td>{{rowData.importanceValue | evaluationoption}}</td>
+        <td>{{rowData.nationalPrideValue | evaluationoption}}</td>
+        <td>{{rowData.govProtectionValue | evaluationoption}}</td>
+        <td>{{rowData.resourceCharacteristicsValue | evaluationoption}}</td>
+        <td>{{rowData.skillScopeValue | evaluationoption}}</td>
+        <td>{{rowData.skillInheritanceMethodValue | evaluationoption}}</td>
+        <td>{{rowData.skillInheritanceDifficultyValue | evaluationoption}}</td>
+        <td>{{rowData.artValue | evaluationoption}}</td>
+        <td>{{rowData.cultureValue | evaluationoption}}</td>
+        <td>{{rowData.economyValue | evaluationoption}}</td>
+        <td>{{rowData.historyValue | evaluationoption}}</td>
+        <td>{{rowData.educationValue | evaluationoption}}</td>
+        <td>{{rowData.societyValue | evaluationoption}}</td>
+        <td>{{rowData.scienceValue | evaluationoption}}</td>
+        <td>{{rowData.ecologicalEnvironmentValue | evaluationoption}}</td>
+        <td>{{rowData.qualityValue | evaluationoption}}</td>
+        <td>{{rowData.rarenessValue | evaluationoption}}</td>
+        <td>{{rowData.ecologyValue | evaluationoption}}</td>
+        <td>{{rowData.popularValue | evaluationoption}}</td>
+        <td>{{rowData.personalityValue | evaluationoption}}</td>
+        <td>{{rowData.timeSpanValue | evaluationoption}}</td>
+        <td>{{rowData.nationalEcomonicValue | evaluationoption}}</td>
+        <td>{{rowData.marketStatusValue | evaluationoption}}</td>
+        <td>{{rowData.basicResourceDevelopmentValue | evaluationoption}}</td>
+        <td>{{rowData.basicResourceValue | evaluationoption}}</td>
+        <td>{{rowData.introductionProbabilityValue | evaluationoption}}</td>
       </tr>
     </ng-template>
 
@@ -154,6 +152,7 @@
 
   <p-dialog header="Heritage Evaluation" appendTo="body" [(visible)]="displayDialog" [responsive]="true" showEffect="fade"
     [modal]="true" [width]="600">
+    <p-confirmDialog  appendTo="body"></p-confirmDialog>
     <div class="ui-g ui-fluid" *ngIf="evaluation">
 
       <p-fieldset legend="旅游评估">
@@ -226,7 +225,8 @@
           <label for="importance">资源特征</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.resourceCharacteristicsValue" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.resourceCharacteristicsValue"
+            placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="b">技艺涉及范围</label>
@@ -244,7 +244,8 @@
           <label for="c">技艺传承难度</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.skillInheritanceDifficultyValue" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.skillInheritanceDifficultyValue"
+            placeholder="Select an option"></p-dropdown>
         </div>
       </p-fieldset>
 
@@ -355,7 +356,8 @@
           <label for="c">资源开发基础</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.basicResourceDevelopmentValue" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.basicResourceDevelopmentValue"
+            placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="c">资源开发现状</label>
@@ -367,7 +369,8 @@
           <label for="c">企业介入可能性</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.introductionProbabilityValue" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.introductionProbabilityValue"
+            placeholder="Select an option"></p-dropdown>
         </div>
       </p-fieldset>
 

@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { IHeritage, IHeritageEvaluation, IEvaluationOption, IEvaluatorType } from '../_models';
 import { HeritageService, UserService, HeritageEvaluationService, EvaluationOptionService, EvaluatorTypeService } from '../_services';
 import { Global } from '../_shared';
-import { SelectItem } from 'primeng/api';
+import { SelectItem, ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-heritage-evaluation',
@@ -33,7 +33,8 @@ export class HeritageEvaluationComponent implements OnInit {
     private heritageEvaluationService: HeritageEvaluationService,
     private evaluationOptionService: EvaluationOptionService,
     private toastr: ToastrService,
-    private evaluatorTypeSerice: EvaluatorTypeService) { }
+    private evaluatorTypeSerice: EvaluatorTypeService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
 
@@ -153,22 +154,38 @@ export class HeritageEvaluationComponent implements OnInit {
   }
 
   delete() {
-    this.heritageEvaluationService.deleteHeritageEvaluation(Global.BASE_HERITAGE_EVALUATION_ENDPOINT, this.evaluation.id)
-      .subscribe(
-        data => {
-          this.toastr.success("Activation mode suceessfully deleted.", "Succeeded");
-          this.heritageEvaluationService.getAllHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
-            .subscribe(
-              evals => {
-                this.evaluations = evals;
-              }
-            )
-        },
-        error => {
-          this.toastr.error("Failed to delete activation mode", "Failed")
-        }
-      );
-    this.displayDialog = false;
+
+    if (this.evaluation.id == 0) {
+      this.displayDialog = false;
+      return;
+    }
+
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.heritageEvaluationService.deleteHeritageEvaluation(Global.BASE_HERITAGE_EVALUATION_ENDPOINT, this.evaluation.id)
+          .subscribe(
+            data => {
+              this.toastr.success("Activation mode suceessfully deleted.", "Succeeded");
+              this.heritageEvaluationService.getAllHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
+                .subscribe(
+                  evals => {
+                    this.evaluations = evals;
+                  }
+                )
+            },
+            error => {
+              this.toastr.error("Failed to delete activation mode", "Failed")
+            }
+          );
+        this.displayDialog = false;
+      },
+      reject: () => { }
+    });
+
+
   }
 
   onRowSelect(event) {
