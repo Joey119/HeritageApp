@@ -91,21 +91,6 @@ namespace HeritageApp.Models.Database
             }
             context.SaveChanges();
 
-            var fileUploads = new FileUpload[]
-            {
-                new FileUpload { FileName = "photo1.jpg", FilePath = "c:\\photo\\heritage", UploadUserId = users.Single( u => u.UserName == "Contributor").Id},
-                new FileUpload { FileName = "photo2.jpg", FilePath = "c:\\photo\\heritage", UploadUserId = users.Single( u => u.UserName == "Contributor").Id},
-                new FileUpload { FileName = "photo3.jpg", FilePath = "c:\\photo\\heritage", UploadUserId = users.Single( u => u.UserName == "Contributor").Id},
-                new FileUpload { FileName = "photo4.jpg", FilePath = "c:\\photo\\heritage", UploadUserId = users.Single( u => u.UserName == "Contributor").Id},
-                new FileUpload { FileName = "photo5.jpg", FilePath = "c:\\photo\\heritage", UploadUserId = users.Single( u => u.UserName == "Contributor").Id},
-                new FileUpload { FileName = "photo6.jpg", FilePath = "c:\\photo\\heritage", UploadUserId = users.Single( u => u.UserName == "Contributor").Id}
-            };
-            foreach(FileUpload fu in fileUploads)
-            {
-                context.FileUploads.Add(fu);
-            }
-            context.SaveChanges();
-
             var evaluationOptions = new EvaluationOption[]
             {
                 new EvaluationOption { Option = "不同意"},

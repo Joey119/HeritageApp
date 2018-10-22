@@ -37,7 +37,7 @@ export interface IHeritageEvaluation {
     createdUserId: number;
     createdUserName: string;
     createdOn: Date;
-    codifiedUserId: number;
+    modifiedUserId: number;
     modifiedUserName: string;
     modifiedOn: Date;
 }

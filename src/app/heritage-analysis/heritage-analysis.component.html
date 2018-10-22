@@ -1,14 +1,16 @@
 <div class="basic-container" *ngIf="heritage">
 
-  <mat-toolbar>
-    <span>Heritage Game Playing Analysis: {{ heritage.name }} </span>
-    <span class="spacer"></span>
-    <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">Back</button>
-  </mat-toolbar>
-
   <div *ngIf="heritageGameAnalysis">
 
     <form class="analysis-form" (ngSubmit)="onSubmit()" #heritageGameAnalysisForm="ngForm" name="heritageGameAnalysis">
+
+      <mat-toolbar>
+        <span>Heritage Game Playing Analysis: {{ heritage.name }} </span>
+        <span class="spacer"></span>
+        <button mat-button class="form-save">Analyse and Save</button>
+        <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">Back</button>
+      </mat-toolbar>
+
       <mat-grid-list cols="10" rowHeight="50px">
         <mat-grid-tile [colspan]="1" [rowspan]="1">
           参数

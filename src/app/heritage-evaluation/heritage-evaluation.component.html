@@ -7,14 +7,13 @@
     <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">Back</button>
   </mat-toolbar>
 
-  <p-table [value]="evaluations" [scrollable]="true" selectionMode="single" [(selection)]="selectedEvaluation"
-    (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="20">
+  <p-table [value]="evaluations" [scrollable]="true" selectionMode="single" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="20">
     <ng-template pTemplate="caption">
       Heritage Evaluations
     </ng-template>
     <ng-template pTemplate="colgroup" let-columns>
       <colgroup>
-        <col style="width:85px">
+        <col style="width:125px">
         <col style="width:85px">
         <col style="width:85px">
         <col style="width:85px">
@@ -97,39 +96,42 @@
 
     <ng-template pTemplate="body" let-rowData>
       <tr>
-        <td>{{rowData.a}}</td>
-        <td>{{rowData.b}}</td>
-        <td>{{rowData.c}}</td>
-        <td>{{rowData.d}}</td>
-        <td>{{rowData.e}}</td>
-        <td>{{rowData.f}}</td>
-        <td>{{rowData.g}}</td>
-        <td>{{rowData.h}}</td>
-        <td>{{rowData.i}}</td>
-        <td>{{rowData.j}}</td>
-        <td>{{rowData.k}}</td>
-        <td>{{rowData.l}}</td>
-        <td>{{rowData.m}}</td>
-        <td>{{rowData.n}}</td>
-        <td>{{rowData.o}}</td>
-        <td>{{rowData.p}}</td>
-        <td>{{rowData.q}}</td>
-        <td>{{rowData.r}}</td>
-        <td>{{rowData.s}}</td>
-        <td>{{rowData.t}}</td>
-        <td>{{rowData.u}}</td>
-        <td>{{rowData.v}}</td>
-        <td>{{rowData.w}}</td>
-        <td>{{rowData.x}}</td>
-        <td>{{rowData.y}}</td>
-        <td>{{rowData.z}}</td>
-        <td>{{rowData.a}}</td>
-        <td>{{rowData.b}}</td>
-        <td>{{rowData.c}}</td>
-        <td>{{rowData.d}}</td>
-        <td>{{rowData.e}}</td>
-        <td>{{rowData.f}}</td>
-        <td>{{rowData.g}}</td>
+        <!--<td>{{rowData.evaluatorTypeId}}</td>-->
+        <td>
+            <p-dropdown appendTo="body" [options]="availableEvalTypes" [(ngModel)]="rowData.evaluatorTypeId" [disabled] = "true" [style]="{'color':'black'}"></p-dropdown>
+        </td>
+        <td>{{rowData.evaluationValue}}</td>
+        <td>{{rowData.agreementFactor}}</td>
+        <td>{{rowData.cognitionFactor}}</td>
+        <td>{{rowData.projectValueFactor}}</td>
+        <td>{{rowData.projectBasicInfoFactor}}</td>
+        <td>{{rowData.projectConditionStatusFactor}}</td>
+        <td>{{rowData.importanceValue}}</td>
+        <td>{{rowData.nationalPrideValue}}</td>
+        <td>{{rowData.govProtectionValue}}</td>
+        <td>{{rowData.resourceCharacteristicsValue}}</td>
+        <td>{{rowData.skillScopeValue}}</td>
+        <td>{{rowData.skillInheritanceMethodValue}}</td>
+        <td>{{rowData.skillInheritanceDifficultyValue}}</td>
+        <td>{{rowData.artValue}}</td>
+        <td>{{rowData.cultureValue}}</td>
+        <td>{{rowData.economyValue}}</td>
+        <td>{{rowData.historyValue}}</td>
+        <td>{{rowData.educationValue}}</td>
+        <td>{{rowData.societyValue}}</td>
+        <td>{{rowData.scienceValue}}</td>
+        <td>{{rowData.ecologicalEnvironmentValue}}</td>
+        <td>{{rowData.qualityValue}}</td>
+        <td>{{rowData.rarenessValue}}</td>
+        <td>{{rowData.ecologyValue}}</td>
+        <td>{{rowData.popularValue}}</td>
+        <td>{{rowData.personalityValue}}</td>
+        <td>{{rowData.timeSpanValue}}</td>
+        <td>{{rowData.nationalEcomonicValue}}</td>
+        <td>{{rowData.marketStatusValue}}</td>
+        <td>{{rowData.basicResourceDevelopmentValue}}</td>
+        <td>{{rowData.basicResourceValue}}</td>
+        <td>{{rowData.introductionProbabilityValue}}</td>
       </tr>
     </ng-template>
 
@@ -159,42 +161,42 @@
           <label for="importance">利益相关者身份</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalTypes" [(ngModel)]="evaluation.evaluatorTypeId" placeholder="Select an option"></p-dropdown>
         </div>
 
         <div class="ui-g-7">
           <label for="vin">认同感系数</label>
         </div>
         <div class="ui-g-3">
-          <input pInputText id="vin"  />
+          <input pInputText id="agreementFactor" [(ngModel)]="evaluation.agreementFactor" />
         </div>
 
         <div class="ui-g-7">
           <label for="vin">认知情况系数</label>
         </div>
         <div class="ui-g-3">
-          <input pInputText id="vin"  />
+          <input pInputText id="cognitionFactor" [(ngModel)]="evaluation.cognitionFactor" />
         </div>
 
         <div class="ui-g-7">
           <label for="vin">项目自身价值系数</label>
         </div>
         <div class="ui-g-3">
-          <input pInputText id="vin" />
+          <input pInputText id="projectValueFactor" [(ngModel)]="evaluation.projectValueFactor" />
         </div>
 
         <div class="ui-g-7">
           <label for="vin">项目自身基本情况系数</label>
         </div>
         <div class="ui-g-3">
-          <input pInputText id="vin" />
+          <input pInputText id="projectBasicInfoFactor" [(ngModel)]="evaluation.projectBasicInfoFactor" />
         </div>
 
         <div class="ui-g-7">
           <label for="vin">项目资源开发条件与现状系数</label>
         </div>
         <div class="ui-g-3">
-          <input pInputText id="vin" />
+          <input pInputText id="projectConditionStatusFactor" [(ngModel)]="evaluation.projectConditionStatusFactor" />
         </div>
       </p-fieldset>
 
@@ -203,19 +205,19 @@
           <label for="importance">重要性</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.importanceValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="b">民族自豪感</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.nationalPrideValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="c">政府保护的必要性</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.govProtectionValue" placeholder="Select an option"></p-dropdown>
         </div>
       </p-fieldset>
 
@@ -224,25 +226,25 @@
           <label for="importance">资源特征</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.resourceCharacteristicsValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="b">技艺涉及范围</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.skillScopeValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="c">技艺传承方式</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.skillInheritanceMethodValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="c">技艺传承难度</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.skillInheritanceDifficultyValue" placeholder="Select an option"></p-dropdown>
         </div>
       </p-fieldset>
 
@@ -251,49 +253,49 @@
           <label for="importance">艺术价值</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.artValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="b">文化价值</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.cultureValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="c">经济价值</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.economyValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="c">历史价值</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.historyValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="importance">教育价值</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.educationValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="b">社会价值</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.societyValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="c">科学价值</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.scienceValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="c">文化生态环境价值</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.ecologicalEnvironmentValue" placeholder="Select an option"></p-dropdown>
         </div>
       </p-fieldset>
 
@@ -302,37 +304,37 @@
           <label for="importance">品质情况</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.qualityValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="b">珍稀性</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.rarenessValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="c">原生态程度</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.ecologyValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="c">知名度</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.popularValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="c">个性</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.personalityValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="c">时间跨度</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.timeSpanValue" placeholder="Select an option"></p-dropdown>
         </div>
       </p-fieldset>
 
@@ -341,31 +343,31 @@
           <label for="importance">区域经济水平</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.nationalEcomonicValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="b">旅游市场情况</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.marketStatusValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="c">资源开发基础</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.basicResourceDevelopmentValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="c">资源开发现状</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.basicResourceValue" placeholder="Select an option"></p-dropdown>
         </div>
         <div class="ui-g-7">
           <label for="c">企业介入可能性</label>
         </div>
         <div class="ui-g-3">
-          <p-dropdown [options]="availableoptions" [(ngModel)]="selectedOption" placeholder="Select an option"></p-dropdown>
+          <p-dropdown [options]="availableEvalOptions" [(ngModel)]="evaluation.introductionProbabilityValue" placeholder="Select an option"></p-dropdown>
         </div>
       </p-fieldset>
 

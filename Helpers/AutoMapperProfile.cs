@@ -26,9 +26,9 @@ namespace HeritageApp.Helpers
             .ForMember(dest => dest.ModifiedUser, opt => opt.Ignore())
             .ForMember(dest => dest.HeritageComments, opt => opt.Ignore())
             .ForMember(dest => dest.FileUploads, opt => opt.Ignore())
-            .ForMember(dest => dest.ActMode, opt => opt.Ignore())
+            .ForMember(dest => dest.ActivationMode, opt => opt.Ignore())
             .ForMember(dest => dest.HeritageEvaluations, opt => opt.Ignore())
-            .ForMember(dest => dest.GameAnalysis, opt => opt.Ignore());
+            .ForMember(dest => dest.HeritageGameAnalysis, opt => opt.Ignore());
 
             CreateMap<HeritageComment, HeritageCommentDto>()
             .ForMember(dest => dest.CommentUserName, opt => opt.MapFrom(src => src.CommentUser.UserName));

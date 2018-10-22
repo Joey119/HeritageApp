@@ -39,9 +39,10 @@ export class HeritageAnalysisComponent implements OnInit {
             this.heritage = result;
 
             if (this.heritage.heritageGameAnalysisId && this.heritage.heritageGameAnalysisId != null && this.heritage.heritageGameAnalysisId != undefined) {
-              this.heritageGameAnalysisService.getHeritageGameAnalysis(Global.BASE_HERITAGE_GAME_ANALYSIS_ENDPOINT).subscribe(
+              this.heritageGameAnalysisService.getHeritageGameAnalysis(Global.BASE_HERITAGE_GAME_ANALYSIS_ENDPOINT + this.heritage.heritageGameAnalysisId).subscribe(
                 data => {
                   this.heritageGameAnalysis = data;
+                  this.loadTree();
                 }
               )
             }
@@ -98,13 +99,12 @@ export class HeritageAnalysisComponent implements OnInit {
                 modifiedUserName: '',
                 modifiedOn: undefined
               }
+              this.loadTree();
             }
           }
         )
       }
     });
-
-    this.loadTree();
 
   }
 
@@ -113,10 +113,11 @@ export class HeritageAnalysisComponent implements OnInit {
     var userId = this.userService.currentUserId();
     if (this.heritageGameAnalysis.id != 0) {
       this.heritageGameAnalysis.modifiedUserId = userId;
-      this.heritageGameAnalysisService.updateHeritageGameAnalysis(Global.BASE_HERITAGE_ENDPOINT + this.heritageGameAnalysis.id, this.heritageGameAnalysis)
+      this.heritageGameAnalysisService.updateHeritageGameAnalysis(Global.BASE_HERITAGE_GAME_ANALYSIS_ENDPOINT + this.heritageGameAnalysis.id, this.heritageGameAnalysis)
         .subscribe(
           data => {
             this.heritageGameAnalysis = data;
+            this.loadTree();
             this.showSuccess();
           },
           error => {
@@ -127,7 +128,7 @@ export class HeritageAnalysisComponent implements OnInit {
     else {
       this.heritageGameAnalysis.createdUserId = userId;
       this.heritageGameAnalysis.modifiedUserId = userId;
-      this.heritageGameAnalysisService.addHeritageGameAnalysis(Global.BASE_HERITAGE_ENDPOINT, this.heritageGameAnalysis)
+      this.heritageGameAnalysisService.addHeritageGameAnalysis(Global.BASE_HERITAGE_GAME_ANALYSIS_ENDPOINT, this.heritageGameAnalysis)
         .subscribe(
           data => {
             this.heritageGameAnalysis = data;
@@ -136,6 +137,7 @@ export class HeritageAnalysisComponent implements OnInit {
               .subscribe(
                 result => {
                   this.heritage = result;
+                  this.loadTree();
                   this.showSuccess();
                 }
               )
@@ -168,19 +170,19 @@ export class HeritageAnalysisComponent implements OnInit {
               "children": [{
                 "label": "消费者",
                 "children": [{
-                  "label": "R1"
+                  "label": "R1" + this.heritageGameAnalysis.route1
                 },
                 {
-                  "label": "R2"
+                  "label": "R2" + this.heritageGameAnalysis.route2
                 }]
               },
               {
                 "label": "消费者",
                 "children": [{
-                  "label": "R3"
+                  "label": "R3" + this.heritageGameAnalysis.route3
                 },
                 {
-                  "label": "R4"
+                  "label": "R4" + this.heritageGameAnalysis.route4
                 }]
               }]
             },

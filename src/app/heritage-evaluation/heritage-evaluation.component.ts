@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import { ToastrService } from 'ngx-toastr';
 import { IHeritage, IHeritageEvaluation, IEvaluationOption, IEvaluatorType } from '../_models';
 import { HeritageService, UserService, HeritageEvaluationService, EvaluationOptionService, EvaluatorTypeService } from '../_services';
 import { Global } from '../_shared';
@@ -17,23 +18,29 @@ export class HeritageEvaluationComponent implements OnInit {
 
   evaluations: IHeritageEvaluation[];
   selectedEvaluation: IHeritageEvaluation;
-  evaluation: any = { a: '1', b: '', c: '', d: '', e: '', f: '', g: '', h: '1', i: '1', j: '1', k: '1', l: '1', m: '1', n: '1', o: '1', p: '1', q: '1', r: '1', s: '1', t: '1', u: '1', v: '1', w: '1', x: '1', y: '1', z: '1', aa: '1', bb: '1', cc: '1', dd: '1', ee: '1', ff: '1', gg: '1' };
+  evaluation: IHeritageEvaluation;
   newEvaluation: boolean;
   displayDialog: boolean;
   availableEvalOptions: SelectItem[];
   availableEvalTypes: SelectItem[];
+  currentUserId: number;
+  defaultEvalOption: SelectItem;
+  defaultEvalType: SelectItem;
 
   constructor(private route: ActivatedRoute,
     private heritageService: HeritageService,
     private userService: UserService,
     private heritageEvaluationService: HeritageEvaluationService,
     private evaluationOptionService: EvaluationOptionService,
+    private toastr: ToastrService,
     private evaluatorTypeSerice: EvaluatorTypeService) { }
 
   ngOnInit() {
 
     this.populateEvaluationOptions();
     this.populateEvaluatorTypes();
+
+    this.currentUserId = this.userService.currentUserId();
 
     this.route.params.subscribe(params => {
       this.param = params['id'];
@@ -42,30 +49,125 @@ export class HeritageEvaluationComponent implements OnInit {
         this.heritageService.getHeritage(Global.BASE_HERITAGE_ENDPOINT + this.param).subscribe(
           result => {
             this.heritage = result;
-            this.heritageEvaluationService.getAllHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT)
+            this.heritageEvaluationService.getAllHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
+              .subscribe(
+                evals => {
+                  this.evaluations = evals;
+                }
+              )
+          }
+        )
+      }
+    });
+
+  }
+
+  showDialogToAdd() {
+    this.newEvaluation = true;
+    this.evaluation = {
+      id: 0,
+      heritageId: this.heritage.id,
+      evaluatorTypeId: -1,
+      evaluationValue: 0.0,
+      agreementFactor: 0.2,
+      cognitionFactor: 0.2,
+      projectValueFactor: 0.2,
+      projectBasicInfoFactor: 0.2,
+      projectConditionStatusFactor: 0.2,
+      importanceValue: -1,
+      nationalPrideValue: -1,
+      govProtectionValue: -1,
+      resourceCharacteristicsValue: -1,
+      skillScopeValue: -1,
+      skillInheritanceMethodValue: -1,
+      skillInheritanceDifficultyValue: -1,
+      artValue: -1,
+      cultureValue: -1,
+      economyValue: -1,
+      historyValue: -1,
+      educationValue: -1,
+      societyValue: -1,
+      scienceValue: -1,
+      ecologicalEnvironmentValue: -1,
+      qualityValue: -1,
+      rarenessValue: -1,
+      ecologyValue: -1,
+      popularValue: -1,
+      personalityValue: -1,
+      timeSpanValue: -1,
+      nationalEcomonicValue: -1,
+      marketStatusValue: -1,
+      basicResourceDevelopmentValue: -1,
+      basicResourceValue: -1,
+      introductionProbabilityValue: -1,
+      createdUserId: this.currentUserId,
+      createdUserName: '',
+      createdOn: undefined,
+      modifiedUserId: this.currentUserId,
+      modifiedUserName: '',
+      modifiedOn: undefined
+    };
+    this.displayDialog = true;
+
+  }
+
+  save() {
+    if (this.newEvaluation) {
+      this.heritageEvaluationService.addHeritageEvaluation(Global.BASE_HERITAGE_EVALUATION_ENDPOINT, this.evaluation)
+        .subscribe(
+          data => {
+            this.evaluation = data;
+            this.toastr.success("Activation mode suceessfully added.", "Succeeded");
+            this.heritageEvaluationService.getAllHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
+              .subscribe(
+                evals => {
+                  this.evaluations = evals;
+                }
+              )
+          },
+          error => {
+            this.toastr.error("Failed to add activation mode", "Failed")
+          }
+        );
+    }
+    else {
+      this.heritageEvaluationService.updateHeritageEvaluation(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + this.evaluation.id, this.evaluation)
+        .subscribe(
+          data => {
+            this.evaluation = data;
+            this.toastr.success("Activation mode suceessfully updated.", "Succeeded");
+            this.heritageEvaluationService.getAllHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
+              .subscribe(
+                evals => {
+                  this.evaluations = evals;
+                }
+              )
+          },
+          error => {
+            this.toastr.error("Failed to update activation mode", "Failed")
+          }
+        );
+    }
+
+    this.displayDialog = false;
+  }
+
+  delete() {
+    this.heritageEvaluationService.deleteHeritageEvaluation(Global.BASE_HERITAGE_EVALUATION_ENDPOINT, this.evaluation.id)
+      .subscribe(
+        data => {
+          this.toastr.success("Activation mode suceessfully deleted.", "Succeeded");
+          this.heritageEvaluationService.getAllHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
             .subscribe(
               evals => {
                 this.evaluations = evals;
               }
             )
-          }
-        )
-      }
-    });
-    
-  }
-
-  showDialogToAdd() {
-    this.newEvaluation = true;
-    this.evaluation = { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' };
-    this.displayDialog = true;
-
-  }
-
-  delete() {
-    let index = this.evaluations.indexOf(this.selectedEvaluation);
-    this.evaluations = this.evaluations.filter((val, i) => i != index);
-    this.evaluation = null;
+        },
+        error => {
+          this.toastr.error("Failed to delete activation mode", "Failed")
+        }
+      );
     this.displayDialog = false;
   }
 
@@ -76,7 +178,50 @@ export class HeritageEvaluationComponent implements OnInit {
   }
 
   cloneEvaluation(c: any): any {
-    let evaluation = { a: '传承人', b: '', c: '', d: '', e: '', f: '', g: '', h: '5', i: '4', j: '5', k: '4', l: '4', m: '5', n: '5', o: '5', p: '5', q: '4', r: '4', s: '4', t: '4', u: '5', v: '5', w: '5', x: '4', y: '4', z: '4', aa: '5', bb: '5', cc: '5', dd: '4', ee: '4', ff: '5', gg: '5' };
+    let evaluation = {
+      id: 0,
+      heritageId: this.heritage.id,
+      evaluatorTypeId: -1,
+      evaluationValue: 0.0,
+      agreementFactor: 0.2,
+      cognitionFactor: 0.2,
+      projectValueFactor: 0.2,
+      projectBasicInfoFactor: 0.2,
+      projectConditionStatusFactor: 0.2,
+      importanceValue: -1,
+      nationalPrideValue: -1,
+      govProtectionValue: -1,
+      resourceCharacteristicsValue: -1,
+      skillScopeValue: -1,
+      skillInheritanceMethodValue: -1,
+      skillInheritanceDifficultyValue: -1,
+      artValue: -1,
+      cultureValue: -1,
+      economyValue: -1,
+      historyValue: -1,
+      educationValue: -1,
+      societyValue: -1,
+      scienceValue: -1,
+      ecologicalEnvironmentValue: -1,
+      qualityValue: -1,
+      rarenessValue: -1,
+      ecologyValue: -1,
+      popularValue: -1,
+      personalityValue: -1,
+      timeSpanValue: -1,
+      nationalEcomonicValue: -1,
+      marketStatusValue: -1,
+      basicResourceDevelopmentValue: -1,
+      basicResourceValue: -1,
+      introductionProbabilityValue: -1,
+      createdUserId: this.currentUserId,
+      createdUserName: '',
+      createdOn: undefined,
+      codifiedUserId: this.currentUserId,
+      modifiedUserName: '',
+      modifiedOn: undefined
+    };
+
     for (let prop in c) {
       evaluation[prop] = c[prop];
     }
@@ -85,28 +230,30 @@ export class HeritageEvaluationComponent implements OnInit {
 
   populateEvaluationOptions() {
     this.availableEvalOptions = [];
-    this.evaluationOptionService.getEvaluationOptions(Global.BASE_EVALUATION_OPTION_ENDPOINT)
-    .subscribe(
-      data => {
-        var options = data;
-        for (let i=0; i<options.length; i++){
-          this.availableEvalOptions.push({label: options[i].option, value: options[i]});
+    this.evaluationOptionService.getEvaluationOptions(Global.BASE_EVALUATION_OPTION_ENDPOINT + 'getAllEvaluationOption')
+      .subscribe(
+        data => {
+          var options = data;
+          for (let i = 0; i < options.length; i++) {
+            this.availableEvalOptions.push({ label: options[i].option, value: options[i].id });
+          }
+          this.defaultEvalOption = this.availableEvalOptions[0].value;
         }
-      }
-    )
+      )
   }
 
   populateEvaluatorTypes() {
     this.availableEvalTypes = [];
-    this.evaluatorTypeSerice.getEvaluatorTypes(Global.BASE_EVALUATOR_TYPE_ENDPOINT)
-    .subscribe(
-      result => {
-        var types = result;
-        for (let j=0; j<types.length; j++){
-          this.availableEvalTypes.push({label: types[j].type, value: types[j]});
+    this.evaluatorTypeSerice.getEvaluatorTypes(Global.BASE_EVALUATOR_TYPE_ENDPOINT + 'getAllEvaluatorType')
+      .subscribe(
+        result => {
+          var types = result;
+          for (let j = 0; j < types.length; j++) {
+            this.availableEvalTypes.push({ label: types[j].type, value: types[j].id });
+          }
+          this.defaultEvalType = this.availableEvalTypes[0].value;
         }
-      }
-    )
+      )
   }
 
 }

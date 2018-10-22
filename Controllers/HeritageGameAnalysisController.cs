@@ -174,6 +174,10 @@ namespace HeritageApp.Controllers
 
         private void CalculateRoutes(HeritageGameAnalysisDto gameAnalysis)
         {
+            gameAnalysis.Route1 = "  {1, 0, 0, 0, 0}";
+            gameAnalysis.Route2 = "  {0, 1, 0, 0, 0}";
+            gameAnalysis.Route3 = "  {0, 0, 1, 0, 0}";
+            gameAnalysis.Route4 = "  {0, 0, 0, 1, 0}";
 
         }
         
