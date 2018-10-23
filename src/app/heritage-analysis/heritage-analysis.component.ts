@@ -17,6 +17,7 @@ export class HeritageAnalysisComponent implements OnInit {
   heritage: IHeritage;
   heritageGameAnalysis: IHeritageGameAnalysis;
   param: any;
+  bestRoute: string;
 
   @ViewChild('expandingTree')
   expandingTree: Tree;
@@ -150,6 +151,20 @@ export class HeritageAnalysisComponent implements OnInit {
 
   }
 
+  analyse() {
+
+    if (this.heritage.heritageGameAnalysisId && this.heritage.heritageGameAnalysisId != null && this.heritage.heritageGameAnalysisId != undefined) {
+      this.heritageGameAnalysisService.getHeritageAnalysisBestRoute(Global.BASE_HERITAGE_GAME_ANALYSIS_ENDPOINT + 'getHeritageAnalysisBestRoute/' + this.heritage.heritageGameAnalysisId).subscribe(
+        res => {
+          this.bestRoute = "The best route is: " + "R" + res.id + ": { " + res.routeValue + " }";          
+        }
+      );
+    }
+    else {
+      this.toastr.error('Failed to analyse the best route, please calculate routes first!', 'Analyse Failed');
+    }
+  }
+
   showSuccess() {
     this.toastr.success('Heritage Game Analysis Saved Successfully', 'Succeeded');
   }
@@ -170,19 +185,19 @@ export class HeritageAnalysisComponent implements OnInit {
               "children": [{
                 "label": "消费者",
                 "children": [{
-                  "label": "R1" + this.heritageGameAnalysis.route1
+                  "label": "R1 { " + this.heritageGameAnalysis.route1 + " }"
                 },
                 {
-                  "label": "R2" + this.heritageGameAnalysis.route2
+                  "label": "R2 { " + this.heritageGameAnalysis.route2 + " }"
                 }]
               },
               {
                 "label": "消费者",
                 "children": [{
-                  "label": "R3" + this.heritageGameAnalysis.route3
+                  "label": "R3 { " + this.heritageGameAnalysis.route3 + " }"
                 },
                 {
-                  "label": "R4" + this.heritageGameAnalysis.route4
+                  "label": "R4 { " + this.heritageGameAnalysis.route4 + " }"
                 }]
               }]
             },
@@ -191,19 +206,19 @@ export class HeritageAnalysisComponent implements OnInit {
               "children": [{
                 "label": "消费者",
                 "children": [{
-                  "label": "R5"
+                  "label": "R5 { " + this.heritageGameAnalysis.route5 + " }"
                 },
                 {
-                  "label": "R6"
+                  "label": "R6 { " + this.heritageGameAnalysis.route6 + " }"
                 }]
               },
               {
                 "label": "消费者",
                 "children": [{
-                  "label": "R7"
+                  "label": "R7 { " + this.heritageGameAnalysis.route7 + " }"
                 },
                 {
-                  "label": "R8"
+                  "label": "R8 { " + this.heritageGameAnalysis.route8 + " }"
                 }]
               }]
             }]
@@ -217,19 +232,19 @@ export class HeritageAnalysisComponent implements OnInit {
                 "children": [{
                   "label": "消费者",
                   "children": [{
-                    "label": "R9"
+                    "label": "R9 { " + this.heritageGameAnalysis.route9 + " }"
                   },
                   {
-                    "label": "R10"
+                    "label": "R10 { " + this.heritageGameAnalysis.route10 + " }"
                   }]
                 },
                 {
                   "label": "消费者",
                   "children": [{
-                    "label": "R11"
+                    "label": "R11 { " + this.heritageGameAnalysis.route11 + " }"
                   },
                   {
-                    "label": "R12"
+                    "label": "R12 { " + this.heritageGameAnalysis.route12 + " }"
                   }]
                 }]
               },
@@ -239,19 +254,19 @@ export class HeritageAnalysisComponent implements OnInit {
                 "children": [{
                   "label": "消费者",
                   "children": [{
-                    "label": "R13"
+                    "label": "R13 { " + this.heritageGameAnalysis.route13 + " }"
                   },
                   {
-                    "label": "R14"
+                    "label": "R14 { " + this.heritageGameAnalysis.route14 + " }"
                   }]
                 },
                 {
                   "label": "消费者",
                   "children": [{
-                    "label": "R15"
+                    "label": "R15 { " + this.heritageGameAnalysis.route15 + " }"
                   },
                   {
-                    "label": "R16"
+                    "label": "R16 { " + this.heritageGameAnalysis.route16 + " }"
                   }]
                 }]
               }]
@@ -264,19 +279,19 @@ export class HeritageAnalysisComponent implements OnInit {
                 "children": [{
                   "label": "消费者",
                   "children": [{
-                    "label": "R17"
+                    "label": "R17 { " + this.heritageGameAnalysis.route17 + " }"
                   },
                   {
-                    "label": "R18"
+                    "label": "R18 { " + this.heritageGameAnalysis.route18 + " }"
                   }]
                 },
                 {
                   "label": "消费者",
                   "children": [{
-                    "label": "R19"
+                    "label": "R19 { " + this.heritageGameAnalysis.route19 + " }"
                   },
                   {
-                    "label": "R20"
+                    "label": "R20 { " + this.heritageGameAnalysis.route20 + " }"
                   }]
                 }]
               },
@@ -286,19 +301,19 @@ export class HeritageAnalysisComponent implements OnInit {
                 "children": [{
                   "label": "消费者",
                   "children": [{
-                    "label": "R21"
+                    "label": "R21 { " + this.heritageGameAnalysis.route21 + " }"
                   },
                   {
-                    "label": "R22"
+                    "label": "R22 { " + this.heritageGameAnalysis.route22 + " }"
                   }]
                 },
                 {
                   "label": "消费者",
                   "children": [{
-                    "label": "R23"
+                    "label": "R23 { " + this.heritageGameAnalysis.route23 + " }"
                   },
                   {
-                    "label": "R24"
+                    "label": "R24 { " + this.heritageGameAnalysis.route24 + " }"
                   }]
                 }]
               }]

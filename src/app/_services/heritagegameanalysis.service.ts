@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import 'rxjs/add/observable/of'
 import { environment } from '../../environments/environment';
 import { IHeritageGameAnalysis } from '../_models';
 import { catchError, map } from 'rxjs/operators';
@@ -25,6 +26,17 @@ export class HeritageGameAnalysisService {
                 map(gameAnalysis => {
                     this.heritageGameAnalysis = gameAnalysis;
                     return this.heritageGameAnalysis;
+                }),
+
+                catchError(this.handleError)
+            )
+    }
+
+    getHeritageAnalysisBestRoute(url: string): Observable<any> {
+        return this.http.get(url)
+            .pipe(
+                map(gameAnalysisBestRoute => {
+                    return Observable.of(gameAnalysisBestRoute);
                 }),
 
                 catchError(this.handleError)

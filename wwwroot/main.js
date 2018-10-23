@@ -2388,7 +2388,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var rxjs_add_observable_of__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/add/observable/of */ "./node_modules/rxjs-compat/_esm5/add/observable/of.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2398,6 +2399,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2414,32 +2416,38 @@ var HeritageGameAnalysisService = /** @class */ (function () {
     HeritageGameAnalysisService.prototype.getHeritageGameAnalysis = function (url) {
         var _this = this;
         return this.http.get(url)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (gameAnalysis) {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (gameAnalysis) {
             _this.heritageGameAnalysis = gameAnalysis;
             return _this.heritageGameAnalysis;
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
+    };
+    HeritageGameAnalysisService.prototype.getHeritageAnalysisBestRoute = function (url) {
+        return this.http.get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (gameAnalysisBestRoute) {
+            return rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"].of(gameAnalysisBestRoute);
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     HeritageGameAnalysisService.prototype.addHeritageGameAnalysis = function (url, gameAnalysis) {
         var _this = this;
         return this.http.post(url, gameAnalysis)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (resultGameAnalysis) {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (resultGameAnalysis) {
             _this.heritageGameAnalysis = resultGameAnalysis;
             return _this.heritageGameAnalysis;
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     HeritageGameAnalysisService.prototype.updateHeritageGameAnalysis = function (url, gameAnalysis) {
         var _this = this;
         return this.http.put(url, gameAnalysis) // ...using put request
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (resultGameAnalysis) {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (resultGameAnalysis) {
             _this.heritageGameAnalysis = resultGameAnalysis;
             return _this.heritageGameAnalysis;
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     HeritageGameAnalysisService.prototype.deleteHeritageGameAnalysis = function (url, id) {
         return this.http.delete(url + id)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (data) {
             return data;
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError));
     };
     // custom handler
     HeritageGameAnalysisService.prototype.handleError = function (error) {
@@ -4220,7 +4228,7 @@ var heritageActivationRoutes = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"basic-container\" *ngIf=\"heritage\">\n\n  <div *ngIf=\"heritageGameAnalysis\">\n\n    <form class=\"analysis-form\" (ngSubmit)=\"onSubmit()\" #heritageGameAnalysisForm=\"ngForm\" name=\"heritageGameAnalysis\">\n\n      <mat-toolbar>\n        <span>Heritage Game Playing Analysis: {{ heritage.name }} </span>\n        <span class=\"spacer\"></span>\n        <button mat-button class=\"form-save\">Analyse and Save</button>\n        <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n      </mat-toolbar>\n\n      <mat-grid-list cols=\"10\" rowHeight=\"50px\">\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n          参数\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          参数值\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          路径i的取值\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n          对参数值的分析\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          Ci\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"CiA\" [(ngModel)]=\"heritageGameAnalysis.ciA\" name=\"ciA\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            与传承人单一开发相比，传承人选择合作开发时，由于可能实现规模化生产而降低产品开发成本。即一般应有：ciA>ciB\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"CiB\" [(ngModel)]=\"heritageGameAnalysis.ciB\" name=\"ciB\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i > 8\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n          Ii\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Ii\" [(ngModel)]=\"heritageGameAnalysis.ii\" name=\"ii\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=9,10,…16\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n          当传承人对非遗产品的评估价值较高时，与企业合作开发时可能会要求企业支付知识产权使用费。\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          Pi\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"PiA\" [(ngModel)]=\"heritageGameAnalysis.piA\" name=\"piA\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            与传承人单一开发相比，传承人选择合作开发时，由于有其他利益相关者的参与和支持，营销力度更大，宣传范围更广，因而更有可能采取高价策略，以高价售出非遗产品。即一般应有：piA < piB </mat-grid-tile>\n              <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n              <mat-form-field>\n                <input class=\"parameter-field\" matInput placeholder=\"PiB\" [(ngModel)]=\"heritageGameAnalysis.piB\" name=\"piB\">\n              </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i > 8\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          Vi5\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi5A\" [(ngModel)]=\"heritageGameAnalysis.vi5A\" name=\"vi5A\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,5,6,9,10,13,14,17,18,21,22\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n          当非遗产品开发获政府支持时，消费者出于对政府及其价值判断的信赖，对该非遗产品的价值认可度通常会更高。即一般应有：vi5A > vi5B\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi5B\" [(ngModel)]=\"heritageGameAnalysis.vi5B\" name=\"vi5B\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=3,4,7,8,11,12,15,16,19,20,23,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          Vi4\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi4A\" [(ngModel)]=\"heritageGameAnalysis.vi4A\" name=\"vi4A\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,3,4,9,10,11,12,17,18,19,20\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n          当非遗产品开发能吸引专家参与时，政府出于对专家的专业水平的信任，对该非遗产品的价值认可度通常会更高。即一般应有：vi4A > vi4B\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi4B\" [(ngModel)]=\"heritageGameAnalysis.vi4B\" name=\"vi4B\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=5,6,7,8,13,14,15,16,21,22,23,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          Vi3\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi3A\" [(ngModel)]=\"heritageGameAnalysis.vi3A\" name=\"vi3A\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            与传承人单一开发相比，当传承人选择合作开发模式时，专家更倾向于认为该非遗产品更有开发价值。即一般应有：vi3A < vi3B </mat-grid-tile> <mat-grid-tile [colspan]=\"2\"\n              [rowspan]=\"1\">\n              <mat-form-field>\n                <input class=\"parameter-field\" matInput placeholder=\"Vi3B\" [(ngModel)]=\"heritageGameAnalysis.vi3B\" name=\"vi3B\">\n              </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i>8\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n          Vi1\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi1\" [(ngModel)]=\"heritageGameAnalysis.vi1\" name=\"vi1\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,…,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n          所有利益相关者中，传承人对非遗产品的情况最为了解，掌握的信息最为完全，因而其对非遗产品的价值判断一般也保持稳定\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          ai4\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"ai4\" [(ngModel)]=\"heritageGameAnalysis.ai4\" name=\"ai4\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,5,6,9,10,13,14,17,18,21,22\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n          政府选择支持非遗产品开发时，政府分担开发成本的比例为ai4；不支持时，该比例为0\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"0\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=3,4,7,8,11,12,15,16,19,20,23,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          ai3\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"ai3\" [(ngModel)]=\"heritageGameAnalysis.ai3\" name=\"ai3\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,3,4,9,10,11,12,17,18,19,20\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n          专家选择参与非遗产品开发时，专家分担开发成本的比例为ai3；不参与时，该比例为0\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"0\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=5,6,7,8,13,14,15,16,21,22,23,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          ai2\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"ai2\" [(ngModel)]=\"heritageGameAnalysis.ai2\" name=\"ai2\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=9,10,…,16\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n          企业选择对非遗产品开发进行投资时，企业分担开发成本的比例为ai2；不投资时，该比例为0\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"0\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,…,8,17,18,…24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n          ai1\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"1-(ai2+ai3+ai4)\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,…,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n          其他利益相关者分担成本后的产品开发成本均由传承人来承担\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          bij (j!=1)\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"0\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            在传承人单一开发模式下，其他利益相关者不能获得对产品销售收入的分成，即bij=0；在合作开发模式下，其他利益相关者对销售收入的分成比例与其成本分担比例基本一致，即bij=aij\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"aij\" [(ngModel)]=\"heritageGameAnalysis.aij\" name=\"aij\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i > 8\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          bi1\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"1\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            在传承人单一开发模式下，传承人可获得非遗产品的全部销售收入，即bi1=1；在合作开发模式下，传承人对销售收入的分成比例与其成本分担比例基本一致，即bi1=ai1\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"ai1\" [(ngModel)]=\"heritageGameAnalysis.ai1\" name=\"ai1\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i > 8\n        </mat-grid-tile>\n      </mat-grid-list>\n    </form>\n    <mat-card class=\"analysis-tree\">\n      <mat-card-header>\n        <mat-card-title>Game Playing Analysis Tree </mat-card-title>\n        <mat-card-subtitle>Game Playing Analysis is performed here...</mat-card-subtitle>\n      </mat-card-header>\n      <mat-card-actions>\n        <button mat-button>Analysis</button>\n      </mat-card-actions>\n      <mat-card-content>\n        <h3>Game Playing Analysis</h3>\n        <p-tree [value]=\"decisionTree\" layout=\"horizontal\" selectionMode=\"single\"></p-tree>\n      </mat-card-content>\n    </mat-card>\n\n  </div>\n</div>"
+module.exports = "<div class=\"basic-container\" *ngIf=\"heritage\">\n\n  <div *ngIf=\"heritageGameAnalysis\">\n\n    <form class=\"analysis-form\" (ngSubmit)=\"onSubmit()\" #heritageGameAnalysisForm=\"ngForm\" name=\"heritageGameAnalysis\">\n\n      <mat-toolbar>\n        <span>Heritage Game Playing Analysis: {{ heritage.name }} </span>\n        <span class=\"spacer\"></span>\n        <button mat-button class=\"form-save\">Analyse and Save</button>\n        <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n      </mat-toolbar>\n\n      <mat-grid-list cols=\"10\" rowHeight=\"50px\">\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n          参数\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          参数值\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          路径i的取值\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n          对参数值的分析\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          Ci\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"CiA\" [(ngModel)]=\"heritageGameAnalysis.ciA\" name=\"ciA\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            与传承人单一开发相比，传承人选择合作开发时，由于可能实现规模化生产而降低产品开发成本。即一般应有：ciA>ciB\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"CiB\" [(ngModel)]=\"heritageGameAnalysis.ciB\" name=\"ciB\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i > 8\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n          Ii\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Ii\" [(ngModel)]=\"heritageGameAnalysis.ii\" name=\"ii\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=9,10,…16\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n          当传承人对非遗产品的评估价值较高时，与企业合作开发时可能会要求企业支付知识产权使用费。\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          Pi\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"PiA\" [(ngModel)]=\"heritageGameAnalysis.piA\" name=\"piA\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            与传承人单一开发相比，传承人选择合作开发时，由于有其他利益相关者的参与和支持，营销力度更大，宣传范围更广，因而更有可能采取高价策略，以高价售出非遗产品。即一般应有：piA < piB </mat-grid-tile>\n              <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n              <mat-form-field>\n                <input class=\"parameter-field\" matInput placeholder=\"PiB\" [(ngModel)]=\"heritageGameAnalysis.piB\" name=\"piB\">\n              </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i > 8\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          Vi5\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi5A\" [(ngModel)]=\"heritageGameAnalysis.vi5A\" name=\"vi5A\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,5,6,9,10,13,14,17,18,21,22\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n          当非遗产品开发获政府支持时，消费者出于对政府及其价值判断的信赖，对该非遗产品的价值认可度通常会更高。即一般应有：vi5A > vi5B\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi5B\" [(ngModel)]=\"heritageGameAnalysis.vi5B\" name=\"vi5B\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=3,4,7,8,11,12,15,16,19,20,23,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          Vi4\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi4A\" [(ngModel)]=\"heritageGameAnalysis.vi4A\" name=\"vi4A\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,3,4,9,10,11,12,17,18,19,20\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n          当非遗产品开发能吸引专家参与时，政府出于对专家的专业水平的信任，对该非遗产品的价值认可度通常会更高。即一般应有：vi4A > vi4B\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi4B\" [(ngModel)]=\"heritageGameAnalysis.vi4B\" name=\"vi4B\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=5,6,7,8,13,14,15,16,21,22,23,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          Vi3\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi3A\" [(ngModel)]=\"heritageGameAnalysis.vi3A\" name=\"vi3A\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            与传承人单一开发相比，当传承人选择合作开发模式时，专家更倾向于认为该非遗产品更有开发价值。即一般应有：vi3A < vi3B </mat-grid-tile> <mat-grid-tile [colspan]=\"2\"\n              [rowspan]=\"1\">\n              <mat-form-field>\n                <input class=\"parameter-field\" matInput placeholder=\"Vi3B\" [(ngModel)]=\"heritageGameAnalysis.vi3B\" name=\"vi3B\">\n              </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i>8\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n          Vi1\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"Vi1\" [(ngModel)]=\"heritageGameAnalysis.vi1\" name=\"vi1\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,…,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n          所有利益相关者中，传承人对非遗产品的情况最为了解，掌握的信息最为完全，因而其对非遗产品的价值判断一般也保持稳定\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          ai4\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"ai4\" [(ngModel)]=\"heritageGameAnalysis.ai4\" name=\"ai4\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,5,6,9,10,13,14,17,18,21,22\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n          政府选择支持非遗产品开发时，政府分担开发成本的比例为ai4；不支持时，该比例为0\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"0\" [readonly]=\"true\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=3,4,7,8,11,12,15,16,19,20,23,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          ai3\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"ai3\" [(ngModel)]=\"heritageGameAnalysis.ai3\" name=\"ai3\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,3,4,9,10,11,12,17,18,19,20\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n          专家选择参与非遗产品开发时，专家分担开发成本的比例为ai3；不参与时，该比例为0\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"0\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=5,6,7,8,13,14,15,16,21,22,23,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          ai2\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"ai2\" [(ngModel)]=\"heritageGameAnalysis.ai2\" name=\"ai2\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=9,10,…,16\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n          企业选择对非遗产品开发进行投资时，企业分担开发成本的比例为ai2；不投资时，该比例为0\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"0\" [readonly]=\"true\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,…,8,17,18,…24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"1\">\n          ai1\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"1-(ai2+ai3+ai4)\" [readonly]=\"true\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i=1,2,…,24\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"4\" [rowspan]=\"1\">\n          其他利益相关者分担成本后的产品开发成本均由传承人来承担\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          bij (j!=1)\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"0\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            在传承人单一开发模式下，其他利益相关者不能获得对产品销售收入的分成，即bij=0；在合作开发模式下，其他利益相关者对销售收入的分成比例与其成本分担比例基本一致，即bij=aij\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"aij\" [(ngModel)]=\"heritageGameAnalysis.aij\" name=\"aij\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i > 8\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"1\" [rowspan]=\"2\">\n          bi1\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"1\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i <= 8 </mat-grid-tile> <mat-grid-tile [colspan]=\"4\" [rowspan]=\"2\">\n            在传承人单一开发模式下，传承人可获得非遗产品的全部销售收入，即bi1=1；在合作开发模式下，传承人对销售收入的分成比例与其成本分担比例基本一致，即bi1=ai1\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"2\" [rowspan]=\"1\">\n          <mat-form-field>\n            <input class=\"parameter-field\" matInput placeholder=\"ai1\" [(ngModel)]=\"heritageGameAnalysis.ai1\" name=\"ai1\">\n          </mat-form-field>\n        </mat-grid-tile>\n        <mat-grid-tile [colspan]=\"3\" [rowspan]=\"1\">\n          i > 8\n        </mat-grid-tile>\n      </mat-grid-list>\n    </form>\n    <mat-card class=\"analysis-tree\">\n      <mat-card-header>\n        <mat-card-title>Game Playing Analysis </mat-card-title>\n        <mat-card-subtitle>Result: {{ bestRoute }}</mat-card-subtitle>\n      </mat-card-header>\n      <mat-card-actions>\n        <button mat-button (click)=\"analyse()\" >Analysis</button>\n      </mat-card-actions>\n      <mat-card-content>\n        <h3>Game Playing Analysis</h3>\n        <p-tree [value]=\"decisionTree\" layout=\"horizontal\" selectionMode=\"single\"></p-tree>\n      </mat-card-content>\n    </mat-card>\n\n  </div>\n</div>"
 
 /***/ }),
 
@@ -4379,6 +4387,17 @@ var HeritageAnalysisComponent = /** @class */ (function () {
             });
         }
     };
+    HeritageAnalysisComponent.prototype.analyse = function () {
+        var _this = this;
+        if (this.heritage.heritageGameAnalysisId && this.heritage.heritageGameAnalysisId != null && this.heritage.heritageGameAnalysisId != undefined) {
+            this.heritageGameAnalysisService.getHeritageAnalysisBestRoute(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_HERITAGE_GAME_ANALYSIS_ENDPOINT + 'getHeritageAnalysisBestRoute/' + this.heritage.heritageGameAnalysisId).subscribe(function (res) {
+                _this.bestRoute = "The best route is: " + "R" + res.id + ": { " + res.routeValue + " }";
+            });
+        }
+        else {
+            this.toastr.error('Failed to analyse the best route, please calculate routes first!', 'Analyse Failed');
+        }
+    };
     HeritageAnalysisComponent.prototype.showSuccess = function () {
         this.toastr.success('Heritage Game Analysis Saved Successfully', 'Succeeded');
     };
@@ -4398,19 +4417,19 @@ var HeritageAnalysisComponent = /** @class */ (function () {
                                 "children": [{
                                         "label": "消费者",
                                         "children": [{
-                                                "label": "R1" + this.heritageGameAnalysis.route1
+                                                "label": "R1 { " + this.heritageGameAnalysis.route1 + " }"
                                             },
                                             {
-                                                "label": "R2" + this.heritageGameAnalysis.route2
+                                                "label": "R2 { " + this.heritageGameAnalysis.route2 + " }"
                                             }]
                                     },
                                     {
                                         "label": "消费者",
                                         "children": [{
-                                                "label": "R3" + this.heritageGameAnalysis.route3
+                                                "label": "R3 { " + this.heritageGameAnalysis.route3 + " }"
                                             },
                                             {
-                                                "label": "R4" + this.heritageGameAnalysis.route4
+                                                "label": "R4 { " + this.heritageGameAnalysis.route4 + " }"
                                             }]
                                     }]
                             },
@@ -4419,19 +4438,19 @@ var HeritageAnalysisComponent = /** @class */ (function () {
                                 "children": [{
                                         "label": "消费者",
                                         "children": [{
-                                                "label": "R5"
+                                                "label": "R5 { " + this.heritageGameAnalysis.route5 + " }"
                                             },
                                             {
-                                                "label": "R6"
+                                                "label": "R6 { " + this.heritageGameAnalysis.route6 + " }"
                                             }]
                                     },
                                     {
                                         "label": "消费者",
                                         "children": [{
-                                                "label": "R7"
+                                                "label": "R7 { " + this.heritageGameAnalysis.route7 + " }"
                                             },
                                             {
-                                                "label": "R8"
+                                                "label": "R8 { " + this.heritageGameAnalysis.route8 + " }"
                                             }]
                                     }]
                             }]
@@ -4445,19 +4464,19 @@ var HeritageAnalysisComponent = /** @class */ (function () {
                                         "children": [{
                                                 "label": "消费者",
                                                 "children": [{
-                                                        "label": "R9"
+                                                        "label": "R9 { " + this.heritageGameAnalysis.route9 + " }"
                                                     },
                                                     {
-                                                        "label": "R10"
+                                                        "label": "R10 { " + this.heritageGameAnalysis.route10 + " }"
                                                     }]
                                             },
                                             {
                                                 "label": "消费者",
                                                 "children": [{
-                                                        "label": "R11"
+                                                        "label": "R11 { " + this.heritageGameAnalysis.route11 + " }"
                                                     },
                                                     {
-                                                        "label": "R12"
+                                                        "label": "R12 { " + this.heritageGameAnalysis.route12 + " }"
                                                     }]
                                             }]
                                     },
@@ -4467,19 +4486,19 @@ var HeritageAnalysisComponent = /** @class */ (function () {
                                         "children": [{
                                                 "label": "消费者",
                                                 "children": [{
-                                                        "label": "R13"
+                                                        "label": "R13 { " + this.heritageGameAnalysis.route13 + " }"
                                                     },
                                                     {
-                                                        "label": "R14"
+                                                        "label": "R14 { " + this.heritageGameAnalysis.route14 + " }"
                                                     }]
                                             },
                                             {
                                                 "label": "消费者",
                                                 "children": [{
-                                                        "label": "R15"
+                                                        "label": "R15 { " + this.heritageGameAnalysis.route15 + " }"
                                                     },
                                                     {
-                                                        "label": "R16"
+                                                        "label": "R16 { " + this.heritageGameAnalysis.route16 + " }"
                                                     }]
                                             }]
                                     }]
@@ -4492,19 +4511,19 @@ var HeritageAnalysisComponent = /** @class */ (function () {
                                         "children": [{
                                                 "label": "消费者",
                                                 "children": [{
-                                                        "label": "R17"
+                                                        "label": "R17 { " + this.heritageGameAnalysis.route17 + " }"
                                                     },
                                                     {
-                                                        "label": "R18"
+                                                        "label": "R18 { " + this.heritageGameAnalysis.route18 + " }"
                                                     }]
                                             },
                                             {
                                                 "label": "消费者",
                                                 "children": [{
-                                                        "label": "R19"
+                                                        "label": "R19 { " + this.heritageGameAnalysis.route19 + " }"
                                                     },
                                                     {
-                                                        "label": "R20"
+                                                        "label": "R20 { " + this.heritageGameAnalysis.route20 + " }"
                                                     }]
                                             }]
                                     },
@@ -4514,19 +4533,19 @@ var HeritageAnalysisComponent = /** @class */ (function () {
                                         "children": [{
                                                 "label": "消费者",
                                                 "children": [{
-                                                        "label": "R21"
+                                                        "label": "R21 { " + this.heritageGameAnalysis.route21 + " }"
                                                     },
                                                     {
-                                                        "label": "R22"
+                                                        "label": "R22 { " + this.heritageGameAnalysis.route22 + " }"
                                                     }]
                                             },
                                             {
                                                 "label": "消费者",
                                                 "children": [{
-                                                        "label": "R23"
+                                                        "label": "R23 { " + this.heritageGameAnalysis.route23 + " }"
                                                     },
                                                     {
-                                                        "label": "R24"
+                                                        "label": "R24 { " + this.heritageGameAnalysis.route24 + " }"
                                                     }]
                                             }]
                                     }]
