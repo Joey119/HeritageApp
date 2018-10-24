@@ -50,7 +50,7 @@ export class HeritageEvaluationComponent implements OnInit {
         this.heritageService.getHeritage(Global.BASE_HERITAGE_ENDPOINT + this.param).subscribe(
           result => {
             this.heritage = result;
-            this.heritageEvaluationService.getAllHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
+            this.heritageEvaluationService.getHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
               .subscribe(
                 evals => {
                   this.evaluations = evals;
@@ -70,11 +70,11 @@ export class HeritageEvaluationComponent implements OnInit {
       heritageId: this.heritage.id,
       evaluatorTypeId: -1,
       evaluationValue: 0.0,
-      agreementFactor: 0.2,
-      cognitionFactor: 0.2,
-      projectValueFactor: 0.2,
-      projectBasicInfoFactor: 0.2,
-      projectConditionStatusFactor: 0.2,
+      agreementFactor: 0.2215,
+      cognitionFactor: 0.2019,
+      projectValueFactor: 0.1884,
+      projectBasicInfoFactor: 0.1830,
+      projectConditionStatusFactor: 0.20519,
       importanceValue: -1,
       nationalPrideValue: -1,
       govProtectionValue: -1,
@@ -119,7 +119,7 @@ export class HeritageEvaluationComponent implements OnInit {
           data => {
             this.evaluation = data;
             this.toastr.success("Activation mode suceessfully added.", "Succeeded");
-            this.heritageEvaluationService.getAllHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
+            this.heritageEvaluationService.getHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
               .subscribe(
                 evals => {
                   this.evaluations = evals;
@@ -137,7 +137,7 @@ export class HeritageEvaluationComponent implements OnInit {
           data => {
             this.evaluation = data;
             this.toastr.success("Activation mode suceessfully updated.", "Succeeded");
-            this.heritageEvaluationService.getAllHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
+            this.heritageEvaluationService.getHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
               .subscribe(
                 evals => {
                   this.evaluations = evals;
@@ -169,7 +169,7 @@ export class HeritageEvaluationComponent implements OnInit {
           .subscribe(
             data => {
               this.toastr.success("Activation mode suceessfully deleted.", "Succeeded");
-              this.heritageEvaluationService.getAllHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
+              this.heritageEvaluationService.getHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
                 .subscribe(
                   evals => {
                     this.evaluations = evals;
@@ -271,6 +271,19 @@ export class HeritageEvaluationComponent implements OnInit {
           this.defaultEvalType = this.availableEvalTypes[0].value;
         }
       )
+  }
+
+  evaluateheritage() {
+    this.heritageEvaluationService.evaluateHeritage(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'evaluateHeritage/' + this.heritage.id)
+      .subscribe(
+        res => {
+          this.heritage = res;
+          this.toastr.success("Heritage evaluation completed suceessfully.", "Succeeded");
+        },
+        error => {
+          this.toastr.error("Failed to evaluate heritage", "Failed")
+        }
+      );
   }
 
 }

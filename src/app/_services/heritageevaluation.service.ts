@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { IHeritageEvaluation } from '../_models';
+import { IHeritageEvaluation, IHeritageGameAnalysis, IHeritage } from '../_models';
 import { catchError, map } from 'rxjs/operators';
 
 const httpOptions = {
@@ -17,10 +17,11 @@ export class HeritageEvaluationService {
 
     heritageEvaluations: IHeritageEvaluation[];
     heritageEvaluation: IHeritageEvaluation;
+    heritage: IHeritage;
 
     constructor(private http: HttpClient) { }
 
-    getAllHeritageEvaluations(url: string): Observable<IHeritageEvaluation[]> {
+    getHeritageEvaluations(url: string): Observable<IHeritageEvaluation[]> {
         return this.http.get<IHeritageEvaluation[]>(url)
             .pipe(
                 map(evaluations => {
@@ -32,12 +33,12 @@ export class HeritageEvaluationService {
             )
     }
 
-    getHeritageEvaluation(url: string): Observable<IHeritageEvaluation> {
-        return this.http.get<IHeritageEvaluation>(url)
+    evaluateHeritage(url: string): Observable<IHeritage> {
+        return this.http.get<IHeritage>(url)
             .pipe(
-                map(evaluation => {
-                    this.heritageEvaluation = evaluation;
-                    return this.heritageEvaluation;
+                map(heritage => {
+                    this.heritage = heritage;
+                    return this.heritage;
                 }),
 
                 catchError(this.handleError)

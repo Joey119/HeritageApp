@@ -1,9 +1,9 @@
 <div class="basic-container" *ngIf="heritage">
 
   <mat-toolbar>
-    <span>Tourism Evaluation: {{ heritage.name }} </span>
+    <span>Tourism Evaluation: {{ heritage.name }} Value: {{ heritage.evaluationValue | number : '1.2-2' }}</span>
     <span class="spacer"></span>
-    <button mat-button class="form-save">Calculate and Save</button>
+    <button mat-button class="form-save" (click)="evaluateheritage()">Calculate and Save</button>
     <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">Back</button>
   </mat-toolbar>
 
@@ -98,7 +98,7 @@
     <ng-template pTemplate="body" let-rowData>
       <tr [pSelectableRow]="rowData">
         <td>{{rowData.evaluatorTypeId | evaluatortype}}</td>
-        <td>{{rowData.evaluationValue}}</td>
+        <td>{{rowData.evaluationValue | number : '1.2-2'}}</td>
         <td>{{rowData.agreementFactor}}</td>
         <td>{{rowData.cognitionFactor}}</td>
         <td>{{rowData.projectValueFactor}}</td>
