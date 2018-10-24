@@ -8,3 +8,4 @@ export * from './evaluationOption';
 export * from './evaluatorType';
 export * from './heritageEvaluation';
 export * from './heritageGameAnalysis';
+export * from './analysisRoute';

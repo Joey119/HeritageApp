@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import 'rxjs/add/observable/of'
 import { environment } from '../../environments/environment';
-import { IHeritageGameAnalysis } from '../_models';
+import { IHeritageGameAnalysis, IAnalysisRoute } from '../_models';
 import { catchError, map } from 'rxjs/operators';
 
 const httpOptions = {
@@ -32,11 +32,11 @@ export class HeritageGameAnalysisService {
             )
     }
 
-    getHeritageAnalysisBestRoute(url: string): Observable<any> {
-        return this.http.get(url)
+    getHeritageAnalysisBestRoute(url: string): Observable<IAnalysisRoute> {
+        return this.http.get<IAnalysisRoute>(url)
             .pipe(
                 map(gameAnalysisBestRoute => {
-                    return Observable.of(gameAnalysisBestRoute);
+                    return gameAnalysisBestRoute;
                 }),
 
                 catchError(this.handleError)

@@ -19,6 +19,7 @@ export class HeritageAnalysisComponent implements OnInit {
   param: any;
   bestRoute: string;
 
+
   @ViewChild('expandingTree')
   expandingTree: Tree;
   decisionTree: TreeNode[];
