@@ -5,6 +5,7 @@ import { NgForm }    from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Global } from '../_shared';
 import { CommentBoxComponent } from './comment-box.component'
+import { ToastrService } from 'ngx-toastr';
 import { CommentService, EmitterService, UserService } from '../_services';
 import { IComment } from '../_models';
 
@@ -24,7 +25,8 @@ export class CommentFormComponent implements OnChanges {
     // Constructor with injected service
     constructor(
         private commentService: CommentService,
-        private userService: UserService
+        private userService: UserService,
+        private toastr: ToastrService
         ){
             this.model.commentUserId = this.userService.currentUserId();
             this.model.commentUserName = this.userService.currentUserName();
@@ -36,6 +38,12 @@ export class CommentFormComponent implements OnChanges {
     @Input() heritageId: number;     
 
     submitComment(){
+        if (!this.userService.canComment())
+        {
+            this.toastr.error("You do not have permission to comment","Permission Denied")
+            return;
+        }
+
         // Variable to hold a reference of addComment/updateComment
         let commentOperation:Observable<IComment>;
 

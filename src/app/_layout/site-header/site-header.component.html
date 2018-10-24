@@ -21,13 +21,13 @@
         <span class="label">Heritage List</span>
       </a>
       <a mat-list-item
-         *ngIf="auth.isAuthenticated()"
+         *ngIf="canEdit()"
          routerLink="/activationmodelist">
         <mat-icon class="icon">view_list</mat-icon>
         <span class="label">Activation Mode List</span>
       </a>
       <a mat-list-item
-         *ngIf="auth.isAuthenticated()"
+         *ngIf="isAdmin()"
          routerLink="/users">
         <mat-icon class="icon">account_box</mat-icon>
         <span class="label">User Management</span>
@@ -79,7 +79,7 @@
           </li>
           <li>
               <a
-                *ngIf="auth.isAuthenticated()"
+                *ngIf="canEdit()"
                 routerLink="/activationmodelist">
                 <mat-icon class="icon">view_list</mat-icon>
                 <span class="label">Activation Mode List</span>
@@ -87,7 +87,7 @@
             </li>
           <li>
             <a
-              *ngIf="auth.isAuthenticated()"
+              *ngIf="isAdmin()"
               routerLink="/users">
               <mat-icon class="icon">account_box</mat-icon>
               <span class="label">User Management</span>

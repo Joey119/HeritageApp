@@ -1191,7 +1191,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n        <footer>\r\n          <p>&copy; Company 2018 , This footer is rendered by /app/_layout/site-footer/site-footer.component.html</p>\r\n        </footer>\r\n      </div>"
+module.exports = "<div class=\"container\">\r\n        <footer>\r\n          <p>&copy; Beijing Union University 2018.</p>\r\n        </footer>\r\n      </div>"
 
 /***/ }),
 
@@ -1254,7 +1254,7 @@ var SiteFooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container>\r\n  <mat-sidenav  #sidenav mode=\"side\"\r\n        [fixedInViewport]=\"options.value.fixed\" [fixedTopGap]=\"options.value.top\"\r\n        [fixedBottomGap]=\"options.value.bottom\">\r\n    <mat-nav-list>\r\n      <a mat-list-item\r\n         *ngIf=\"!auth.isAuthenticated()\"\r\n         routerLink=\"/login\">\r\n        <mat-icon class=\"icon\">input</mat-icon>\r\n        <span class=\"label\">Login</span>\r\n      </a>\r\n      <a mat-list-item         \r\n         routerLink=\"/\">\r\n        <mat-icon class=\"icon\">home</mat-icon>\r\n        <span class=\"label\">Home</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"auth.isAuthenticated()\"\r\n         routerLink=\"/heritagelist\">\r\n        <mat-icon class=\"icon\">view_list</mat-icon>\r\n        <span class=\"label\">Heritage List</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"auth.isAuthenticated()\"\r\n         routerLink=\"/activationmodelist\">\r\n        <mat-icon class=\"icon\">view_list</mat-icon>\r\n        <span class=\"label\">Activation Mode List</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"auth.isAuthenticated()\"\r\n         routerLink=\"/users\">\r\n        <mat-icon class=\"icon\">account_box</mat-icon>\r\n        <span class=\"label\">User Management</span>\r\n      </a>\r\n      <a  mat-list-item\r\n          *ngIf=\"auth.isAuthenticated()\"\r\n          (click)=\"auth.logout()\" type=\"button\">\r\n        <mat-icon class=\"icon\">input</mat-icon>\r\n        <span class=\"label\">LogOut</span>\r\n      </a>\r\n    </mat-nav-list>\r\n  </mat-sidenav>\r\n  <mat-sidenav-content [formGroup]=\"options\">\r\n    <mat-toolbar color=\"primary\">\r\n      <div fxHide.gt-xs=\"false\">\r\n        <button mat-icon-button (click)=\"sidenav.toggle()\">\r\n          <mat-icon>menu</mat-icon>\r\n        </button>\r\n      </div>\r\n      <div>\r\n        <a routerLink=\"/\">\r\n          Heritage App Version 1.0\r\n        </a>\r\n      </div>\r\n      <div fxFlex fxLayout fxLayoutAlign=\"flex-end\"  fxHide.xs>\r\n        <ul fxLayout fxLayoutGap=\"20px\" class=\"navigation-items\">\r\n          <li>\r\n            <a\r\n              *ngIf=\"!auth.isAuthenticated()\"\r\n              routerLink=\"/login\">\r\n              <mat-icon class=\"icon\">input</mat-icon>\r\n              <span  class=\"label\">Login</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a              \r\n              routerLink=\"/\">\r\n              <mat-icon class=\"icon\">home</mat-icon>\r\n              <span class=\"label\">Home</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"auth.isAuthenticated()\"\r\n              routerLink=\"/heritagelist\">\r\n              <mat-icon class=\"icon\">view_list</mat-icon>\r\n              <span class=\"label\">Heritage List</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n              <a\r\n                *ngIf=\"auth.isAuthenticated()\"\r\n                routerLink=\"/activationmodelist\">\r\n                <mat-icon class=\"icon\">view_list</mat-icon>\r\n                <span class=\"label\">Activation Mode List</span>\r\n              </a>\r\n            </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"auth.isAuthenticated()\"\r\n              routerLink=\"/users\">\r\n              <mat-icon class=\"icon\">account_box</mat-icon>\r\n              <span class=\"label\">User Management</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"auth.isAuthenticated()\"\r\n              (click)=\"auth.logout()\">\r\n              <mat-icon class=\"icon\">input</mat-icon>\r\n              <span class=\"label\">LogOut</span>\r\n            </a>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </mat-toolbar>\r\n\r\n  </mat-sidenav-content>\r\n</mat-sidenav-container>\r\n"
+module.exports = "<mat-sidenav-container>\r\n  <mat-sidenav  #sidenav mode=\"side\"\r\n        [fixedInViewport]=\"options.value.fixed\" [fixedTopGap]=\"options.value.top\"\r\n        [fixedBottomGap]=\"options.value.bottom\">\r\n    <mat-nav-list>\r\n      <a mat-list-item\r\n         *ngIf=\"!auth.isAuthenticated()\"\r\n         routerLink=\"/login\">\r\n        <mat-icon class=\"icon\">input</mat-icon>\r\n        <span class=\"label\">Login</span>\r\n      </a>\r\n      <a mat-list-item         \r\n         routerLink=\"/\">\r\n        <mat-icon class=\"icon\">home</mat-icon>\r\n        <span class=\"label\">Home</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"auth.isAuthenticated()\"\r\n         routerLink=\"/heritagelist\">\r\n        <mat-icon class=\"icon\">view_list</mat-icon>\r\n        <span class=\"label\">Heritage List</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"canEdit()\"\r\n         routerLink=\"/activationmodelist\">\r\n        <mat-icon class=\"icon\">view_list</mat-icon>\r\n        <span class=\"label\">Activation Mode List</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"isAdmin()\"\r\n         routerLink=\"/users\">\r\n        <mat-icon class=\"icon\">account_box</mat-icon>\r\n        <span class=\"label\">User Management</span>\r\n      </a>\r\n      <a  mat-list-item\r\n          *ngIf=\"auth.isAuthenticated()\"\r\n          (click)=\"auth.logout()\" type=\"button\">\r\n        <mat-icon class=\"icon\">input</mat-icon>\r\n        <span class=\"label\">LogOut</span>\r\n      </a>\r\n    </mat-nav-list>\r\n  </mat-sidenav>\r\n  <mat-sidenav-content [formGroup]=\"options\">\r\n    <mat-toolbar color=\"primary\">\r\n      <div fxHide.gt-xs=\"false\">\r\n        <button mat-icon-button (click)=\"sidenav.toggle()\">\r\n          <mat-icon>menu</mat-icon>\r\n        </button>\r\n      </div>\r\n      <div>\r\n        <a routerLink=\"/\">\r\n          Heritage App Version 1.0\r\n        </a>\r\n      </div>\r\n      <div fxFlex fxLayout fxLayoutAlign=\"flex-end\"  fxHide.xs>\r\n        <ul fxLayout fxLayoutGap=\"20px\" class=\"navigation-items\">\r\n          <li>\r\n            <a\r\n              *ngIf=\"!auth.isAuthenticated()\"\r\n              routerLink=\"/login\">\r\n              <mat-icon class=\"icon\">input</mat-icon>\r\n              <span  class=\"label\">Login</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a              \r\n              routerLink=\"/\">\r\n              <mat-icon class=\"icon\">home</mat-icon>\r\n              <span class=\"label\">Home</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"auth.isAuthenticated()\"\r\n              routerLink=\"/heritagelist\">\r\n              <mat-icon class=\"icon\">view_list</mat-icon>\r\n              <span class=\"label\">Heritage List</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n              <a\r\n                *ngIf=\"canEdit()\"\r\n                routerLink=\"/activationmodelist\">\r\n                <mat-icon class=\"icon\">view_list</mat-icon>\r\n                <span class=\"label\">Activation Mode List</span>\r\n              </a>\r\n            </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"isAdmin()\"\r\n              routerLink=\"/users\">\r\n              <mat-icon class=\"icon\">account_box</mat-icon>\r\n              <span class=\"label\">User Management</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"auth.isAuthenticated()\"\r\n              (click)=\"auth.logout()\">\r\n              <mat-icon class=\"icon\">input</mat-icon>\r\n              <span class=\"label\">LogOut</span>\r\n            </a>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </mat-toolbar>\r\n\r\n  </mat-sidenav-content>\r\n</mat-sidenav-container>\r\n"
 
 /***/ }),
 
@@ -1295,8 +1295,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var SiteHeaderComponent = /** @class */ (function () {
-    function SiteHeaderComponent(auth, fb) {
+    function SiteHeaderComponent(auth, usr, fb) {
         this.auth = auth;
+        this.usr = usr;
         this.title = 'HerritageApp';
         auth.handleAuthentication();
         this.options = fb.group({
@@ -1307,6 +1308,30 @@ var SiteHeaderComponent = /** @class */ (function () {
     }
     SiteHeaderComponent.prototype.ngOnInit = function () {
     };
+    SiteHeaderComponent.prototype.isAdmin = function () {
+        if (this.auth.isAuthenticated() && this.usr.isAdmin()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    SiteHeaderComponent.prototype.canEdit = function () {
+        if (this.auth.isAuthenticated() && this.usr.canEdit()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    SiteHeaderComponent.prototype.isReadOnly = function () {
+        if (this.auth.isAuthenticated() && this.usr.isReadOnly()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
     SiteHeaderComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'site-header',
@@ -1314,6 +1339,7 @@ var SiteHeaderComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./site-header.component.scss */ "./src/app/_layout/site-header/site-header.component.scss")]
         }),
         __metadata("design:paramtypes", [_services__WEBPACK_IMPORTED_MODULE_1__["AuthenticationService"],
+            _services__WEBPACK_IMPORTED_MODULE_1__["UserService"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
     ], SiteHeaderComponent);
     return SiteHeaderComponent;
@@ -2671,6 +2697,42 @@ var UserService = /** @class */ (function () {
             return 'Unknown';
         }
     };
+    UserService.prototype.isReadOnly = function () {
+        var user = JSON.parse(localStorage.getItem('currentUser'));
+        if (user != null && user != rxjs__WEBPACK_IMPORTED_MODULE_2__["empty"]) {
+            return user.isReadOnly;
+        }
+        else {
+            return true;
+        }
+    };
+    UserService.prototype.canComment = function () {
+        var user = JSON.parse(localStorage.getItem('currentUser'));
+        if (user != null && user != rxjs__WEBPACK_IMPORTED_MODULE_2__["empty"]) {
+            return user.canComment || user.isContributer;
+        }
+        else {
+            return false;
+        }
+    };
+    UserService.prototype.canEdit = function () {
+        var user = JSON.parse(localStorage.getItem('currentUser'));
+        if (user != null && user != rxjs__WEBPACK_IMPORTED_MODULE_2__["empty"]) {
+            return user.isContributer;
+        }
+        else {
+            return false;
+        }
+    };
+    UserService.prototype.isAdmin = function () {
+        var user = JSON.parse(localStorage.getItem('currentUser'));
+        if (user != null && user != rxjs__WEBPACK_IMPORTED_MODULE_2__["empty"]) {
+            return user.isAdmin;
+        }
+        else {
+            return false;
+        }
+    };
     // custom handler
     UserService.prototype.handleError = function (error) {
         if (error.error instanceof ErrorEvent) {
@@ -3685,7 +3747,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CommentFormComponent", function() { return CommentFormComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_shared */ "./src/app/_shared/index.ts");
-/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_services */ "./src/app/_services/index.ts");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_services */ "./src/app/_services/index.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3700,12 +3763,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 // Component decorator
 var CommentFormComponent = /** @class */ (function () {
     // Constructor with injected service
-    function CommentFormComponent(commentService, userService) {
+    function CommentFormComponent(commentService, userService, toastr) {
         this.commentService = commentService;
         this.userService = userService;
+        this.toastr = toastr;
         // Local properties    
         this.editing = false;
         this.model = { id: 0, heritageId: 0, commentUserId: 0, commentUserName: '', commentText: '', commentDate: undefined, upVoteCount: 0, downVoteCount: 0 };
@@ -3715,6 +3780,10 @@ var CommentFormComponent = /** @class */ (function () {
     ;
     CommentFormComponent.prototype.submitComment = function () {
         var _this = this;
+        if (!this.userService.canComment()) {
+            this.toastr.error("You do not have permission to comment", "Permission Denied");
+            return;
+        }
         // Variable to hold a reference of addComment/updateComment
         var commentOperation;
         this.model.heritageId = this.heritageId;
@@ -3729,7 +3798,7 @@ var CommentFormComponent = /** @class */ (function () {
         // Subscribe to observable
         commentOperation.subscribe(function (comments) {
             // Emit list event
-            _services__WEBPACK_IMPORTED_MODULE_2__["EmitterService"].get(_this.listId).emit(comments);
+            _services__WEBPACK_IMPORTED_MODULE_3__["EmitterService"].get(_this.listId).emit(comments);
             // Empty model
             _this.model = { id: 0, heritageId: _this.heritageId, commentUserId: _this.model.commentUserId, commentUserName: _this.model.commentUserName, commentText: '', commentDate: undefined, upVoteCount: 0, downVoteCount: 0 };
             // Switch editing status
@@ -3744,7 +3813,7 @@ var CommentFormComponent = /** @class */ (function () {
         var _this = this;
         // Listen to the 'edit'emitted event so as populate the model
         // with the event payload
-        _services__WEBPACK_IMPORTED_MODULE_2__["EmitterService"].get(this.editId).subscribe(function (comment) {
+        _services__WEBPACK_IMPORTED_MODULE_3__["EmitterService"].get(this.editId).subscribe(function (comment) {
             _this.model = comment;
             _this.editing = true;
         });
@@ -3769,8 +3838,9 @@ var CommentFormComponent = /** @class */ (function () {
         })
         // Component class
         ,
-        __metadata("design:paramtypes", [_services__WEBPACK_IMPORTED_MODULE_2__["CommentService"],
-            _services__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
+        __metadata("design:paramtypes", [_services__WEBPACK_IMPORTED_MODULE_3__["CommentService"],
+            _services__WEBPACK_IMPORTED_MODULE_3__["UserService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"]])
     ], CommentFormComponent);
     return CommentFormComponent;
 }());
@@ -6155,7 +6225,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "    <!-- Main jumbotron for a primary marketing message or call to action -->\n    <div class=\"container\">\n        <mat-card class=\"welcome-picture-card\">           \n            <img mat-card-image src=\"../../assets/images/background.jpg\" alt=\"Heritage Photo\">\n        </mat-card>\n      </div>\n  \n      <div class=\"container\">\n        <!-- Example row of columns -->\n        <div class=\"row\">\n          <div class=\"col-md-4\">\n            <h2>Heritage</h2>\n            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritagedetail']\" role=\"button\">Create &raquo;</a></p>\n          </div>\n          <div class=\"col-md-4\">\n            <h2>Heritage List</h2>\n            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritagelist']\" role=\"button\">View List &raquo;</a></p>\n         </div>\n          <div class=\"col-md-4\">\n            <h2>Activation Mode List</h2>\n            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/activationmodelist']\" role=\"button\">View List &raquo;</a></p>\n          </div>\n        </div>\n       \n      </div> <!-- /container -->\n      \n"
+module.exports = "    <!-- Main jumbotron for a primary marketing message or call to action -->\n    <div class=\"container\">\n        <mat-card class=\"welcome-picture-card\">           \n            <img mat-card-image src=\"../../assets/images/background.jpg\" alt=\"Heritage Photo\">\n        </mat-card>\n      </div>\n  \n      <div class=\"container\">\n        <!-- Example row of columns -->\n        <div class=\"row\">\n          <div class=\"col-md-4\">\n            <h2>Heritage</h2>\n            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritagedetail']\" role=\"button\">Create &raquo;</a></p>\n          </div>\n          <div class=\"col-md-4\">\n            <h2>Heritage List</h2>\n            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/heritagelist']\" role=\"button\">View List &raquo;</a></p>\n         </div>\n          <div class=\"col-md-4\" *ngIf = \"userService.canEdit()\">\n            <h2>Activation Mode List</h2>\n            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>\n            <p><a class=\"btn btn-secondary\" [routerLink]=\"['/activationmodelist']\" role=\"button\">View List &raquo;</a></p>\n          </div>\n        </div>\n       \n      </div> <!-- /container -->\n      \n"
 
 /***/ }),
 

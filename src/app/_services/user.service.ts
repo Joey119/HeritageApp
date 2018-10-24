@@ -140,6 +140,54 @@ export class UserService {
         }
     }
 
+    public isReadOnly(): boolean {
+        var user = JSON.parse(localStorage.getItem('currentUser'));
+        if (user != null && user != empty)
+        {
+            return user.isReadOnly;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public canComment(): boolean {
+        var user = JSON.parse(localStorage.getItem('currentUser'));
+        if (user != null && user != empty)
+        {
+            return user.canComment || user.isContributer;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public canEdit(): boolean {
+        var user = JSON.parse(localStorage.getItem('currentUser'));
+        if (user != null && user != empty)
+        {
+            return user.isContributer;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public isAdmin(): boolean {
+        var user = JSON.parse(localStorage.getItem('currentUser'));
+        if (user != null && user != empty)
+        {
+            return user.isAdmin;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
         // custom handler
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
