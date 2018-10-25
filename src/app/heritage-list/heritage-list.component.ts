@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
 import { HeritageService } from '../_services';
 import { HttpClient } from '@angular/common/http';
-import { MatPaginator, MatSort, MatDialog} from '@angular/material';
+import { MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { IHeritage } from '../_models';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -21,7 +21,7 @@ import { HeritageDeleteDialogComponent } from '../_dialogs';
   templateUrl: './heritage-list.component.html',
   styleUrls: ['./heritage-list.component.scss']
 })
-export class HeritageListComponent implements OnInit{
+export class HeritageListComponent implements OnInit {
   displayedColumns = ['id', 'name', 'registrationDistrict', 'registrationYear', 'province', 'typeofProject', 'inheritors', 'currentStatus', 'createdOn', 'actions'];
   //heritageDatabase: HeritageService;
   dataSource: HeritageDataSource;
@@ -31,9 +31,9 @@ export class HeritageListComponent implements OnInit{
   heritages: IHeritage[];
 
   constructor(public httpClient: HttpClient,
-              public _heritageService: HeritageService,
-              private toastr: ToastrService,
-              public dialog: MatDialog) {}
+    public _heritageService: HeritageService,
+    private toastr: ToastrService,
+    public dialog: MatDialog) { }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -52,7 +52,7 @@ export class HeritageListComponent implements OnInit{
   deleteItem(id: number, name: string) {
     this.id = id;
     const dialogRef = this.dialog.open(HeritageDeleteDialogComponent, {
-      data: {id: id, name: name}
+      data: { id: id, name: name }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -65,26 +65,8 @@ export class HeritageListComponent implements OnInit{
     });
   }
 
-  
-  /*
-  deleteHeritage(id: number): void {
-    let r = confirm("Are you sure?");
- 		if (r == true) {
-        this._heritageService.deleteHeritage(Global.BASE_HERITAGE_ENDPOINT, id)
-        .subscribe(
-          data => {
-            this.toastr.success("Heritage was suceessfully deleted.", "Succeeded");
-            this.refresh();
-          }
-        );
-     }
-     else
-     {
-       return;
-     }
-  }
-  */  
-  
+
+
   // If you don't need a filter or a pagination this can be simplified, you just use code from else block
   private refreshTable() {
 
@@ -101,15 +83,15 @@ export class HeritageListComponent implements OnInit{
       this.dataSource.filter = '';
       this.dataSource.filter = this.filter.nativeElement.value;
     }
-    
+
   }
 
   public loadData() {
 
-       this.loadingState = false;
-       this._heritageService = new HeritageService(this.httpClient);
-       this.dataSource = new HeritageDataSource(this._heritageService, this.paginator, this.sort);
-       Observable.fromEvent(this.filter.nativeElement, 'keyup')
+    this.loadingState = false;
+    this._heritageService = new HeritageService(this.httpClient);
+    this.dataSource = new HeritageDataSource(this._heritageService, this.paginator, this.sort);
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
       .debounceTime(150)
       .distinctUntilChanged()
       .subscribe(() => {
@@ -138,8 +120,8 @@ export class HeritageDataSource extends DataSource<IHeritage> {
   renderedData: IHeritage[] = [];
 
   constructor(public _heritageService: HeritageService,
-              public _paginator: MatPaginator,
-              public _sort: MatSort) {
+    public _paginator: MatPaginator,
+    public _sort: MatSort) {
     super();
     // Reset to the first page when the user changes the filter.
     this._filterChange.subscribe(() => this._paginator.pageIndex = 0);

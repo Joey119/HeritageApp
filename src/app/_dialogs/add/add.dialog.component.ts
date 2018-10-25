@@ -41,6 +41,13 @@ export class AddDialogComponent {
   }
 
   public confirmAdd(): void {
+
+    if (!this.userService.isAdmin())
+    {
+      this.toastr.error("You do not have permission to create or edit a User.","Permission Denied")
+      return;
+    }
+
     this.userService.addUser(Global.BASE_USER_ENDPOINT + 'add', this.data)
     .subscribe(
       data => {

@@ -26,7 +26,7 @@
 
       <div class="form">
         <mat-form-field color="accent">
-          <textarea matInput #input class="form-control" placeholder="Activation Mode Description" [(ngModel)]="data.activationModeDescription" name="actModeDescription" required ></textarea>
+          <textarea matInput #input class="form-control" placeholder="Activation Mode Description" [(ngModel)]="data.activationModeDescription" name="actModeDescription" required matTextareaAutosize matAutosizeMinRows=5 matAutosizeMaxRows=25></textarea>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>

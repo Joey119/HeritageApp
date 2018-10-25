@@ -42,6 +42,12 @@ export class EditDialogComponent {
 
   stopEdit(): void {
 
+    if (!this.userService.isAdmin())
+    {
+      this.toastr.error("You do not have permission to create or edit a User.","Permission Denied")
+      return;
+    }
+    
     if (this.data.id < 1)
       return;
     this.userService.updateUser(Global.BASE_USER_ENDPOINT + this.data.id, this.data)

@@ -2,8 +2,9 @@
 // Imports
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IComment } from '../_models';
-import { EmitterService, CommentService } from '../_services';
+import { EmitterService, CommentService, UserService } from '../_services';
 import { Global } from '../_shared';
+import { ToastrService } from 'ngx-toastr';
 
 
 // Component decorator
@@ -13,31 +14,36 @@ import { Global } from '../_shared';
     // No providers here because they are passed down from the parent component
 })
 // Component class
-export class CommentBoxComponent { 
+export class CommentBoxComponent {
     // Constructor
-     constructor(
-        private commentService: CommentService
-        ){}
+    constructor(
+        private commentService: CommentService,
+        private userService: UserService,
+        private toastr: ToastrService) { }
     // Define input properties
     @Input() comment: IComment;
     @Input() listId: string;
     @Input() editId: string;
 
-    editComment(){
+    editComment() {
         // Emit edit event
         EmitterService.get(this.editId).emit(this.comment);
     }
 
-    deleteComment(){
+    deleteComment() {
+        if (!this.userService.canComment()) {
+            this.toastr.error("You do not have permission to comment", "Permission Denied")
+            return;
+        }
         // Call removeComment() from CommentService to delete comment
         this.commentService.removeComment(Global.BASE_HERITAGE_COMMENT_ENDPOINT + this.comment.id).subscribe(
             comments => {
-            // Emit list event
-            EmitterService.get(this.listId).emit(comments);
-            }, 
+                // Emit list event
+                EmitterService.get(this.listId).emit(comments);
+            },
             err => {
-            // Log errors if any
-            console.log(err);
+                // Log errors if any
+                console.log(err);
             });
     }
 
@@ -54,5 +60,5 @@ export class CommentBoxComponent {
             res => { console.log(res); }
         );
     }
-    
- }
+
+}

@@ -68,39 +68,39 @@ export class HeritageEvaluationComponent implements OnInit {
     this.evaluation = {
       id: 0,
       heritageId: this.heritage.id,
-      evaluatorTypeId: -1,
+      evaluatorTypeId: 5,
       evaluationValue: 0.0,
       agreementFactor: 0.2215,
       cognitionFactor: 0.2019,
       projectValueFactor: 0.1884,
       projectBasicInfoFactor: 0.1830,
       projectConditionStatusFactor: 0.20519,
-      importanceValue: -1,
-      nationalPrideValue: -1,
-      govProtectionValue: -1,
-      resourceCharacteristicsValue: -1,
-      skillScopeValue: -1,
-      skillInheritanceMethodValue: -1,
-      skillInheritanceDifficultyValue: -1,
-      artValue: -1,
-      cultureValue: -1,
-      economyValue: -1,
-      historyValue: -1,
-      educationValue: -1,
-      societyValue: -1,
-      scienceValue: -1,
-      ecologicalEnvironmentValue: -1,
-      qualityValue: -1,
-      rarenessValue: -1,
-      ecologyValue: -1,
-      popularValue: -1,
-      personalityValue: -1,
-      timeSpanValue: -1,
-      nationalEcomonicValue: -1,
-      marketStatusValue: -1,
-      basicResourceDevelopmentValue: -1,
-      basicResourceValue: -1,
-      introductionProbabilityValue: -1,
+      importanceValue: 5,
+      nationalPrideValue: 5,
+      govProtectionValue: 5,
+      resourceCharacteristicsValue: 5,
+      skillScopeValue: 5,
+      skillInheritanceMethodValue: 5,
+      skillInheritanceDifficultyValue: 5,
+      artValue: 5,
+      cultureValue: 5,
+      economyValue: 5,
+      historyValue: 5,
+      educationValue: 5,
+      societyValue: 5,
+      scienceValue: 5,
+      ecologicalEnvironmentValue: 5,
+      qualityValue: 5,
+      rarenessValue: 5,
+      ecologyValue: 5,
+      popularValue: 5,
+      personalityValue: 5,
+      timeSpanValue: 5,
+      nationalEcomonicValue: 5,
+      marketStatusValue: 5,
+      basicResourceDevelopmentValue: 5,
+      basicResourceValue: 5,
+      introductionProbabilityValue: 5,
       createdUserId: this.currentUserId,
       createdUserName: '',
       createdOn: undefined,
@@ -113,6 +113,12 @@ export class HeritageEvaluationComponent implements OnInit {
   }
 
   save() {
+
+    if (!this.userService.canEdit()) {
+      this.toastr.error("You do not have permission to create or edit a heritage.", "Failed")
+      return;
+    }
+
     if (this.newEvaluation) {
       this.heritageEvaluationService.addHeritageEvaluation(Global.BASE_HERITAGE_EVALUATION_ENDPOINT, this.evaluation)
         .subscribe(
@@ -155,6 +161,11 @@ export class HeritageEvaluationComponent implements OnInit {
 
   delete() {
 
+    if (!this.userService.canEdit()) {
+      this.toastr.error("You do not have permission to create or edit a heritage.", "Failed")
+      return;
+    }
+
     if (this.evaluation.id == 0) {
       this.displayDialog = false;
       return;
@@ -189,6 +200,12 @@ export class HeritageEvaluationComponent implements OnInit {
   }
 
   onRowSelect(event) {
+
+    if (!this.userService.canEdit()) {
+      this.toastr.error("You do not have permission to create or edit a heritage.", "Failed")
+      return;
+    }
+
     this.newEvaluation = false;
     this.evaluation = this.cloneEvaluation(event.data);
     this.displayDialog = true;
@@ -274,6 +291,12 @@ export class HeritageEvaluationComponent implements OnInit {
   }
 
   evaluateheritage() {
+
+    if (!this.userService.canEdit()) {
+      this.toastr.error("You do not have permission to create or edit a heritage.", "Failed")
+      return;
+    }
+
     this.heritageEvaluationService.evaluateHeritage(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'evaluateHeritage/' + this.heritage.id)
       .subscribe(
         res => {

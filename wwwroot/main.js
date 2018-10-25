@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>Add New Activation Mode</h3>\r\n  \r\n    <form class=\"mat-dialog-content\" (ngSubmit)=\"submit\" #formControl=\"ngForm\">\r\n   \r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Activation Mode Name\" [(ngModel)]=\"data.activationModeName\" name=\"actModeName\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Upper Bound\" [(ngModel)]=\"data.upperBound\" name=\"upperBound\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Lower Bound\" [(ngModel)]=\"data.lowerBound\" name=\"lowerBound\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <textarea matInput #input class=\"form-control\" placeholder=\"Activation Mode Description\" [(ngModel)]=\"data.activationModeDescription\" name=\"actModeDescription\" required ></textarea>\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n  \r\n      <div mat-dialog-actions>\r\n        <button mat-button [type]=\"submit\" [disabled]=\"!formControl.valid\" [mat-dialog-close]=\"1\" (click)=\"confirmAdd()\">Save</button>\r\n        <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  "
+module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>Add New Activation Mode</h3>\r\n  \r\n    <form class=\"mat-dialog-content\" (ngSubmit)=\"submit\" #formControl=\"ngForm\">\r\n   \r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Activation Mode Name\" [(ngModel)]=\"data.activationModeName\" name=\"actModeName\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Upper Bound\" [(ngModel)]=\"data.upperBound\" name=\"upperBound\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Lower Bound\" [(ngModel)]=\"data.lowerBound\" name=\"lowerBound\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <textarea matInput #input class=\"form-control\" placeholder=\"Activation Mode Description\" [(ngModel)]=\"data.activationModeDescription\" name=\"actModeDescription\" required matTextareaAutosize matAutosizeMinRows=5 matAutosizeMaxRows=25></textarea>\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n  \r\n      <div mat-dialog-actions>\r\n        <button mat-button [type]=\"submit\" [disabled]=\"!formControl.valid\" [mat-dialog-close]=\"1\" (click)=\"confirmAdd()\">Save</button>\r\n        <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  "
 
 /***/ }),
 
@@ -104,6 +104,10 @@ var ActivationModeAddDialogComponent = /** @class */ (function () {
     };
     ActivationModeAddDialogComponent.prototype.confirmAdd = function () {
         var _this = this;
+        if (!this.userService.canEdit()) {
+            this.toastr.error("You do not have permission to create or edit a activation mode.", "Permission Denied");
+            return;
+        }
         var userId = this.userService.currentUserId();
         this.data.createdUserId = userId;
         this.data.modifiedUserId = userId;
@@ -188,17 +192,22 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 var ActivationModeDeleteDialogComponent = /** @class */ (function () {
-    function ActivationModeDeleteDialogComponent(dialogRef, data, actModeService, toastr) {
+    function ActivationModeDeleteDialogComponent(dialogRef, data, actModeService, toastr, userService) {
         this.dialogRef = dialogRef;
         this.data = data;
         this.actModeService = actModeService;
         this.toastr = toastr;
+        this.userService = userService;
     }
     ActivationModeDeleteDialogComponent.prototype.onNoClick = function () {
         this.dialogRef.close();
     };
     ActivationModeDeleteDialogComponent.prototype.confirmDelete = function () {
         var _this = this;
+        if (!this.userService.canEdit()) {
+            this.toastr.error("You do not have permission to delete a activation mode.", "Permission Denied");
+            return;
+        }
         this.actModeService.deleteActMode(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_ACTIVATION_MODE_ENDPOINT, this.data.id)
             .subscribe(function (data) {
             _this.toastr.success("Activation mode was suceessfully deleted.", "Succeeded");
@@ -214,7 +223,8 @@ var ActivationModeDeleteDialogComponent = /** @class */ (function () {
         }),
         __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_0__["MAT_DIALOG_DATA"])),
         __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogRef"], Object, _services__WEBPACK_IMPORTED_MODULE_3__["ActivationModeService"],
-            ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"]])
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"],
+            _services__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
     ], ActivationModeDeleteDialogComponent);
     return ActivationModeDeleteDialogComponent;
 }());
@@ -230,7 +240,7 @@ var ActivationModeDeleteDialogComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>Activation Mode: {{data.activationModeName}}</h3>\r\n  \r\n    <form class=\"mat-dialog-content\" (ngSubmit)=\"submit\" #formControl=\"ngForm\">\r\n  \r\n      <!--Contains mat-hint for characters count and has maxLengt set-->\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Activation Mode Name\" [(ngModel)]=\"data.activationModeName\" name=\"actModeName\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Upper Bound\" [(ngModel)]=\"data.upperBound\" name=\"upperBound\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Lower Bound\" [(ngModel)]=\"data.lowerBound\" name=\"lowerBound\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <textarea matInput #input class=\"form-control\" placeholder=\"Activation Mode Description\" [(ngModel)]=\"data.activationModeDescription\" name=\"actModeDescription\" required ></textarea>\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div mat-dialog-actions>\r\n        <button mat-button [type]=\"submit\" [disabled]=\"!formControl.valid\" [mat-dialog-close]=\"1\" (click)=\"stopEdit()\">Save</button>\r\n        <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  "
+module.exports = "<div class=\"container\">\r\n    <h3 mat-dialog-title>Activation Mode: {{data.activationModeName}}</h3>\r\n  \r\n    <form class=\"mat-dialog-content\" (ngSubmit)=\"submit\" #formControl=\"ngForm\">\r\n  \r\n      <!--Contains mat-hint for characters count and has maxLengt set-->\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Activation Mode Name\" [(ngModel)]=\"data.activationModeName\" name=\"actModeName\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Upper Bound\" [(ngModel)]=\"data.upperBound\" name=\"upperBound\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <input matInput #input class=\"form-control\" placeholder=\"Lower Bound\" [(ngModel)]=\"data.lowerBound\" name=\"lowerBound\" required />\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div class=\"form\">\r\n        <mat-form-field color=\"accent\">\r\n          <textarea matInput #input class=\"form-control\" placeholder=\"Activation Mode Description\" [(ngModel)]=\"data.activationModeDescription\" name=\"actModeDescription\" required matTextareaAutosize matAutosizeMinRows=5 matAutosizeMaxRows=25></textarea>\r\n          <mat-error *ngIf=\"formControl.invalid\">{{getErrorMessage()}}</mat-error>\r\n        </mat-form-field>\r\n      </div>\r\n\r\n      <div mat-dialog-actions>\r\n        <button mat-button [type]=\"submit\" [disabled]=\"!formControl.valid\" [mat-dialog-close]=\"1\" (click)=\"stopEdit()\">Save</button>\r\n        <button mat-button (click)=\"onNoClick()\" tabindex=\"-1\">Cancel</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  "
 
 /***/ }),
 
@@ -304,6 +314,10 @@ var ActivationModeEditDialogComponent = /** @class */ (function () {
     };
     ActivationModeEditDialogComponent.prototype.stopEdit = function () {
         var _this = this;
+        if (!this.userService.canEdit()) {
+            this.toastr.error("You do not have permission to create or edit a activation mode.", "Permission Denied");
+            return;
+        }
         var userId = this.userService.currentUserId();
         this.data.modifiedUserId = userId;
         if (this.data.id < 1)
@@ -414,6 +428,10 @@ var AddDialogComponent = /** @class */ (function () {
     };
     AddDialogComponent.prototype.confirmAdd = function () {
         var _this = this;
+        if (!this.userService.isAdmin()) {
+            this.toastr.error("You do not have permission to create or edit a User.", "Permission Denied");
+            return;
+        }
         this.userService.addUser(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_USER_ENDPOINT + 'add', this.data)
             .subscribe(function (data) {
             _this.newUser = data;
@@ -505,6 +523,10 @@ var DeleteDialogComponent = /** @class */ (function () {
     };
     DeleteDialogComponent.prototype.confirmDelete = function () {
         var _this = this;
+        if (!this.userService.isAdmin()) {
+            this.toastr.error("You do not have permission to delete a User.", "Permission Denied");
+            return;
+        }
         this.userService.deleteUser(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_USER_ENDPOINT, this.data.id)
             .subscribe(function (data) {
             _this.toastr.success("User was suceessfully deleted.", "Succeeded");
@@ -609,6 +631,10 @@ var EditDialogComponent = /** @class */ (function () {
     };
     EditDialogComponent.prototype.stopEdit = function () {
         var _this = this;
+        if (!this.userService.isAdmin()) {
+            this.toastr.error("You do not have permission to create or edit a User.", "Permission Denied");
+            return;
+        }
         if (this.data.id < 1)
             return;
         this.userService.updateUser(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_USER_ENDPOINT + this.data.id, this.data)
@@ -691,17 +717,22 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 var HeritageDeleteDialogComponent = /** @class */ (function () {
-    function HeritageDeleteDialogComponent(dialogRef, data, heritageService, toastr) {
+    function HeritageDeleteDialogComponent(dialogRef, data, heritageService, toastr, userService) {
         this.dialogRef = dialogRef;
         this.data = data;
         this.heritageService = heritageService;
         this.toastr = toastr;
+        this.userService = userService;
     }
     HeritageDeleteDialogComponent.prototype.onNoClick = function () {
         this.dialogRef.close();
     };
     HeritageDeleteDialogComponent.prototype.confirmDelete = function () {
         var _this = this;
+        if (!this.userService.canEdit()) {
+            this.toastr.error("You do not have permission to delete a heritage.", "Permission Denied");
+            return;
+        }
         this.heritageService.deleteHeritage(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_ENDPOINT, this.data.id)
             .subscribe(function (data) {
             _this.toastr.success("Heritage was suceessfully deleted.", "Succeeded");
@@ -715,7 +746,8 @@ var HeritageDeleteDialogComponent = /** @class */ (function () {
         }),
         __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_0__["MAT_DIALOG_DATA"])),
         __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogRef"], Object, _services__WEBPACK_IMPORTED_MODULE_3__["HeritageService"],
-            ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"]])
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"],
+            _services__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
     ], HeritageDeleteDialogComponent);
     return HeritageDeleteDialogComponent;
 }());
@@ -3642,6 +3674,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_services */ "./src/app/_services/index.ts");
 /* harmony import */ var _shared__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_shared */ "./src/app/_shared/index.ts");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3656,11 +3689,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 // Component decorator
 var CommentBoxComponent = /** @class */ (function () {
     // Constructor
-    function CommentBoxComponent(commentService) {
+    function CommentBoxComponent(commentService, userService, toastr) {
         this.commentService = commentService;
+        this.userService = userService;
+        this.toastr = toastr;
     }
     CommentBoxComponent.prototype.editComment = function () {
         // Emit edit event
@@ -3668,6 +3704,10 @@ var CommentBoxComponent = /** @class */ (function () {
     };
     CommentBoxComponent.prototype.deleteComment = function () {
         var _this = this;
+        if (!this.userService.canComment()) {
+            this.toastr.error("You do not have permission to comment", "Permission Denied");
+            return;
+        }
         // Call removeComment() from CommentService to delete comment
         this.commentService.removeComment(_shared__WEBPACK_IMPORTED_MODULE_2__["Global"].BASE_HERITAGE_COMMENT_ENDPOINT + this.comment.id).subscribe(function (comments) {
             // Emit list event
@@ -3704,7 +3744,9 @@ var CommentBoxComponent = /** @class */ (function () {
         })
         // Component class
         ,
-        __metadata("design:paramtypes", [_services__WEBPACK_IMPORTED_MODULE_1__["CommentService"]])
+        __metadata("design:paramtypes", [_services__WEBPACK_IMPORTED_MODULE_1__["CommentService"],
+            _services__WEBPACK_IMPORTED_MODULE_1__["UserService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"]])
     ], CommentBoxComponent);
     return CommentBoxComponent;
 }());
@@ -4427,6 +4469,10 @@ var HeritageAnalysisComponent = /** @class */ (function () {
     };
     HeritageAnalysisComponent.prototype.onSubmit = function () {
         var _this = this;
+        if (!this.userService.canEdit()) {
+            this.toastr.error("You do not have permission to create or edit a heritage.", "Failed");
+            return;
+        }
         var userId = this.userService.currentUserId();
         if (this.heritageGameAnalysis.id != 0) {
             this.heritageGameAnalysis.modifiedUserId = userId;
@@ -4790,8 +4836,8 @@ var HeritageDetailComponent = /** @class */ (function () {
                     tourismBenefit: 0,
                     story: '',
                     evaluationValue: 0,
-                    activatoinModeId: 0,
-                    heritageGameAnalysisId: 0,
+                    activatoinModeId: undefined,
+                    heritageGameAnalysisId: undefined,
                     createdUserId: 0,
                     createdUserName: '',
                     createdOn: undefined,
@@ -4804,6 +4850,10 @@ var HeritageDetailComponent = /** @class */ (function () {
     };
     HeritageDetailComponent.prototype.onSubmit = function () {
         var _this = this;
+        if (!this.userService.canEdit()) {
+            this.toastr.error("You do not have permission to create or edit a heritage.", "Failed");
+            return;
+        }
         var userId = this.userService.currentUserId();
         if (this.heritage.id != 0) {
             this.heritage.modifiedUserId = userId;
@@ -4984,39 +5034,39 @@ var HeritageEvaluationComponent = /** @class */ (function () {
         this.evaluation = {
             id: 0,
             heritageId: this.heritage.id,
-            evaluatorTypeId: -1,
+            evaluatorTypeId: 5,
             evaluationValue: 0.0,
             agreementFactor: 0.2215,
             cognitionFactor: 0.2019,
             projectValueFactor: 0.1884,
             projectBasicInfoFactor: 0.1830,
             projectConditionStatusFactor: 0.20519,
-            importanceValue: -1,
-            nationalPrideValue: -1,
-            govProtectionValue: -1,
-            resourceCharacteristicsValue: -1,
-            skillScopeValue: -1,
-            skillInheritanceMethodValue: -1,
-            skillInheritanceDifficultyValue: -1,
-            artValue: -1,
-            cultureValue: -1,
-            economyValue: -1,
-            historyValue: -1,
-            educationValue: -1,
-            societyValue: -1,
-            scienceValue: -1,
-            ecologicalEnvironmentValue: -1,
-            qualityValue: -1,
-            rarenessValue: -1,
-            ecologyValue: -1,
-            popularValue: -1,
-            personalityValue: -1,
-            timeSpanValue: -1,
-            nationalEcomonicValue: -1,
-            marketStatusValue: -1,
-            basicResourceDevelopmentValue: -1,
-            basicResourceValue: -1,
-            introductionProbabilityValue: -1,
+            importanceValue: 5,
+            nationalPrideValue: 5,
+            govProtectionValue: 5,
+            resourceCharacteristicsValue: 5,
+            skillScopeValue: 5,
+            skillInheritanceMethodValue: 5,
+            skillInheritanceDifficultyValue: 5,
+            artValue: 5,
+            cultureValue: 5,
+            economyValue: 5,
+            historyValue: 5,
+            educationValue: 5,
+            societyValue: 5,
+            scienceValue: 5,
+            ecologicalEnvironmentValue: 5,
+            qualityValue: 5,
+            rarenessValue: 5,
+            ecologyValue: 5,
+            popularValue: 5,
+            personalityValue: 5,
+            timeSpanValue: 5,
+            nationalEcomonicValue: 5,
+            marketStatusValue: 5,
+            basicResourceDevelopmentValue: 5,
+            basicResourceValue: 5,
+            introductionProbabilityValue: 5,
             createdUserId: this.currentUserId,
             createdUserName: '',
             createdOn: undefined,
@@ -5028,6 +5078,10 @@ var HeritageEvaluationComponent = /** @class */ (function () {
     };
     HeritageEvaluationComponent.prototype.save = function () {
         var _this = this;
+        if (!this.userService.canEdit()) {
+            this.toastr.error("You do not have permission to create or edit a heritage.", "Failed");
+            return;
+        }
         if (this.newEvaluation) {
             this.heritageEvaluationService.addHeritageEvaluation(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_EVALUATION_ENDPOINT, this.evaluation)
                 .subscribe(function (data) {
@@ -5058,6 +5112,10 @@ var HeritageEvaluationComponent = /** @class */ (function () {
     };
     HeritageEvaluationComponent.prototype.delete = function () {
         var _this = this;
+        if (!this.userService.canEdit()) {
+            this.toastr.error("You do not have permission to create or edit a heritage.", "Failed");
+            return;
+        }
         if (this.evaluation.id == 0) {
             this.displayDialog = false;
             return;
@@ -5083,6 +5141,10 @@ var HeritageEvaluationComponent = /** @class */ (function () {
         });
     };
     HeritageEvaluationComponent.prototype.onRowSelect = function (event) {
+        if (!this.userService.canEdit()) {
+            this.toastr.error("You do not have permission to create or edit a heritage.", "Failed");
+            return;
+        }
         this.newEvaluation = false;
         this.evaluation = this.cloneEvaluation(event.data);
         this.displayDialog = true;
@@ -5162,6 +5224,10 @@ var HeritageEvaluationComponent = /** @class */ (function () {
     };
     HeritageEvaluationComponent.prototype.evaluateheritage = function () {
         var _this = this;
+        if (!this.userService.canEdit()) {
+            this.toastr.error("You do not have permission to create or edit a heritage.", "Failed");
+            return;
+        }
         this.heritageEvaluationService.evaluateHeritage(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_EVALUATION_ENDPOINT + 'evaluateHeritage/' + this.heritage.id)
             .subscribe(function (res) {
             _this.heritage = res;
@@ -5348,24 +5414,6 @@ var HeritageListComponent = /** @class */ (function () {
             }
         });
     };
-    /*
-    deleteHeritage(id: number): void {
-      let r = confirm("Are you sure?");
-          if (r == true) {
-          this._heritageService.deleteHeritage(Global.BASE_HERITAGE_ENDPOINT, id)
-          .subscribe(
-            data => {
-              this.toastr.success("Heritage was suceessfully deleted.", "Succeeded");
-              this.refresh();
-            }
-          );
-       }
-       else
-       {
-         return;
-       }
-    }
-    */
     // If you don't need a filter or a pagination this can be simplified, you just use code from else block
     HeritageListComponent.prototype.refreshTable = function () {
         // if there's a paginator active we're using it for refresh
@@ -5691,7 +5739,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--\n<h2>Login</h2>\n<form [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\n    <div class=\"form-group\">\n        <label for=\"username\">Username</label>\n        <input type=\"text\" formControlName=\"username\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.username.errors }\" />\n        <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f.username.errors.required\">Username is required</div>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <label for=\"password\">Password</label>\n        <input type=\"password\" formControlName=\"password\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\" />\n        <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f.password.errors.required\">Password is required</div>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <button [disabled]=\"loading\" class=\"btn btn-primary\">Login</button>\n        <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\n        <a [routerLink]=\"['/register']\" class=\"btn btn-link\">Register</a>\n    </div>\n</form>\n-->\n\n\n<mat-card class=\"login-card\">\n   <mat-card-content>\n        <form [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\n            <div class=\"form-group\">\n                <label for=\"username\">Username</label>\n                <input type=\"text\" formControlName=\"username\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.username.errors }\" />\n                <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\n                    <div *ngIf=\"f.username.errors.required\">Username is required</div>\n                </div>\n            </div>\n            <div class=\"form-group\">\n                <label for=\"password\">Password</label>\n                <input type=\"password\" formControlName=\"password\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\" />\n                <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n                    <div *ngIf=\"f.password.errors.required\">Password is required</div>\n                </div>\n            </div>\n            <div class=\"form-group\">\n                <button [disabled]=\"loading\" class=\"btn btn-primary\">Login</button>\n                <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\n                <a [routerLink]=\"['/register']\" class=\"btn btn-link\">Register</a>\n            </div>\n        </form>\n   </mat-card-content>   \n </mat-card>\n\n\n"
+module.exports = "<mat-card class=\"login-card\">\n    <alert></alert>\n    <mat-card-content>\n        <form [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\n            <div class=\"form-group\">\n                <label for=\"username\">Username</label>\n                <input type=\"text\" formControlName=\"username\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.username.errors }\" />\n                <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\n                    <div *ngIf=\"f.username.errors.required\">Username is required</div>\n                </div>\n            </div>\n            <div class=\"form-group\">\n                <label for=\"password\">Password</label>\n                <input type=\"password\" formControlName=\"password\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\" />\n                <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n                    <div *ngIf=\"f.password.errors.required\">Password is required</div>\n                </div>\n            </div>\n            <div class=\"form-group\">\n                <button [disabled]=\"loading\" class=\"btn btn-primary\">Login</button>\n                <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\n                <a [routerLink]=\"['/register']\" class=\"btn btn-link\">Register</a>\n            </div>\n        </form>\n    </mat-card-content>\n</mat-card>"
 
 /***/ }),
 
@@ -5826,7 +5874,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--\n<h2>Register</h2>\n<form [formGroup]=\"registerForm\" (ngSubmit)=\"onSubmit()\">\n    <div class=\"form-group\">\n        <label for=\"firstName\">First Name</label>\n        <input type=\"text\" formControlName=\"firstName\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.firstName.errors }\" />\n        <div *ngIf=\"submitted && f.firstName.errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f.firstName.errors.required\">First Name is required</div>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <label for=\"lastName\">Last Name</label>\n        <input type=\"text\" formControlName=\"lastName\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.lastName.errors }\" />\n        <div *ngIf=\"submitted && f.lastName.errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f.lastName.errors.required\">Last Name is required</div>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <label for=\"username\">Username</label>\n        <input type=\"text\" formControlName=\"username\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.username.errors }\" />\n        <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f.username.errors.required\">Username is required</div>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <label for=\"password\">Password</label>\n        <input type=\"password\" formControlName=\"password\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\" />\n        <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f.password.errors.required\">Password is required</div>\n            <div *ngIf=\"f.password.errors.minlength\">Password must be at least 6 characters</div>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <button [disabled]=\"loading\" class=\"btn btn-primary\">Register</button>\n        <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\n        <a [routerLink]=\"['/login']\" class=\"btn btn-link\">Cancel</a>\n    </div>\n</form>\n-->\n\n<mat-card class=\"register-card\">\n        <mat-card-content>\n                <form [formGroup]=\"registerForm\" (ngSubmit)=\"onSubmit()\">\n                        <div class=\"form-group\">\n                            <label for=\"firstName\">First Name</label>\n                            <input type=\"text\" formControlName=\"firstName\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.firstName.errors }\" />\n                            <div *ngIf=\"submitted && f.firstName.errors\" class=\"invalid-feedback\">\n                                <div *ngIf=\"f.firstName.errors.required\">First Name is required</div>\n                            </div>\n                        </div>\n                        <div class=\"form-group\">\n                            <label for=\"lastName\">Last Name</label>\n                            <input type=\"text\" formControlName=\"lastName\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.lastName.errors }\" />\n                            <div *ngIf=\"submitted && f.lastName.errors\" class=\"invalid-feedback\">\n                                <div *ngIf=\"f.lastName.errors.required\">Last Name is required</div>\n                            </div>\n                        </div>\n                        <div class=\"form-group\">\n                            <label for=\"username\">Username</label>\n                            <input type=\"text\" formControlName=\"username\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.username.errors }\" />\n                            <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\n                                <div *ngIf=\"f.username.errors.required\">Username is required</div>\n                            </div>\n                        </div>\n                        <div class=\"form-group\">\n                            <label for=\"password\">Password</label>\n                            <input type=\"password\" formControlName=\"password\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\" />\n                            <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n                                <div *ngIf=\"f.password.errors.required\">Password is required</div>\n                                <div *ngIf=\"f.password.errors.minlength\">Password must be at least 6 characters</div>\n                            </div>\n                        </div>\n                        <div class=\"form-group\">\n                            <button [disabled]=\"loading\" class=\"btn btn-primary\">Register</button>\n                            <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\n                            <a [routerLink]=\"['/login']\" class=\"btn btn-link\">Cancel</a>\n                        </div>                        \n                    </form>\n        </mat-card-content>\n    </mat-card>\n"
+module.exports = "<mat-card class=\"register-card\">\n    <alert></alert>\n    <mat-card-content>\n        <form [formGroup]=\"registerForm\" (ngSubmit)=\"onSubmit()\">\n            <div class=\"form-group\">\n                <label for=\"firstName\">First Name</label>\n                <input type=\"text\" formControlName=\"firstName\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.firstName.errors }\" />\n                <div *ngIf=\"submitted && f.firstName.errors\" class=\"invalid-feedback\">\n                    <div *ngIf=\"f.firstName.errors.required\">First Name is required</div>\n                </div>\n            </div>\n            <div class=\"form-group\">\n                <label for=\"lastName\">Last Name</label>\n                <input type=\"text\" formControlName=\"lastName\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.lastName.errors }\" />\n                <div *ngIf=\"submitted && f.lastName.errors\" class=\"invalid-feedback\">\n                    <div *ngIf=\"f.lastName.errors.required\">Last Name is required</div>\n                </div>\n            </div>\n            <div class=\"form-group\">\n                <label for=\"username\">Username</label>\n                <input type=\"text\" formControlName=\"username\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.username.errors }\" />\n                <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\n                    <div *ngIf=\"f.username.errors.required\">Username is required</div>\n                </div>\n            </div>\n            <div class=\"form-group\">\n                <label for=\"password\">Password</label>\n                <input type=\"password\" formControlName=\"password\" class=\"form-control\" [ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\" />\n                <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n                    <div *ngIf=\"f.password.errors.required\">Password is required</div>\n                    <div *ngIf=\"f.password.errors.minlength\">Password must be at least 6 characters</div>\n                </div>\n            </div>\n            <div class=\"form-group\">\n                <button [disabled]=\"loading\" class=\"btn btn-primary\">Register</button>\n                <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\n                <a [routerLink]=\"['/login']\" class=\"btn btn-link\">Cancel</a>\n            </div>\n        </form>\n    </mat-card-content>\n</mat-card>"
 
 /***/ }),
 

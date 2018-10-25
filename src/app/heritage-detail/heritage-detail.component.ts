@@ -81,8 +81,8 @@ export class HeritageDetailComponent implements OnInit {
           tourismBenefit: 0,
           story: '',
           evaluationValue: 0,
-          activatoinModeId: 0,
-          heritageGameAnalysisId: 0,
+          activatoinModeId: undefined,
+          heritageGameAnalysisId: undefined,
           createdUserId: 0,
           createdUserName: '',
           createdOn: undefined,
@@ -98,6 +98,12 @@ export class HeritageDetailComponent implements OnInit {
   }
 
   onSubmit() {
+
+    if (!this.userService.canEdit())
+    {
+      this.toastr.error("You do not have permission to create or edit a heritage.","Failed")
+      return;
+    }
 
     var userId = this.userService.currentUserId();
     if (this.heritage.id != 0) {

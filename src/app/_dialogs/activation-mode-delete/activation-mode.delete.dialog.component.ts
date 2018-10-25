@@ -1,7 +1,7 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Component, Inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { ActivationModeService } from '../../_services';
+import { ActivationModeService, UserService } from '../../_services';
 import { Global } from '../../_shared';
 
 
@@ -15,13 +15,21 @@ export class ActivationModeDeleteDialogComponent {
   constructor(public dialogRef: MatDialogRef<ActivationModeDeleteDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, 
               public actModeService: ActivationModeService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private userService: UserService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   confirmDelete(): void {
+
+    if (!this.userService.canEdit())
+    {
+      this.toastr.error("You do not have permission to delete a activation mode.","Permission Denied")
+      return;
+    }
+
     this.actModeService.deleteActMode(Global.BASE_ACTIVATION_MODE_ENDPOINT, this.data.id)
     .subscribe(
       data => {

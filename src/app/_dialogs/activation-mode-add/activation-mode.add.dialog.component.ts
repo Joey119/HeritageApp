@@ -42,6 +42,13 @@ export class ActivationModeAddDialogComponent {
   }
 
   public confirmAdd(): void {
+
+    if (!this.userService.canEdit())
+    {
+      this.toastr.error("You do not have permission to create or edit a activation mode.","Permission Denied")
+      return;
+    }
+
     var userId = this.userService.currentUserId();
     this.data.createdUserId = userId;
     this.data.modifiedUserId = userId;

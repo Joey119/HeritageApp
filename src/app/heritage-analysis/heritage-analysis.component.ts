@@ -112,6 +112,12 @@ export class HeritageAnalysisComponent implements OnInit {
 
   onSubmit() {
 
+    if (!this.userService.canEdit())
+    {
+      this.toastr.error("You do not have permission to create or edit a heritage.","Failed")
+      return;
+    }
+
     var userId = this.userService.currentUserId();
     if (this.heritageGameAnalysis.id != 0) {
       this.heritageGameAnalysis.modifiedUserId = userId;

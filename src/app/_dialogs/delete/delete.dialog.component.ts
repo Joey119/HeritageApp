@@ -22,6 +22,13 @@ export class DeleteDialogComponent {
   }
 
   confirmDelete(): void {
+
+    if (!this.userService.isAdmin())
+    {
+      this.toastr.error("You do not have permission to delete a User.","Permission Denied")
+      return;
+    }
+
     this.userService.deleteUser(Global.BASE_USER_ENDPOINT, this.data.id)
     .subscribe(
       data => {
