@@ -1,13 +1,13 @@
 <div class="basic-container" *ngIf="heritage">
 
   <mat-toolbar>
-    <span>Heritage Evaluation: {{ heritage.name }} </span>
+    <span>非遗旅游价值评估: {{ heritage.name }} </span>
     <span class="spacer"></span>
-    <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">Back</button>
+    <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">返回</button>
   </mat-toolbar>
 
   <div class="actMode-container" *ngIf="!actMode">
-    <p>No Activation Mode avaialble for current evaluation value.</p>
+    <p>当前旅游价值没有匹配的活化模式！</p>
   </div>
 
   <div class="actMode-container" *ngIf="actMode">

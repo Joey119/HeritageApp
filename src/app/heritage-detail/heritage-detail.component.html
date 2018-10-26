@@ -3,142 +3,142 @@
 <form (ngSubmit)="onSubmit()" #heritageForm="ngForm" name="heritage">
 
   <mat-toolbar>
-    <span>Heritage Detail {{ heritage.name }} </span>
+    <span>非遗信息录入 {{ heritage.name }} </span>
     <span class="spacer"></span>
-    <button mat-button class="form-save">Save</button>
-    <button type="button" mat-button class="form-save" routerLink="/heritagelist">Back</button>
+    <button mat-button class="form-save">保存</button>
+    <button type="button" mat-button class="form-save" routerLink="/heritagelist">返回</button>
   </mat-toolbar>
 
   <mat-accordion class="example-headers-align">
       <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Basic Information
+            基本信息
           </mat-panel-title>
           <mat-panel-description>
-            Type the basic information here
+            请在这里输入基本信息
             <mat-icon>account_balance</mat-icon>
           </mat-panel-description>
         </mat-expansion-panel-header>
     
           <mat-form-field class="form-field">
-            <input matInput #name placeholder="Heritage Name" [(ngModel)] = "heritage.name" name = "name"/>
+            <input matInput #name placeholder="名称" [(ngModel)] = "heritage.name" name = "name"/>
             <mat-hint align="end">
                 {{name.value.length}} / 50
               </mat-hint>
           </mat-form-field>
           <br>
           <mat-form-field class="form-field">
-            <input matInput placeholder="Registration District" [(ngModel)] = "heritage.registrationDistrict" name = "registrationDistrict"/>
+            <input matInput placeholder="申报地区或单位" [(ngModel)] = "heritage.registrationDistrict" name = "registrationDistrict"/>
           </mat-form-field>
           <br>
           <mat-form-field class="form-field">
-            <input matInput placeholder="Registration Year" [(ngModel)] = "heritage.registrationYear" name = "registrationYear"/>
+            <input matInput placeholder="申报年份" [(ngModel)] = "heritage.registrationYear" name = "registrationYear"/>
           </mat-form-field>
           <br>         
           <mat-form-field class="form-field">
-              <input matInput placeholder="Province" [(ngModel)] = "heritage.province" name = "province"/>
+              <input matInput placeholder="所属省份" [(ngModel)] = "heritage.province" name = "province"/>
           </mat-form-field>
           <br>
           <mat-form-field class="form-field">
-              <input matInput placeholder="Project Type" [(ngModel)] = "heritage.typeofProject" name = "projectType"/>
+              <input matInput placeholder="项目类型" [(ngModel)] = "heritage.typeofProject" name = "projectType"/>
           </mat-form-field>
           <br>
           <mat-form-field class="form-field">
-              <input matInput placeholder="Batch No." [(ngModel)] = "heritage.batchNo" name = "batchNo"/>
+              <input matInput placeholder="批次" [(ngModel)] = "heritage.batchNo" name = "batchNo"/>
           </mat-form-field>
           <br>
           <mat-form-field class="form-field">
-              <input matInput placeholder="Inheritors" [(ngModel)] = "heritage.inheritors" name = "inheritors"/>
+              <input matInput placeholder="传承人" [(ngModel)] = "heritage.inheritors" name = "inheritors"/>
           </mat-form-field>
           <br>
           <mat-form-field class="form-field">
-              <textarea matInput placeholder="Project Overview" [(ngModel)] = "heritage.projectOverview" name = "projectOverview"></textarea>
+              <textarea matInput placeholder="项目简介" [(ngModel)] = "heritage.projectOverview" name = "projectOverview"></textarea>
           </mat-form-field>
           <br>
           <mat-form-field class="form-field">
-              <textarea matInput placeholder="History" [(ngModel)] = "heritage.history" name = "history"></textarea>
+              <textarea matInput placeholder="历史沿革" [(ngModel)] = "heritage.history" name = "history"></textarea>
           </mat-form-field>
           <br>
           <mat-form-field class="form-field">
-              <input matInput placeholder="Current Status" [(ngModel)] = "heritage.currentStatus" name="currentStatus"/>
+              <input matInput placeholder="现状" [(ngModel)] = "heritage.currentStatus" name="currentStatus"/>
           </mat-form-field>
           <br>
           <mat-form-field class="form-field">
-              <input matInput placeholder="Present Value" [(ngModel)] = "heritage.presentValue" name="presentValue"/>
+              <input matInput placeholder="价值" [(ngModel)] = "heritage.presentValue" name="presentValue"/>
           </mat-form-field>
           <br>
           <mat-form-field class="form-field">
-              <input matInput placeholder="Endangered Status" [(ngModel)] = "heritage.endangeredStatus" name="endangeredStatus"/>
+              <input matInput placeholder="濒危情况" [(ngModel)] = "heritage.endangeredStatus" name="endangeredStatus"/>
           </mat-form-field>
           <br>
           <mat-form-field class="form-field">
-              <textarea matInput placeholder="Masterpiece" [(ngModel)] = "heritage.masterpiece" name="masterpiece"></textarea>
+              <textarea matInput placeholder="代表作品" [(ngModel)] = "heritage.masterpiece" name="masterpiece"></textarea>
           </mat-form-field>
           <br>
     
         <mat-action-row>
-          <button mat-button color="primary" (click)="nextStep()">Next</button>
+          <button mat-button color="primary" (click)="nextStep()">下一页</button>
         </mat-action-row>
       </mat-expansion-panel>
     
       <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Tourism Information
+            旅游相关信息
           </mat-panel-title>
           <mat-panel-description>
-            Type the tourism information here
+            请在这里提供旅游相关信息
             <mat-icon>map</mat-icon>
           </mat-panel-description>
         </mat-expansion-panel-header>
     
         <mat-form-field class="form-field">
-            <input matInput placeholder="Tourism Status" [(ngModel)] = "heritage.tourismStatus" name ="tourismStatus"/>
+            <input matInput placeholder="旅游开放现状" [(ngModel)] = "heritage.tourismStatus" name ="tourismStatus"/>
         </mat-form-field>
         <br>
         <mat-form-field class="form-field">
-            <textarea matInput placeholder="Tourism Market Characteristics" [(ngModel)] = "heritage.tourismMarketCharacteristics" name="tourismMarketCharacteristics"></textarea>
+            <textarea matInput placeholder="旅游市场特点" [(ngModel)] = "heritage.tourismMarketCharacteristics" name="tourismMarketCharacteristics"></textarea>
         </mat-form-field>
         <br>
         <mat-form-field class="form-field">
-            <textarea matInput placeholder="Tourism Product" [(ngModel)] = "heritage.tourismProduct" name="tourismProduct"></textarea>
+            <textarea matInput placeholder="配套旅游产品" [(ngModel)] = "heritage.tourismProduct" name="tourismProduct"></textarea>
         </mat-form-field>
         <br>
         <mat-form-field class="form-field">
-            <input matInput placeholder="Tourism Price" [(ngModel)] = "heritage.tourismPrice" name="tourismPrice"/>
+            <input matInput placeholder="旅游价格" [(ngModel)] = "heritage.tourismPrice" name="tourismPrice"/>
         </mat-form-field>
         <br>
         <mat-form-field class="form-field">
-            <input matInput placeholder="Tourism Development Model" [(ngModel)] = "heritage.tourismDevelopmentModel" name="tourismDevelopmentModel"/>
+            <input matInput placeholder="旅游开发模式" [(ngModel)] = "heritage.tourismDevelopmentModel" name="tourismDevelopmentModel"/>
         </mat-form-field>
         <br>
         <mat-form-field class="form-field">
-            <input matInput placeholder="Tourism Benefit" [(ngModel)] = "heritage.tourismBenefit" name="tourismBenefit"/>
+            <input matInput placeholder="旅游效益" [(ngModel)] = "heritage.tourismBenefit" name="tourismBenefit"/>
         </mat-form-field>
         <br>
     
         <mat-action-row>
-          <button mat-button color="warn" (click)="prevStep()">Previous</button>
-          <button mat-button color="primary" (click)="nextStep()">Next</button>
+          <button mat-button color="warn" (click)="prevStep()">上一页</button>
+          <button mat-button color="primary" (click)="nextStep()">下一页</button>
         </mat-action-row>
       </mat-expansion-panel>
     
       <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Other Information
+            其他信息
           </mat-panel-title>
           <mat-panel-description>
-            Type the other information here
+            请在这里提供其他相关信息
             <mat-icon>add_photo_alternate</mat-icon>
           </mat-panel-description>
         </mat-expansion-panel-header>
 
         <mat-card class="fileupload">
             <mat-card-header>          
-              <mat-card-title>Photos and Videos </mat-card-title>
-              <mat-card-subtitle>Please upload and download photo or video here.</mat-card-subtitle>
+              <mat-card-title>文件上传 </mat-card-title>
+              <mat-card-subtitle>请在这里上传相关文件</mat-card-subtitle>
             </mat-card-header>        
             <mat-card-content>
                 <mat-form-field class="form-field">
@@ -150,8 +150,8 @@
         </mat-card>
     
         <mat-action-row>
-          <button mat-button color="warn" (click)="prevStep()">Previous</button>
-          <button mat-button color="primary" (click)="nextStep()">End</button>
+          <button mat-button color="warn" (click)="prevStep()">上一页</button>
+          <button mat-button color="primary" (click)="nextStep()">下一页</button>
         </mat-action-row>
       </mat-expansion-panel>  
 

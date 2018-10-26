@@ -5,10 +5,10 @@
     <form class="analysis-form" (ngSubmit)="onSubmit()" #heritageGameAnalysisForm="ngForm" name="heritageGameAnalysis">
 
       <mat-toolbar>
-        <span>Heritage Game Playing Analysis: {{ heritage.name }} </span>
+        <span>非遗利益相关者博弈: {{ heritage.name }} </span>
         <span class="spacer"></span>
-        <button mat-button class="form-save">Analyse and Save</button>
-        <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">Back</button>
+        <button mat-button class="form-save">博弈并保存</button>
+        <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">返回</button>
       </mat-toolbar>
 
       <mat-grid-list cols="10" rowHeight="50px">
@@ -278,12 +278,12 @@
     </form>
     <mat-card class="analysis-tree">
       <mat-card-header>
-        <mat-card-title>Game Playing Analysis </mat-card-title>
+        <mat-card-title>利益相关者博弈最优路径分析 </mat-card-title>
         <br>
-        <p>Result: {{ bestRoute }}</p>
+        <p>结果: {{ bestRoute }}</p>
       </mat-card-header>
       <mat-card-actions>
-        <button mat-button (click)="analyse()" >Analysis</button>
+        <button mat-button (click)="analyse()" >分析</button>
       </mat-card-actions>
       <mat-card-content>
         <h3>Game Playing Analysis</h3>

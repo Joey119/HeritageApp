@@ -1,26 +1,26 @@
 <div class="container">
-    <h3 mat-dialog-title>User: {{data.userName}}</h3>
+    <h3 mat-dialog-title>用户: {{data.userName}}</h3>
   
     <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
   
       <!--Contains mat-hint for characters count and has maxLengt set-->
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="FirstName" [(ngModel)]="data.firstName" name="firstName" required />
+          <input matInput #input class="form-control" placeholder="名" [(ngModel)]="data.firstName" name="firstName" required />
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
 
       <div class="form">
         <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="LastName" [(ngModel)]="data.lastName" name="lastName" required />
+          <input matInput #input class="form-control" placeholder="姓" [(ngModel)]="data.lastName" name="lastName" required />
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
       
       <div class="form">
         <mat-form-field color="accent">
-          <input type="password" matInput #inputstate class="form-control" placeholder="Password" [(ngModel)]="data.password" name="password" maxlength="10" >
+          <input type="password" matInput #inputstate class="form-control" placeholder="密码" [(ngModel)]="data.password" name="password" maxlength="10" >
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
@@ -28,34 +28,34 @@
       <div class="form">
         <mat-form-field color="accent">
           <input matInput style="display: none">
-          <mat-checkbox [(ngModel)]="data.isReadOnly" name="isReadOnly">Is ReadOnly</mat-checkbox>
+          <mat-checkbox [(ngModel)]="data.isReadOnly" name="isReadOnly">只读</mat-checkbox>
         </mat-form-field>
       </div>
 
       <div class="form">
         <mat-form-field color="accent">
           <input matInput style="display: none">
-          <mat-checkbox [(ngModel)]="data.canComment" name="canComment">Can Comment</mat-checkbox>
+          <mat-checkbox [(ngModel)]="data.canComment" name="canComment">评论</mat-checkbox>
         </mat-form-field>
       </div>
 
       <div class="form">
         <mat-form-field color="accent">
           <input matInput style="display: none">
-          <mat-checkbox [(ngModel)]="data.isContributer" name="isContributer">Is Contributer</mat-checkbox>
+          <mat-checkbox [(ngModel)]="data.isContributer" name="isContributer">编辑</mat-checkbox>
         </mat-form-field>
       </div>
 
       <div class="form">
         <mat-form-field color="accent">
           <input matInput style="display: none">
-          <mat-checkbox [(ngModel)]="data.isAdmin" name="isAdmin">Is Admin</mat-checkbox>
+          <mat-checkbox [(ngModel)]="data.isAdmin" name="isAdmin">管理</mat-checkbox>
         </mat-form-field>
       </div>
 
       <div mat-dialog-actions>
-        <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Save</button>
-        <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+        <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">保存</button>
+        <button mat-button (click)="onNoClick()" tabindex="-1">取消</button>
       </div>
     </form>
   </div>

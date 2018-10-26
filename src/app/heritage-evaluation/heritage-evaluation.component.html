@@ -1,16 +1,16 @@
 <div class="basic-container" *ngIf="heritage">
 
   <mat-toolbar>
-    <span>Tourism Evaluation: {{ heritage.name }} Value: {{ heritage.evaluationValue | number : '1.2-2' }}</span>
+    <span>旅游价值评估系统: {{ heritage.name }} 的旅游价值为: {{ heritage.evaluationValue | number : '1.2-2' }}</span>
     <span class="spacer"></span>
-    <button mat-button class="form-save" (click)="evaluateheritage()">Calculate and Save</button>
-    <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">Back</button>
+    <button mat-button class="form-save" (click)="evaluateheritage()">计算并保存</button>
+    <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">返回</button>
   </mat-toolbar>
 
   <p-table [value]="evaluations" [scrollable]="true" selectionMode="single" (onRowSelect)="onRowSelect($event)"
     [paginator]="true" [rows]="20">
     <ng-template pTemplate="caption">
-      Heritage Evaluations
+      旅游价值评估
     </ng-template>
     <ng-template pTemplate="colgroup" let-columns>
       <colgroup>
@@ -152,7 +152,7 @@
 
   <p-dialog header="Heritage Evaluation" appendTo="body" [(visible)]="displayDialog" [responsive]="true" showEffect="fade"
     [modal]="true" [width]="600">
-    <p-confirmDialog  appendTo="body"></p-confirmDialog>
+    <p-confirmDialog appendTo="body"></p-confirmDialog>
     <div class="ui-g ui-fluid" *ngIf="evaluation">
 
       <p-fieldset legend="旅游评估">

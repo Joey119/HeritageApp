@@ -1,35 +1,29 @@
 <div class="basic-container" *ngIf="heritage">
 
   <mat-toolbar>
-    <span>Heritage Tourism Research Home: {{ heritage.name }} </span>
+    <span>多模态智能旅游价值评估、旅游活化与利益相关者博弈研究: {{ heritage.name }} </span>
     <span class="spacer"></span>
-    <button type="button" mat-button class="form-save" routerLink="/heritagelist">Back</button>
+    <button type="button" mat-button class="form-save" routerLink="/heritagelist">返回</button>
   </mat-toolbar>
 
   <div class="container">
     <!-- Example row of columns -->
     <div class="row">
       <div class="col-md-4">
-        <h2>Heritage Tourism Evaluation</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-          condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-          Donec sed odio dui. </p>
+        <h2>非遗旅游价值评估子系统</h2>
+        <p>请在这里提供对该子系统的简介 </p>
         <p><a class="btn btn-secondary" [routerLink]="['/heritageevaluation', heritage.id]" role="button">Tourism
             Evaluation &raquo;</a></p>
       </div>
       <div class="col-md-4">
-        <h2>Heritage Game Playing Analyse</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-          condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-          Donec sed odio dui. </p>
+        <h2>非遗利益相关者博弈子系统</h2>
+        <p>请在这里提供对该子系统的简介 </p>
         <p><a class="btn btn-secondary" [routerLink]="['/heritageanalysis', heritage.id]" role="button">Game Playing
             Analyse &raquo;</a></p>
       </div>
       <div class="col-md-4">
-        <h2>Heritage Tourism Activation Mode</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta
-          felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-          massa justo sit amet risus.</p>
+        <h2>非遗活化子系统</h2>
+        <p>请在这里提供对该子系统的简介 </p>
         <p><a class="btn btn-secondary" [routerLink]="['/heritageeactivation', heritage.id]" role="button">Tourism
             Activation Mode &raquo;</a></p>
       </div>
