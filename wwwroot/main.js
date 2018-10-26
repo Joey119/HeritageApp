@@ -1602,13 +1602,13 @@ var ActivationModeService = /** @class */ (function () {
             console.log(err.name + ' ' + err.message);
         });
     };
-    ActivationModeService.prototype.getActModeById = function (url, id) {
+    ActivationModeService.prototype.getActModeById = function (url) {
         var _this = this;
-        this.http.get(url, httpOptions).subscribe(function (data) {
-            _this.dialogData = data;
-        }, function (err) {
-            console.log(err.name + ' ' + err.message);
-        });
+        return this.http.get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (actMode) {
+            _this.activationMode = actMode;
+            return _this.activationMode;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
     };
     ActivationModeService.prototype.addActMode = function (url, actMode) {
         var _this = this;
@@ -4236,7 +4236,7 @@ var FileManagerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"basic-container\" *ngIf = \"heritage\">\n\n<mat-toolbar>\n  <span>Heritage Evaluation: {{ heritage.name }} </span>\n  <span class=\"spacer\"></span>\n  <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n</mat-toolbar>\n\n<mat-card>\n  <mat-card-header>\n    <div mat-card-avatar class=\"activation-card\"></div>\n    <mat-card-title>节庆活动模式</mat-card-title>\n  </mat-card-header>\n  <mat-card-content>\n    <p>\n        节庆是指具有特定主题的节日庆典和公众集会，其形式包括各种传统节庆及现代创新节庆。随着人们文化需求的增长与旅游业的发展，节庆旅游成为被关注的焦点。\n        在节庆活动中，非物质文化遗产中的民间传统戏剧、曲艺、舞蹈、传统体育、游艺及手工技艺可以进行表演、展示、参与，游客在观看参与的过程中既能体会传统文化的魅力，又能对传统文化有切身体会。\n        以传统技艺为核心的非物质文化遗产，如年画、剪纸、编织、泥塑、陶艺、刺绣等与人们的日常生活密切相关，借助节庆活动，举办非遗的宣传体验活动，广泛介绍非物质文化遗产相关知识，将手工艺类非遗的物质载体展示出来，让游客亲身参与体验，如，国家级非物质文化遗产土族盘绣，传承人可以在节庆活动的现场进行技艺的演示，同时通过展出、影音资料等多种形式介绍盘绣的相关发展历史，刺绣技巧以及盘绣在新时代的创新与发展等。\n        旅游节庆作为一种新的运作模式，实现了非遗与旅游业相结合，通过发展旅游业为非遗的开发与保护提供相应的资金支持和保障。节庆就是一个地区的标志性事件，即依托目的地社区的经济、历史文化、民族风情等方面的独特资源，加以整合包装，能够产生具有目的地标志性的独特形象和吸引力，在相对固定的时间地点重复举办的事件旅游活动。\n        例如由国务院批准，文化部、四川省政府主办的中国成都国际非物质文化遗产节（简称“非遗节”），通过节庆的举办吸引大批喜爱传统文化的国内外游客前来旅游，包括传统技艺在内的多项非遗通过向游客展示，不仅提高了知名度，加深了社会对他们的认识，同时也开发了潜在的商机。        \n    </p>\n  </mat-card-content>\n</mat-card>\n\n</div>"
+module.exports = "<div class=\"basic-container\" *ngIf=\"heritage\">\n\n  <mat-toolbar>\n    <span>Heritage Evaluation: {{ heritage.name }} </span>\n    <span class=\"spacer\"></span>\n    <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">Back</button>\n  </mat-toolbar>\n\n  <div class=\"actMode-container\" *ngIf=\"!actMode\">\n    <p>No Activation Mode avaialble for current evaluation value.</p>\n  </div>\n\n  <div class=\"actMode-container\" *ngIf=\"actMode\">\n    <mat-card>\n      <mat-card-header>\n        <div mat-card-avatar class=\"activation-card\"></div>\n        <mat-card-title>{{ actMode.activationModeName}}</mat-card-title>\n      </mat-card-header>\n      <mat-card-content>\n        <p>\n          {{ actMode.activationModeDescription }}\n        </p>\n      </mat-card-content>\n    </mat-card>\n  </div>\n\n</div>"
 
 /***/ }),
 
@@ -4279,9 +4279,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var HeritageActivationComponent = /** @class */ (function () {
-    function HeritageActivationComponent(route, heritageService) {
+    function HeritageActivationComponent(route, heritageService, actModeService) {
         this.route = route;
         this.heritageService = heritageService;
+        this.actModeService = actModeService;
     }
     HeritageActivationComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -4291,6 +4292,13 @@ var HeritageActivationComponent = /** @class */ (function () {
             if (_this.param && _this.param != null && _this.param != undefined) {
                 _this.heritageService.getHeritage(_shared__WEBPACK_IMPORTED_MODULE_3__["Global"].BASE_HERITAGE_ENDPOINT + _this.param).subscribe(function (result) {
                     _this.heritage = result;
+                    if (_this.heritage.activationModeId && _this.heritage.activationModeId != null && _this.heritage.activationModeId != undefined) {
+                        _this.actModeService.getActModeById(_shared__WEBPACK_IMPORTED_MODULE_3__["Global"].BASE_ACTIVATION_MODE_ENDPOINT + _this.heritage.activationModeId).subscribe(function (data) {
+                            _this.actMode = data;
+                        });
+                    }
+                    else {
+                    }
                 });
             }
         });
@@ -4302,7 +4310,8 @@ var HeritageActivationComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./heritage-activation.component.scss */ "./src/app/heritage-activation/heritage-activation.component.scss")]
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
-            _services__WEBPACK_IMPORTED_MODULE_2__["HeritageService"]])
+            _services__WEBPACK_IMPORTED_MODULE_2__["HeritageService"],
+            _services__WEBPACK_IMPORTED_MODULE_2__["ActivationModeService"]])
     ], HeritageActivationComponent);
     return HeritageActivationComponent;
 }());
@@ -4836,7 +4845,7 @@ var HeritageDetailComponent = /** @class */ (function () {
                     tourismBenefit: 0,
                     story: '',
                     evaluationValue: 0,
-                    activatoinModeId: undefined,
+                    activationModeId: undefined,
                     heritageGameAnalysisId: undefined,
                     createdUserId: 0,
                     createdUserName: '',

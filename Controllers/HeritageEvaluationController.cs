@@ -67,9 +67,9 @@ namespace HeritageApp.Controllers {
         public IActionResult EvaluateHeritage (long id) {
             //filter contact records by contact id
             var heritage = _context.Heritages
-                .Where(item => item.Id == id)
-                .Include(item => item.HeritageEvaluations)
-                .FirstOrDefault();
+                .Where (item => item.Id == id)
+                .Include (item => item.HeritageEvaluations)
+                .FirstOrDefault ();
 
             if (heritage == null) {
                 return NotFound ();
@@ -82,17 +82,24 @@ namespace HeritageApp.Controllers {
             double factor4 = 0.2;
             double factor5 = 0.2;
 
-            heritage.EvaluationValue = evaluations.Where(evaluation => evaluation.EvaluatorTypeId == 5).Select(evaluation => evaluation.EvaluationValue).DefaultIfEmpty(0).Average() * factor1
-                                     + evaluations.Where(evaluation => evaluation.EvaluatorTypeId == 4).Select(evaluation => evaluation.EvaluationValue).DefaultIfEmpty(0).Average() * factor2
-                                     + evaluations.Where(evaluation => evaluation.EvaluatorTypeId == 3).Select(evaluation => evaluation.EvaluationValue).DefaultIfEmpty(0).Average() * factor3
-                                     + evaluations.Where(evaluation => evaluation.EvaluatorTypeId == 2).Select(evaluation => evaluation.EvaluationValue).DefaultIfEmpty(0).Average() * factor4
-                                     + evaluations.Where(evaluation => evaluation.EvaluatorTypeId == 1).Select(evaluation => evaluation.EvaluationValue).DefaultIfEmpty(0).Average() * factor5;
+            heritage.EvaluationValue = evaluations.Where (evaluation => evaluation.EvaluatorTypeId == 5).Select (evaluation => evaluation.EvaluationValue).DefaultIfEmpty (0).Average () * factor1 +
+                evaluations.Where (evaluation => evaluation.EvaluatorTypeId == 4).Select (evaluation => evaluation.EvaluationValue).DefaultIfEmpty (0).Average () * factor2 +
+                evaluations.Where (evaluation => evaluation.EvaluatorTypeId == 3).Select (evaluation => evaluation.EvaluationValue).DefaultIfEmpty (0).Average () * factor3 +
+                evaluations.Where (evaluation => evaluation.EvaluatorTypeId == 2).Select (evaluation => evaluation.EvaluationValue).DefaultIfEmpty (0).Average () * factor4 +
+                evaluations.Where (evaluation => evaluation.EvaluatorTypeId == 1).Select (evaluation => evaluation.EvaluationValue).DefaultIfEmpty (0).Average () * factor5;
 
-            /* 
-            var activationModes = _context.ActivationModes
-                                .Where(actMode => actMode.UpperBound > heritage.EvaluationValue && actMode.LowerBound < heritage.EvaluationValue)
-                                .ToList();
-                                */
+            var activationMode = _context.ActivationModes
+                .Where (actMode => actMode.UpperBound > heritage.EvaluationValue && actMode.LowerBound < heritage.EvaluationValue)
+                .FirstOrDefault();
+
+            if (activationMode != null)
+            {
+                heritage.ActivationModeId = activationMode.Id;
+            }
+            else
+            {
+                heritage.ActivationModeId = null;
+            }
 
             _context.SaveChanges ();
 

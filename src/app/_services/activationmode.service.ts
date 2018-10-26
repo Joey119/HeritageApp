@@ -31,73 +31,76 @@ export class ActivationModeService {
         this.http.get<IActivationMode[]>(url, httpOptions).subscribe(data => {
             this.dataChange.next(data);
         },
-        (err: HttpErrorResponse) => {
-            console.log (err.name + ' ' + err.message);
-        });
+            (err: HttpErrorResponse) => {
+                console.log(err.name + ' ' + err.message);
+            });
     }
 
-    getActModeById(url: string, id: number): void {
-        this.http.get<IActivationMode>(url, httpOptions).subscribe(data => {
-            this.dialogData = data;
-        },
-        (err: HttpErrorResponse) => {
-            console.log (err.name + ' ' + err.message);
-        });        
+    getActModeById(url: string): Observable<IActivationMode> {
+        return this.http.get<IActivationMode>(url)
+            .pipe(
+                map(actMode => {
+                    this.activationMode = actMode;
+                    return this.activationMode;
+                }),
+
+                catchError(this.handleError)
+            )
     }
 
     addActMode(url: string, actMode: IActivationMode): Observable<IActivationMode> {
         return this.http.post<IActivationMode>(url, actMode)
-        .pipe(
-            map(actMode => {
-                this.activationMode = actMode;
-                return this.activationMode;
-            }),
+            .pipe(
+                map(actMode => {
+                    this.activationMode = actMode;
+                    return this.activationMode;
+                }),
 
-            catchError(this.handleError)
-        )
+                catchError(this.handleError)
+            )
 
     }
 
     updateActMode(url: string, actMode: IActivationMode): Observable<IActivationMode> {
         return this.http.put<IActivationMode>(url, actMode)
-        .pipe(
-            map( actMode => {
-                this.activationMode = actMode;
-                return this.activationMode;
-            }),
+            .pipe(
+                map(actMode => {
+                    this.activationMode = actMode;
+                    return this.activationMode;
+                }),
 
-            catchError(this.handleError)
-        )
+                catchError(this.handleError)
+            )
 
     }
 
     deleteActMode(url: string, id: number): Observable<Object> {
         return this.http.delete(url + id)
-        .pipe(
-            map( data => {
-                return data;
-            }),
+            .pipe(
+                map(data => {
+                    return data;
+                }),
 
-            catchError(this.handleError)
-        )
+                catchError(this.handleError)
+            )
 
     }
 
-        // custom handler
+    // custom handler
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
-          // A client-side or network error occurred. Handle it accordingly.
-          console.error('An error occurred:', error.error.message);
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
         } else {
-          // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong,
-          console.error(
-            `Backend returned code ${error.status}, ` +
-            `body was: ${error.error}`);
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error(
+                `Backend returned code ${error.status}, ` +
+                `body was: ${error.error}`);
         }
         // return an observable with a user-facing error message
         return throwError('Something bad happened; please try again later.');
     }
-    
+
 
 }

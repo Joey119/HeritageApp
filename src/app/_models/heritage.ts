@@ -21,7 +21,7 @@ export interface IHeritage {
     tourismBenefit: number;
     story: string; 
     evaluationValue: number;
-    activatoinModeId: number;
+    activationModeId: number;
     heritageGameAnalysisId: number;
     createdUserId: number;
     createdUserName: string;

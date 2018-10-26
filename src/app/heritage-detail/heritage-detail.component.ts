@@ -81,7 +81,7 @@ export class HeritageDetailComponent implements OnInit {
           tourismBenefit: 0,
           story: '',
           evaluationValue: 0,
-          activatoinModeId: undefined,
+          activationModeId: undefined,
           heritageGameAnalysisId: undefined,
           createdUserId: 0,
           createdUserName: '',
