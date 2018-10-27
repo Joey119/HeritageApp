@@ -3645,7 +3645,7 @@ var appRoutes = [
     // otherwise redirect to home
     { path: '**', redirectTo: '' },
 ];
-var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(appRoutes);
+var routing = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(appRoutes, { useHash: true });
 
 
 /***/ }),
