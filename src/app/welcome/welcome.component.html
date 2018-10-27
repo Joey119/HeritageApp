@@ -11,17 +11,17 @@
           <div class="col-md-4">
             <h2>非物质文化遗产</h2>
             <p>请在这里提供对非物质文化遗产的定义</p>
-            <p><a class="btn btn-secondary" [routerLink]="['/heritagedetail']" role="button">Create &raquo;</a></p>
+            <p><a class="btn btn-secondary" [routerLink]="['/heritagedetail']" role="button">新建 &raquo;</a></p>
           </div>
           <div class="col-md-4">
             <h2>非遗列表</h2>
-            <p>简要说明</p>
-            <p><a class="btn btn-secondary" [routerLink]="['/heritagelist']" role="button">View List &raquo;</a></p>
+            <p>非遗列表提供对系统中所有非物质文化遗产的浏览，评论，添加，修改及删除等基本功能。另外也提供了旅游价值评估，利益相关者博弈以及非遗活化3个子系统的入口。</p>
+            <p><a class="btn btn-secondary" [routerLink]="['/heritagelist']" role="button">浏览列表 &raquo;</a></p>
          </div>
           <div class="col-md-4" *ngIf = "userService.canEdit()">
             <h2>活化模式列表</h2>
-            <p>简要说明</p>
-            <p><a class="btn btn-secondary" [routerLink]="['/activationmodelist']" role="button">View List &raquo;</a></p>
+            <p>活化模式列表提供对系统中的活化模式进行浏览，添加，修改及删除等基本功能。</p>
+            <p><a class="btn btn-secondary" [routerLink]="['/activationmodelist']" role="button">浏览列表 &raquo;</a></p>
           </div>
         </div>
        

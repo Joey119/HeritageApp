@@ -6,29 +6,54 @@
     <button type="button" mat-button class="form-save" routerLink="/heritagelist">返回</button>
   </mat-toolbar>
 
+  <mat-grid-list cols="3" rowHeight="2:2">
+    <mat-grid-tile>
+      <div>
+        <h2>非遗旅游价值评估子系统</h2>
+        <p>非遗旅游价值=系数1*消费者评估价值+系数2*传承人评估价值+系数3*政府评估价值+系数4*旅游企业评估价值+系数5*非遗专家评估价值。</p>
+        <p><a class="btn btn-secondary" [routerLink]="['/heritageevaluation', heritage.id]" role="button">旅游价值评估
+            &raquo;</a></p>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div>
+        <h2>非遗利益相关者博弈子系统</h2>
+        <p>在传统技艺类非物质文化遗产的旅游活化的过程中，涉及的关键利益主体包括传承人、旅游企业、专家、政府以及旅游消费者，不同的利益主体由于利益诉求不同，相互之间形成了复杂的多方利益博弈网络。</p>
+        <p><a class="btn btn-secondary" [routerLink]="['/heritageanalysis', heritage.id]" role="button">利益相关者博弈 &raquo;</a></p>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div>
+        <h2>非遗活化子系统</h2>
+        <p>活化模式是基于非遗旅游价值，即上述模型中的因变量提出的。因变量即非遗旅游价值的取值范围能否设成可输入的字段，比如非遗旅游价值的值为3-3.5，选择博物馆展示这种活化模式，但是3和3.5这两个数字由用户手动输入。</p>
+        <p><a class="btn btn-secondary" [routerLink]="['/heritageeactivation', heritage.id]" role="button">活化 &raquo;</a></p>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<!--
   <div class="container">
-    <!-- Example row of columns -->
     <div class="row">
       <div class="col-md-4">
         <h2>非遗旅游价值评估子系统</h2>
-        <p>请在这里提供对该子系统的简介 </p>
-        <p><a class="btn btn-secondary" [routerLink]="['/heritageevaluation', heritage.id]" role="button">Tourism
-            Evaluation &raquo;</a></p>
+        <p>非遗旅游价值=系数1*消费者评估价值+系数2*传承人评估价值+系数3*政府评估价值+系数4*旅游企业评估价值+系数5*非遗专家评估价值。</p>
+        <p><a class="btn btn-secondary" [routerLink]="['/heritageevaluation', heritage.id]" role="button">旅游价值评估
+            &raquo;</a></p>
       </div>
       <div class="col-md-4">
         <h2>非遗利益相关者博弈子系统</h2>
-        <p>请在这里提供对该子系统的简介 </p>
-        <p><a class="btn btn-secondary" [routerLink]="['/heritageanalysis', heritage.id]" role="button">Game Playing
-            Analyse &raquo;</a></p>
+        <p>在传统技艺类非物质文化遗产的旅游活化的过程中，涉及的关键利益主体包括传承人、旅游企业、专家、政府以及旅游消费者，不同的利益主体由于利益诉求不同，相互之间形成了复杂的多方利益博弈网络。</p>
+        <p><a class="btn btn-secondary" [routerLink]="['/heritageanalysis', heritage.id]" role="button">利益相关者博弈 &raquo;</a></p>
       </div>
       <div class="col-md-4">
         <h2>非遗活化子系统</h2>
-        <p>请在这里提供对该子系统的简介 </p>
-        <p><a class="btn btn-secondary" [routerLink]="['/heritageeactivation', heritage.id]" role="button">Tourism
-            Activation Mode &raquo;</a></p>
+        <p>活化模式是基于非遗旅游价值，即上述模型中的因变量提出的。因变量即非遗旅游价值的取值范围能否设成可输入的字段，比如非遗旅游价值的值为3-3.5，选择博物馆展示这种活化模式，但是3和3.5这两个数字由用户手动输入。</p>
+        <p><a class="btn btn-secondary" [routerLink]="['/heritageeactivation', heritage.id]" role="button">活化 &raquo;</a></p>
       </div>
     </div>
 
-  </div> <!-- /container -->
-
-</div>
+  </div>
+  -->
