@@ -5398,7 +5398,7 @@ var HeritageListComponent = /** @class */ (function () {
         this._heritageService = _heritageService;
         this.toastr = toastr;
         this.dialog = dialog;
-        this.displayedColumns = ['id', 'name', 'registrationDistrict', 'registrationYear', 'province', 'typeofProject', 'inheritors', 'currentStatus', 'createdOn', 'actions'];
+        this.displayedColumns = ['id', 'name', 'registrationDistrict', 'registrationYear', 'province', 'typeofProject', 'inheritors', 'presentValue', 'createdOn', 'actions'];
     }
     HeritageListComponent.prototype.ngOnInit = function () {
         this.loadingState = true;

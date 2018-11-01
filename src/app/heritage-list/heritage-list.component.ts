@@ -22,7 +22,7 @@ import { HeritageDeleteDialogComponent } from '../_dialogs';
   styleUrls: ['./heritage-list.component.scss']
 })
 export class HeritageListComponent implements OnInit {
-  displayedColumns = ['id', 'name', 'registrationDistrict', 'registrationYear', 'province', 'typeofProject', 'inheritors', 'currentStatus', 'createdOn', 'actions'];
+  displayedColumns = ['id', 'name', 'registrationDistrict', 'registrationYear', 'province', 'typeofProject', 'inheritors', 'presentValue', 'createdOn', 'actions'];
   //heritageDatabase: HeritageService;
   dataSource: HeritageDataSource;
   index: number;
