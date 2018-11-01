@@ -25,18 +25,18 @@ export class DeleteDialogComponent {
 
     if (!this.userService.isAdmin())
     {
-      this.toastr.error("You do not have permission to delete a User.","Permission Denied")
+      this.toastr.error("您没有删除用户的权限。","权限验证失败");
       return;
     }
 
     this.userService.deleteUser(Global.BASE_USER_ENDPOINT, this.data.id)
     .subscribe(
       data => {
-          this.toastr.success("User was suceessfully deleted.", "Succeeded");
+          this.toastr.success("用户删除成功。", "操作成功");
         },
 
       error => {
-          this.toastr.error("Failed to delete user", "Failed")
+          this.toastr.error("用户删除失败。", "操作失败");
       }
     );
   }

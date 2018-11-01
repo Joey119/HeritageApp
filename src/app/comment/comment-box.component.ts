@@ -32,7 +32,7 @@ export class CommentBoxComponent {
 
     deleteComment() {
         if (!this.userService.canComment()) {
-            this.toastr.error("You do not have permission to comment", "Permission Denied")
+            this.toastr.error("您没有删除评论的权限。", "权限验证失败");
             return;
         }
         // Call removeComment() from CommentService to delete comment

@@ -105,7 +105,7 @@ var ActivationModeAddDialogComponent = /** @class */ (function () {
     ActivationModeAddDialogComponent.prototype.confirmAdd = function () {
         var _this = this;
         if (!this.userService.canEdit()) {
-            this.toastr.error("You do not have permission to create or edit a activation mode.", "Permission Denied");
+            this.toastr.error("您没有添加及修改活化模式的权限。", "权限验证失败");
             return;
         }
         var userId = this.userService.currentUserId();
@@ -114,9 +114,9 @@ var ActivationModeAddDialogComponent = /** @class */ (function () {
         this.actModeService.addActMode(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_ACTIVATION_MODE_ENDPOINT, this.data)
             .subscribe(function (data) {
             _this.newActMode = data;
-            _this.toastr.success("Activation mode suceessfully added.", "Succeeded");
+            _this.toastr.success("活化模式添加成功。", "操作成功");
         }, function (error) {
-            _this.toastr.error("Failed to add activation mode", "Failed");
+            _this.toastr.error("活化模式添加失败。", "操作失败");
         });
     };
     ActivationModeAddDialogComponent = __decorate([
@@ -205,14 +205,14 @@ var ActivationModeDeleteDialogComponent = /** @class */ (function () {
     ActivationModeDeleteDialogComponent.prototype.confirmDelete = function () {
         var _this = this;
         if (!this.userService.canEdit()) {
-            this.toastr.error("You do not have permission to delete a activation mode.", "Permission Denied");
+            this.toastr.error("您没有删除活化模式的权限。", "权限验证失败");
             return;
         }
         this.actModeService.deleteActMode(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_ACTIVATION_MODE_ENDPOINT, this.data.id)
             .subscribe(function (data) {
-            _this.toastr.success("Activation mode was suceessfully deleted.", "Succeeded");
+            _this.toastr.success("活化模式删除成功。", "操作成功");
         }, function (error) {
-            _this.toastr.error("Failed to delete activation mode", "Failed");
+            _this.toastr.error("活化模式删除失败。", "操作失败");
         });
     };
     ActivationModeDeleteDialogComponent = __decorate([
@@ -315,7 +315,7 @@ var ActivationModeEditDialogComponent = /** @class */ (function () {
     ActivationModeEditDialogComponent.prototype.stopEdit = function () {
         var _this = this;
         if (!this.userService.canEdit()) {
-            this.toastr.error("You do not have permission to create or edit a activation mode.", "Permission Denied");
+            this.toastr.error("您没有添加及修改活化模式的权限。", "权限验证失败");
             return;
         }
         var userId = this.userService.currentUserId();
@@ -325,9 +325,9 @@ var ActivationModeEditDialogComponent = /** @class */ (function () {
         this.actModeService.updateActMode(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_ACTIVATION_MODE_ENDPOINT + this.data.id, this.data)
             .subscribe(function (data) {
             _this.actMode = data;
-            _this.toastr.success("Activation mode suceessfully updated.", "Succeeded");
+            _this.toastr.success("活化模式添加成功。", "操作成功");
         }, function (error) {
-            _this.toastr.error("Failed to update activation mode", "Failed");
+            _this.toastr.error("活化模式添加失败。", "操作失败");
         });
     };
     ActivationModeEditDialogComponent = __decorate([
@@ -429,15 +429,15 @@ var AddDialogComponent = /** @class */ (function () {
     AddDialogComponent.prototype.confirmAdd = function () {
         var _this = this;
         if (!this.userService.isAdmin()) {
-            this.toastr.error("You do not have permission to create or edit a User.", "Permission Denied");
+            this.toastr.error("您没有添加及修改用户信息的权限。", "权限验证失败");
             return;
         }
         this.userService.addUser(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_USER_ENDPOINT + 'add', this.data)
             .subscribe(function (data) {
             _this.newUser = data;
-            _this.toastr.success("User suceessfully added.", "Succeeded");
+            _this.toastr.success("用户添加成功。", "操作成功");
         }, function (error) {
-            _this.toastr.error("Failed to add user", "Failed");
+            _this.toastr.error("用户添加失败。", "操作失败");
         });
     };
     AddDialogComponent = __decorate([
@@ -524,14 +524,14 @@ var DeleteDialogComponent = /** @class */ (function () {
     DeleteDialogComponent.prototype.confirmDelete = function () {
         var _this = this;
         if (!this.userService.isAdmin()) {
-            this.toastr.error("You do not have permission to delete a User.", "Permission Denied");
+            this.toastr.error("您没有删除用户的权限。", "权限验证失败");
             return;
         }
         this.userService.deleteUser(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_USER_ENDPOINT, this.data.id)
             .subscribe(function (data) {
-            _this.toastr.success("User was suceessfully deleted.", "Succeeded");
+            _this.toastr.success("用户删除成功。", "操作成功");
         }, function (error) {
-            _this.toastr.error("Failed to delete user", "Failed");
+            _this.toastr.error("用户删除失败。", "操作失败");
         });
     };
     DeleteDialogComponent = __decorate([
@@ -632,7 +632,7 @@ var EditDialogComponent = /** @class */ (function () {
     EditDialogComponent.prototype.stopEdit = function () {
         var _this = this;
         if (!this.userService.isAdmin()) {
-            this.toastr.error("You do not have permission to create or edit a User.", "Permission Denied");
+            this.toastr.error("您没有添加及修改用户信息的权限。", "权限验证失败");
             return;
         }
         if (this.data.id < 1)
@@ -640,9 +640,9 @@ var EditDialogComponent = /** @class */ (function () {
         this.userService.updateUser(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_USER_ENDPOINT + this.data.id, this.data)
             .subscribe(function (data) {
             _this.user = data;
-            _this.toastr.success("User suceessfully updated.", "Succeeded");
+            _this.toastr.success("用户信息修改成功。", "操作成功");
         }, function (error) {
-            _this.toastr.error("Failed to update user", "Failed");
+            _this.toastr.error("用户信息修改失败。", "操作失败");
         });
     };
     EditDialogComponent = __decorate([
@@ -730,12 +730,14 @@ var HeritageDeleteDialogComponent = /** @class */ (function () {
     HeritageDeleteDialogComponent.prototype.confirmDelete = function () {
         var _this = this;
         if (!this.userService.canEdit()) {
-            this.toastr.error("You do not have permission to delete a heritage.", "Permission Denied");
+            this.toastr.error("您没有删除非物质文化遗产的权限。", "用户权限验证失败");
             return;
         }
         this.heritageService.deleteHeritage(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_ENDPOINT, this.data.id)
             .subscribe(function (data) {
-            _this.toastr.success("Heritage was suceessfully deleted.", "Succeeded");
+            _this.toastr.success("非物质文化遗产删除成功。", "操作成功");
+        }, function (error) {
+            _this.toastr.error("非物质文化遗产删除失败。", "操作失败");
         });
     };
     HeritageDeleteDialogComponent = __decorate([
@@ -3705,7 +3707,7 @@ var CommentBoxComponent = /** @class */ (function () {
     CommentBoxComponent.prototype.deleteComment = function () {
         var _this = this;
         if (!this.userService.canComment()) {
-            this.toastr.error("You do not have permission to comment", "Permission Denied");
+            this.toastr.error("您没有删除评论的权限。", "权限验证失败");
             return;
         }
         // Call removeComment() from CommentService to delete comment
@@ -3823,7 +3825,7 @@ var CommentFormComponent = /** @class */ (function () {
     CommentFormComponent.prototype.submitComment = function () {
         var _this = this;
         if (!this.userService.canComment()) {
-            this.toastr.error("You do not have permission to comment", "Permission Denied");
+            this.toastr.error("您没有添加或修改评论的权限。", "权限验证失败");
             return;
         }
         // Variable to hold a reference of addComment/updateComment
@@ -4479,7 +4481,7 @@ var HeritageAnalysisComponent = /** @class */ (function () {
     HeritageAnalysisComponent.prototype.onSubmit = function () {
         var _this = this;
         if (!this.userService.canEdit()) {
-            this.toastr.error("You do not have permission to create or edit a heritage.", "Failed");
+            this.toastr.error("您没有添加或修改非物质文化遗产的权限。", "权限验证失败");
             return;
         }
         var userId = this.userService.currentUserId();
@@ -4516,18 +4518,18 @@ var HeritageAnalysisComponent = /** @class */ (function () {
         var _this = this;
         if (this.heritage.heritageGameAnalysisId && this.heritage.heritageGameAnalysisId != null && this.heritage.heritageGameAnalysisId != undefined) {
             this.heritageGameAnalysisService.getHeritageAnalysisBestRoute(_shared__WEBPACK_IMPORTED_MODULE_5__["Global"].BASE_HERITAGE_GAME_ANALYSIS_ENDPOINT + 'getHeritageAnalysisBestRoute/' + this.heritage.heritageGameAnalysisId).subscribe(function (res) {
-                _this.bestRoute = "The best route is: " + "R" + res.id + ": { " + res.routeValue + " }";
+                _this.bestRoute = "最优路径为: " + "R" + res.id + ": { " + res.routeValue + " }";
             });
         }
         else {
-            this.toastr.error('Failed to analyse the best route, please calculate routes first!', 'Analyse Failed');
+            this.toastr.error('请先进行利益相关者博弈计算。', '分析失败');
         }
     };
     HeritageAnalysisComponent.prototype.showSuccess = function () {
-        this.toastr.success('Heritage Game Analysis Saved Successfully', 'Succeeded');
+        this.toastr.success('利益相关者博弈计算及保存成功。', '操作成功');
     };
     HeritageAnalysisComponent.prototype.showError = function () {
-        this.toastr.error('Failed to Save Heritage Game Analysis!', 'Failed');
+        this.toastr.error('利益相关者博弈计算及保存失败。', '操作失败');
     };
     HeritageAnalysisComponent.prototype.loadTree = function () {
         var _this = this;
@@ -4860,7 +4862,7 @@ var HeritageDetailComponent = /** @class */ (function () {
     HeritageDetailComponent.prototype.onSubmit = function () {
         var _this = this;
         if (!this.userService.canEdit()) {
-            this.toastr.error("You do not have permission to create or edit a heritage.", "Failed");
+            this.toastr.error("您没有添加或修改非物质文化遗产的权限。", "权限验证失败");
             return;
         }
         var userId = this.userService.currentUserId();
@@ -4887,10 +4889,10 @@ var HeritageDetailComponent = /** @class */ (function () {
         }
     };
     HeritageDetailComponent.prototype.showSuccess = function () {
-        this.toastr.success('Heritage Saved Successfully', 'Succeeded');
+        this.toastr.success('非物质文化遗产保存成功。', '操作成功');
     };
     HeritageDetailComponent.prototype.showError = function () {
-        this.toastr.error('Failed to Save Heritage!', 'Failed');
+        this.toastr.error('非物质文化遗产保存失败。', '操作失败');
     };
     HeritageDetailComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -5088,33 +5090,33 @@ var HeritageEvaluationComponent = /** @class */ (function () {
     HeritageEvaluationComponent.prototype.save = function () {
         var _this = this;
         if (!this.userService.canEdit()) {
-            this.toastr.error("You do not have permission to create or edit a heritage.", "Failed");
+            this.toastr.error("您没有对非物质文化遗产进行评估的权限。", "权限验证失败");
             return;
         }
         if (this.newEvaluation) {
             this.heritageEvaluationService.addHeritageEvaluation(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_EVALUATION_ENDPOINT, this.evaluation)
                 .subscribe(function (data) {
                 _this.evaluation = data;
-                _this.toastr.success("Activation mode suceessfully added.", "Succeeded");
+                _this.toastr.success("非物质文化遗产评估添加成功。", "操作成功");
                 _this.heritageEvaluationService.getHeritageEvaluations(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + _this.heritage.id)
                     .subscribe(function (evals) {
                     _this.evaluations = evals;
                 });
             }, function (error) {
-                _this.toastr.error("Failed to add activation mode", "Failed");
+                _this.toastr.error("非物质文化遗产评估添加失败。", "操作失败");
             });
         }
         else {
             this.heritageEvaluationService.updateHeritageEvaluation(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_EVALUATION_ENDPOINT + this.evaluation.id, this.evaluation)
                 .subscribe(function (data) {
                 _this.evaluation = data;
-                _this.toastr.success("Activation mode suceessfully updated.", "Succeeded");
+                _this.toastr.success("非物质文化遗产评估修改成功。", "操作成功");
                 _this.heritageEvaluationService.getHeritageEvaluations(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + _this.heritage.id)
                     .subscribe(function (evals) {
                     _this.evaluations = evals;
                 });
             }, function (error) {
-                _this.toastr.error("Failed to update activation mode", "Failed");
+                _this.toastr.error("非物质文化遗产评估修改失败。", "操作失败");
             });
         }
         this.displayDialog = false;
@@ -5122,7 +5124,7 @@ var HeritageEvaluationComponent = /** @class */ (function () {
     HeritageEvaluationComponent.prototype.delete = function () {
         var _this = this;
         if (!this.userService.canEdit()) {
-            this.toastr.error("You do not have permission to create or edit a heritage.", "Failed");
+            this.toastr.error("您没有删除非物质文化遗产评估的权限。", "权限验证失败");
             return;
         }
         if (this.evaluation.id == 0) {
@@ -5130,19 +5132,19 @@ var HeritageEvaluationComponent = /** @class */ (function () {
             return;
         }
         this.confirmationService.confirm({
-            message: 'Do you want to delete this record?',
-            header: 'Delete Confirmation',
+            message: '您确定要删除所选择的为物质文化遗产评估吗？',
+            header: '确认删除',
             icon: 'pi pi-info-circle',
             accept: function () {
                 _this.heritageEvaluationService.deleteHeritageEvaluation(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_EVALUATION_ENDPOINT, _this.evaluation.id)
                     .subscribe(function (data) {
-                    _this.toastr.success("Activation mode suceessfully deleted.", "Succeeded");
+                    _this.toastr.success("非物质文化遗产评估删除成功。", "操作成功");
                     _this.heritageEvaluationService.getHeritageEvaluations(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + _this.heritage.id)
                         .subscribe(function (evals) {
                         _this.evaluations = evals;
                     });
                 }, function (error) {
-                    _this.toastr.error("Failed to delete activation mode", "Failed");
+                    _this.toastr.error("非物质文化遗产评估删除失败。", "操作失败");
                 });
                 _this.displayDialog = false;
             },
@@ -5151,7 +5153,7 @@ var HeritageEvaluationComponent = /** @class */ (function () {
     };
     HeritageEvaluationComponent.prototype.onRowSelect = function (event) {
         if (!this.userService.canEdit()) {
-            this.toastr.error("You do not have permission to create or edit a heritage.", "Failed");
+            this.toastr.error("您没有修改非物质文化遗产评估的权限。", "权限验证失败");
             return;
         }
         this.newEvaluation = false;
@@ -5234,15 +5236,15 @@ var HeritageEvaluationComponent = /** @class */ (function () {
     HeritageEvaluationComponent.prototype.evaluateheritage = function () {
         var _this = this;
         if (!this.userService.canEdit()) {
-            this.toastr.error("You do not have permission to create or edit a heritage.", "Failed");
+            this.toastr.error("您没有计算非物质文化遗产旅游价值的权限。", "权限验证失败");
             return;
         }
         this.heritageEvaluationService.evaluateHeritage(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_HERITAGE_EVALUATION_ENDPOINT + 'evaluateHeritage/' + this.heritage.id)
             .subscribe(function (res) {
             _this.heritage = res;
-            _this.toastr.success("Heritage evaluation completed suceessfully.", "Succeeded");
+            _this.toastr.success("非物质文化遗产旅游价值计算成功。", "操作成功");
         }, function (error) {
-            _this.toastr.error("Failed to evaluate heritage", "Failed");
+            _this.toastr.error("非物质文化遗产旅游价值计算失败。", "操作失败");
         });
     };
     HeritageEvaluationComponent = __decorate([
@@ -5963,7 +5965,7 @@ var RegisterComponent = /** @class */ (function () {
         this.userService.register(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_USER_ENDPOINT + 'register', this.registerForm.value)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["first"])())
             .subscribe(function (data) {
-            _this.alertService.success('Registration successful', true);
+            _this.alertService.success('用户注册成功', true);
             _this.router.navigate(['/login']);
         }, function (error) {
             _this.alertService.error(error);

@@ -114,7 +114,7 @@ export class HeritageAnalysisComponent implements OnInit {
 
     if (!this.userService.canEdit())
     {
-      this.toastr.error("You do not have permission to create or edit a heritage.","Failed")
+      this.toastr.error("您没有添加或修改非物质文化遗产的权限。","权限验证失败")
       return;
     }
 
@@ -163,21 +163,21 @@ export class HeritageAnalysisComponent implements OnInit {
     if (this.heritage.heritageGameAnalysisId && this.heritage.heritageGameAnalysisId != null && this.heritage.heritageGameAnalysisId != undefined) {
       this.heritageGameAnalysisService.getHeritageAnalysisBestRoute(Global.BASE_HERITAGE_GAME_ANALYSIS_ENDPOINT + 'getHeritageAnalysisBestRoute/' + this.heritage.heritageGameAnalysisId).subscribe(
         res => {
-          this.bestRoute = "The best route is: " + "R" + res.id + ": { " + res.routeValue + " }";          
+          this.bestRoute = "最优路径为: " + "R" + res.id + ": { " + res.routeValue + " }";          
         }
       );
     }
     else {
-      this.toastr.error('Failed to analyse the best route, please calculate routes first!', 'Analyse Failed');
+      this.toastr.error('请先进行利益相关者博弈计算。', '分析失败');
     }
   }
 
   showSuccess() {
-    this.toastr.success('Heritage Game Analysis Saved Successfully', 'Succeeded');
+    this.toastr.success('利益相关者博弈计算及保存成功。', '操作成功');
   }
 
   showError() {
-    this.toastr.error('Failed to Save Heritage Game Analysis!', 'Failed');
+    this.toastr.error('利益相关者博弈计算及保存失败。', '操作失败');
   }
 
   loadTree() {

@@ -25,14 +25,18 @@ export class HeritageDeleteDialogComponent {
   confirmDelete(): void {
 
     if (!this.userService.canEdit()) {
-      this.toastr.error("You do not have permission to delete a heritage.", "Permission Denied")
+      this.toastr.error("您没有删除非物质文化遗产的权限。", "用户权限验证失败");
       return;
     }
 
     this.heritageService.deleteHeritage(Global.BASE_HERITAGE_ENDPOINT, this.data.id)
       .subscribe(
         data => {
-          this.toastr.success("Heritage was suceessfully deleted.", "Succeeded");
+          this.toastr.success("非物质文化遗产删除成功。", "操作成功");
+        },
+
+        error => {
+            this.toastr.error("非物质文化遗产删除失败。", "操作失败");
         }
       );
   }

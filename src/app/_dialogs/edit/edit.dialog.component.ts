@@ -44,7 +44,7 @@ export class EditDialogComponent {
 
     if (!this.userService.isAdmin())
     {
-      this.toastr.error("You do not have permission to create or edit a User.","Permission Denied")
+      this.toastr.error("您没有添加及修改用户信息的权限。","权限验证失败")
       return;
     }
     
@@ -54,10 +54,10 @@ export class EditDialogComponent {
     .subscribe(
       data => {
           this.user = data;
-          this.toastr.success("User suceessfully updated.", "Succeeded");
+          this.toastr.success("用户信息修改成功。", "操作成功");
         },
       error => {
-          this.toastr.error("Failed to update user", "Failed")
+          this.toastr.error("用户信息修改失败。", "操作失败")
       }
     );
   }

@@ -44,7 +44,7 @@ export class AddDialogComponent {
 
     if (!this.userService.isAdmin())
     {
-      this.toastr.error("You do not have permission to create or edit a User.","Permission Denied")
+      this.toastr.error("您没有添加及修改用户信息的权限。","权限验证失败");
       return;
     }
 
@@ -52,10 +52,10 @@ export class AddDialogComponent {
     .subscribe(
       data => {
           this.newUser = data;
-          this.toastr.success("User suceessfully added.", "Succeeded");
+          this.toastr.success("用户添加成功。", "操作成功");
         },
       error => {
-          this.toastr.error("Failed to add user", "Failed")
+          this.toastr.error("用户添加失败。", "操作失败");
       }
     );
   }

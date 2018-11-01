@@ -45,7 +45,7 @@ export class ActivationModeAddDialogComponent {
 
     if (!this.userService.canEdit())
     {
-      this.toastr.error("You do not have permission to create or edit a activation mode.","Permission Denied")
+      this.toastr.error("您没有添加及修改活化模式的权限。","权限验证失败");
       return;
     }
 
@@ -56,10 +56,10 @@ export class ActivationModeAddDialogComponent {
     .subscribe(
       data => {
           this.newActMode = data;
-          this.toastr.success("Activation mode suceessfully added.", "Succeeded");
+          this.toastr.success("活化模式添加成功。", "操作成功");
         },
       error => {
-          this.toastr.error("Failed to add activation mode", "Failed")
+          this.toastr.error("活化模式添加失败。", "操作失败");
       }
     );
   }

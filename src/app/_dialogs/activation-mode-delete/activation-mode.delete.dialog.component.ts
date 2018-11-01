@@ -26,18 +26,18 @@ export class ActivationModeDeleteDialogComponent {
 
     if (!this.userService.canEdit())
     {
-      this.toastr.error("You do not have permission to delete a activation mode.","Permission Denied")
+      this.toastr.error("您没有删除活化模式的权限。","权限验证失败");
       return;
     }
 
     this.actModeService.deleteActMode(Global.BASE_ACTIVATION_MODE_ENDPOINT, this.data.id)
     .subscribe(
       data => {
-          this.toastr.success("Activation mode was suceessfully deleted.", "Succeeded");
+          this.toastr.success("活化模式删除成功。", "操作成功");
         },
 
       error => {
-          this.toastr.error("Failed to delete activation mode", "Failed")
+          this.toastr.error("活化模式删除失败。", "操作失败");
       }
     );
   }

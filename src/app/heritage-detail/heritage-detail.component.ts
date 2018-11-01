@@ -101,7 +101,7 @@ export class HeritageDetailComponent implements OnInit {
 
     if (!this.userService.canEdit())
     {
-      this.toastr.error("You do not have permission to create or edit a heritage.","Failed")
+      this.toastr.error("您没有添加或修改非物质文化遗产的权限。","权限验证失败");
       return;
     }
 
@@ -137,11 +137,11 @@ export class HeritageDetailComponent implements OnInit {
   }
 
   showSuccess() {
-    this.toastr.success('Heritage Saved Successfully', 'Succeeded');
+    this.toastr.success('非物质文化遗产保存成功。', '操作成功');
   }
 
   showError() {
-    this.toastr.error('Failed to Save Heritage!', 'Failed');
+    this.toastr.error('非物质文化遗产保存失败。', '操作失败');
   }
 
 }

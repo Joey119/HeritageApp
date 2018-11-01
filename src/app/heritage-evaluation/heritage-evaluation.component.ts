@@ -115,7 +115,7 @@ export class HeritageEvaluationComponent implements OnInit {
   save() {
 
     if (!this.userService.canEdit()) {
-      this.toastr.error("You do not have permission to create or edit a heritage.", "Failed")
+      this.toastr.error("您没有对非物质文化遗产进行评估的权限。", "权限验证失败")
       return;
     }
 
@@ -124,7 +124,7 @@ export class HeritageEvaluationComponent implements OnInit {
         .subscribe(
           data => {
             this.evaluation = data;
-            this.toastr.success("Activation mode suceessfully added.", "Succeeded");
+            this.toastr.success("非物质文化遗产评估添加成功。", "操作成功");
             this.heritageEvaluationService.getHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
               .subscribe(
                 evals => {
@@ -133,7 +133,7 @@ export class HeritageEvaluationComponent implements OnInit {
               )
           },
           error => {
-            this.toastr.error("Failed to add activation mode", "Failed")
+            this.toastr.error("非物质文化遗产评估添加失败。", "操作失败")
           }
         );
     }
@@ -142,7 +142,7 @@ export class HeritageEvaluationComponent implements OnInit {
         .subscribe(
           data => {
             this.evaluation = data;
-            this.toastr.success("Activation mode suceessfully updated.", "Succeeded");
+            this.toastr.success("非物质文化遗产评估修改成功。", "操作成功");
             this.heritageEvaluationService.getHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
               .subscribe(
                 evals => {
@@ -151,7 +151,7 @@ export class HeritageEvaluationComponent implements OnInit {
               )
           },
           error => {
-            this.toastr.error("Failed to update activation mode", "Failed")
+            this.toastr.error("非物质文化遗产评估修改失败。", "操作失败")
           }
         );
     }
@@ -162,7 +162,7 @@ export class HeritageEvaluationComponent implements OnInit {
   delete() {
 
     if (!this.userService.canEdit()) {
-      this.toastr.error("You do not have permission to create or edit a heritage.", "Failed")
+      this.toastr.error("您没有删除非物质文化遗产评估的权限。", "权限验证失败")
       return;
     }
 
@@ -172,14 +172,14 @@ export class HeritageEvaluationComponent implements OnInit {
     }
 
     this.confirmationService.confirm({
-      message: 'Do you want to delete this record?',
-      header: 'Delete Confirmation',
+      message: '您确定要删除所选择的为物质文化遗产评估吗？',
+      header: '确认删除',
       icon: 'pi pi-info-circle',
       accept: () => {
         this.heritageEvaluationService.deleteHeritageEvaluation(Global.BASE_HERITAGE_EVALUATION_ENDPOINT, this.evaluation.id)
           .subscribe(
             data => {
-              this.toastr.success("Activation mode suceessfully deleted.", "Succeeded");
+              this.toastr.success("非物质文化遗产评估删除成功。", "操作成功");
               this.heritageEvaluationService.getHeritageEvaluations(Global.BASE_HERITAGE_EVALUATION_ENDPOINT + 'getHeritageEvaluation/' + this.heritage.id)
                 .subscribe(
                   evals => {
@@ -188,7 +188,7 @@ export class HeritageEvaluationComponent implements OnInit {
                 )
             },
             error => {
-              this.toastr.error("Failed to delete activation mode", "Failed")
+              this.toastr.error("非物质文化遗产评估删除失败。", "操作失败")
             }
           );
         this.displayDialog = false;
@@ -202,7 +202,7 @@ export class HeritageEvaluationComponent implements OnInit {
   onRowSelect(event) {
 
     if (!this.userService.canEdit()) {
-      this.toastr.error("You do not have permission to create or edit a heritage.", "Failed")
+      this.toastr.error("您没有修改非物质文化遗产评估的权限。", "权限验证失败")
       return;
     }
 
@@ -293,7 +293,7 @@ export class HeritageEvaluationComponent implements OnInit {
   evaluateheritage() {
 
     if (!this.userService.canEdit()) {
-      this.toastr.error("You do not have permission to create or edit a heritage.", "Failed")
+      this.toastr.error("您没有计算非物质文化遗产旅游价值的权限。", "权限验证失败");
       return;
     }
 
@@ -301,10 +301,10 @@ export class HeritageEvaluationComponent implements OnInit {
       .subscribe(
         res => {
           this.heritage = res;
-          this.toastr.success("Heritage evaluation completed suceessfully.", "Succeeded");
+          this.toastr.success("非物质文化遗产旅游价值计算成功。", "操作成功");
         },
         error => {
-          this.toastr.error("Failed to evaluate heritage", "Failed")
+          this.toastr.error("非物质文化遗产旅游价值计算失败。", "操作失败");
         }
       );
   }
