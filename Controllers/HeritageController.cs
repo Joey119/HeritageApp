@@ -108,7 +108,6 @@ namespace HeritageApp.Controllers {
             heritage.TourismBenefit = itemDto.TourismBenefit;
             heritage.EvaluationValue = itemDto.EvaluationValue;
             heritage.HeritageGameAnalysisId = itemDto.HeritageGameAnalysisId;
-            heritage.ActivationModeId = itemDto.ActivationModeId;
             heritage.ModifiedUserId = itemDto.ModifiedUserId;
             heritage.ModifiedOn = DateTime.Now;
 

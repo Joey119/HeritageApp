@@ -34,8 +34,6 @@ namespace HeritageApp.Models.Database
         public double TourismBenefit { get; set; }
         public string Story { get; set; }
         public double? EvaluationValue { get; set; }
-        public int? ActivationModeId { get; set; }
-        public ActivationMode ActivationMode { get; set; }
         [ForeignKey("HeritageGameAnalysis")]
         public int? HeritageGameAnalysisId { get; set; }
         public HeritageGameAnalysis HeritageGameAnalysis { get; set; }
@@ -52,6 +50,7 @@ namespace HeritageApp.Models.Database
         public List<HeritageComment> HeritageComments { get; set; }
         public List<FileUpload> FileUploads { get; set; }
         public List<HeritageEvaluation> HeritageEvaluations { get; set; }
+        public List<HeritageActivationMode> HeritageActivationModes { get; set; }
 
     }
 }

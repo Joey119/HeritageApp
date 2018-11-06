@@ -9,7 +9,7 @@ import { routing } from './app.routing';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { AlertComponent } from './_directives';
-import { AlertService, AuthenticationService, UserService, HeritageService, FilesService, ActivationModeService, EvaluationOptionService, EvaluatorTypeService, HeritageEvaluationService, HeritageGameAnalysisService } from './_services';
+import { AlertService, AuthenticationService, UserService, HeritageService, FilesService, ActivationModeService, EvaluationOptionService, EvaluatorTypeService, HeritageEvaluationService, HeritageGameAnalysisService, EvaluationParameterService } from './_services';
 import { AuthGuard } from './_guards';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -110,6 +110,7 @@ import { EvaluationOptionPipe, EvaluatorTypePipe } from './_pipes';
     HeritageEvaluationService,
     HeritageGameAnalysisService,
     ConfirmationService,
+    EvaluationParameterService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

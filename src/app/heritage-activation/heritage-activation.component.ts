@@ -12,7 +12,7 @@ import { Global } from '../_shared';
 export class HeritageActivationComponent implements OnInit {
 
   heritage: IHeritage;
-  actMode: IActivationMode;
+  actModes: IActivationMode[];
   param: any;
 
   constructor(private route: ActivatedRoute,
@@ -27,17 +27,11 @@ export class HeritageActivationComponent implements OnInit {
         this.heritageService.getHeritage(Global.BASE_HERITAGE_ENDPOINT + this.param).subscribe(
           result => {
             this.heritage = result;
-            if (this.heritage.activationModeId && this.heritage.activationModeId != null && this.heritage.activationModeId != undefined) {
-              this.actModeService.getActModeById(Global.BASE_ACTIVATION_MODE_ENDPOINT + this.heritage.activationModeId).subscribe(
-                data => {
-                  this.actMode = data;
-                }
-              )
-            }
-            else {
-              
-            }
-
+            this.actModeService.getHeritageActModeById(Global.BASE_ACTIVATION_MODE_ENDPOINT + 'getHeritageActivationModes/' + this.heritage.id).subscribe(
+              data => {
+                this.actModes = data;
+              }
+            )
           }
         )
       }

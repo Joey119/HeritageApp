@@ -1612,6 +1612,14 @@ var ActivationModeService = /** @class */ (function () {
             return _this.activationMode;
         }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
     };
+    ActivationModeService.prototype.getHeritageActModeById = function (url) {
+        var _this = this;
+        return this.http.get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (actModes) {
+            _this.activationModes = actModes;
+            return _this.activationModes;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(this.handleError));
+    };
     ActivationModeService.prototype.addActMode = function (url, actMode) {
         var _this = this;
         return this.http.post(url, actMode)
@@ -2028,6 +2036,88 @@ var EvaluationOptionService = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], EvaluationOptionService);
     return EvaluationOptionService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/_services/evaluationparameter.service.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/_services/evaluationparameter.service.ts ***!
+  \**********************************************************/
+/*! exports provided: EvaluationParameterService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EvaluationParameterService", function() { return EvaluationParameterService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
+/* harmony import */ var rxjs_add_operator_catch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/add/operator/catch */ "./node_modules/rxjs-compat/_esm5/add/operator/catch.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+/* * * ./app/comments/components/comment.service.ts * * */
+// Imports
+
+
+
+
+// Import RxJs required methods
+
+
+var EvaluationParameterService = /** @class */ (function () {
+    // Resolve HTTP using the constructor
+    function EvaluationParameterService(http) {
+        this.http = http;
+    }
+    EvaluationParameterService.prototype.getEvaluationParameter = function (url) {
+        var _this = this;
+        // ...using get request
+        return this.http.get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (evaluationParameter) {
+            _this.evaluationParameter = evaluationParameter;
+            return _this.evaluationParameter;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(this.handleError));
+    };
+    EvaluationParameterService.prototype.updateEvaluationParameter = function (url, evaluationParameter) {
+        var _this = this;
+        return this.http.put(url, evaluationParameter) // ...using put request
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (resultEvaluationParam) {
+            _this.evaluationParameter = resultEvaluationParam;
+            return _this.evaluationParameter;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(this.handleError));
+    };
+    // custom handler
+    EvaluationParameterService.prototype.handleError = function (error) {
+        if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error.message);
+        }
+        else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong,
+            console.error("Backend returned code " + error.status + ", " +
+                ("body was: " + error.error));
+        }
+        // return an observable with a user-facing error message
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["throwError"])('Something bad happened; please try again later.' || 'Server error');
+    };
+    EvaluationParameterService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], EvaluationParameterService);
+    return EvaluationParameterService;
 }());
 
 
@@ -2539,7 +2629,7 @@ var HeritageGameAnalysisService = /** @class */ (function () {
 /*!************************************!*\
   !*** ./src/app/_services/index.ts ***!
   \************************************/
-/*! exports provided: AlertService, AuthenticationService, UserService, HeritageService, FilesService, EmitterService, CommentService, ActivationModeService, EvaluationOptionService, EvaluatorTypeService, HeritageEvaluationService, HeritageGameAnalysisService */
+/*! exports provided: AlertService, AuthenticationService, UserService, HeritageService, FilesService, EmitterService, CommentService, ActivationModeService, EvaluationOptionService, EvaluatorTypeService, HeritageEvaluationService, HeritageGameAnalysisService, EvaluationParameterService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2579,6 +2669,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _heritagegameanalysis_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./heritagegameanalysis.service */ "./src/app/_services/heritagegameanalysis.service.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "HeritageGameAnalysisService", function() { return _heritagegameanalysis_service__WEBPACK_IMPORTED_MODULE_11__["HeritageGameAnalysisService"]; });
+
+/* harmony import */ var _evaluationparameter_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./evaluationparameter.service */ "./src/app/_services/evaluationparameter.service.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EvaluationParameterService", function() { return _evaluationparameter_service__WEBPACK_IMPORTED_MODULE_12__["EvaluationParameterService"]; });
+
 
 
 
@@ -2815,6 +2909,7 @@ var Global = /** @class */ (function () {
     Global.BASE_HERITAGE_EVALUATION_ENDPOINT = 'api/HeritageEvaluation/';
     Global.BASE_EVALUATION_OPTION_ENDPOINT = 'api/EvaluationOption/';
     Global.BASE_EVALUATOR_TYPE_ENDPOINT = 'api/EvaluatorType/';
+    Global.BASE_EVALUATION_PARAMETER_ENDPOINT = 'api/EvaluationParameter/';
     return Global;
 }());
 
@@ -3536,6 +3631,7 @@ var AppModule = /** @class */ (function () {
                 _services__WEBPACK_IMPORTED_MODULE_11__["HeritageEvaluationService"],
                 _services__WEBPACK_IMPORTED_MODULE_11__["HeritageGameAnalysisService"],
                 primeng_api__WEBPACK_IMPORTED_MODULE_31__["ConfirmationService"],
+                _services__WEBPACK_IMPORTED_MODULE_11__["EvaluationParameterService"],
                 { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_14__["HTTP_INTERCEPTORS"], useClass: _helpers__WEBPACK_IMPORTED_MODULE_13__["JwtInterceptor"], multi: true },
                 { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_14__["HTTP_INTERCEPTORS"], useClass: _helpers__WEBPACK_IMPORTED_MODULE_13__["ErrorInterceptor"], multi: true },
             ],
@@ -4238,7 +4334,7 @@ var FileManagerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"basic-container\" *ngIf=\"heritage\">\n\n  <mat-toolbar>\n    <span>非遗旅游价值评估: {{ heritage.name }} </span>\n    <span class=\"spacer\"></span>\n    <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">返回</button>\n  </mat-toolbar>\n\n  <div class=\"actMode-container\" *ngIf=\"!actMode\">\n    <p>当前旅游价值没有匹配的活化模式！</p>\n  </div>\n\n  <div class=\"actMode-container\" *ngIf=\"actMode\">\n    <mat-card>\n      <mat-card-header>\n        <div mat-card-avatar class=\"activation-card\"></div>\n        <mat-card-title>{{ actMode.activationModeName}}</mat-card-title>\n      </mat-card-header>\n      <mat-card-content>\n        <p>\n          {{ actMode.activationModeDescription }}\n        </p>\n      </mat-card-content>\n    </mat-card>\n  </div>\n\n</div>"
+module.exports = "<div class=\"basic-container\" *ngIf=\"heritage\">\n\n  <mat-toolbar>\n    <span>非遗旅游价值评估: {{ heritage.name }} </span>\n    <span class=\"spacer\"></span>\n    <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">返回</button>\n  </mat-toolbar>\n\n  <div class=\"actMode-container\" *ngIf=\"!actModes\">\n    <p>当前旅游价值没有匹配的活化模式！</p>\n  </div>\n\n  <div class=\"actMode-container\" *ngFor=\"let actMode of actModes\">\n    <mat-card>\n      <mat-card-header>\n        <div mat-card-avatar class=\"activation-card\"></div>\n        <mat-card-title>{{ actMode.activationModeName}}</mat-card-title>\n      </mat-card-header>\n      <mat-card-content>\n        <p>\n          {{ actMode.activationModeDescription }}\n        </p>\n      </mat-card-content>\n    </mat-card>\n  </div>\n\n</div>"
 
 /***/ }),
 
@@ -4294,13 +4390,9 @@ var HeritageActivationComponent = /** @class */ (function () {
             if (_this.param && _this.param != null && _this.param != undefined) {
                 _this.heritageService.getHeritage(_shared__WEBPACK_IMPORTED_MODULE_3__["Global"].BASE_HERITAGE_ENDPOINT + _this.param).subscribe(function (result) {
                     _this.heritage = result;
-                    if (_this.heritage.activationModeId && _this.heritage.activationModeId != null && _this.heritage.activationModeId != undefined) {
-                        _this.actModeService.getActModeById(_shared__WEBPACK_IMPORTED_MODULE_3__["Global"].BASE_ACTIVATION_MODE_ENDPOINT + _this.heritage.activationModeId).subscribe(function (data) {
-                            _this.actMode = data;
-                        });
-                    }
-                    else {
-                    }
+                    _this.actModeService.getHeritageActModeById(_shared__WEBPACK_IMPORTED_MODULE_3__["Global"].BASE_ACTIVATION_MODE_ENDPOINT + 'getHeritageActivationModes/' + _this.heritage.id).subscribe(function (data) {
+                        _this.actModes = data;
+                    });
                 });
             }
         });
@@ -4963,7 +5055,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"basic-container\" *ngIf=\"heritage\">\n\n  <mat-toolbar>\n    <span>旅游价值评估系统: {{ heritage.name }} 的旅游价值为: {{ heritage.evaluationValue | number : '1.2-2' }}</span>\n    <span class=\"spacer\"></span>\n    <button mat-button class=\"form-save\" (click)=\"evaluateheritage()\">计算并保存</button>\n    <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">返回</button>\n  </mat-toolbar>\n\n  <p-table [value]=\"evaluations\" [scrollable]=\"true\" selectionMode=\"single\" (onRowSelect)=\"onRowSelect($event)\"\n    [paginator]=\"true\" [rows]=\"20\">\n    <ng-template pTemplate=\"caption\">\n      旅游价值评估\n    </ng-template>\n    <ng-template pTemplate=\"colgroup\" let-columns>\n      <colgroup>\n        <col style=\"width:125px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n      </colgroup>\n    </ng-template>\n    <ng-template pTemplate=\"header\">\n\n      <tr>\n        <th rowspan=\"2\">利益相关者身份</th>\n        <th rowspan=\"2\">非遗旅游价值</th>\n        <th rowspan=\"2\">认同感系数</th>\n        <th rowspan=\"2\">认知情况系数</th>\n        <th rowspan=\"2\">项目自身价值系数</th>\n        <th rowspan=\"2\">项目自身基本情况系数</th>\n        <th rowspan=\"2\">项目资源开发条件与现状系数</th>\n        <th colspan=\"3\">认同感</th>\n        <th colspan=\"4\">认知情况</th>\n        <th colspan=\"8\">项目自身价值</th>\n        <th colspan=\"6\">项目自身基本情况</th>\n        <th colspan=\"5\">项目资源开发条件与现状</th>\n      </tr>\n      <tr>\n        <th rowspan=\"1\">重要性</th>\n        <th rowspan=\"1\">民族自豪感</th>\n        <th rowspan=\"1\">政府保护的必要性</th>\n        <th rowspan=\"1\">资源特征</th>\n        <th rowspan=\"1\">技艺涉及范围</th>\n        <th rowspan=\"1\">技艺传承方式</th>\n        <th rowspan=\"1\">技艺传承难度</th>\n        <th rowspan=\"1\">艺术价值</th>\n        <th rowspan=\"1\">文化价值</th>\n        <th rowspan=\"1\">经济价值</th>\n        <th rowspan=\"1\">历史价值</th>\n        <th rowspan=\"1\">教育价值</th>\n        <th rowspan=\"1\">社会价值</th>\n        <th rowspan=\"1\">科学价值</th>\n        <th rowspan=\"1\">文化生态环境价值</th>\n        <th rowspan=\"1\">品质情况</th>\n        <th rowspan=\"1\">珍稀性</th>\n        <th rowspan=\"1\">原生态程度</th>\n        <th rowspan=\"1\">知名度</th>\n        <th rowspan=\"1\">个性</th>\n        <th rowspan=\"1\">时间跨度</th>\n        <th rowspan=\"1\">区域经济水平</th>\n        <th rowspan=\"1\">旅游市场情况</th>\n        <th rowspan=\"1\">资源开发基础</th>\n        <th rowspan=\"1\">资源开发现状</th>\n        <th rowspan=\"1\">企业介入可能性</th>\n      </tr>\n    </ng-template>\n\n    <ng-template pTemplate=\"body\" let-rowData>\n      <tr [pSelectableRow]=\"rowData\">\n        <td>{{rowData.evaluatorTypeId | evaluatortype}}</td>\n        <td>{{rowData.evaluationValue | number : '1.2-2'}}</td>\n        <td>{{rowData.agreementFactor}}</td>\n        <td>{{rowData.cognitionFactor}}</td>\n        <td>{{rowData.projectValueFactor}}</td>\n        <td>{{rowData.projectBasicInfoFactor}}</td>\n        <td>{{rowData.projectConditionStatusFactor}}</td>\n        <td>{{rowData.importanceValue | evaluationoption}}</td>\n        <td>{{rowData.nationalPrideValue | evaluationoption}}</td>\n        <td>{{rowData.govProtectionValue | evaluationoption}}</td>\n        <td>{{rowData.resourceCharacteristicsValue | evaluationoption}}</td>\n        <td>{{rowData.skillScopeValue | evaluationoption}}</td>\n        <td>{{rowData.skillInheritanceMethodValue | evaluationoption}}</td>\n        <td>{{rowData.skillInheritanceDifficultyValue | evaluationoption}}</td>\n        <td>{{rowData.artValue | evaluationoption}}</td>\n        <td>{{rowData.cultureValue | evaluationoption}}</td>\n        <td>{{rowData.economyValue | evaluationoption}}</td>\n        <td>{{rowData.historyValue | evaluationoption}}</td>\n        <td>{{rowData.educationValue | evaluationoption}}</td>\n        <td>{{rowData.societyValue | evaluationoption}}</td>\n        <td>{{rowData.scienceValue | evaluationoption}}</td>\n        <td>{{rowData.ecologicalEnvironmentValue | evaluationoption}}</td>\n        <td>{{rowData.qualityValue | evaluationoption}}</td>\n        <td>{{rowData.rarenessValue | evaluationoption}}</td>\n        <td>{{rowData.ecologyValue | evaluationoption}}</td>\n        <td>{{rowData.popularValue | evaluationoption}}</td>\n        <td>{{rowData.personalityValue | evaluationoption}}</td>\n        <td>{{rowData.timeSpanValue | evaluationoption}}</td>\n        <td>{{rowData.nationalEcomonicValue | evaluationoption}}</td>\n        <td>{{rowData.marketStatusValue | evaluationoption}}</td>\n        <td>{{rowData.basicResourceDevelopmentValue | evaluationoption}}</td>\n        <td>{{rowData.basicResourceValue | evaluationoption}}</td>\n        <td>{{rowData.introductionProbabilityValue | evaluationoption}}</td>\n      </tr>\n    </ng-template>\n\n    <ng-template pTemplate=\"summary\" let-rowData>\n      <div style=\"text-align:left\">\n        <button type=\"button\" pButton icon=\"fa fa-plus\" (click)=\"showDialogToAdd()\" label=\"Add\"></button>\n      </div>\n    </ng-template>\n\n    <!--\n      <ng-template pTemplate=\"footer\">\n          <tr>\n              <td colspan=\"3\">Totals</td>\n              <td>$506,202</td>\n              <td>$531,020</td>\n          </tr>\n      </ng-template>\n      -->\n  </p-table>\n\n  <p-dialog header=\"Heritage Evaluation\" appendTo=\"body\" [(visible)]=\"displayDialog\" [responsive]=\"true\" showEffect=\"fade\"\n    [modal]=\"true\" [width]=\"600\">\n    <p-confirmDialog appendTo=\"body\"></p-confirmDialog>\n    <div class=\"ui-g ui-fluid\" *ngIf=\"evaluation\">\n\n      <p-fieldset legend=\"旅游评估\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">利益相关者身份</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalTypes\" [(ngModel)]=\"evaluation.evaluatorTypeId\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">认同感系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"agreementFactor\" [(ngModel)]=\"evaluation.agreementFactor\" />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">认知情况系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"cognitionFactor\" [(ngModel)]=\"evaluation.cognitionFactor\" />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">项目自身价值系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"projectValueFactor\" [(ngModel)]=\"evaluation.projectValueFactor\" />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">项目自身基本情况系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"projectBasicInfoFactor\" [(ngModel)]=\"evaluation.projectBasicInfoFactor\" />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">项目资源开发条件与现状系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"projectConditionStatusFactor\" [(ngModel)]=\"evaluation.projectConditionStatusFactor\" />\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"认同感\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">重要性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.importanceValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">民族自豪感</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.nationalPrideValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">政府保护的必要性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.govProtectionValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"认知情况\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">资源特征</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.resourceCharacteristicsValue\"\n            placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">技艺涉及范围</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.skillScopeValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">技艺传承方式</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.skillInheritanceMethodValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">技艺传承难度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.skillInheritanceDifficultyValue\"\n            placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"项目自身价值\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">艺术价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.artValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">文化价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.cultureValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">经济价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.economyValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">历史价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.historyValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">教育价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.educationValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">社会价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.societyValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">科学价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.scienceValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">文化生态环境价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.ecologicalEnvironmentValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"项目自身基本情况\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">品质情况</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.qualityValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">珍稀性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.rarenessValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">原生态程度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.ecologyValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">知名度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.popularValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">个性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.personalityValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">时间跨度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.timeSpanValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"项目资源开发条件与现状\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">区域经济水平</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.nationalEcomonicValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">旅游市场情况</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.marketStatusValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">资源开发基础</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.basicResourceDevelopmentValue\"\n            placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">资源开发现状</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.basicResourceValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">企业介入可能性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.introductionProbabilityValue\"\n            placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n    </div>\n    <p-footer>\n      <div class=\"ui-dialog-buttonpane ui-helper-clearfix\">\n        <button type=\"button\" pButton icon=\"fa fa-close\" (click)=\"delete()\" label=\"Delete\"></button>\n        <button type=\"button\" pButton icon=\"fa fa-check\" (click)=\"save()\" label=\"Save\"></button>\n      </div>\n    </p-footer>\n  </p-dialog>\n\n\n</div>"
+module.exports = "<div class=\"basic-container\" *ngIf=\"heritage\">\n\n  <mat-toolbar>\n    <span>旅游价值评估系统: {{ heritage.name }} 的旅游价值为: {{ heritage.evaluationValue | number : '1.2-2' }}</span>\n    <span class=\"spacer\"></span>\n    <button mat-button class=\"form-save\" (click)=\"showParameters()\">系数设置</button>\n    <button mat-button class=\"form-save\" (click)=\"evaluateheritage()\">计算并保存</button>\n    <button type=\"button\" mat-button class=\"form-save\" [routerLink]=\"['/heritagenav', heritage.id]\">返回</button>\n  </mat-toolbar>\n\n  <p-table [value]=\"evaluations\" [scrollable]=\"true\" selectionMode=\"single\" (onRowSelect)=\"onRowSelect($event)\"\n    [paginator]=\"true\" [rows]=\"20\">\n    <ng-template pTemplate=\"caption\">\n      旅游价值评估\n    </ng-template>\n    <ng-template pTemplate=\"colgroup\" let-columns>\n      <colgroup>\n        <col style=\"width:125px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n        <col style=\"width:85px\">\n      </colgroup>\n    </ng-template>\n    <ng-template pTemplate=\"header\">\n\n      <tr>\n        <th rowspan=\"2\">利益相关者身份</th>\n        <th rowspan=\"2\">非遗旅游价值</th>\n        <th rowspan=\"2\">认同感系数</th>\n        <th rowspan=\"2\">认知情况系数</th>\n        <th rowspan=\"2\">项目自身价值系数</th>\n        <th rowspan=\"2\">项目自身基本情况系数</th>\n        <th rowspan=\"2\">项目资源开发条件与现状系数</th>\n        <th colspan=\"3\">认同感</th>\n        <th colspan=\"4\">认知情况</th>\n        <th colspan=\"8\">项目自身价值</th>\n        <th colspan=\"6\">项目自身基本情况</th>\n        <th colspan=\"5\">项目资源开发条件与现状</th>\n      </tr>\n      <tr>\n        <th rowspan=\"1\">重要性</th>\n        <th rowspan=\"1\">民族自豪感</th>\n        <th rowspan=\"1\">政府保护的必要性</th>\n        <th rowspan=\"1\">资源特征</th>\n        <th rowspan=\"1\">技艺涉及范围</th>\n        <th rowspan=\"1\">技艺传承方式</th>\n        <th rowspan=\"1\">技艺传承难度</th>\n        <th rowspan=\"1\">艺术价值</th>\n        <th rowspan=\"1\">文化价值</th>\n        <th rowspan=\"1\">经济价值</th>\n        <th rowspan=\"1\">历史价值</th>\n        <th rowspan=\"1\">教育价值</th>\n        <th rowspan=\"1\">社会价值</th>\n        <th rowspan=\"1\">科学价值</th>\n        <th rowspan=\"1\">文化生态环境价值</th>\n        <th rowspan=\"1\">品质情况</th>\n        <th rowspan=\"1\">珍稀性</th>\n        <th rowspan=\"1\">原生态程度</th>\n        <th rowspan=\"1\">知名度</th>\n        <th rowspan=\"1\">个性</th>\n        <th rowspan=\"1\">时间跨度</th>\n        <th rowspan=\"1\">区域经济水平</th>\n        <th rowspan=\"1\">旅游市场情况</th>\n        <th rowspan=\"1\">资源开发基础</th>\n        <th rowspan=\"1\">资源开发现状</th>\n        <th rowspan=\"1\">企业介入可能性</th>\n      </tr>\n    </ng-template>\n\n    <ng-template pTemplate=\"body\" let-rowData>\n      <tr [pSelectableRow]=\"rowData\">\n        <td>{{rowData.evaluatorTypeId | evaluatortype}}</td>\n        <td>{{rowData.evaluationValue | number : '1.2-2'}}</td>\n        <td>{{rowData.agreementFactor}}</td>\n        <td>{{rowData.cognitionFactor}}</td>\n        <td>{{rowData.projectValueFactor}}</td>\n        <td>{{rowData.projectBasicInfoFactor}}</td>\n        <td>{{rowData.projectConditionStatusFactor}}</td>\n        <td>{{rowData.importanceValue | evaluationoption}}</td>\n        <td>{{rowData.nationalPrideValue | evaluationoption}}</td>\n        <td>{{rowData.govProtectionValue | evaluationoption}}</td>\n        <td>{{rowData.resourceCharacteristicsValue | evaluationoption}}</td>\n        <td>{{rowData.skillScopeValue | evaluationoption}}</td>\n        <td>{{rowData.skillInheritanceMethodValue | evaluationoption}}</td>\n        <td>{{rowData.skillInheritanceDifficultyValue | evaluationoption}}</td>\n        <td>{{rowData.artValue | evaluationoption}}</td>\n        <td>{{rowData.cultureValue | evaluationoption}}</td>\n        <td>{{rowData.economyValue | evaluationoption}}</td>\n        <td>{{rowData.historyValue | evaluationoption}}</td>\n        <td>{{rowData.educationValue | evaluationoption}}</td>\n        <td>{{rowData.societyValue | evaluationoption}}</td>\n        <td>{{rowData.scienceValue | evaluationoption}}</td>\n        <td>{{rowData.ecologicalEnvironmentValue | evaluationoption}}</td>\n        <td>{{rowData.qualityValue | evaluationoption}}</td>\n        <td>{{rowData.rarenessValue | evaluationoption}}</td>\n        <td>{{rowData.ecologyValue | evaluationoption}}</td>\n        <td>{{rowData.popularValue | evaluationoption}}</td>\n        <td>{{rowData.personalityValue | evaluationoption}}</td>\n        <td>{{rowData.timeSpanValue | evaluationoption}}</td>\n        <td>{{rowData.nationalEcomonicValue | evaluationoption}}</td>\n        <td>{{rowData.marketStatusValue | evaluationoption}}</td>\n        <td>{{rowData.basicResourceDevelopmentValue | evaluationoption}}</td>\n        <td>{{rowData.basicResourceValue | evaluationoption}}</td>\n        <td>{{rowData.introductionProbabilityValue | evaluationoption}}</td>\n      </tr>\n    </ng-template>\n\n    <ng-template pTemplate=\"summary\" let-rowData>\n      <div style=\"text-align:left\">\n        <button type=\"button\" pButton icon=\"fa fa-plus\" (click)=\"showDialogToAdd()\" label=\"添加\"></button>\n      </div>\n    </ng-template>\n\n    <!--\n      <ng-template pTemplate=\"footer\">\n          <tr>\n              <td colspan=\"3\">Totals</td>\n              <td>$506,202</td>\n              <td>$531,020</td>\n          </tr>\n      </ng-template>\n      -->\n  </p-table>\n\n  <p-dialog header=\"非遗旅游价值评估系数\" appendTo=\"body\" [(visible)]=\"displayParameters\" [responsive]=\"true\" showEffect=\"fade\"\n    [modal]=\"true\" [width]=\"600\">\n    <div class=\"ui-g ui-fluid\">\n      <label for=\"vin\">全局系数，如更改需对旅游评估价值进行重新更新计算。</label>\n    </div>\n    <div class=\"ui-g ui-fluid\" *ngIf=\"param1\">\n      <div class=\"ui-g-3\">\n        <label for=\"vin\">系数1</label>\n      </div>\n      <div class=\"ui-g-4\">\n        <input pInputText id=\"agreementFactor\" [(ngModel)]=\"param1.parameterValue\" />\n      </div>\n      <div class=\"ui-g-3\">\n        <button type=\"button\" pButton icon=\"fa fa-check\" (click)=\"saveparam1()\" label=\"保存\"></button>\n      </div>\n    </div>\n    <div class=\"ui-g ui-fluid\" *ngIf=\"param2\">\n      <div class=\"ui-g-3\">\n        <label for=\"vin\">系数2</label>\n      </div>\n      <div class=\"ui-g-4\">\n        <input pInputText id=\"agreementFactor\" [(ngModel)]=\"param2.parameterValue\" />\n      </div>\n      <div class=\"ui-g-3\">\n        <button type=\"button\" pButton icon=\"fa fa-check\" (click)=\"saveparam2()\" label=\"保存\"></button>\n      </div>\n    </div>\n    <div class=\"ui-g ui-fluid\" *ngIf=\"param3\">\n      <div class=\"ui-g-3\">\n        <label for=\"vin\">系数3</label>\n      </div>\n      <div class=\"ui-g-4\">\n        <input pInputText id=\"agreementFactor\" [(ngModel)]=\"param3.parameterValue\" />\n      </div>\n      <div class=\"ui-g-3\">\n        <button type=\"button\" pButton icon=\"fa fa-check\" (click)=\"saveparam3()\" label=\"保存\"></button>\n      </div>\n    </div>\n    <div class=\"ui-g ui-fluid\" *ngIf=\"param4\">\n      <div class=\"ui-g-3\">\n        <label for=\"vin\">系数4</label>\n      </div>\n      <div class=\"ui-g-4\">\n        <input pInputText id=\"agreementFactor\" [(ngModel)]=\"param4.parameterValue\" />\n      </div>\n      <div class=\"ui-g-3\">\n        <button type=\"button\" pButton icon=\"fa fa-check\" (click)=\"saveparam4()\" label=\"保存\"></button>\n      </div>\n    </div>\n    <div class=\"ui-g ui-fluid\" *ngIf=\"param5\">\n      <div class=\"ui-g-3\">\n        <label for=\"vin\">系数5</label>\n      </div>\n      <div class=\"ui-g-4\">\n        <input pInputText id=\"agreementFactor\" [(ngModel)]=\"param5.parameterValue\" />\n      </div>\n      <div class=\"ui-g-3\">\n        <button type=\"button\" pButton icon=\"fa fa-check\" (click)=\"saveparam5()\" label=\"保存\"></button>\n      </div>\n    </div>\n  </p-dialog>\n\n  <p-dialog header=\"非遗旅游价值评估\" appendTo=\"body\" [(visible)]=\"displayDialog\" [responsive]=\"true\" showEffect=\"fade\" [modal]=\"true\"\n    [width]=\"600\">\n    <p-confirmDialog appendTo=\"body\"></p-confirmDialog>\n    <div class=\"ui-g ui-fluid\" *ngIf=\"evaluation\">\n\n      <p-fieldset legend=\"旅游评估\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">利益相关者身份</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalTypes\" [(ngModel)]=\"evaluation.evaluatorTypeId\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">认同感系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"agreementFactor\" [(ngModel)]=\"evaluation.agreementFactor\" />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">认知情况系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"cognitionFactor\" [(ngModel)]=\"evaluation.cognitionFactor\" />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">项目自身价值系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"projectValueFactor\" [(ngModel)]=\"evaluation.projectValueFactor\" />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">项目自身基本情况系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"projectBasicInfoFactor\" [(ngModel)]=\"evaluation.projectBasicInfoFactor\" />\n        </div>\n\n        <div class=\"ui-g-7\">\n          <label for=\"vin\">项目资源开发条件与现状系数</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <input pInputText id=\"projectConditionStatusFactor\" [(ngModel)]=\"evaluation.projectConditionStatusFactor\" />\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"认同感\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">重要性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.importanceValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">民族自豪感</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.nationalPrideValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">政府保护的必要性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.govProtectionValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"认知情况\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">资源特征</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.resourceCharacteristicsValue\"\n            placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">技艺涉及范围</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.skillScopeValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">技艺传承方式</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.skillInheritanceMethodValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">技艺传承难度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.skillInheritanceDifficultyValue\"\n            placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"项目自身价值\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">艺术价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.artValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">文化价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.cultureValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">经济价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.economyValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">历史价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.historyValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">教育价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.educationValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">社会价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.societyValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">科学价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.scienceValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">文化生态环境价值</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.ecologicalEnvironmentValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"项目自身基本情况\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">品质情况</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.qualityValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">珍稀性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.rarenessValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">原生态程度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.ecologyValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">知名度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.popularValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">个性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.personalityValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">时间跨度</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.timeSpanValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n      <p-fieldset legend=\"项目资源开发条件与现状\">\n        <div class=\"ui-g-7\">\n          <label for=\"importance\">区域经济水平</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.nationalEcomonicValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"b\">旅游市场情况</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.marketStatusValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">资源开发基础</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.basicResourceDevelopmentValue\"\n            placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">资源开发现状</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.basicResourceValue\" placeholder=\"Select an option\"></p-dropdown>\n        </div>\n        <div class=\"ui-g-7\">\n          <label for=\"c\">企业介入可能性</label>\n        </div>\n        <div class=\"ui-g-3\">\n          <p-dropdown [options]=\"availableEvalOptions\" [(ngModel)]=\"evaluation.introductionProbabilityValue\"\n            placeholder=\"Select an option\"></p-dropdown>\n        </div>\n      </p-fieldset>\n\n    </div>\n    <p-footer>\n      <div class=\"ui-dialog-buttonpane ui-helper-clearfix\">\n        <button type=\"button\" pButton icon=\"fa fa-close\" (click)=\"delete()\" label=\"删除\"></button>\n        <button type=\"button\" pButton icon=\"fa fa-check\" (click)=\"save()\" label=\"保存\"></button>\n      </div>\n    </p-footer>\n  </p-dialog>\n\n\n</div>"
 
 /***/ }),
 
@@ -5011,7 +5103,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var HeritageEvaluationComponent = /** @class */ (function () {
-    function HeritageEvaluationComponent(route, heritageService, userService, heritageEvaluationService, evaluationOptionService, toastr, evaluatorTypeSerice, confirmationService) {
+    function HeritageEvaluationComponent(route, heritageService, userService, heritageEvaluationService, evaluationOptionService, toastr, evaluatorTypeSerice, confirmationService, evalParameterService) {
         this.route = route;
         this.heritageService = heritageService;
         this.userService = userService;
@@ -5020,6 +5112,7 @@ var HeritageEvaluationComponent = /** @class */ (function () {
         this.toastr = toastr;
         this.evaluatorTypeSerice = evaluatorTypeSerice;
         this.confirmationService = confirmationService;
+        this.evalParameterService = evalParameterService;
     }
     HeritageEvaluationComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -5247,6 +5340,70 @@ var HeritageEvaluationComponent = /** @class */ (function () {
             _this.toastr.error("非物质文化遗产旅游价值计算失败。", "操作失败");
         });
     };
+    HeritageEvaluationComponent.prototype.saveparam1 = function () {
+        var _this = this;
+        this.evalParameterService.updateEvaluationParameter(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_EVALUATION_PARAMETER_ENDPOINT + '1', this.param1)
+            .subscribe(function (data) {
+            _this.param1 = data;
+            _this.displayParameters = false;
+        });
+    };
+    HeritageEvaluationComponent.prototype.saveparam2 = function () {
+        var _this = this;
+        this.evalParameterService.updateEvaluationParameter(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_EVALUATION_PARAMETER_ENDPOINT + '2', this.param2)
+            .subscribe(function (data) {
+            _this.param2 = data;
+            _this.displayParameters = false;
+        });
+    };
+    HeritageEvaluationComponent.prototype.saveparam3 = function () {
+        var _this = this;
+        this.evalParameterService.updateEvaluationParameter(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_EVALUATION_PARAMETER_ENDPOINT + '3', this.param3)
+            .subscribe(function (data) {
+            _this.param3 = data;
+            _this.displayParameters = false;
+        });
+    };
+    HeritageEvaluationComponent.prototype.saveparam4 = function () {
+        var _this = this;
+        this.evalParameterService.updateEvaluationParameter(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_EVALUATION_PARAMETER_ENDPOINT + '4', this.param4)
+            .subscribe(function (data) {
+            _this.param4 = data;
+            _this.displayParameters = false;
+        });
+    };
+    HeritageEvaluationComponent.prototype.saveparam5 = function () {
+        var _this = this;
+        this.evalParameterService.updateEvaluationParameter(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_EVALUATION_PARAMETER_ENDPOINT + '5', this.param5)
+            .subscribe(function (data) {
+            _this.param5 = data;
+            _this.displayParameters = false;
+        });
+    };
+    HeritageEvaluationComponent.prototype.showParameters = function () {
+        var _this = this;
+        this.evalParameterService.getEvaluationParameter(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_EVALUATION_PARAMETER_ENDPOINT + '1')
+            .subscribe(function (dataParam1) {
+            _this.param1 = dataParam1;
+            _this.evalParameterService.getEvaluationParameter(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_EVALUATION_PARAMETER_ENDPOINT + '2')
+                .subscribe(function (dataParam2) {
+                _this.param2 = dataParam2;
+                _this.evalParameterService.getEvaluationParameter(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_EVALUATION_PARAMETER_ENDPOINT + '3')
+                    .subscribe(function (dataParam3) {
+                    _this.param3 = dataParam3;
+                    _this.evalParameterService.getEvaluationParameter(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_EVALUATION_PARAMETER_ENDPOINT + '4')
+                        .subscribe(function (dataParam4) {
+                        _this.param4 = dataParam4;
+                        _this.evalParameterService.getEvaluationParameter(_shared__WEBPACK_IMPORTED_MODULE_4__["Global"].BASE_EVALUATION_PARAMETER_ENDPOINT + '5')
+                            .subscribe(function (dataParam5) {
+                            _this.param5 = dataParam5;
+                            _this.displayParameters = true;
+                        });
+                    });
+                });
+            });
+        });
+    };
     HeritageEvaluationComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-heritage-evaluation',
@@ -5260,7 +5417,8 @@ var HeritageEvaluationComponent = /** @class */ (function () {
             _services__WEBPACK_IMPORTED_MODULE_3__["EvaluationOptionService"],
             ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"],
             _services__WEBPACK_IMPORTED_MODULE_3__["EvaluatorTypeService"],
-            primeng_api__WEBPACK_IMPORTED_MODULE_5__["ConfirmationService"]])
+            primeng_api__WEBPACK_IMPORTED_MODULE_5__["ConfirmationService"],
+            _services__WEBPACK_IMPORTED_MODULE_3__["EvaluationParameterService"]])
     ], HeritageEvaluationComponent);
     return HeritageEvaluationComponent;
 }());

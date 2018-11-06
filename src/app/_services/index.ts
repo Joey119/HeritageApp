@@ -10,3 +10,4 @@ export * from './evaluationoption.service';
 export * from './evaluatortype.service';
 export * from './heritageevaluation.service';
 export * from './heritagegameanalysis.service';
+export * from './evaluationparameter.service';

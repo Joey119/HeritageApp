@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
-import { IHeritage, IHeritageEvaluation, IEvaluationOption, IEvaluatorType } from '../_models';
-import { HeritageService, UserService, HeritageEvaluationService, EvaluationOptionService, EvaluatorTypeService } from '../_services';
+import { IHeritage, IHeritageEvaluation, IEvaluationOption, IEvaluatorType, IEvaluationParameter } from '../_models';
+import { HeritageService, UserService, HeritageEvaluationService, EvaluationOptionService, EvaluatorTypeService, EvaluationParameterService } from '../_services';
 import { Global } from '../_shared';
 import { SelectItem, ConfirmationService } from 'primeng/api';
 
@@ -27,6 +27,13 @@ export class HeritageEvaluationComponent implements OnInit {
   defaultEvalOption: SelectItem;
   defaultEvalType: SelectItem;
 
+  displayParameters: boolean;
+  param1: IEvaluationParameter;
+  param2: IEvaluationParameter;
+  param3: IEvaluationParameter;
+  param4: IEvaluationParameter;
+  param5: IEvaluationParameter;
+
   constructor(private route: ActivatedRoute,
     private heritageService: HeritageService,
     private userService: UserService,
@@ -34,7 +41,8 @@ export class HeritageEvaluationComponent implements OnInit {
     private evaluationOptionService: EvaluationOptionService,
     private toastr: ToastrService,
     private evaluatorTypeSerice: EvaluatorTypeService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService,
+    private evalParameterService: EvaluationParameterService) { }
 
   ngOnInit() {
 
@@ -307,6 +315,90 @@ export class HeritageEvaluationComponent implements OnInit {
           this.toastr.error("非物质文化遗产旅游价值计算失败。", "操作失败");
         }
       );
+  }
+
+  saveparam1() {
+    this.evalParameterService.updateEvaluationParameter(Global.BASE_EVALUATION_PARAMETER_ENDPOINT + '1', this.param1)
+    .subscribe(
+      data => {
+        this.param1 = data;
+        this.displayParameters = false;
+      }
+    )
+  }
+
+  saveparam2() {
+    this.evalParameterService.updateEvaluationParameter(Global.BASE_EVALUATION_PARAMETER_ENDPOINT + '2', this.param2)
+    .subscribe(
+      data => {
+        this.param2 = data;
+        this.displayParameters = false;
+      }
+    )
+  }
+
+  saveparam3() {
+    this.evalParameterService.updateEvaluationParameter(Global.BASE_EVALUATION_PARAMETER_ENDPOINT + '3', this.param3)
+    .subscribe(
+      data => {
+        this.param3 = data;
+        this.displayParameters = false;
+      }
+    )
+  }
+
+  saveparam4() {
+    this.evalParameterService.updateEvaluationParameter(Global.BASE_EVALUATION_PARAMETER_ENDPOINT + '4', this.param4)
+    .subscribe(
+      data => {
+        this.param4 = data;
+        this.displayParameters = false;
+      }
+    )
+  }
+
+  saveparam5() {
+    this.evalParameterService.updateEvaluationParameter(Global.BASE_EVALUATION_PARAMETER_ENDPOINT + '5', this.param5)
+    .subscribe(
+      data => {
+        this.param5 = data;
+        this.displayParameters = false;
+      }
+    )
+  }
+
+  showParameters() {
+    this.evalParameterService.getEvaluationParameter(Global.BASE_EVALUATION_PARAMETER_ENDPOINT + '1')
+      .subscribe(
+        dataParam1 => {
+          this.param1 = dataParam1;
+          this.evalParameterService.getEvaluationParameter(Global.BASE_EVALUATION_PARAMETER_ENDPOINT + '2')
+            .subscribe(
+              dataParam2 => {
+                this.param2 = dataParam2;
+                this.evalParameterService.getEvaluationParameter(Global.BASE_EVALUATION_PARAMETER_ENDPOINT + '3')
+                  .subscribe(
+                    dataParam3 => {
+                      this.param3 = dataParam3;
+                      this.evalParameterService.getEvaluationParameter(Global.BASE_EVALUATION_PARAMETER_ENDPOINT + '4')
+                        .subscribe(
+                          dataParam4 => {
+                            this.param4 = dataParam4;
+                            this.evalParameterService.getEvaluationParameter(Global.BASE_EVALUATION_PARAMETER_ENDPOINT + '5')
+                              .subscribe(
+                                dataParam5 => {
+                                  this.param5 = dataParam5;
+                                  this.displayParameters = true;
+                                }
+                              )
+                          }
+                        )
+                    }
+                  )
+              }
+            )
+        }
+      )
   }
 
 }

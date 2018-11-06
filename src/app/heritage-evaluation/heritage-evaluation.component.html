@@ -3,6 +3,7 @@
   <mat-toolbar>
     <span>旅游价值评估系统: {{ heritage.name }} 的旅游价值为: {{ heritage.evaluationValue | number : '1.2-2' }}</span>
     <span class="spacer"></span>
+    <button mat-button class="form-save" (click)="showParameters()">系数设置</button>
     <button mat-button class="form-save" (click)="evaluateheritage()">计算并保存</button>
     <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">返回</button>
   </mat-toolbar>
@@ -135,7 +136,7 @@
 
     <ng-template pTemplate="summary" let-rowData>
       <div style="text-align:left">
-        <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Add"></button>
+        <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="添加"></button>
       </div>
     </ng-template>
 
@@ -150,8 +151,70 @@
       -->
   </p-table>
 
-  <p-dialog header="Heritage Evaluation" appendTo="body" [(visible)]="displayDialog" [responsive]="true" showEffect="fade"
+  <p-dialog header="非遗旅游价值评估系数" appendTo="body" [(visible)]="displayParameters" [responsive]="true" showEffect="fade"
     [modal]="true" [width]="600">
+    <div class="ui-g ui-fluid">
+      <label for="vin">全局系数，如更改需对旅游评估价值进行重新更新计算。</label>
+    </div>
+    <div class="ui-g ui-fluid" *ngIf="param1">
+      <div class="ui-g-3">
+        <label for="vin">系数1</label>
+      </div>
+      <div class="ui-g-4">
+        <input pInputText id="agreementFactor" [(ngModel)]="param1.parameterValue" />
+      </div>
+      <div class="ui-g-3">
+        <button type="button" pButton icon="fa fa-check" (click)="saveparam1()" label="保存"></button>
+      </div>
+    </div>
+    <div class="ui-g ui-fluid" *ngIf="param2">
+      <div class="ui-g-3">
+        <label for="vin">系数2</label>
+      </div>
+      <div class="ui-g-4">
+        <input pInputText id="agreementFactor" [(ngModel)]="param2.parameterValue" />
+      </div>
+      <div class="ui-g-3">
+        <button type="button" pButton icon="fa fa-check" (click)="saveparam2()" label="保存"></button>
+      </div>
+    </div>
+    <div class="ui-g ui-fluid" *ngIf="param3">
+      <div class="ui-g-3">
+        <label for="vin">系数3</label>
+      </div>
+      <div class="ui-g-4">
+        <input pInputText id="agreementFactor" [(ngModel)]="param3.parameterValue" />
+      </div>
+      <div class="ui-g-3">
+        <button type="button" pButton icon="fa fa-check" (click)="saveparam3()" label="保存"></button>
+      </div>
+    </div>
+    <div class="ui-g ui-fluid" *ngIf="param4">
+      <div class="ui-g-3">
+        <label for="vin">系数4</label>
+      </div>
+      <div class="ui-g-4">
+        <input pInputText id="agreementFactor" [(ngModel)]="param4.parameterValue" />
+      </div>
+      <div class="ui-g-3">
+        <button type="button" pButton icon="fa fa-check" (click)="saveparam4()" label="保存"></button>
+      </div>
+    </div>
+    <div class="ui-g ui-fluid" *ngIf="param5">
+      <div class="ui-g-3">
+        <label for="vin">系数5</label>
+      </div>
+      <div class="ui-g-4">
+        <input pInputText id="agreementFactor" [(ngModel)]="param5.parameterValue" />
+      </div>
+      <div class="ui-g-3">
+        <button type="button" pButton icon="fa fa-check" (click)="saveparam5()" label="保存"></button>
+      </div>
+    </div>
+  </p-dialog>
+
+  <p-dialog header="非遗旅游价值评估" appendTo="body" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+    [width]="600">
     <p-confirmDialog appendTo="body"></p-confirmDialog>
     <div class="ui-g ui-fluid" *ngIf="evaluation">
 
@@ -377,8 +440,8 @@
     </div>
     <p-footer>
       <div class="ui-dialog-buttonpane ui-helper-clearfix">
-        <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
-        <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
+        <button type="button" pButton icon="fa fa-close" (click)="delete()" label="删除"></button>
+        <button type="button" pButton icon="fa fa-check" (click)="save()" label="保存"></button>
       </div>
     </p-footer>
   </p-dialog>

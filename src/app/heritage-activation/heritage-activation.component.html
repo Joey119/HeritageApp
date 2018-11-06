@@ -6,11 +6,11 @@
     <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">返回</button>
   </mat-toolbar>
 
-  <div class="actMode-container" *ngIf="!actMode">
+  <div class="actMode-container" *ngIf="!actModes">
     <p>当前旅游价值没有匹配的活化模式！</p>
   </div>
 
-  <div class="actMode-container" *ngIf="actMode">
+  <div class="actMode-container" *ngFor="let actMode of actModes">
     <mat-card>
       <mat-card-header>
         <div mat-card-avatar class="activation-card"></div>

@@ -69,6 +69,7 @@ namespace HeritageApp.Controllers {
             var heritage = _context.Heritages
                 .Where (item => item.Id == id)
                 .Include (item => item.HeritageEvaluations)
+                .Include (item => item.HeritageActivationModes)
                 .FirstOrDefault ();
 
             if (heritage == null) {
@@ -76,11 +77,11 @@ namespace HeritageApp.Controllers {
             }
 
             var evaluations = heritage.HeritageEvaluations;
-            double factor1 = 0.2;
-            double factor2 = 0.2;
-            double factor3 = 0.2;
-            double factor4 = 0.2;
-            double factor5 = 0.2;
+            double factor1 = _context.EvaluationParameters.FirstOrDefault (param => param.Id == 1).ParameterValue;
+            double factor2 = _context.EvaluationParameters.FirstOrDefault (param => param.Id == 1).ParameterValue;
+            double factor3 = _context.EvaluationParameters.FirstOrDefault (param => param.Id == 1).ParameterValue;
+            double factor4 = _context.EvaluationParameters.FirstOrDefault (param => param.Id == 1).ParameterValue;
+            double factor5 = _context.EvaluationParameters.FirstOrDefault (param => param.Id == 1).ParameterValue;
 
             heritage.EvaluationValue = evaluations.Where (evaluation => evaluation.EvaluatorTypeId == 5).Select (evaluation => evaluation.EvaluationValue).DefaultIfEmpty (0).Average () * factor1 +
                 evaluations.Where (evaluation => evaluation.EvaluatorTypeId == 4).Select (evaluation => evaluation.EvaluationValue).DefaultIfEmpty (0).Average () * factor2 +
@@ -88,22 +89,28 @@ namespace HeritageApp.Controllers {
                 evaluations.Where (evaluation => evaluation.EvaluatorTypeId == 2).Select (evaluation => evaluation.EvaluationValue).DefaultIfEmpty (0).Average () * factor4 +
                 evaluations.Where (evaluation => evaluation.EvaluatorTypeId == 1).Select (evaluation => evaluation.EvaluationValue).DefaultIfEmpty (0).Average () * factor5;
 
-            var activationMode = _context.ActivationModes
+            var activationModes = _context.ActivationModes
                 .Where (actMode => actMode.UpperBound > heritage.EvaluationValue && actMode.LowerBound < heritage.EvaluationValue)
-                .FirstOrDefault();
+                .ToList ();
 
-            if (activationMode != null)
-            {
-                heritage.ActivationModeId = activationMode.Id;
+            if (heritage.HeritageActivationModes == null) {
+                heritage.HeritageActivationModes = new List<HeritageActivationMode> ();
             }
-            else
-            {
-                heritage.ActivationModeId = null;
+
+            if (heritage.HeritageActivationModes.Count > 0) {
+                heritage.HeritageActivationModes.Clear ();
+            }
+
+            foreach (ActivationMode actMode in activationModes) {
+                var heritageActMode = new HeritageActivationMode ();
+                heritageActMode.HeritageId = heritage.Id;
+                heritageActMode.ActivationModeId = actMode.Id;
+                heritage.HeritageActivationModes.Add (heritageActMode);
             }
 
             _context.SaveChanges ();
 
-            var itemDto = _mapper.Map<HeritageDto>(heritage);
+            var itemDto = _mapper.Map<HeritageDto> (heritage);
 
             return new ObjectResult (itemDto);
         }

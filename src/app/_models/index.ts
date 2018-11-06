@@ -9,3 +9,4 @@ export * from './evaluatorType';
 export * from './heritageEvaluation';
 export * from './heritageGameAnalysis';
 export * from './analysisRoute';
+export * from './evaluationParameter';

@@ -16,6 +16,7 @@ export class ActivationModeService {
     dataChange: BehaviorSubject<IActivationMode[]> = new BehaviorSubject<IActivationMode[]>([]);
     dialogData: any;
     activationMode: IActivationMode;
+    activationModes: IActivationMode[];
 
     constructor(private http: HttpClient) { }
 
@@ -42,6 +43,18 @@ export class ActivationModeService {
                 map(actMode => {
                     this.activationMode = actMode;
                     return this.activationMode;
+                }),
+
+                catchError(this.handleError)
+            )
+    }
+
+    getHeritageActModeById(url: string): Observable<IActivationMode[]> {
+        return this.http.get<IActivationMode[]>(url)
+            .pipe(
+                map(actModes => {
+                    this.activationModes = actModes;
+                    return this.activationModes;
                 }),
 
                 catchError(this.handleError)
