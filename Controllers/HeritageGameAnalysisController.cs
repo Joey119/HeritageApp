@@ -56,9 +56,9 @@ namespace HeritageApp.Controllers {
 
             return new ObjectResult (itemDto);
         }
-        
+
         [HttpGet]
-        [Route("getHeritageAnalysisBestRoute/{id:int}")]
+        [Route ("getHeritageAnalysisBestRoute/{id:int}")]
         public IActionResult GetHeritageAnalysisBestRoute (long id) {
             //filter contact records by contact id
             var item = _context.HeritageGameAnalyses
@@ -70,9 +70,9 @@ namespace HeritageApp.Controllers {
 
             var itemDto = _mapper.Map<HeritageGameAnalysisDto> (item);
 
-            RoutePath bestRoute = CalculateBestRoute(itemDto);
+            RoutePath bestRoute = CalculateBestRoute (itemDto);
 
-            return Ok(bestRoute);
+            return Ok (bestRoute);
         }
 
         [HttpPost]
@@ -90,7 +90,7 @@ namespace HeritageApp.Controllers {
             _context.HeritageGameAnalyses.Add (heritageGameAnalysis);
             _context.SaveChanges ();
             item = _mapper.Map<HeritageGameAnalysisDto> (heritageGameAnalysis);
-            return Ok(item);
+            return Ok (item);
         }
 
         [HttpPut ("{id}")]
@@ -174,145 +174,145 @@ namespace HeritageApp.Controllers {
         }
 
         private void CalculateRouteValues (HeritageGameAnalysisDto gameAnalysis) {
-            gameAnalysis.Route1 = (gameAnalysis.Vi1 + gameAnalysis.PiA - gameAnalysis.Ai1 * gameAnalysis.CiA).ToString() +
+            gameAnalysis.Route1 = (gameAnalysis.Vi1 + gameAnalysis.PiA - (1 - gameAnalysis.Ai3 - gameAnalysis.Ai4) * gameAnalysis.CiA).ToString () +
                 ", 0, " +
-                (gameAnalysis.Vi3A - gameAnalysis.Ai3 * gameAnalysis.CiA).ToString() + ", " +
-                (gameAnalysis.Vi4A - gameAnalysis.Ai4 * gameAnalysis.CiA).ToString() + ", " +
-                (gameAnalysis.Vi5A - gameAnalysis.PiA).ToString();
+                (gameAnalysis.Vi3A - gameAnalysis.Ai3 * gameAnalysis.CiA).ToString () + ", " +
+                (gameAnalysis.Vi4A - gameAnalysis.Ai4 * gameAnalysis.CiA).ToString () + ", " +
+                (gameAnalysis.Vi5A - gameAnalysis.PiA).ToString ();
 
-            gameAnalysis.Route2 = (gameAnalysis.Vi1 - gameAnalysis.Ai1 * gameAnalysis.CiA).ToString() +
+            gameAnalysis.Route2 = (gameAnalysis.Vi1 - (1 - gameAnalysis.Ai3 - gameAnalysis.Ai4) * gameAnalysis.CiA).ToString () +
                 ", 0, " +
-                (gameAnalysis.Vi3A - gameAnalysis.Ai3 * gameAnalysis.CiA).ToString() + ", " +
-                (gameAnalysis.Vi4A - gameAnalysis.Ai4 * gameAnalysis.CiA).ToString() + ", " +
+                (gameAnalysis.Vi3A - gameAnalysis.Ai3 * gameAnalysis.CiA).ToString () + ", " +
+                (gameAnalysis.Vi4A - gameAnalysis.Ai4 * gameAnalysis.CiA).ToString () + ", " +
                 "0";
 
-            gameAnalysis.Route3 = (gameAnalysis.Vi1 + gameAnalysis.PiA - gameAnalysis.Ai1 * gameAnalysis.CiA).ToString() +
+            gameAnalysis.Route3 = (gameAnalysis.Vi1 + gameAnalysis.PiA - (1 - gameAnalysis.Ai3) * gameAnalysis.CiA).ToString () +
                 ", 0, " +
-                (gameAnalysis.Vi3A - gameAnalysis.Ai3 * gameAnalysis.CiA).ToString() + ", " +
-                gameAnalysis.Vi4A.ToString() + ", " +
-                (gameAnalysis.Vi5A - gameAnalysis.PiA).ToString();
+                (gameAnalysis.Vi3A - gameAnalysis.Ai3 * gameAnalysis.CiA).ToString () + ", " +
+                gameAnalysis.Vi4A.ToString () + ", " +
+                (gameAnalysis.Vi5B - gameAnalysis.PiA).ToString ();
 
-            gameAnalysis.Route4 = (gameAnalysis.Vi1 - gameAnalysis.Ai1 * gameAnalysis.CiA).ToString() +
+            gameAnalysis.Route4 = (gameAnalysis.Vi1 - (1 - gameAnalysis.Ai3) * gameAnalysis.CiA).ToString () +
                 ", 0, " +
-                (gameAnalysis.Vi3A - gameAnalysis.Ai3 * gameAnalysis.CiA).ToString() + ", " +
-                gameAnalysis.Vi4A.ToString() + ", " +
+                (gameAnalysis.Vi3A - gameAnalysis.Ai3 * gameAnalysis.CiA).ToString () + ", " +
+                gameAnalysis.Vi4A.ToString () + ", " +
                 "0";
 
-            gameAnalysis.Route5 = (gameAnalysis.Vi1 + gameAnalysis.PiA - gameAnalysis.Ai1 * gameAnalysis.CiA).ToString () +
+            gameAnalysis.Route5 = (gameAnalysis.Vi1 + gameAnalysis.PiA - (1 - gameAnalysis.Ai4) * gameAnalysis.CiA).ToString () +
                 ", 0, " +
-                gameAnalysis.Vi3A.ToString() + ", " +
-                (gameAnalysis.Vi4A - gameAnalysis.Ai4 * gameAnalysis.CiA).ToString() + ", " +
-                (gameAnalysis.Vi5A - gameAnalysis.PiA).ToString();
+                gameAnalysis.Vi3A.ToString () + ", " +
+                (gameAnalysis.Vi4B - gameAnalysis.Ai4 * gameAnalysis.CiA).ToString () + ", " +
+                (gameAnalysis.Vi5A - gameAnalysis.PiA).ToString ();
 
-            gameAnalysis.Route6 = (gameAnalysis.Vi1 - gameAnalysis.Ai1 * gameAnalysis.CiA).ToString() +
+            gameAnalysis.Route6 = (gameAnalysis.Vi1 - (1 - gameAnalysis.Ai4) * gameAnalysis.CiA).ToString () +
                 ", 0, " +
-                gameAnalysis.Vi3A.ToString() + ", " +
-                (gameAnalysis.Vi4A - gameAnalysis.Ai4 * gameAnalysis.CiA).ToString() + ", " +
+                gameAnalysis.Vi3A.ToString () + ", " +
+                (gameAnalysis.Vi4B - gameAnalysis.Ai4 * gameAnalysis.CiA).ToString () + ", " +
                 "0";
 
-            gameAnalysis.Route7 = (gameAnalysis.Vi1 + gameAnalysis.PiA - gameAnalysis.Ai1 * gameAnalysis.CiA).ToString() +
+            gameAnalysis.Route7 = (gameAnalysis.Vi1 + gameAnalysis.PiA - 1 * gameAnalysis.CiA).ToString () +
                 ", 0, " +
-                gameAnalysis.Vi3A.ToString() + ", " +
-                gameAnalysis.Vi4A.ToString() + ", " +
-                (gameAnalysis.Vi5A - gameAnalysis.PiA).ToString();
+                gameAnalysis.Vi3A.ToString () + ", " +
+                gameAnalysis.Vi4B.ToString () + ", " +
+                (gameAnalysis.Vi5B - gameAnalysis.PiA).ToString ();
 
-            gameAnalysis.Route8 = (gameAnalysis.Vi1 - gameAnalysis.Ai1 * gameAnalysis.CiA).ToString() +
+            gameAnalysis.Route8 = (gameAnalysis.Vi1 - 1 * gameAnalysis.CiA).ToString () +
                 ", 0, " +
-                gameAnalysis.Vi3A.ToString() + ", " +
-                gameAnalysis.Vi4A.ToString() + ", " +
+                gameAnalysis.Vi3A.ToString () + ", " +
+                gameAnalysis.Vi4B.ToString () + ", " +
                 "0";
 
-            gameAnalysis.Route9 = (gameAnalysis.Vi1 + gameAnalysis.Ai1 * gameAnalysis.PiB  - gameAnalysis.Ai1 * gameAnalysis.CiB).ToString() + ", " +
-                (gameAnalysis.Ai2 * gameAnalysis.PiB - gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString() + ", " + 
-                (gameAnalysis.Vi3B + gameAnalysis.Ai3 * gameAnalysis.PiB - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString() + ", " + 
-                (gameAnalysis.Vi4B - gameAnalysis.Ai4 * gameAnalysis.PiB - gameAnalysis.Ai4 * gameAnalysis.CiB).ToString() + ", " + 
-                (gameAnalysis.Vi5B - gameAnalysis.PiB).ToString();
+            gameAnalysis.Route9 = (gameAnalysis.Vi1 + (1 - gameAnalysis.Ai2 - gameAnalysis.Ai3 - gameAnalysis.Ai4) * gameAnalysis.PiB - (1 - gameAnalysis.Ai2 - gameAnalysis.Ai3 - gameAnalysis.Ai4) * gameAnalysis.CiB).ToString () + ", " +
+                (gameAnalysis.Ai2 * gameAnalysis.PiB - gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString () + ", " +
+                (gameAnalysis.Vi3B + gameAnalysis.Ai3 * gameAnalysis.PiB - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString () + ", " +
+                (gameAnalysis.Vi4A + gameAnalysis.Ai4 * gameAnalysis.PiB - gameAnalysis.Ai4 * gameAnalysis.CiB).ToString () + ", " +
+                (gameAnalysis.Vi5A - gameAnalysis.PiB).ToString ();
 
-            gameAnalysis.Route10 = (gameAnalysis.Vi1 - gameAnalysis.Ai1 * gameAnalysis.CiB).ToString() + ", " +
-                (-1 * gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString() + ", " + 
-                (gameAnalysis.Vi3B - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString() + ", " + 
-                (gameAnalysis.Vi4B - gameAnalysis.Ai4 * gameAnalysis.CiB).ToString() + ", " + 
+            gameAnalysis.Route10 = (gameAnalysis.Vi1 - (1 - gameAnalysis.Ai2 - gameAnalysis.Ai3 - gameAnalysis.Ai4) * gameAnalysis.CiB).ToString () + ", " +
+                (-1 * gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString () + ", " +
+                (gameAnalysis.Vi3B - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString () + ", " +
+                (gameAnalysis.Vi4A - gameAnalysis.Ai4 * gameAnalysis.CiB).ToString () + ", " +
                 "0";
 
-            gameAnalysis.Route11 = (gameAnalysis.Vi1 + gameAnalysis.Ai1 * gameAnalysis.PiB - gameAnalysis.Ai1 * gameAnalysis.CiB).ToString() + ", " +
-                (gameAnalysis.Ai2 * gameAnalysis.PiB - gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString() + ", " + 
-                (gameAnalysis.Vi3B - gameAnalysis.Ai3 * gameAnalysis.PiB - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString() + ", " + 
-                gameAnalysis.Vi4B.ToString() + ", " + 
-                (gameAnalysis.Vi5B - gameAnalysis.PiB).ToString();
+            gameAnalysis.Route11 = (gameAnalysis.Vi1 + (1 - gameAnalysis.Ai2 - gameAnalysis.Ai3) * gameAnalysis.PiB - (1 - gameAnalysis.Ai2 - gameAnalysis.Ai3) * gameAnalysis.CiB).ToString () + ", " +
+                (gameAnalysis.Ai2 * gameAnalysis.PiB - gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString () + ", " +
+                (gameAnalysis.Vi3B + gameAnalysis.Ai3 * gameAnalysis.PiB - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString () + ", " +
+                gameAnalysis.Vi4A.ToString () + ", " +
+                (gameAnalysis.Vi5B - gameAnalysis.PiB).ToString ();
 
-            gameAnalysis.Route12 = (gameAnalysis.Vi1 - gameAnalysis.Ai1 * gameAnalysis.CiB).ToString() + ", " +
-                (-1 * gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString() + ", " + 
-                (gameAnalysis.Vi3B - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString() + ", " + 
-                gameAnalysis.Vi4B.ToString() + ", " + 
+            gameAnalysis.Route12 = (gameAnalysis.Vi1 - (1 - gameAnalysis.Ai2 - gameAnalysis.Ai3) * gameAnalysis.CiB).ToString () + ", " +
+                (-1 * gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString () + ", " +
+                (gameAnalysis.Vi3B - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString () + ", " +
+                gameAnalysis.Vi4A.ToString () + ", " +
                 "0";
 
-            gameAnalysis.Route13 = (gameAnalysis.Vi1 + gameAnalysis.Ai1 * gameAnalysis.PiB - gameAnalysis.Ai1 * gameAnalysis.CiB).ToString() + ", " +
-                (gameAnalysis.Ai2 * gameAnalysis.PiB - gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString() + ", " +
-                gameAnalysis.Vi3B.ToString() + ", " + 
-                (gameAnalysis.Vi4B + gameAnalysis.Ai4 * gameAnalysis.PiB - gameAnalysis.Ai4 * gameAnalysis.CiB).ToString() + ", " + 
-                (gameAnalysis.Vi5B - gameAnalysis.PiB).ToString();
-
-            gameAnalysis.Route14 = (gameAnalysis.Vi1 - gameAnalysis.Ai1 * gameAnalysis.CiB).ToString() + ", " +
-                (-1 * gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString() + ", " +
-                gameAnalysis.Vi3B.ToString() + ", " +
-                (gameAnalysis.Vi4B - gameAnalysis.Ai4 * gameAnalysis.CiB).ToString() + ", " +
-                "0";
-
-            gameAnalysis.Route15 = (gameAnalysis.Vi1 + gameAnalysis.Ai1 * gameAnalysis.PiB - gameAnalysis.Ai1 * gameAnalysis.CiB).ToString() + ", " +
-                (gameAnalysis.Ai2 * gameAnalysis.PiB - gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString() + ", " +
-                gameAnalysis.Vi3B.ToString() + ", " +
-                gameAnalysis.Vi4B.ToString() + ", " +
-                (gameAnalysis.Vi5B - gameAnalysis.PiB).ToString();
-
-            gameAnalysis.Route16 = (gameAnalysis.Vi1 + gameAnalysis.Ai1 * gameAnalysis.CiB).ToString() + ", " +
-                (-1 * gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString() + ", " +
-                gameAnalysis.Vi3B.ToString() + ", " +
-                gameAnalysis.Vi4B.ToString() + ", " +
-                "0";
-
-            gameAnalysis.Route17 = (gameAnalysis.Vi1 + gameAnalysis.Ai1 * gameAnalysis.PiB - gameAnalysis.Ai1 * gameAnalysis.CiB).ToString() +
-                ", 0, " +
-                (gameAnalysis.Vi3B + gameAnalysis.Ai3 * gameAnalysis.PiB - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString() + ", " +
-                (gameAnalysis.Vi4B + gameAnalysis.Ai4 * gameAnalysis.PiB - gameAnalysis.Ai4 * gameAnalysis.CiB).ToString() + ", " +
-                (gameAnalysis.Vi5B - gameAnalysis.PiB).ToString();
-
-            gameAnalysis.Route18 = (gameAnalysis.Vi1 - gameAnalysis.Ai1 * gameAnalysis.CiB).ToString() +
-                ", 0, " +
-                (gameAnalysis.Vi3B - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString() + ", " +
-                (gameAnalysis.Vi4B - gameAnalysis.Ai4 * gameAnalysis.CiB).ToString() + ", " +
-                "0";
-
-            gameAnalysis.Route19 = (gameAnalysis.Vi1 + gameAnalysis.Ai1 * gameAnalysis.PiB - gameAnalysis.Ai1 * gameAnalysis.CiB).ToString() +
-                ", 0, " +
-                (gameAnalysis.Vi3B + gameAnalysis.Ai3 * gameAnalysis.PiB - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString() + ", " +
-                gameAnalysis.Vi4B.ToString() + ", " +
-                (gameAnalysis.Vi5B - gameAnalysis.PiB).ToString();
-
-            gameAnalysis.Route20 = (gameAnalysis.Vi1 - gameAnalysis.Ai1 * gameAnalysis.CiB).ToString() +
-                ", 0, " +
-                (gameAnalysis.Vi3B - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString() + ", " +
-                gameAnalysis.Vi4B.ToString() + ", " +
-                "0";
-
-            gameAnalysis.Route21 = (gameAnalysis.Vi1 + gameAnalysis.Ai1 * gameAnalysis.PiB - gameAnalysis.Ai1 * gameAnalysis.CiB).ToString () +
-                ", 0, " +
-                gameAnalysis.Vi3B.ToString () +  ", " +
+            gameAnalysis.Route13 = (gameAnalysis.Vi1 + (1 - gameAnalysis.Ai2 - gameAnalysis.Ai4) * gameAnalysis.PiB - (1 - gameAnalysis.Ai2 - gameAnalysis.Ai4) * gameAnalysis.CiB).ToString () + ", " +
+                (gameAnalysis.Ai2 * gameAnalysis.PiB - gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString () + ", " +
+                gameAnalysis.Vi3B.ToString () + ", " +
                 (gameAnalysis.Vi4B + gameAnalysis.Ai4 * gameAnalysis.PiB - gameAnalysis.Ai4 * gameAnalysis.CiB).ToString () + ", " +
-                (gameAnalysis.Vi5B - gameAnalysis.PiB).ToString();
+                (gameAnalysis.Vi5A - gameAnalysis.PiB).ToString ();
 
-            gameAnalysis.Route22 = (gameAnalysis.Vi1 - gameAnalysis.Ai1 * gameAnalysis.CiB).ToString () +
+            gameAnalysis.Route14 = (gameAnalysis.Vi1 - (1 - gameAnalysis.Ai2 - gameAnalysis.Ai4) * gameAnalysis.CiB).ToString () + ", " +
+                (-1 * gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString () + ", " +
+                gameAnalysis.Vi3B.ToString () + ", " +
+                (gameAnalysis.Vi4B - gameAnalysis.Ai4 * gameAnalysis.CiB).ToString () + ", " +
+                "0";
+
+            gameAnalysis.Route15 = (gameAnalysis.Vi1 + (1 - gameAnalysis.Ai2) * gameAnalysis.PiB - (1 - gameAnalysis.Ai2) * gameAnalysis.CiB).ToString () + ", " +
+                (gameAnalysis.Ai2 * gameAnalysis.PiB - gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString () + ", " +
+                gameAnalysis.Vi3B.ToString () + ", " +
+                gameAnalysis.Vi4B.ToString () + ", " +
+                (gameAnalysis.Vi5B - gameAnalysis.PiB).ToString ();
+
+            gameAnalysis.Route16 = (gameAnalysis.Vi1 - (1 - gameAnalysis.Ai2) * gameAnalysis.CiB).ToString () + ", " +
+                (-1 * gameAnalysis.Ai2 * gameAnalysis.CiB + gameAnalysis.Ii).ToString () + ", " +
+                gameAnalysis.Vi3B.ToString () + ", " +
+                gameAnalysis.Vi4B.ToString () + ", " +
+                "0";
+
+            gameAnalysis.Route17 = (gameAnalysis.Vi1 + (1 - gameAnalysis.Ai3 - gameAnalysis.Ai4) * gameAnalysis.PiB - (1 - gameAnalysis.Ai3 - gameAnalysis.Ai4) * gameAnalysis.CiB).ToString () +
+                ", 0, " +
+                (gameAnalysis.Vi3B + gameAnalysis.Ai3 * gameAnalysis.PiB - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString () + ", " +
+                (gameAnalysis.Vi4A + gameAnalysis.Ai4 * gameAnalysis.PiB - gameAnalysis.Ai4 * gameAnalysis.CiB).ToString () + ", " +
+                (gameAnalysis.Vi5A - gameAnalysis.PiB).ToString ();
+
+            gameAnalysis.Route18 = (gameAnalysis.Vi1 - (1 - gameAnalysis.Ai3 - gameAnalysis.Ai4) * gameAnalysis.CiB).ToString () +
+                ", 0, " +
+                (gameAnalysis.Vi3B - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString () + ", " +
+                (gameAnalysis.Vi4A - gameAnalysis.Ai4 * gameAnalysis.CiB).ToString () + ", " +
+                "0";
+
+            gameAnalysis.Route19 = (gameAnalysis.Vi1 + (1 - gameAnalysis.Ai3) * gameAnalysis.PiB - (1 - gameAnalysis.Ai3) * gameAnalysis.CiB).ToString () +
+                ", 0, " +
+                (gameAnalysis.Vi3B + gameAnalysis.Ai3 * gameAnalysis.PiB - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString () + ", " +
+                gameAnalysis.Vi4A.ToString () + ", " +
+                (gameAnalysis.Vi5B - gameAnalysis.PiB).ToString ();
+
+            gameAnalysis.Route20 = (gameAnalysis.Vi1 - (1 - gameAnalysis.Ai3) * gameAnalysis.CiB).ToString () +
+                ", 0, " +
+                (gameAnalysis.Vi3B - gameAnalysis.Ai3 * gameAnalysis.CiB).ToString () + ", " +
+                gameAnalysis.Vi4A.ToString () + ", " +
+                "0";
+
+            gameAnalysis.Route21 = (gameAnalysis.Vi1 + (1 - gameAnalysis.Ai4) * gameAnalysis.PiB - (1 - gameAnalysis.Ai4) * gameAnalysis.CiB).ToString () +
+                ", 0, " +
+                gameAnalysis.Vi3B.ToString () + ", " +
+                (gameAnalysis.Vi4B + gameAnalysis.Ai4 * gameAnalysis.PiB - gameAnalysis.Ai4 * gameAnalysis.CiB).ToString () + ", " +
+                (gameAnalysis.Vi5A - gameAnalysis.PiB).ToString ();
+
+            gameAnalysis.Route22 = (gameAnalysis.Vi1 - (1 - gameAnalysis.Ai4) * gameAnalysis.CiB).ToString () +
                 ", 0, " +
                 gameAnalysis.Vi3B.ToString () + ", " +
                 (gameAnalysis.Vi4B - gameAnalysis.Ai4 * gameAnalysis.CiB).ToString () + ", " +
                 "0";
 
-            gameAnalysis.Route23 = (gameAnalysis.Vi1 + gameAnalysis.Ai1 * gameAnalysis.PiB - gameAnalysis.Ai1 * gameAnalysis.CiB).ToString () +
+            gameAnalysis.Route23 = (gameAnalysis.Vi1 + 1 * gameAnalysis.PiB - 1 * gameAnalysis.CiB).ToString () +
                 ", 0, " +
                 gameAnalysis.Vi3B.ToString () + ", " +
                 gameAnalysis.Vi4B.ToString () + ", " +
                 (gameAnalysis.Vi5B - gameAnalysis.PiB).ToString ();
 
-            gameAnalysis.Route24 = (gameAnalysis.Vi1 - gameAnalysis.Ai1 * gameAnalysis.CiB).ToString () +
+            gameAnalysis.Route24 = (gameAnalysis.Vi1 - 1 * gameAnalysis.CiB).ToString () +
                 ", 0, " +
                 gameAnalysis.Vi3B.ToString () + ", " +
                 gameAnalysis.Vi4B.ToString () + ", " +
@@ -321,7 +321,7 @@ namespace HeritageApp.Controllers {
         }
 
         public RoutePath CalculateBestRoute (HeritageGameAnalysisDto gameAnalysis) {
-            RoutePath result = new RoutePath();
+            RoutePath result = new RoutePath ();
 
             List<RoutePath> routesLevel5 = new List<RoutePath> ();
             List<RoutePath> routesLevel4 = new List<RoutePath> ();
