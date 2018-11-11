@@ -1,6 +1,6 @@
 <div class="basic-container" *ngIf="heritage">
 
-  <form (ngSubmit)="onSubmit()" #heritageForm="ngForm" name="heritage">
+  <form (ngSubmit)="heritageForm.form.valid && onSubmit()" #heritageForm="ngForm" name="form">
 
     <mat-toolbar>
       <span>非遗信息录入 {{ heritage.name }} </span>
@@ -22,34 +22,35 @@
         </mat-expansion-panel-header>
 
         <mat-form-field class="form-field">
-          <input matInput #name placeholder="名称" [(ngModel)]="heritage.name" name="name" />
+          <input matInput #name placeholder="名称" [(ngModel)]="heritage.name" name="name" required />
           <mat-hint align="end">
             {{name.value.length}} / 50
           </mat-hint>
         </mat-form-field>
         <br>
         <mat-form-field class="form-field">
-          <input matInput placeholder="申报地区或单位" [(ngModel)]="heritage.registrationDistrict" name="registrationDistrict" />
+          <input matInput placeholder="申报地区或单位" [(ngModel)]="heritage.registrationDistrict" name="registrationDistrict"
+            required />
         </mat-form-field>
         <br>
         <mat-form-field class="form-field">
-          <input matInput placeholder="申报年份" [(ngModel)]="heritage.registrationYear" name="registrationYear" />
+          <input matInput placeholder="申报年份" [(ngModel)]="heritage.registrationYear" name="registrationYear" required />
         </mat-form-field>
         <br>
         <mat-form-field class="form-field">
-          <input matInput placeholder="所属省份" [(ngModel)]="heritage.province" name="province" />
+          <input matInput placeholder="所属省份" [(ngModel)]="heritage.province" name="province" required />
         </mat-form-field>
         <br>
         <mat-form-field class="form-field">
-          <input matInput placeholder="项目类型" [(ngModel)]="heritage.typeofProject" name="projectType" />
+          <input matInput placeholder="项目类型" [(ngModel)]="heritage.typeofProject" name="projectType" required />
         </mat-form-field>
         <br>
         <mat-form-field class="form-field">
-          <input matInput placeholder="批次" [(ngModel)]="heritage.batchNo" name="batchNo" />
+          <input matInput placeholder="批次" [(ngModel)]="heritage.batchNo" name="batchNo" required />
         </mat-form-field>
         <br>
         <mat-form-field class="form-field">
-          <input matInput placeholder="传承人" [(ngModel)]="heritage.inheritors" name="inheritors" />
+          <input matInput placeholder="传承人" [(ngModel)]="heritage.inheritors" name="inheritors" required />
         </mat-form-field>
         <br>
         <mat-form-field class="form-field">
