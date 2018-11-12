@@ -32,6 +32,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import { ConfirmationService } from 'primeng/api'
 import { ActivationModeListComponent } from './activation-mode-list/activation-mode-list.component';
 import { EvaluationOptionPipe, EvaluatorTypePipe } from './_pipes';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { EvaluationOptionPipe, EvaluatorTypePipe } from './_pipes';
     HeritageAnalysisComponent,
     ActivationModeListComponent,
     EvaluationOptionPipe,
-    EvaluatorTypePipe
+    EvaluatorTypePipe,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,

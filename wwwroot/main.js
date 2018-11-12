@@ -1288,7 +1288,7 @@ var SiteFooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container>\r\n  <mat-sidenav  #sidenav mode=\"side\"\r\n        [fixedInViewport]=\"options.value.fixed\" [fixedTopGap]=\"options.value.top\"\r\n        [fixedBottomGap]=\"options.value.bottom\">\r\n    <mat-nav-list>\r\n      <a mat-list-item\r\n         *ngIf=\"!auth.isAuthenticated()\"\r\n         routerLink=\"/login\">\r\n        <mat-icon class=\"icon\">input</mat-icon>\r\n        <span class=\"label\">登录</span>\r\n      </a>\r\n      <a mat-list-item         \r\n         routerLink=\"/\">\r\n        <mat-icon class=\"icon\">home</mat-icon>\r\n        <span class=\"label\">主页</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"auth.isAuthenticated()\"\r\n         routerLink=\"/heritagelist\">\r\n        <mat-icon class=\"icon\">view_list</mat-icon>\r\n        <span class=\"label\">非遗列表</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"canEdit()\"\r\n         routerLink=\"/activationmodelist\">\r\n        <mat-icon class=\"icon\">view_list</mat-icon>\r\n        <span class=\"label\">活化模式列表</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"isAdmin()\"\r\n         routerLink=\"/users\">\r\n        <mat-icon class=\"icon\">account_box</mat-icon>\r\n        <span class=\"label\">用户管理</span>\r\n      </a>\r\n      <a  mat-list-item\r\n          *ngIf=\"auth.isAuthenticated()\"\r\n          (click)=\"auth.logout()\" type=\"button\">\r\n        <mat-icon class=\"icon\">input</mat-icon>\r\n        <span class=\"label\">退出</span>\r\n      </a>\r\n    </mat-nav-list>\r\n  </mat-sidenav>\r\n  <mat-sidenav-content [formGroup]=\"options\">\r\n    <mat-toolbar color=\"primary\">\r\n      <div fxHide.gt-xs=\"false\">\r\n        <button mat-icon-button (click)=\"sidenav.toggle()\">\r\n          <mat-icon>menu</mat-icon>\r\n        </button>\r\n      </div>\r\n      <div>\r\n        <a routerLink=\"/\">\r\n          非遗博弈旅游软件 1.0\r\n        </a>\r\n      </div>\r\n      <div fxFlex fxLayout fxLayoutAlign=\"flex-end\"  fxHide.xs>\r\n        <ul fxLayout fxLayoutGap=\"20px\" class=\"navigation-items\">\r\n          <li>\r\n            <a\r\n              *ngIf=\"!auth.isAuthenticated()\"\r\n              routerLink=\"/login\">\r\n              <mat-icon class=\"icon\">input</mat-icon>\r\n              <span  class=\"label\">登录</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a              \r\n              routerLink=\"/\">\r\n              <mat-icon class=\"icon\">home</mat-icon>\r\n              <span class=\"label\">主页</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"auth.isAuthenticated()\"\r\n              routerLink=\"/heritagelist\">\r\n              <mat-icon class=\"icon\">view_list</mat-icon>\r\n              <span class=\"label\">非遗列表</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n              <a\r\n                *ngIf=\"canEdit()\"\r\n                routerLink=\"/activationmodelist\">\r\n                <mat-icon class=\"icon\">view_list</mat-icon>\r\n                <span class=\"label\">活化模式列表</span>\r\n              </a>\r\n            </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"isAdmin()\"\r\n              routerLink=\"/users\">\r\n              <mat-icon class=\"icon\">account_box</mat-icon>\r\n              <span class=\"label\">用户管理</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"auth.isAuthenticated()\"\r\n              (click)=\"auth.logout()\">\r\n              <mat-icon class=\"icon\">input</mat-icon>\r\n              <span class=\"label\">退出</span>\r\n            </a>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </mat-toolbar>\r\n\r\n  </mat-sidenav-content>\r\n</mat-sidenav-container>\r\n"
+module.exports = "<mat-sidenav-container>\r\n  <mat-sidenav  #sidenav mode=\"side\"\r\n        [fixedInViewport]=\"options.value.fixed\" [fixedTopGap]=\"options.value.top\"\r\n        [fixedBottomGap]=\"options.value.bottom\">\r\n    <mat-nav-list>\r\n      <a mat-list-item\r\n         *ngIf=\"!auth.isAuthenticated()\"\r\n         routerLink=\"/login\">\r\n        <mat-icon class=\"icon\">input</mat-icon>\r\n        <span class=\"label\">登录</span>\r\n      </a>\r\n      <a mat-list-item         \r\n         routerLink=\"/\">\r\n        <mat-icon class=\"icon\">home</mat-icon>\r\n        <span class=\"label\">主页</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"auth.isAuthenticated()\"\r\n         routerLink=\"/heritagelist\">\r\n        <mat-icon class=\"icon\">view_list</mat-icon>\r\n        <span class=\"label\">非遗列表</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"canEdit()\"\r\n         routerLink=\"/activationmodelist\">\r\n        <mat-icon class=\"icon\">view_list</mat-icon>\r\n        <span class=\"label\">活化模式列表</span>\r\n      </a>\r\n      <a mat-list-item\r\n         *ngIf=\"isAdmin()\"\r\n         routerLink=\"/users\">\r\n        <mat-icon class=\"icon\">account_box</mat-icon>\r\n        <span class=\"label\">用户管理</span>\r\n      </a>\r\n      <a mat-list-item         \r\n         routerLink=\"/aboutus\">\r\n        <mat-icon class=\"icon\">info</mat-icon>\r\n        <span class=\"label\">关于我们</span>\r\n      </a>\r\n      <a  mat-list-item\r\n          *ngIf=\"auth.isAuthenticated()\"\r\n          (click)=\"auth.logout()\" type=\"button\">\r\n        <mat-icon class=\"icon\">input</mat-icon>\r\n        <span class=\"label\">退出</span>\r\n      </a>\r\n    </mat-nav-list>\r\n  </mat-sidenav>\r\n  <mat-sidenav-content [formGroup]=\"options\">\r\n    <mat-toolbar color=\"primary\">\r\n      <div fxHide.gt-xs=\"false\">\r\n        <button mat-icon-button (click)=\"sidenav.toggle()\">\r\n          <mat-icon>menu</mat-icon>\r\n        </button>\r\n      </div>\r\n      <div>\r\n        <a routerLink=\"/\">\r\n          非遗博弈旅游软件 1.0\r\n        </a>\r\n      </div>\r\n      <div fxFlex fxLayout fxLayoutAlign=\"flex-end\"  fxHide.xs>\r\n        <ul fxLayout fxLayoutGap=\"20px\" class=\"navigation-items\">\r\n          <li>\r\n            <a\r\n              *ngIf=\"!auth.isAuthenticated()\"\r\n              routerLink=\"/login\">\r\n              <mat-icon class=\"icon\">input</mat-icon>\r\n              <span  class=\"label\">登录</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a              \r\n              routerLink=\"/\">\r\n              <mat-icon class=\"icon\">home</mat-icon>\r\n              <span class=\"label\">主页</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"auth.isAuthenticated()\"\r\n              routerLink=\"/heritagelist\">\r\n              <mat-icon class=\"icon\">view_list</mat-icon>\r\n              <span class=\"label\">非遗列表</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n              <a\r\n                *ngIf=\"canEdit()\"\r\n                routerLink=\"/activationmodelist\">\r\n                <mat-icon class=\"icon\">view_list</mat-icon>\r\n                <span class=\"label\">活化模式列表</span>\r\n              </a>\r\n            </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"isAdmin()\"\r\n              routerLink=\"/users\">\r\n              <mat-icon class=\"icon\">account_box</mat-icon>\r\n              <span class=\"label\">用户管理</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a              \r\n              routerLink=\"/aboutus\">\r\n              <mat-icon class=\"icon\">info</mat-icon>\r\n              <span class=\"label\">关于我们</span>\r\n            </a>\r\n          </li>\r\n          <li>\r\n            <a\r\n              *ngIf=\"auth.isAuthenticated()\"\r\n              (click)=\"auth.logout()\">\r\n              <mat-icon class=\"icon\">input</mat-icon>\r\n              <span class=\"label\">退出</span>\r\n            </a>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n    </mat-toolbar>\r\n\r\n  </mat-sidenav-content>\r\n</mat-sidenav-container>\r\n"
 
 /***/ }),
 
@@ -2934,6 +2934,89 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/app/about-us/about-us.component.html":
+/*!**************************************************!*\
+  !*** ./src/app/about-us/about-us.component.html ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"basic-container\">\n  <mat-card class=\"about-card\">\n    <mat-card-header>\n      <mat-card-title>关于非遗系统</mat-card-title>\n      <mat-card-subtitle>传统技艺非遗旅游评估系统</mat-card-subtitle>\n    </mat-card-header>\n    <img mat-card-image src=\"../../assets/images/buu_logo.jpg\" alt=\"BUU Logo\" style=\"width:300px\">\n    <mat-card-content>\n      <p>\n        传统技艺非遗旅游评估系统是一个非遗数据收集、分析、评估系统，通过科学规范的数据收集、归纳、整理、分类、严谨的元数据描述、采用现代大数据存储技术，\n        增量式的构建传统技艺非遗资源存储管理系统，在此基础上进行传统技艺非遗旅游价值评估、博弈及活化研究，旨在构建传统技艺的旅游价值评估系统，解决我国传\n        统技艺旅游活化的系统评判问题，在价值评估的基础上推导出传统技艺的旅游活化模式及不同利益相关者利益博弈关系，推进我国传统技艺的可持续发展，为我国传\n        统技艺的活化提供系统的指导。\n        <br>\n        <br>\n        <br>\n        联系方式：\n        <br>\n        <br>\n        地址：\n        <br>\n        <br>\n        电话：\n        <br>\n        <br>\n        邮件：\n        <br>\n      </p>\n    </mat-card-content>\n    <mat-card-actions>\n      <button mat-button routerLink=\"/\">返回</button>\n    </mat-card-actions>\n  </mat-card>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/about-us/about-us.component.scss":
+/*!**************************************************!*\
+  !*** ./src/app/about-us/about-us.component.scss ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".basic-container {\n  padding-left: 15%;\n  padding-right: 15%;\n  padding-top: 1%;\n  padding-bottom: 2%; }\n"
+
+/***/ }),
+
+/***/ "./src/app/about-us/about-us.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/about-us/about-us.component.ts ***!
+  \************************************************/
+/*! exports provided: AboutUsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AboutUsComponent", function() { return AboutUsComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var AboutUsComponent = /** @class */ (function () {
+    function AboutUsComponent() {
+    }
+    AboutUsComponent.prototype.ngOnInit = function () {
+    };
+    AboutUsComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-about-us',
+            template: __webpack_require__(/*! ./about-us.component.html */ "./src/app/about-us/about-us.component.html"),
+            styles: [__webpack_require__(/*! ./about-us.component.scss */ "./src/app/about-us/about-us.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], AboutUsComponent);
+    return AboutUsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/about-us/about-us.route.ts":
+/*!********************************************!*\
+  !*** ./src/app/about-us/about-us.route.ts ***!
+  \********************************************/
+/*! exports provided: aboutUsRoutes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "aboutUsRoutes", function() { return aboutUsRoutes; });
+/* harmony import */ var _about_us_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./about-us.component */ "./src/app/about-us/about-us.component.ts");
+
+// Route Configuration
+var aboutUsRoutes = [
+    { path: 'aboutus', component: _about_us_component__WEBPACK_IMPORTED_MODULE_0__["AboutUsComponent"] }
+];
+
+
+/***/ }),
+
 /***/ "./src/app/activation-mode-list/activation-mode-list.component.html":
 /*!**************************************************************************!*\
   !*** ./src/app/activation-mode-list/activation-mode-list.component.html ***!
@@ -3331,7 +3414,9 @@ module.exports = ""
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_services */ "./src/app/_services/index.ts");
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm5/icon.es5.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_services */ "./src/app/_services/index.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3343,11 +3428,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
 var AppComponent = /** @class */ (function () {
-    function AppComponent(auth) {
+    function AppComponent(auth, matIconRegistry, domSanitizer) {
         this.auth = auth;
+        this.matIconRegistry = matIconRegistry;
+        this.domSanitizer = domSanitizer;
         this.title = 'HerritageApp';
         auth.handleAuthentication();
+        this.matIconRegistry.addSvgIcon("buu_icon", this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/buu.svg"));
     }
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -3355,7 +3445,9 @@ var AppComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
             styles: [__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")]
         }),
-        __metadata("design:paramtypes", [_services__WEBPACK_IMPORTED_MODULE_1__["AuthenticationService"]])
+        __metadata("design:paramtypes", [_services__WEBPACK_IMPORTED_MODULE_3__["AuthenticationService"],
+            _angular_material_icon__WEBPACK_IMPORTED_MODULE_1__["MatIconRegistry"],
+            _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["DomSanitizer"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -3511,12 +3603,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primeng_api__WEBPACK_IMPORTED_MODULE_31___default = /*#__PURE__*/__webpack_require__.n(primeng_api__WEBPACK_IMPORTED_MODULE_31__);
 /* harmony import */ var _activation_mode_list_activation_mode_list_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./activation-mode-list/activation-mode-list.component */ "./src/app/activation-mode-list/activation-mode-list.component.ts");
 /* harmony import */ var _pipes__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./_pipes */ "./src/app/_pipes/index.ts");
+/* harmony import */ var _about_us_about_us_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./about-us/about-us.component */ "./src/app/about-us/about-us.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -3584,7 +3678,8 @@ var AppModule = /** @class */ (function () {
                 _heritage_analysis_heritage_analysis_component__WEBPACK_IMPORTED_MODULE_28__["HeritageAnalysisComponent"],
                 _activation_mode_list_activation_mode_list_component__WEBPACK_IMPORTED_MODULE_32__["ActivationModeListComponent"],
                 _pipes__WEBPACK_IMPORTED_MODULE_33__["EvaluationOptionPipe"],
-                _pipes__WEBPACK_IMPORTED_MODULE_33__["EvaluatorTypePipe"]
+                _pipes__WEBPACK_IMPORTED_MODULE_33__["EvaluatorTypePipe"],
+                _about_us_about_us_component__WEBPACK_IMPORTED_MODULE_34__["AboutUsComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -3714,6 +3809,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _heritage_analysis_heritage_analysis_route__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./heritage-analysis/heritage-analysis.route */ "./src/app/heritage-analysis/heritage-analysis.route.ts");
 /* harmony import */ var _heritage_nav_heritage_nav_route__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./heritage-nav/heritage-nav.route */ "./src/app/heritage-nav/heritage-nav.route.ts");
 /* harmony import */ var _activation_mode_list_activation_mode_list_route__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./activation-mode-list/activation-mode-list.route */ "./src/app/activation-mode-list/activation-mode-list.route.ts");
+/* harmony import */ var _about_us_about_us_route__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./about-us/about-us.route */ "./src/app/about-us/about-us.route.ts");
+
 
 
 
@@ -3738,7 +3835,7 @@ var appRoutes = [
             { path: 'login', component: _login__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"] },
             { path: 'register', component: _register__WEBPACK_IMPORTED_MODULE_7__["RegisterComponent"] },
             { path: 'users', component: _user_list_user_list_component__WEBPACK_IMPORTED_MODULE_9__["UserListComponent"], canActivate: [_guards__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]] }
-        ].concat(_heritage_detail__WEBPACK_IMPORTED_MODULE_2__["heritageDetailRoutes"], _heritage_list__WEBPACK_IMPORTED_MODULE_3__["heritageListRoutes"], _comment_comment_component_route__WEBPACK_IMPORTED_MODULE_4__["heritageCommentRoutes"], _heritage_evaluation__WEBPACK_IMPORTED_MODULE_5__["heritageEvaluationRoutes"], _heritage_activation_heritage_activation_route__WEBPACK_IMPORTED_MODULE_11__["heritageActivationRoutes"], _heritage_analysis_heritage_analysis_route__WEBPACK_IMPORTED_MODULE_12__["heritageAnalysisRoutes"], _heritage_nav_heritage_nav_route__WEBPACK_IMPORTED_MODULE_13__["heritageNavRoutes"], _activation_mode_list_activation_mode_list_route__WEBPACK_IMPORTED_MODULE_14__["activationModeListRoutes"])
+        ].concat(_heritage_detail__WEBPACK_IMPORTED_MODULE_2__["heritageDetailRoutes"], _heritage_list__WEBPACK_IMPORTED_MODULE_3__["heritageListRoutes"], _comment_comment_component_route__WEBPACK_IMPORTED_MODULE_4__["heritageCommentRoutes"], _heritage_evaluation__WEBPACK_IMPORTED_MODULE_5__["heritageEvaluationRoutes"], _heritage_activation_heritage_activation_route__WEBPACK_IMPORTED_MODULE_11__["heritageActivationRoutes"], _heritage_analysis_heritage_analysis_route__WEBPACK_IMPORTED_MODULE_12__["heritageAnalysisRoutes"], _heritage_nav_heritage_nav_route__WEBPACK_IMPORTED_MODULE_13__["heritageNavRoutes"], _activation_mode_list_activation_mode_list_route__WEBPACK_IMPORTED_MODULE_14__["activationModeListRoutes"], _about_us_about_us_route__WEBPACK_IMPORTED_MODULE_15__["aboutUsRoutes"])
     },
     // otherwise redirect to home
     { path: '**', redirectTo: '' },

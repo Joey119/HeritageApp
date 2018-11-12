@@ -32,6 +32,11 @@
         <mat-icon class="icon">account_box</mat-icon>
         <span class="label">用户管理</span>
       </a>
+      <a mat-list-item         
+         routerLink="/aboutus">
+        <mat-icon class="icon">info</mat-icon>
+        <span class="label">关于我们</span>
+      </a>
       <a  mat-list-item
           *ngIf="auth.isAuthenticated()"
           (click)="auth.logout()" type="button">
@@ -91,6 +96,13 @@
               routerLink="/users">
               <mat-icon class="icon">account_box</mat-icon>
               <span class="label">用户管理</span>
+            </a>
+          </li>
+          <li>
+            <a              
+              routerLink="/aboutus">
+              <mat-icon class="icon">info</mat-icon>
+              <span class="label">关于我们</span>
             </a>
           </li>
           <li>

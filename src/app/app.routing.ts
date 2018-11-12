@@ -15,6 +15,7 @@ import { heritageActivationRoutes } from './heritage-activation/heritage-activat
 import { heritageAnalysisRoutes } from './heritage-analysis/heritage-analysis.route';
 import { heritageNavRoutes } from './heritage-nav/heritage-nav.route';
 import { activationModeListRoutes } from './activation-mode-list/activation-mode-list.route';
+import { aboutUsRoutes } from './about-us/about-us.route';
 
 
 const appRoutes: Routes = [
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
             ...heritageActivationRoutes,
             ...heritageAnalysisRoutes,
             ...heritageNavRoutes,
-            ...activationModeListRoutes
+            ...activationModeListRoutes,
+            ...aboutUsRoutes
         ]
       },
       
