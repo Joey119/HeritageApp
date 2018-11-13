@@ -1,13 +1,13 @@
 <div class="basic-container" *ngIf="heritage">
 
   <mat-toolbar>
-    <span>非遗旅游价值评估: {{ heritage.name }} </span>
+    <span>推荐的活化模式: {{ heritage.name }} </span>
     <span class="spacer"></span>
     <button type="button" mat-button class="form-save" [routerLink]="['/heritagenav', heritage.id]">返回</button>
   </mat-toolbar>
 
   <div class="actMode-container" *ngIf="!actModes">
-    <p>当前旅游价值没有匹配的活化模式！</p>
+    <p>当前旅游价值没有匹配的活化模式，请先进行旅游价值评估。</p>
   </div>
 
   <div class="actMode-container" *ngFor="let actMode of actModes">

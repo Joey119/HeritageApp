@@ -168,7 +168,7 @@ export class HeritageAnalysisComponent implements OnInit {
       );
     }
     else {
-      this.toastr.error('请先进行利益相关者博弈计算。', '分析失败');
+      this.toastr.error('请先进行利益相关者博弈计算并保存。', '分析失败');
     }
   }
 

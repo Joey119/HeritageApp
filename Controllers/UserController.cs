@@ -45,7 +45,7 @@ namespace HeritageApp.Controllers
             var user = _userService.Authenticate(userDto.UserName, userDto.Password);
 
             if (user == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
+                return BadRequest(new { message = "用户名或密码错误！" });
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);

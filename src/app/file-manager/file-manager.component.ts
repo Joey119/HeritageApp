@@ -30,11 +30,11 @@ export class FileManagerComponent implements OnInit {
 
   ngOnInit() {
     this.cols = [
-      { field: 'id', header: 'ID', display: 'none'},
-      { field: 'heritageId', header: 'Heritage ID', display: 'none'},
-      { field: 'fileName', header: 'File Name', display: 'table-cell'},
-      { field: 'filePath', header: 'File Path', display: 'table-cell'},
-      { field: 'uploadUserName', header: 'User Name', display: 'table-cell'}
+      { field: 'id', header: '文件序号', display: 'none'},
+      { field: 'heritageId', header: '非遗序号', display: 'none'},
+      { field: 'fileName', header: '文件名称', display: 'table-cell'},
+      { field: 'filePath', header: '文件路径', display: 'table-cell'},
+      { field: 'uploadUserName', header: '上传用户', display: 'table-cell'}
     ];
     this.getFiles();
   }
