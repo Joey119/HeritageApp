@@ -375,8 +375,8 @@ namespace HeritageApp.Controllers {
                         break;
                     case 1:
                         int k = 0;
-                        routesLevel1.Add (CompareRoutes (routesLevel2[k], routesLevel2[k + 1], l));
-                        routesLevel1.Add (routesLevel2[k + 2]);
+                        routesLevel1.Add (CompareRoutes (routesLevel2[k + 1], routesLevel2[k + 2], l));
+                        routesLevel1.Add (routesLevel2[k]);
                         routesLevel2.Clear ();
                         break;
                     case 0:
@@ -399,10 +399,17 @@ namespace HeritageApp.Controllers {
 
             if (valuePath1 > valuePath2) {
                 return path1;
-            } else {
+            } else if (valuePath1 < valuePath2) {
                 return path2;
+            } else {
+                //when value is the same, compare the next level
+                if (compareLevel >= 1) {
+                    return CompareRoutes (path1, path2, compareLevel - 1);
+                } else {
+                    //all values are same, pick the first path
+                    return path1;
+                }
             }
-
         }
 
         public struct RoutePath {
