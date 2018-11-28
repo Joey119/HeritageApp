@@ -1,0 +1,1140 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>herritage-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">herritage-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>HeritageDetailComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/heritage-detail/heritage-detail.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-heritage-detail</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./heritage-detail.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./heritage-detail.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#heritage">heritage</a>
+                            </li>
+                            <li>
+                                <a href="#param">param</a>
+                            </li>
+                            <li>
+                                <a href="#step">step</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#nextStep">nextStep</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit">onSubmit</a>
+                            </li>
+                            <li>
+                                <a href="#prevStep">prevStep</a>
+                            </li>
+                            <li>
+                                <a href="#setStep">setStep</a>
+                            </li>
+                            <li>
+                                <a href="#showError">showError</a>
+                            </li>
+                            <li>
+                                <a href="#showSuccess">showSuccess</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, heritageService: <a href="../injectables/HeritageService.html">HeritageService</a>, userService: <a href="../injectables/UserService.html">UserService</a>, toastr: ToastrService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/heritage-detail/heritage-detail.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>heritageService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/HeritageService.html" target="_self" >HeritageService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                    <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>toastr</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="nextStep"></a>
+                        <span class="name">
+                            <b>
+                            nextStep
+                            </b>
+                            <a href="#nextStep"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>nextStep()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/heritage-detail/heritage-detail.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/heritage-detail/heritage-detail.component.ts:42</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onSubmit"></a>
+                        <span class="name">
+                            <b>
+                            onSubmit
+                            </b>
+                            <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>onSubmit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/heritage-detail/heritage-detail.component.ts:100</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="prevStep"></a>
+                        <span class="name">
+                            <b>
+                            prevStep
+                            </b>
+                            <a href="#prevStep"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>prevStep()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/heritage-detail/heritage-detail.component.ts:29</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="setStep"></a>
+                        <span class="name">
+                            <b>
+                            setStep
+                            </b>
+                            <a href="#setStep"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>setStep(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/heritage-detail/heritage-detail.component.ts:21</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>index</td>
+                                                        <td>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                        </td>
+                                                    
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                                <div class="io-description">
+                                    
+                                </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showError"></a>
+                        <span class="name">
+                            <b>
+                            showError
+                            </b>
+                            <a href="#showError"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>showError()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/app/heritage-detail/heritage-detail.component.ts:143</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showSuccess"></a>
+                        <span class="name">
+                            <b>
+                            showSuccess
+                            </b>
+                            <a href="#showSuccess"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>showSuccess()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/app/heritage-detail/heritage-detail.component.ts:139</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="heritage"></a>
+                        <span class="name">
+                            <b>
+                            heritage
+                            </b>
+                            <a href="#heritage"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>heritage:     <code><a href="../interfaces/IHeritage.html" target="_self" >IHeritage</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="../interfaces/IHeritage.html" target="_self" >IHeritage</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/heritage-detail/heritage-detail.component.ts:16</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="param"></a>
+                        <span class="name">
+                            <b>
+                            param
+                            </b>
+                            <a href="#param"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>param:     <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/heritage-detail/heritage-detail.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="step"></a>
+                        <span class="name">
+                            <b>
+                            step
+                            </b>
+                            <a href="#step"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <code>step:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>0</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/heritage-detail/heritage-detail.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input } from &#x27;@angular/core&#x27;;
+import { ActivatedRoute, Router } from &quot;@angular/router&quot;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { IHeritage } from &#x27;../_models&#x27;;
+import { HeritageService, UserService } from &#x27;../_services&#x27;;
+import { Global } from &#x27;../_shared&#x27;;
+
+
+@Component({
+  selector: &#x27;app-heritage-detail&#x27;,
+  templateUrl: &#x27;./heritage-detail.component.html&#x27;,
+  styleUrls: [&#x27;./heritage-detail.component.scss&#x27;]
+})
+export class HeritageDetailComponent implements OnInit {
+
+  heritage: IHeritage;
+  param: any;
+
+  step &#x3D; 0;
+
+  setStep(index: number) {
+    this.step &#x3D; index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
+
+
+
+  constructor(
+    private route: ActivatedRoute,
+    private heritageService: HeritageService,
+    private userService: UserService,
+    private toastr: ToastrService
+  ) { }
+
+  ngOnInit() {
+    /*
+    var id &#x3D; this.route.snapshot.params[&quot;id&quot;];
+    if (id &lt; 1)
+      return;
+    */
+
+    // Check for route params
+    this.route.params.subscribe(params &#x3D;&gt; {
+      this.param &#x3D; params[&#x27;id&#x27;];
+      // check if ID exists in route &amp; call update or add methods accordingly
+      if (this.param &amp;&amp; this.param !&#x3D; null &amp;&amp; this.param !&#x3D; undefined) {
+        this.heritageService.getHeritage(Global.BASE_HERITAGE_ENDPOINT + this.param).subscribe(
+          result &#x3D;&gt; {
+            this.heritage &#x3D; result;
+          }
+        )
+      }
+      else {
+        this.heritage &#x3D; {
+          id: 0,
+          name: &#x27;&#x27;,
+          registrationDistrict: &#x27;&#x27;,
+          registrationYear: &#x27;&#x27;,
+          province: &#x27;&#x27;,
+          typeofProject: &#x27;&#x27;,
+          batchNo: &#x27;&#x27;,
+          inheritors: &#x27;&#x27;,
+          projectOverview: &#x27;&#x27;,
+          history: &#x27;&#x27;,
+          currentStatus: &#x27;&#x27;,
+          presentValue: 0,
+          endangeredStatus: &#x27;&#x27;,
+          masterpiece: &#x27;&#x27;,
+          tourismStatus: &#x27;&#x27;,
+          tourismMarketCharacteristics: &#x27;&#x27;,
+          tourismProduct: &#x27;&#x27;,
+          tourismPrice: 0,
+          tourismDevelopmentModel: &#x27;&#x27;,
+          tourismBenefit: 0,
+          story: &#x27;&#x27;,
+          evaluationValue: 0,
+          activationModeId: undefined,
+          heritageGameAnalysisId: undefined,
+          createdUserId: 0,
+          createdUserName: &#x27;&#x27;,
+          createdOn: undefined,
+          modifiedUserId: 0,
+          modifiedUserName: &#x27;&#x27;,
+          modifiedOn: undefined
+        }
+      }
+    });
+
+
+
+  }
+
+  onSubmit() {
+
+    if (!this.userService.canEdit())
+    {
+      this.toastr.error(&quot;您没有添加或修改非物质文化遗产的权限。&quot;,&quot;权限验证失败&quot;);
+      return;
+    }
+
+    var userId &#x3D; this.userService.currentUserId();
+    if (this.heritage.id !&#x3D; 0) {
+      this.heritage.modifiedUserId &#x3D; userId;
+      this.heritageService.updateHeritage(Global.BASE_HERITAGE_ENDPOINT + this.heritage.id, this.heritage)
+        .subscribe(
+          data &#x3D;&gt; {
+            this.heritage &#x3D; data;
+            this.showSuccess();
+          },
+          error &#x3D;&gt; {
+            this.showError();
+          }
+        );
+    }
+    else {
+      this.heritage.createdUserId &#x3D; userId;
+      this.heritage.modifiedUserId &#x3D; userId;
+      this.heritageService.addHeritage(Global.BASE_HERITAGE_ENDPOINT, this.heritage)
+        .subscribe(
+          data &#x3D;&gt; {
+            this.heritage &#x3D; data;
+            this.showSuccess();
+          },
+          error &#x3D;&gt; {
+            this.showError();
+          }
+        );
+    }
+
+  }
+
+  showSuccess() {
+    this.toastr.success(&#x27;非物质文化遗产保存成功。&#x27;, &#x27;操作成功&#x27;);
+  }
+
+  showError() {
+    this.toastr.error(&#x27;非物质文化遗产保存失败。&#x27;, &#x27;操作失败&#x27;);
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;basic-container&quot; *ngIf&#x3D;&quot;heritage&quot;&gt;
+
+  &lt;form (ngSubmit)&#x3D;&quot;heritageForm.form.valid &amp;&amp; onSubmit()&quot; #heritageForm&#x3D;&quot;ngForm&quot; name&#x3D;&quot;form&quot;&gt;
+
+    &lt;mat-toolbar&gt;
+      &lt;span&gt;非遗信息录入 {{ heritage.name }} &lt;/span&gt;
+      &lt;span class&#x3D;&quot;spacer&quot;&gt;&lt;/span&gt;
+      &lt;button mat-button class&#x3D;&quot;form-save&quot;&gt;保存&lt;/button&gt;
+      &lt;button type&#x3D;&quot;button&quot; mat-button class&#x3D;&quot;form-save&quot; routerLink&#x3D;&quot;/heritagelist&quot;&gt;返回&lt;/button&gt;
+    &lt;/mat-toolbar&gt;
+
+    &lt;mat-accordion class&#x3D;&quot;example-headers-align&quot;&gt;
+      &lt;mat-expansion-panel [expanded]&#x3D;&quot;step &#x3D;&#x3D;&#x3D; 0&quot; (opened)&#x3D;&quot;setStep(0)&quot; hideToggle&gt;
+        &lt;mat-expansion-panel-header&gt;
+          &lt;mat-panel-title&gt;
+            基本信息
+          &lt;/mat-panel-title&gt;
+          &lt;mat-panel-description&gt;
+            请在这里输入基本信息
+            &lt;mat-icon&gt;account_balance&lt;/mat-icon&gt;
+          &lt;/mat-panel-description&gt;
+        &lt;/mat-expansion-panel-header&gt;
+
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;input matInput #name placeholder&#x3D;&quot;名称&quot; [(ngModel)]&#x3D;&quot;heritage.name&quot; name&#x3D;&quot;name&quot; required /&gt;
+          &lt;mat-hint align&#x3D;&quot;end&quot;&gt;
+            {{name.value.length}} / 50
+          &lt;/mat-hint&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;input matInput placeholder&#x3D;&quot;申报地区或单位&quot; [(ngModel)]&#x3D;&quot;heritage.registrationDistrict&quot; name&#x3D;&quot;registrationDistrict&quot;
+            required /&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;input matInput placeholder&#x3D;&quot;申报年份&quot; [(ngModel)]&#x3D;&quot;heritage.registrationYear&quot; name&#x3D;&quot;registrationYear&quot; required /&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;input matInput placeholder&#x3D;&quot;所属省份&quot; [(ngModel)]&#x3D;&quot;heritage.province&quot; name&#x3D;&quot;province&quot; required /&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;input matInput placeholder&#x3D;&quot;项目类型&quot; [(ngModel)]&#x3D;&quot;heritage.typeofProject&quot; name&#x3D;&quot;projectType&quot; required /&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;input matInput placeholder&#x3D;&quot;批次&quot; [(ngModel)]&#x3D;&quot;heritage.batchNo&quot; name&#x3D;&quot;batchNo&quot; required /&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;input matInput placeholder&#x3D;&quot;传承人&quot; [(ngModel)]&#x3D;&quot;heritage.inheritors&quot; name&#x3D;&quot;inheritors&quot; required /&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;textarea matInput placeholder&#x3D;&quot;项目简介&quot; [(ngModel)]&#x3D;&quot;heritage.projectOverview&quot; name&#x3D;&quot;projectOverview&quot;&gt;&lt;/textarea&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;textarea matInput placeholder&#x3D;&quot;历史沿革&quot; [(ngModel)]&#x3D;&quot;heritage.history&quot; name&#x3D;&quot;history&quot;&gt;&lt;/textarea&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;textarea matInput placeholder&#x3D;&quot;现状&quot; [(ngModel)]&#x3D;&quot;heritage.currentStatus&quot; name&#x3D;&quot;currentStatus&quot;&gt;&lt;/textarea&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;input matInput placeholder&#x3D;&quot;价值&quot; [(ngModel)]&#x3D;&quot;heritage.presentValue&quot; name&#x3D;&quot;presentValue&quot; /&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;textarea matInput placeholder&#x3D;&quot;濒危情况&quot; [(ngModel)]&#x3D;&quot;heritage.endangeredStatus&quot; name&#x3D;&quot;endangeredStatus&quot;&gt;&lt;/textarea&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;textarea matInput placeholder&#x3D;&quot;代表作品&quot; [(ngModel)]&#x3D;&quot;heritage.masterpiece&quot; name&#x3D;&quot;masterpiece&quot;&gt;&lt;/textarea&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+
+        &lt;mat-action-row&gt;
+          &lt;button mat-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;nextStep()&quot;&gt;下一页&lt;/button&gt;
+        &lt;/mat-action-row&gt;
+      &lt;/mat-expansion-panel&gt;
+
+      &lt;mat-expansion-panel [expanded]&#x3D;&quot;step &#x3D;&#x3D;&#x3D; 1&quot; (opened)&#x3D;&quot;setStep(1)&quot; hideToggle&gt;
+        &lt;mat-expansion-panel-header&gt;
+          &lt;mat-panel-title&gt;
+            旅游相关信息
+          &lt;/mat-panel-title&gt;
+          &lt;mat-panel-description&gt;
+            请在这里提供旅游相关信息
+            &lt;mat-icon&gt;map&lt;/mat-icon&gt;
+          &lt;/mat-panel-description&gt;
+        &lt;/mat-expansion-panel-header&gt;
+
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;textarea matInput placeholder&#x3D;&quot;旅游开放现状&quot; [(ngModel)]&#x3D;&quot;heritage.tourismStatus&quot; name&#x3D;&quot;tourismStatus&quot;&gt;&lt;/textarea&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;textarea matInput placeholder&#x3D;&quot;旅游市场特点&quot; [(ngModel)]&#x3D;&quot;heritage.tourismMarketCharacteristics&quot; name&#x3D;&quot;tourismMarketCharacteristics&quot;&gt;&lt;/textarea&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;textarea matInput placeholder&#x3D;&quot;配套旅游产品&quot; [(ngModel)]&#x3D;&quot;heritage.tourismProduct&quot; name&#x3D;&quot;tourismProduct&quot;&gt;&lt;/textarea&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;input matInput placeholder&#x3D;&quot;旅游价格&quot; [(ngModel)]&#x3D;&quot;heritage.tourismPrice&quot; name&#x3D;&quot;tourismPrice&quot; /&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;textarea matInput placeholder&#x3D;&quot;旅游开发模式&quot; [(ngModel)]&#x3D;&quot;heritage.tourismDevelopmentModel&quot; name&#x3D;&quot;tourismDevelopmentModel&quot;&gt;&lt;/textarea&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+        &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+          &lt;input matInput placeholder&#x3D;&quot;旅游效益&quot; [(ngModel)]&#x3D;&quot;heritage.tourismBenefit&quot; name&#x3D;&quot;tourismBenefit&quot; /&gt;
+        &lt;/mat-form-field&gt;
+        &lt;br&gt;
+
+        &lt;mat-action-row&gt;
+          &lt;button mat-button color&#x3D;&quot;warn&quot; (click)&#x3D;&quot;prevStep()&quot;&gt;上一页&lt;/button&gt;
+          &lt;button mat-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;nextStep()&quot;&gt;下一页&lt;/button&gt;
+        &lt;/mat-action-row&gt;
+      &lt;/mat-expansion-panel&gt;
+
+      &lt;mat-expansion-panel [expanded]&#x3D;&quot;step &#x3D;&#x3D;&#x3D; 2&quot; (opened)&#x3D;&quot;setStep(2)&quot; hideToggle&gt;
+        &lt;mat-expansion-panel-header&gt;
+          &lt;mat-panel-title&gt;
+            其他信息
+          &lt;/mat-panel-title&gt;
+          &lt;mat-panel-description&gt;
+            请在这里提供其他相关信息
+            &lt;mat-icon&gt;add_photo_alternate&lt;/mat-icon&gt;
+          &lt;/mat-panel-description&gt;
+        &lt;/mat-expansion-panel-header&gt;
+
+        &lt;mat-card class&#x3D;&quot;fileupload&quot;&gt;
+          &lt;mat-card-header&gt;
+            &lt;mat-card-title&gt;文件上传 &lt;/mat-card-title&gt;
+            &lt;mat-card-subtitle&gt;请在这里上传相关文件&lt;/mat-card-subtitle&gt;
+          &lt;/mat-card-header&gt;
+          &lt;mat-card-content&gt;
+            &lt;mat-form-field class&#x3D;&quot;form-field&quot;&gt;
+              &lt;textarea matInput placeholder&#x3D;&quot;Story&quot; [(ngModel)]&#x3D;&quot;heritage.story&quot; name&#x3D;&quot;story&quot;&gt;&lt;/textarea&gt;
+            &lt;/mat-form-field&gt;
+            &lt;br&gt;
+            &lt;app-file-manager [heritageID]&#x3D;&quot;heritage.id&quot;&gt;File manager loading...&lt;/app-file-manager&gt;
+          &lt;/mat-card-content&gt;
+        &lt;/mat-card&gt;
+
+        &lt;mat-action-row&gt;
+          &lt;button mat-button color&#x3D;&quot;warn&quot; (click)&#x3D;&quot;prevStep()&quot;&gt;上一页&lt;/button&gt;
+          &lt;button mat-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;nextStep()&quot;&gt;下一页&lt;/button&gt;
+        &lt;/mat-action-row&gt;
+      &lt;/mat-expansion-panel&gt;
+
+    &lt;/mat-accordion&gt;
+
+  &lt;/form&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./heritage-detail.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">
+.basic-container {
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 1%;
+  padding-bottom: 2%;  
+}
+
+.form-field {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.spacer {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+.example-headers-align .mat-expansion-panel-header-title, 
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="basic-container" *ngIf="heritage">  <form (ngSubmit)="heritageForm.form.valid && onSubmit()" #heritageForm="ngForm" name="form">    <mat-toolbar>      <span>非遗信息录入 {{ heritage.name }} </span>      <span class="spacer"></span>      <button mat-button class="form-save">保存</button>      <button type="button" mat-button class="form-save" routerLink="/heritagelist">返回</button>    </mat-toolbar>    <mat-accordion class="example-headers-align">      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>        <mat-expansion-panel-header>          <mat-panel-title>            基本信息          </mat-panel-title>          <mat-panel-description>            请在这里输入基本信息            <mat-icon>account_balance</mat-icon>          </mat-panel-description>        </mat-expansion-panel-header>        <mat-form-field class="form-field">          <input matInput #name placeholder="名称" [(ngModel)]="heritage.name" name="name" required />          <mat-hint align="end">            {{name.value.length}} / 50          </mat-hint>        </mat-form-field>        <br>        <mat-form-field class="form-field">          <input matInput placeholder="申报地区或单位" [(ngModel)]="heritage.registrationDistrict" name="registrationDistrict"            required />        </mat-form-field>        <br>        <mat-form-field class="form-field">          <input matInput placeholder="申报年份" [(ngModel)]="heritage.registrationYear" name="registrationYear" required />        </mat-form-field>        <br>        <mat-form-field class="form-field">          <input matInput placeholder="所属省份" [(ngModel)]="heritage.province" name="province" required />        </mat-form-field>        <br>        <mat-form-field class="form-field">          <input matInput placeholder="项目类型" [(ngModel)]="heritage.typeofProject" name="projectType" required />        </mat-form-field>        <br>        <mat-form-field class="form-field">          <input matInput placeholder="批次" [(ngModel)]="heritage.batchNo" name="batchNo" required />        </mat-form-field>        <br>        <mat-form-field class="form-field">          <input matInput placeholder="传承人" [(ngModel)]="heritage.inheritors" name="inheritors" required />        </mat-form-field>        <br>        <mat-form-field class="form-field">          <textarea matInput placeholder="项目简介" [(ngModel)]="heritage.projectOverview" name="projectOverview"></textarea>        </mat-form-field>        <br>        <mat-form-field class="form-field">          <textarea matInput placeholder="历史沿革" [(ngModel)]="heritage.history" name="history"></textarea>        </mat-form-field>        <br>        <mat-form-field class="form-field">          <textarea matInput placeholder="现状" [(ngModel)]="heritage.currentStatus" name="currentStatus"></textarea>        </mat-form-field>        <br>        <mat-form-field class="form-field">          <input matInput placeholder="价值" [(ngModel)]="heritage.presentValue" name="presentValue" />        </mat-form-field>        <br>        <mat-form-field class="form-field">          <textarea matInput placeholder="濒危情况" [(ngModel)]="heritage.endangeredStatus" name="endangeredStatus"></textarea>        </mat-form-field>        <br>        <mat-form-field class="form-field">          <textarea matInput placeholder="代表作品" [(ngModel)]="heritage.masterpiece" name="masterpiece"></textarea>        </mat-form-field>        <br>        <mat-action-row>          <button mat-button color="primary" (click)="nextStep()">下一页</button>        </mat-action-row>      </mat-expansion-panel>      <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>        <mat-expansion-panel-header>          <mat-panel-title>            旅游相关信息          </mat-panel-title>          <mat-panel-description>            请在这里提供旅游相关信息            <mat-icon>map</mat-icon>          </mat-panel-description>        </mat-expansion-panel-header>        <mat-form-field class="form-field">          <textarea matInput placeholder="旅游开放现状" [(ngModel)]="heritage.tourismStatus" name="tourismStatus"></textarea>        </mat-form-field>        <br>        <mat-form-field class="form-field">          <textarea matInput placeholder="旅游市场特点" [(ngModel)]="heritage.tourismMarketCharacteristics" name="tourismMarketCharacteristics"></textarea>        </mat-form-field>        <br>        <mat-form-field class="form-field">          <textarea matInput placeholder="配套旅游产品" [(ngModel)]="heritage.tourismProduct" name="tourismProduct"></textarea>        </mat-form-field>        <br>        <mat-form-field class="form-field">          <input matInput placeholder="旅游价格" [(ngModel)]="heritage.tourismPrice" name="tourismPrice" />        </mat-form-field>        <br>        <mat-form-field class="form-field">          <textarea matInput placeholder="旅游开发模式" [(ngModel)]="heritage.tourismDevelopmentModel" name="tourismDevelopmentModel"></textarea>        </mat-form-field>        <br>        <mat-form-field class="form-field">          <input matInput placeholder="旅游效益" [(ngModel)]="heritage.tourismBenefit" name="tourismBenefit" />        </mat-form-field>        <br>        <mat-action-row>          <button mat-button color="warn" (click)="prevStep()">上一页</button>          <button mat-button color="primary" (click)="nextStep()">下一页</button>        </mat-action-row>      </mat-expansion-panel>      <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>        <mat-expansion-panel-header>          <mat-panel-title>            其他信息          </mat-panel-title>          <mat-panel-description>            请在这里提供其他相关信息            <mat-icon>add_photo_alternate</mat-icon>          </mat-panel-description>        </mat-expansion-panel-header>        <mat-card class="fileupload">          <mat-card-header>            <mat-card-title>文件上传 </mat-card-title>            <mat-card-subtitle>请在这里上传相关文件</mat-card-subtitle>          </mat-card-header>          <mat-card-content>            <mat-form-field class="form-field">              <textarea matInput placeholder="Story" [(ngModel)]="heritage.story" name="story"></textarea>            </mat-form-field>            <br>            <app-file-manager [heritageID]="heritage.id">File manager loading...</app-file-manager>          </mat-card-content>        </mat-card>        <mat-action-row>          <button mat-button color="warn" (click)="prevStep()">上一页</button>          <button mat-button color="primary" (click)="nextStep()">下一页</button>        </mat-action-row>      </mat-expansion-panel>    </mat-accordion>  </form></div></div>'
+    var COMPONENTS = [{'name': 'AboutUsComponent', 'selector': 'app-about-us'},{'name': 'ActivationModeAddDialogComponent', 'selector': 'activation-mode-add.dialog'},{'name': 'ActivationModeDeleteDialogComponent', 'selector': 'activation-mode-delete.dialog'},{'name': 'ActivationModeEditDialogComponent', 'selector': 'app-baza.dialog'},{'name': 'ActivationModeListComponent', 'selector': 'app-activation-mode-list'},{'name': 'AddDialogComponent', 'selector': 'app-add.dialog'},{'name': 'AlertComponent', 'selector': 'alert'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppHeaderComponent', 'selector': 'app-header'},{'name': 'AppLayoutComponent', 'selector': 'app-app-layout'},{'name': 'CommentBoxComponent', 'selector': 'comment-box'},{'name': 'CommentComponent', 'selector': 'app-comment'},{'name': 'CommentFormComponent', 'selector': 'comment-form'},{'name': 'CommentListComponent', 'selector': 'comment-list'},{'name': 'DeleteDialogComponent', 'selector': 'app-delete.dialog'},{'name': 'EditDialogComponent', 'selector': 'app-baza.dialog'},{'name': 'FileManagerComponent', 'selector': 'app-file-manager'},{'name': 'HeritageActivationComponent', 'selector': 'app-heritage-activation'},{'name': 'HeritageAnalysisComponent', 'selector': 'app-heritage-analysis'},{'name': 'HeritageDeleteDialogComponent', 'selector': 'heritage-delete.dialog'},{'name': 'HeritageDetailComponent', 'selector': 'app-heritage-detail'},{'name': 'HeritageEvaluationComponent', 'selector': 'app-heritage-evaluation'},{'name': 'HeritageListComponent', 'selector': 'app-heritage-list'},{'name': 'HeritageNavComponent', 'selector': 'app-heritage-nav'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'SiteFooterComponent', 'selector': 'site-footer'},{'name': 'SiteHeaderComponent', 'selector': 'site-header'},{'name': 'SiteLayoutComponent', 'selector': 'app-site-layout'},{'name': 'UserListComponent', 'selector': 'app-user-list'},{'name': 'WelcomeComponent', 'selector': 'app-welcome'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'HeritageDetailComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'HeritageDetailComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
